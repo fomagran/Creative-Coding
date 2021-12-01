@@ -14,6 +14,7 @@
 		041E19A6274B4135000F8C11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041E19A4274B4135000F8C11 /* LaunchScreen.storyboard */; };
 		041E19AF274B443F000F8C11 /* SwingEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E19AE274B443F000F8C11 /* SwingEffectViewController.swift */; };
 		043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */; };
+		046669732757965500C0BA70 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046669722757965500C0BA70 /* WaveViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		041E19A7274B4135000F8C11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		041E19AE274B443F000F8C11 /* SwingEffectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingEffectViewController.swift; sourceTree = "<group>"; };
 		043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew + Extensions.swift"; sourceTree = "<group>"; };
+		046669722757965500C0BA70 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		041E1998274B4134000F8C11 /* Creative Coding Practice */ = {
 			isa = PBXGroup;
 			children = (
+				046669712757964B00C0BA70 /* Wave */,
 				041E19AD274B4408000F8C11 /* Swing Effect */,
 				041E1999274B4134000F8C11 /* AppDelegate.swift */,
 				041E199B274B4134000F8C11 /* SceneDelegate.swift */,
@@ -76,6 +79,14 @@
 				043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */,
 			);
 			path = "Swing Effect";
+			sourceTree = "<group>";
+		};
+		046669712757964B00C0BA70 /* Wave */ = {
+			isa = PBXGroup;
+			children = (
+				046669722757965500C0BA70 /* WaveViewController.swift */,
+			);
+			path = Wave;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +163,7 @@
 				041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */,
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,
 				041E19AF274B443F000F8C11 /* SwingEffectViewController.swift in Sources */,
+				046669732757965500C0BA70 /* WaveViewController.swift in Sources */,
 				041E199C274B4134000F8C11 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

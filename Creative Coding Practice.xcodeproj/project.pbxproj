@@ -14,6 +14,7 @@
 		041E19A6274B4135000F8C11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041E19A4274B4135000F8C11 /* LaunchScreen.storyboard */; };
 		041E19AF274B443F000F8C11 /* SwingEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E19AE274B443F000F8C11 /* SwingEffectViewController.swift */; };
 		043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */; };
+		044C3B7B2758E60A0002F17E /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044C3B7A2758E60A0002F17E /* WaveView.swift */; };
 		046669732757965500C0BA70 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046669722757965500C0BA70 /* WaveViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		041E19A7274B4135000F8C11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		041E19AE274B443F000F8C11 /* SwingEffectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingEffectViewController.swift; sourceTree = "<group>"; };
 		043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew + Extensions.swift"; sourceTree = "<group>"; };
+		044C3B7A2758E60A0002F17E /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		046669722757965500C0BA70 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				046669722757965500C0BA70 /* WaveViewController.swift */,
+				044C3B7A2758E60A0002F17E /* WaveView.swift */,
 			);
 			path = Wave;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */,
+				044C3B7B2758E60A0002F17E /* WaveView.swift in Sources */,
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,
 				041E19AF274B443F000F8C11 /* SwingEffectViewController.swift in Sources */,
 				046669732757965500C0BA70 /* WaveViewController.swift in Sources */,
@@ -319,6 +323,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -347,6 +352,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

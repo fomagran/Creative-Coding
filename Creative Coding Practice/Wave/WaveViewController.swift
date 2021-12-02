@@ -45,12 +45,12 @@ class WaveViewController: UIViewController {
         return view
     }()
     
+    private var line = CAShapeLayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
-        
-
-        
+        addCurve()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.moveRedDot(redDot: self.redDot2,duration: 0.8,move: 100)
@@ -94,7 +94,21 @@ class WaveViewController: UIViewController {
         
         redDot6.frame = CGRect(x:self.view.frame.width-10, y:self.view.center.y, width: 10, height: 10)
         redDot6.layer.cornerRadius = 5
+        line.fillColor = UIColor.red.cgColor
         self.view.addSubview(redDot6)
+    }
+    
+    private func addCurve() {
+        line.removeFromSuperlayer()
+        let linePath = UIBezierPath()
+        linePath.move(to:CGPoint(x: 0, y: self.view.frame.height))
+        linePath.addLine(to:CGPoint(x: 0, y: self.view.center.y))
+        linePath.addCurve(to:CGPoint(x: self.view.frame.width, y: self.view.center.y), controlPoint1: redDot2.center, controlPoint2: redDot3.center)
+        linePath.addLine(to: CGPoint(x: self.view.frame.width, y: self.view.frame.height))
+        line.path = linePath.cgPath
+        line.strokeColor = UIColor.red.cgColor
+        line.lineWidth = 1
+        view.layer.addSublayer(line)
     }
     
     func moveRedDot(redDot:UIView,duration:CGFloat,move:CGFloat) {
@@ -107,5 +121,6 @@ class WaveViewController: UIViewController {
                 self.moveRedDot(redDot:redDot,duration:duration,move: move)
             }
         }
+        addCurve()
     }
 }

@@ -18,14 +18,22 @@ struct Point {
     }
 }
 
+struct Line {
+    let layer:CAShapeLayer
+    let p1:Int
+    let p2:Int
+    var color:UIColor
+}
+
 class WaveViewController: UIViewController {
 
     private var timer : Timer?
     private var points:[Point] = []
     private var h:CGFloat = 0
-    private var lines:[CAShapeLayer] = []
     private var lineCount:Int = 3
     private var dotCount:Int = 4
+    private let colors:[UIColor] = [.systemPink,.systemGreen,.systemRed,.systemBlue,.systemCyan,.systemMint,.systemTeal,.systemOrange,.systemYellow,.systemPurple]
+    private var lines:[Line] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +47,6 @@ class WaveViewController: UIViewController {
         let center = self.view.center.y
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
         h = self.view.center.y
-        lines = Array(repeating: CAShapeLayer(), count: lineCount)
         for i in 1...dotCount {
             let x:CGFloat = w*CGFloat(i)
             let y:CGFloat = center
@@ -48,20 +55,24 @@ class WaveViewController: UIViewController {
             let addY:CGFloat = CGFloat(i%2) == 0 ? -1:1
             points.append(Point(x: x, y: y, max: max, min: min, addY: addY))
         }
+        
+        for _ in 0..<lineCount {
+            lines.append(Line(layer:CAShapeLayer(),p1: (0..<points.count).randomElement()!, p2: (0..<points.count).randomElement()!, color: (colors.randomElement()!)))
+        }
     }
     
-    private func addCurve(line:CAShapeLayer,p1:CGPoint,p2:CGPoint,lineColor:UIColor) {
-        line.removeFromSuperlayer()
+    private func addCurve(line:Line,p1:Int,p2:Int) {
+        line.layer.removeFromSuperlayer()
         let height:CGFloat = self.view.frame.height
         let width:CGFloat = self.view.frame.width
         let linePath = UIBezierPath()
         linePath.move(to:CGPoint(x: 0, y:height))
         linePath.addLine(to:CGPoint(x: 0, y:height/2))
-        linePath.addCurve(to:CGPoint(x: width, y:height/2), controlPoint1:p1, controlPoint2:p2)
+        linePath.addCurve(to:CGPoint(x: width, y:height/2), controlPoint1:points[p1].center, controlPoint2:points[p2].center)
         linePath.addLine(to: CGPoint(x: width, y: height))
-        line.path = linePath.cgPath
-        line.fillColor = lineColor.cgColor
-        view.layer.addSublayer(line)
+        line.layer.path = linePath.cgPath
+        line.layer.fillColor = line.color.withAlphaComponent(0.4).cgColor
+        view.layer.addSublayer(line.layer)
     }
     
     //MARK:- @objc Functions
@@ -75,8 +86,8 @@ class WaveViewController: UIViewController {
             }
         }
         
-        addCurve(line: lines[0], p1: points[0].center, p2: points[2].center, lineColor: UIColor.systemGreen.withAlphaComponent(0.4))
-        addCurve(line: lines[1], p1: points[1].center, p2:points[3].center, lineColor: UIColor.systemPink.withAlphaComponent(0.4))
-        addCurve(line: lines[2], p1: points[0].center, p2: points[3].center, lineColor: UIColor.systemBlue.withAlphaComponent(0.4))
+        for i in 0..<lineCount {
+            addCurve(line:lines[i],p1:lines[i].p1,p2:lines[i].p2)
+        }
     }
 }

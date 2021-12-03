@@ -61,7 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				046669712757964B00C0BA70 /* Wave */,
-				041E19AD274B4408000F8C11 /* Swing Effect */,
+				041E19AD274B4408000F8C11 /* Swing Square */,
 				041E1999274B4134000F8C11 /* AppDelegate.swift */,
 				041E199B274B4134000F8C11 /* SceneDelegate.swift */,
 				041E199F274B4134000F8C11 /* Main.storyboard */,
@@ -72,13 +72,13 @@
 			path = "Creative Coding Practice";
 			sourceTree = "<group>";
 		};
-		041E19AD274B4408000F8C11 /* Swing Effect */ = {
+		041E19AD274B4408000F8C11 /* Swing Square */ = {
 			isa = PBXGroup;
 			children = (
 				041E19AE274B443F000F8C11 /* SwingEffectViewController.swift */,
 				043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */,
 			);
-			path = "Swing Effect";
+			path = "Swing Square";
 			sourceTree = "<group>";
 		};
 		046669712757964B00C0BA70 /* Wave */ = {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SwingEffectViewController: UIViewController {
+class SwingSquareViewController: UIViewController {
     
     //MARK:- Properties
     

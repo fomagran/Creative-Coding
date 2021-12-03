@@ -45,7 +45,6 @@ class WaveViewController: UIViewController {
     func configure() {
         let w:CGFloat = self.view.frame.width/CGFloat(dotCount+1)
         let center = self.view.center.y
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
         h = self.view.center.y
         for i in 1...dotCount {
             let x:CGFloat = w*CGFloat(i)
@@ -55,7 +54,6 @@ class WaveViewController: UIViewController {
             let addY:CGFloat = CGFloat(i%2) == 0 ? -1:1
             points.append(Point(x: x, y: y, max: max, min: min, addY: addY))
         }
-        
         for _ in 0..<lineCount {
             lines.append(Line(layer:CAShapeLayer(),p1: (0..<points.count).randomElement()!, p2: (0..<points.count).randomElement()!, color: (colors.randomElement()!)))
         }
@@ -88,6 +86,15 @@ class WaveViewController: UIViewController {
         
         for i in 0..<lineCount {
             addCurve(line:lines[i],p1:lines[i].p1,p2:lines[i].p2)
+        }
+    }
+    @IBAction func tapBackground(_ sender: Any) {
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+        }else {
+            timer?.invalidate()
+            timer = nil
+            lines.removeAll()
         }
     }
 }

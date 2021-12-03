@@ -17,6 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="o9b-0f-8t4" appends="YES" id="oUd-nh-FaU"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -25,6 +29,11 @@
                         <action selector="dragSquare:" destination="BYZ-38-t0r" id="Mvc-k5-0HR"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="o9b-0f-8t4">
+                    <connections>
+                        <action selector="tapBackground:" destination="BYZ-38-t0r" id="X2N-vJ-xhH"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="139" y="129"/>
         </scene>

@@ -9,4 +9,4 @@
 ## 2. 흔들리는 웨이브 만들기
 
 
-<img src="https://user-images.githubusercontent.com/47676921/144573398-8f1a2844-6aae-4c57-9602-648d274c2499.gif"  width="400" height="200">
+<img src="https://user-images.githubusercontent.com/47676921/144575570-06d934c4-4aab-4019-98de-8a11cc489e04.gif"  width="400" height="200">

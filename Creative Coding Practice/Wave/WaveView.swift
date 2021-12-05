@@ -27,6 +27,7 @@ class WaveView: UIView {
     }
     
     private func configure() {
+                timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
         let w:CGFloat = self.bounds.width/CGFloat(dotCount+1)
         let center = self.frame.height/2
         h = self.frame.height/2
@@ -77,25 +78,11 @@ class WaveView: UIView {
         }
     }
     
-    func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+    func changeColor() {
         for line in lines {
             line.layer.fillColor = UIColor.clear.cgColor
         }
         lines.removeAll()
         appendLines()
-    }
-    
-    func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    func handleTimer() {
-        if timer == nil {
-            startTimer()
-        }else {
-            stopTimer()
-        }
     }
 }

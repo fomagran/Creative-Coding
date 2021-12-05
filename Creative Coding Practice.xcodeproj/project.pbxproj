@@ -99,11 +99,27 @@
 		046669712757964B00C0BA70 /* Wave */ = {
 			isa = PBXGroup;
 			children = (
+				0485DC16275CE27200F029B0 /* Controller */,
+				0485DC15275CE26C00F029B0 /* View */,
 				0438A465275B360100BFE7B5 /* Model */,
-				046669722757965500C0BA70 /* WaveViewController.swift */,
-				0485DC11275CC63800F029B0 /* WaveView.swift */,
 			);
 			path = Wave;
+			sourceTree = "<group>";
+		};
+		0485DC15275CE26C00F029B0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0485DC11275CC63800F029B0 /* WaveView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0485DC16275CE27200F029B0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				046669722757965500C0BA70 /* WaveViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -39,7 +39,7 @@ class WaveView: UIView {
             let addY:CGFloat = CGFloat(i%2) == 0 ? -1:1
             points.append(Point(x: x, y: y, max: max, min: min, addY: addY))
         }
-        startTimer()
+        appendLines()
     }
     
     private func appendLines() {

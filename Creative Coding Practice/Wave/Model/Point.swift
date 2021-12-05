@@ -5,7 +5,7 @@
 //  Created by Fomagran on 2021/12/04.
 //
 
-import Foundation
+import UIKit
 
 struct Point {
     var x:CGFloat

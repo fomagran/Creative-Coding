@@ -12,12 +12,28 @@ import SceneKit
 class DSViewController: UIViewController {
     
     let spark = SKView(withEmitter: "Spark")
-    
+    let square = SKView(withEmitter: "SquareSpark")
+    let iv = UIImageView(image: UIImage(named:"sparkImage.png"))
+    let zero = UIImageView(image: UIImage(named:"zero.png"))
+    private var timer : Timer?
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        view.addSubview(spark)
-        a()
+        zero.frame = CGRect(x: view.bounds.midX-400, y: view.bounds.midY-400, width: 800, height: 800)
+        square.frame = CGRect(x: view.bounds.midX-400, y: view.bounds.midY-400, width: 800, height: 800)
+        view.addSubview(square)
+        view.addSubview(zero)
+        
+        UIView.animate(withDuration: 3, delay: 0, options: .curveEaseIn) {
+            self.zero.frame = CGRect(x: self.view.bounds.midX-self.view.frame.width, y: self.view.bounds.midY-self.view.frame.height, width: self.view.frame.width*2, height: self.view.frame.height*2)
+            self.square.frame = CGRect(x: self.view.bounds.midX-self.view.frame.width, y: self.view.bounds.midY-self.view.frame.height, width: self.view.frame.width*2, height: self.view.frame.height*2)
+        }
+
+    }
+    
+    @objc func timerCallback() {
+        showStars()
     }
     
     // MARK: - Actions
@@ -33,7 +49,7 @@ class DSViewController: UIViewController {
         if sender.state == .ended {
                particleEmitter.lifetime = 0
            } else if sender.state == .began {
-//               showStars()
+               showStars()
                particleEmitter.lifetime = 1.0
            }else if sender.state == .changed {
                spark.center = sender.location(in: self.view)
@@ -66,13 +82,16 @@ class DSViewController: UIViewController {
     
     func a() {
         let flightAnimation = CAKeyframeAnimation(keyPath: "position")
-        flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: 100, y: 100, width: 500, height: 500)).cgPath
+        flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: view.frame.midX-350, y: view.frame.midY-400, width: 700, height: 800)).cgPath
         // I set this one to make the animation go smoothly along the path
         flightAnimation.calculationMode = CAAnimationCalculationMode.paced
-        flightAnimation.duration = 1.5
+        flightAnimation.duration = 3
         flightAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
-        flightAnimation.repeatCount = 10
+        flightAnimation.repeatCount = 1
         spark.layer.add(flightAnimation, forKey: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            self.timer?.invalidate()
+        }
     }
 }
 
@@ -94,55 +113,5 @@ extension SKView {
   presentScene(scene)
  }
 }
-
-//override func viewDidAppear(_ animated: Bool) {
-//    let image = emitterImage
-//    let side = min(view.bounds.width, view.bounds.height) * 0.8
-//    let origin = CGPoint(x: view.bounds.midX - side / 2, y: view.bounds.midY - side / 2)
-//    let center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
-//    let size = CGSize(width: side, height: side)
-//    let rect = CGRect(origin: origin, size: size)
-//    let emitterLayer = CAEmitterLayer()
-//    emitterLayer.emitterShape = CAEmitterLayerEmitterShape.rectangle
-//    emitterLayer.emitterSize = rect.size
-//    emitterLayer.emitterPosition = center
-//
-//    // define cells
-//
-//    let cell = CAEmitterCell()
-//    cell.birthRate = Float(size.width * size.height / 10)
-//    cell.lifetime = 1
-//    cell.velocity = 10
-//    cell.scale = 0.1
-//    cell.scaleSpeed = -0.1
-//    cell.emissionRange = .pi * 2
-//    cell.contents = image.cgImage
-//    emitterLayer.emitterCells = [cell]
-//
-//    // add the layer
-//
-//    view.layer.addSublayer(emitterLayer)
-//
-//    // mask the layer
-//
-//    let lineWidth = side / 8
-//    let mask = CAShapeLayer()
-//    mask.fillColor = UIColor.clear.cgColor
-//    mask.strokeColor = UIColor.white.cgColor
-//    mask.lineWidth = lineWidth
-//    mask.path = UIBezierPath(arcCenter: center, radius: (side - lineWidth) / 2, startAngle: .pi / 4, endAngle: .pi * 7 / 4, clockwise: true).cgPath
-//    emitterLayer.mask = mask
-//}
-//
-//var emitterImage: UIImage {
-//    let rect = CGRect(origin: .zero, size: CGSize(width: 10, height: 10))
-//    UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
-//    #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1).setFill()
-//    UIBezierPath(arcCenter: CGPoint(x: rect.midX, y: rect.midY), radius: rect.midX, startAngle: 0, endAngle: .pi * 2, clockwise: true).fill()
-//    let image = UIGraphicsGetImageFromCurrentImageContext()
-//    UIGraphicsEndImageContext()
-//    return image!
-//}
-//
 
 

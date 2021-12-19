@@ -21,7 +21,7 @@ public class StarParticle: CAEmitterCell {
         self.scale = 0.5
         self.scaleRange = 0.25
         self.alphaSpeed = -1
-        self.contents = UIImage(named: "반고흐.jpeg")?.cgImage
+        self.contents = UIImage(named: "sparkImage.png")?.cgImage
     }
     
     required init?(coder: NSCoder) {

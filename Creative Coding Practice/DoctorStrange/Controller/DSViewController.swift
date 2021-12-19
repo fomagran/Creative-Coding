@@ -24,23 +24,26 @@ class DSViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.view.backgroundColor = .black
-//        square.frame = CGRect(x: view.bounds.midX-800, y: view.bounds.midY-800, width: 1600, height: 1600)
-//        square.contentMode = .scaleAspectFit
-//        let whiteView = setCenterCircle(view:square)
-//        square.addSubview(whiteView)
-//        view.addSubview(square)
-//        let imageView = UIImageView(image: UIImage(named: "폴고갱.jpeg"))
-//        imageView.frame = CGRect(x: view.bounds.midX-300, y: view.bounds.midY-300, width: 600, height: 600)
-//        imageView.layer.cornerRadius = imageView.frame.height/2
-//        imageView.layer.masksToBounds = true
-//        view.addSubview(imageView)
-//        view.addSubview(spark)
         configure()
     }
     
     func configure() {
+        view.addSubview(spark)
+        spark.isHidden = true
         speechRecognizer?.delegate = self
+    }
+    
+    func setDSDoor() {
+        square.frame = CGRect(x: view.bounds.midX-800, y: view.bounds.midY-800, width: 1600, height: 1600)
+        square.contentMode = .scaleAspectFit
+        let whiteView = setCenterCircle(view:square)
+        square.addSubview(whiteView)
+        view.addSubview(square)
+        let imageView = UIImageView(image: UIImage(named: "폴고갱.jpeg"))
+        imageView.frame = CGRect(x: view.bounds.midX-300, y: view.bounds.midY-300, width: 600, height: 600)
+        imageView.layer.cornerRadius = imageView.frame.height/2
+        imageView.layer.masksToBounds = true
+        view.addSubview(imageView)
     }
     
     func setCenterCircle(view:UIView) -> UIView {
@@ -59,12 +62,13 @@ class DSViewController: UIViewController {
     }
     
     func circleAnimation() {
+        spark.isHidden = false
         let flightAnimation = CAKeyframeAnimation(keyPath: "position")
-        flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: view.frame.midX-350, y: view.frame.midY-400, width: 700, height: 800)).cgPath
+        flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: view.frame.midX-300, y: view.frame.midY-300, width: 600, height: 600)).cgPath
         flightAnimation.calculationMode = CAAnimationCalculationMode.paced
-        flightAnimation.duration = 3
+        flightAnimation.duration = 1
         flightAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
-        flightAnimation.repeatCount = 1
+        flightAnimation.repeatCount = 3
         spark.layer.add(flightAnimation, forKey: nil)
     }
     
@@ -92,16 +96,21 @@ class DSViewController: UIViewController {
                }
                
                recognitionRequest.shouldReportPartialResults = true
-               
                recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
                    
                    var isFinal = false
-                   
                    if result != nil {
                        self.textView.text = result?.bestTranscription.formattedString
                        isFinal = (result?.isFinal)!
                        if self.textView.text == "문 열어" {
-                           print("문 열어")
+                           self.stopRecording()
+                           self.textView.text = ""
+                           self.circleAnimation()
+                           DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                               self.spark.isHidden = true
+                               self.setDSDoor()
+                           }
+                           return
                        }
                    }
                    
@@ -119,15 +128,12 @@ class DSViewController: UIViewController {
                inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
                    self.recognitionRequest?.append(buffer)
                }
-               
                audioEngine.prepare()
-               
                do {
                    try audioEngine.start()
                } catch {
                    print("audioEngine couldn't start because of an error.")
                }
-               
                textView.text = "Say something, I'm listening!"
     }
     
@@ -139,12 +145,17 @@ class DSViewController: UIViewController {
            }
        }
     
+    func stopRecording() {
+        audioEngine.stop()
+        recognitionRequest?.endAudio()
+ speechButton.isEnabled = false
+        speechButton.setTitle("말하기!", for: .normal)
+        textView.text = ""
+    }
+    
     @IBAction func tapSpeechButton(_ sender: Any) {
         if audioEngine.isRunning {
-                   audioEngine.stop()
-                   recognitionRequest?.endAudio()
-            speechButton.isEnabled = false
-                   speechButton.setTitle("말하기!", for: .normal)
+                  stopRecording()
                } else {
                    startRecording()
                    speechButton.setTitle("말하기 멈추기", for: .normal)
@@ -165,4 +176,3 @@ class DSViewController: UIViewController {
 extension DSViewController:SFSpeechRecognizerDelegate{
     
 }
-

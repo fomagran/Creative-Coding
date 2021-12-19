@@ -17,6 +17,7 @@ class DSViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         view.addSubview(spark)
+        a()
     }
     
     // MARK: - Actions
@@ -62,6 +63,17 @@ class DSViewController: UIViewController {
            self.view.backgroundColor = .black
            self.view.addGestureRecognizer(panGestureRecognizer)
        }
+    
+    func a() {
+        let flightAnimation = CAKeyframeAnimation(keyPath: "position")
+        flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: 100, y: 100, width: 500, height: 500)).cgPath
+        // I set this one to make the animation go smoothly along the path
+        flightAnimation.calculationMode = CAAnimationCalculationMode.paced
+        flightAnimation.duration = 1.5
+        flightAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
+        flightAnimation.repeatCount = 10
+        spark.layer.add(flightAnimation, forKey: nil)
+    }
 }
 
 extension SKView {

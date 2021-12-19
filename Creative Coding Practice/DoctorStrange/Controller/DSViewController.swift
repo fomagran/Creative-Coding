@@ -63,7 +63,7 @@ class DSViewController: UIViewController {
             self.imageView.isHidden = true
             self.square.isHidden = true
             self.whiteView.isHidden = true
-            self.textView.text = "다음 뷰컨트롤러입니다."
+            self.performSegue(withIdentifier: "showTestViewController", sender: nil)
         }
     }
     

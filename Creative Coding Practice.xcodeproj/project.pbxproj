@@ -20,6 +20,7 @@
 		0485DC12275CC63800F029B0 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485DC11275CC63800F029B0 /* WaveView.swift */; };
 		0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */; };
 		0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */; };
+		0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5C0276F75650072CBBD /* TestViewController.swift */; };
 		04E7E905276E1371007B7B82 /* ThreeDCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E903276E1371007B7B82 /* ThreeDCardViewController.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardView.swift */; };
 		04E7E90A276E1541007B7B82 /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04E7E908276E1541007B7B82 /* Spark.sks */; };
@@ -43,6 +44,7 @@
 		0485DC11275CC63800F029B0 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SquareSpark.sks; sourceTree = "<group>"; };
 		0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView + Extensions.swift"; sourceTree = "<group>"; };
+		0492C5C0276F75650072CBBD /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		04E7E903276E1371007B7B82 /* ThreeDCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardViewController.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardView.swift; sourceTree = "<group>"; };
 		04E7E908276E1541007B7B82 /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				04E7E90C276E1652007B7B82 /* DSViewController.swift */,
+				0492C5C0276F75650072CBBD /* TestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				04E7E906276E1371007B7B82 /* ThreeDCardView.swift in Sources */,
 				04E7E905276E1371007B7B82 /* ThreeDCardViewController.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
+				0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,
 				041E19AF274B443F000F8C11 /* SwingEffectViewController.swift in Sources */,
 				04E7E90D276E1652007B7B82 /* DSViewController.swift in Sources */,

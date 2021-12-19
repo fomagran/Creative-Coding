@@ -49,6 +49,7 @@
                     <connections>
                         <outlet property="speechButton" destination="amA-UD-ZRv" id="yrr-4A-DFG"/>
                         <outlet property="textView" destination="bLf-qh-Hhk" id="ofc-wb-FTS"/>
+                        <segue destination="IEr-vy-x71" kind="showDetail" identifier="showTestViewController" id="nK1-Mg-DQR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -60,5 +61,44 @@
             </objects>
             <point key="canvasLocation" x="139" y="129"/>
         </scene>
+        <!--Test View Controller-->
+        <scene sceneID="ClH-Ke-58X">
+            <objects>
+                <viewController storyboardIdentifier="TestViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IEr-vy-x71" customClass="TestViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CFJ-UX-TUl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="폴고갱" translatesAutoresizingMaskIntoConstraints="NO" id="cbO-jb-cIe">
+                                <rect key="frame" x="0.0" y="153" width="414" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="2EE-jR-lqw"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Y1G-yv-a3a"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="cbO-jb-cIe" firstAttribute="leading" secondItem="Y1G-yv-a3a" secondAttribute="leading" id="GU3-pu-UGv"/>
+                            <constraint firstItem="cbO-jb-cIe" firstAttribute="centerY" secondItem="Y1G-yv-a3a" secondAttribute="centerY" id="Q6e-Wp-YWB"/>
+                            <constraint firstItem="Y1G-yv-a3a" firstAttribute="trailing" secondItem="cbO-jb-cIe" secondAttribute="trailing" id="hRN-VV-67q"/>
+                            <constraint firstItem="cbO-jb-cIe" firstAttribute="centerX" secondItem="Y1G-yv-a3a" secondAttribute="centerX" id="hg4-cd-D8m"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="SDy-pz-pMJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nXQ-l4-bEz" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="VcH-Sa-cJK">
+                    <connections>
+                        <action selector="panGesture:" destination="IEr-vy-x71" id="OmV-ap-yLS"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="912" y="129"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="폴고갱" width="260" height="194"/>
+    </resources>
 </document>

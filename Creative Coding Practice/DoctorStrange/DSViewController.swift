@@ -14,23 +14,49 @@ class DSViewController: UIViewController {
     let spark = SKView(withEmitter: "Spark")
     let square = SKView(withEmitter: "SquareSpark")
     let iv = UIImageView(image: UIImage(named:"sparkImage.png"))
-    let zero = UIImageView(image: UIImage(named:"zero.png"))
     private var timer : Timer?
             
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        zero.frame = CGRect(x: view.bounds.midX-400, y: view.bounds.midY-400, width: 800, height: 800)
-        square.frame = CGRect(x: view.bounds.midX-400, y: view.bounds.midY-400, width: 800, height: 800)
+        square.frame = CGRect(x: view.bounds.midX-800, y: view.bounds.midY-800, width: 1600, height: 1600)
+        square.contentMode = .scaleAspectFit
+        let whiteView = setCenterCircle(view:square)
+        square.addSubview(whiteView)
         view.addSubview(square)
-        view.addSubview(zero)
-        
-        UIView.animate(withDuration: 3, delay: 0, options: .curveEaseIn) {
-            self.zero.frame = CGRect(x: self.view.bounds.midX-self.view.frame.width, y: self.view.bounds.midY-self.view.frame.height, width: self.view.frame.width*2, height: self.view.frame.height*2)
-            self.square.frame = CGRect(x: self.view.bounds.midX-self.view.frame.width, y: self.view.bounds.midY-self.view.frame.height, width: self.view.frame.width*2, height: self.view.frame.height*2)
-        }
-
+        let imageView = UIImageView(image: UIImage(named: "폴고갱.jpeg"))
+        imageView.frame = CGRect(x: view.bounds.midX-300, y: view.bounds.midY-300, width: 600, height: 600)
+        imageView.layer.cornerRadius = imageView.frame.height/2
+        imageView.layer.masksToBounds = true
+        view.addSubview(imageView)
     }
+    
+    func setCenterCircle(view:UIView) -> UIView {
+        let whiteView = UIView(frame: view.bounds)
+        let maskLayer = CAShapeLayer() //create the mask layer
+
+        // Set the radius to 1/3 of the screen width
+        let radius : CGFloat = view.bounds.width/5
+
+        // Create a path with the rectangle in it.
+        let path = UIBezierPath(rect: view.bounds)
+        // Put a circle path in the middle
+        path.addArc(withCenter: whiteView.center, radius: radius, startAngle: 0.0, endAngle: CGFloat(2*Double.pi), clockwise: true)
+
+        // Give the mask layer the path you just draw
+        maskLayer.path = path.cgPath
+        // Fill rule set to exclude intersected paths
+        maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
+
+        // By now the mask is a rectangle with a circle cut out of it. Set the mask to the view and clip.
+        whiteView.layer.mask = maskLayer
+        whiteView.clipsToBounds = true
+
+        whiteView.alpha = 1
+        whiteView.backgroundColor = UIColor.black
+        return whiteView
+    }
+    
     
     @objc func timerCallback() {
         showStars()

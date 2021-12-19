@@ -11,19 +11,52 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="DSViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DSViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DSViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amA-UD-ZRv">
+                                <rect key="frame" x="173.5" y="817" width="67" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="tapSpeechButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cio-g6-Dpr"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bLf-qh-Hhk">
+                                <rect key="frame" x="0.0" y="353" width="414" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="lAT-mF-omT"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="amA-UD-ZRv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Jc5-tJ-v8v"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bLf-qh-Hhk" secondAttribute="trailing" id="RNr-jS-hbk"/>
+                            <constraint firstItem="bLf-qh-Hhk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bgB-vw-KJF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="amA-UD-ZRv" secondAttribute="bottom" constant="14" id="dpU-gf-YfC"/>
+                            <constraint firstItem="bLf-qh-Hhk" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gfR-7w-TW5"/>
+                            <constraint firstItem="bLf-qh-Hhk" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="jwM-zZ-uL9"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="speechButton" destination="amA-UD-ZRv" id="yrr-4A-DFG"/>
+                        <outlet property="textView" destination="bLf-qh-Hhk" id="ofc-wb-FTS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="mh2-g4-VRg">
                     <connections>
-                        <action selector="dragSquare:" destination="BYZ-38-t0r" id="Mvc-k5-0HR"/>
+                        <action selector="panGesture:" destination="BYZ-38-t0r" id="nFT-dq-RLv"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
@@ -31,6 +64,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

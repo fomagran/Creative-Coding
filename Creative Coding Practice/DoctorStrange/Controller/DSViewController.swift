@@ -14,13 +14,15 @@ class DSViewController: UIViewController {
     
     @IBOutlet weak var speechButton: UIButton!
     @IBOutlet weak var textView: UITextView!
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-CA"))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private let audioEngine = AVAudioEngine()
     private var recognitionTask: SFSpeechRecognitionTask?
     
+    let imageView = UIImageView(image: UIImage(named: "폴고갱.jpeg"))
     let spark = SKView(withEmitter: "Spark")
     let square = SKView(withEmitter: "SquareSpark")
+    var whiteView:UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,19 +33,38 @@ class DSViewController: UIViewController {
         view.addSubview(spark)
         spark.isHidden = true
         speechRecognizer?.delegate = self
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.imageViewTap(_:)))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tap)
+    }
+    
+    @objc func imageViewTap(_ sender: UITapGestureRecognizer? = nil) {
+        tapDSDoor()
     }
     
     func setDSDoor() {
         square.frame = CGRect(x: view.bounds.midX-800, y: view.bounds.midY-800, width: 1600, height: 1600)
         square.contentMode = .scaleAspectFit
-        let whiteView = setCenterCircle(view:square)
+        whiteView = setCenterCircle(view:square)
         square.addSubview(whiteView)
         view.addSubview(square)
-        let imageView = UIImageView(image: UIImage(named: "폴고갱.jpeg"))
         imageView.frame = CGRect(x: view.bounds.midX-300, y: view.bounds.midY-300, width: 600, height: 600)
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.layer.masksToBounds = true
         view.addSubview(imageView)
+    }
+    
+    func tapDSDoor() {
+        UIView.animate(withDuration: 1) {
+            self.imageView.layer.transform = CATransform3DMakeScale(2, 2, 1)
+            self.square.layer.transform = CATransform3DMakeScale(2, 2, 1)
+            self.whiteView.layer.transform = CATransform3DMakeScale(2, 2, 1)
+        } completion: { _ in
+            self.imageView.isHidden = true
+            self.square.isHidden = true
+            self.whiteView.isHidden = true
+            self.textView.text = "다음 뷰컨트롤러입니다."
+        }
     }
     
     func setCenterCircle(view:UIView) -> UIView {
@@ -66,7 +87,7 @@ class DSViewController: UIViewController {
         let flightAnimation = CAKeyframeAnimation(keyPath: "position")
         flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: view.frame.midX-300, y: view.frame.midY-300, width: 600, height: 600)).cgPath
         flightAnimation.calculationMode = CAAnimationCalculationMode.paced
-        flightAnimation.duration = 1
+        flightAnimation.duration = 2
         flightAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
         flightAnimation.repeatCount = 3
         spark.layer.add(flightAnimation, forKey: nil)
@@ -102,11 +123,11 @@ class DSViewController: UIViewController {
                    if result != nil {
                        self.textView.text = result?.bestTranscription.formattedString
                        isFinal = (result?.isFinal)!
-                       if self.textView.text == "문 열어" {
+                       if self.textView.text == "Open the door" {
                            self.stopRecording()
-                           self.textView.text = ""
+                           self.textView.text = "문이 열립니다."
                            self.circleAnimation()
-                           DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                           DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                                self.spark.isHidden = true
                                self.setDSDoor()
                            }

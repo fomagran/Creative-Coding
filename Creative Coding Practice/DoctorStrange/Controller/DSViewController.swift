@@ -31,9 +31,7 @@ class DSViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        configure()
-        drawCircle()
-        drawStar()
+        configure()
     }
     
     
@@ -53,9 +51,6 @@ class DSViewController: UIViewController {
         let circleView = CircleView(frame: CGRect(x:view.frame.midX-300, y:view.frame.midY-300, width:600, height:600))
         view.addSubview(circleView)
         circleView.animateCircle(duration: 2.0)
-        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
-            circleView.isHidden = true
-        }
     }
     
     func drawStar() {
@@ -81,10 +76,6 @@ class DSViewController: UIViewController {
         pathAnimation.fromValue = 0
         pathAnimation.toValue = 1
         pathLayer.add(pathAnimation, forKey: "strokeEnd")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
-            pathLayer.isHidden = true
-        }
     }
     
     func setStarPoint() {
@@ -98,11 +89,12 @@ class DSViewController: UIViewController {
     
     func circleAnimation() {
         drawCircle()
+        drawStar()
         spark1.isHidden = false
         let flightAnimation = CAKeyframeAnimation(keyPath: "position")
         flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: view.frame.midX-300, y: view.frame.midY-300, width: 600, height: 600)).cgPath
         flightAnimation.calculationMode = CAAnimationCalculationMode.paced
-        flightAnimation.duration = 1
+        flightAnimation.duration = 2
         flightAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
         flightAnimation.repeatCount = 1
         spark1.layer.add(flightAnimation, forKey: nil)
@@ -180,7 +172,6 @@ class DSViewController: UIViewController {
                 isFinal = (result?.isFinal)!
                 if self.textView.text == "Test" {
                     if !self.check {
-                        self.textView.text = "Go to TestViewController"
                         self.check = true
                         self.stopRecording()
                         self.vc = "TestViewController"
@@ -188,6 +179,7 @@ class DSViewController: UIViewController {
                         self.circleAnimation()
                         self.starAnimation(index: 0)
                     }
+                    self.textView.text = "Go to TestViewController"
                     return
                 }
             }
@@ -232,13 +224,12 @@ class DSViewController: UIViewController {
     }
     
     func starAnimation(index:Int) {
-        print(index)
         if index == starPoint.count {
             spark.isHidden = true
             setDSDoor()
             return
         }
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.4) {
             self.spark.center = self.starPoint[index]
         } completion: { _ in
             self.starAnimation(index: index+1)

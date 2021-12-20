@@ -31,7 +31,7 @@
                                     <action selector="tapSpeechButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cio-g6-Dpr"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bLf-qh-Hhk">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tap the microphone button below." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bLf-qh-Hhk">
                                 <rect key="frame" x="0.0" y="403" width="414" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>

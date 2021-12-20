@@ -31,7 +31,9 @@ class DSViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+//        configure()
+        drawCircle()
+        drawStar()
     }
     
     
@@ -47,10 +49,42 @@ class DSViewController: UIViewController {
         setStarPoint()
     }
     
-    func drawCircleView() {
+    func drawCircle() {
         let circleView = CircleView(frame: CGRect(x:view.frame.midX-300, y:view.frame.midY-300, width:600, height:600))
-         view.addSubview(circleView)
-        circleView.animateCircle(duration: 1.0)
+        view.addSubview(circleView)
+        circleView.animateCircle(duration: 2.0)
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            circleView.isHidden = true
+        }
+    }
+    
+    func drawStar() {
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x:view.frame.midX,y:view.frame.midY - 300))
+        path.addLine(to: CGPoint(x:view.frame.midX - 200, y:view.frame.midY+230))
+        path.addLine(to: CGPoint(x:view.frame.midX + 285, y:view.frame.midY-100))
+        path.addLine(to: CGPoint(x:view.frame.midX - 285, y:view.frame.midY-100))
+        path.addLine(to: CGPoint(x:view.frame.midX + 200, y:view.frame.midY+230))
+        path.addLine(to: CGPoint(x:view.frame.midX, y:view.frame.midY - 300))
+        
+        let pathLayer = CAShapeLayer()
+        pathLayer.frame = view.bounds
+        pathLayer.path = path.cgPath
+        pathLayer.strokeColor = UIColor.lightGray.cgColor
+        pathLayer.fillColor = nil
+        pathLayer.lineWidth = 2
+        pathLayer.lineJoin = CAShapeLayerLineJoin.bevel
+        view.layer.addSublayer(pathLayer)
+        
+        let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        pathAnimation.duration = 2.0
+        pathAnimation.fromValue = 0
+        pathAnimation.toValue = 1
+        pathLayer.add(pathAnimation, forKey: "strokeEnd")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            pathLayer.isHidden = true
+        }
     }
     
     func setStarPoint() {
@@ -63,7 +97,7 @@ class DSViewController: UIViewController {
     }
     
     func circleAnimation() {
-        drawCircleView()
+        drawCircle()
         spark1.isHidden = false
         let flightAnimation = CAKeyframeAnimation(keyPath: "position")
         flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: view.frame.midX-300, y: view.frame.midY-300, width: 600, height: 600)).cgPath

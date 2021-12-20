@@ -5,6 +5,7 @@
 //  Created by Fomagran on 2021/12/18.
 //
 
+
 import UIKit
 import SceneKit
 import SpriteKit
@@ -19,27 +20,62 @@ class DSViewController: UIViewController {
     private let audioEngine = AVAudioEngine()
     private var recognitionTask: SFSpeechRecognitionTask?
     
-    let imageView = UIImageView(image: UIImage(named: "폴고갱.jpeg"))
+    var check:Bool = false
+    let imageView = UIImageView(image: UIImage(named: "skydoor.jpeg"))
     let spark = SKView(withEmitter: "Spark")
-    let square = SKView(withEmitter: "SquareSpark")
+    let spark1 = SKView(withEmitter: "Spark")
+    var square = SKView(withEmitter: "SquareSpark")
+    var vc:String = "TestViewController"
     var whiteView:UIView!
+    var starPoint:[CGPoint] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
     }
     
+    
     func configure() {
         view.addSubview(spark)
         spark.isHidden = true
+        view.addSubview(spark1)
+        spark1.isHidden = true
         speechRecognizer?.delegate = self
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.imageViewTap(_:)))
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tap)
+        setStarPoint()
+    }
+    
+    func drawCircleView() {
+        let circleView = CircleView(frame: CGRect(x:view.frame.midX-300, y:view.frame.midY-300, width:600, height:600))
+         view.addSubview(circleView)
+        circleView.animateCircle(duration: 1.0)
+    }
+    
+    func setStarPoint() {
+        spark.center = CGPoint(x:view.frame.midX,y:view.frame.midY - 300)
+        starPoint = [CGPoint(x:view.frame.midX - 200, y:view.frame.midY+300),
+                     CGPoint(x:view.frame.midX + 300, y:view.frame.midY),
+                     CGPoint(x:view.frame.midX - 300, y:view.frame.midY),
+                     CGPoint(x:view.frame.midX + 200, y:view.frame.midY+300),
+                     CGPoint(x:view.frame.midX, y:view.frame.midY - 300)]
+    }
+    
+    func circleAnimation() {
+        drawCircleView()
+        spark1.isHidden = false
+        let flightAnimation = CAKeyframeAnimation(keyPath: "position")
+        flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: view.frame.midX-300, y: view.frame.midY-300, width: 600, height: 600)).cgPath
+        flightAnimation.calculationMode = CAAnimationCalculationMode.paced
+        flightAnimation.duration = 1
+        flightAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
+        flightAnimation.repeatCount = 1
+        spark1.layer.add(flightAnimation, forKey: nil)
     }
     
     @objc func imageViewTap(_ sender: UITapGestureRecognizer? = nil) {
-        tapDSDoor()
+        tapDSDoor(vc:vc)
     }
     
     func setDSDoor() {
@@ -54,16 +90,12 @@ class DSViewController: UIViewController {
         view.addSubview(imageView)
     }
     
-    func tapDSDoor() {
+    func tapDSDoor(vc:String) {
         UIView.animate(withDuration: 1) {
-            self.imageView.layer.transform = CATransform3DMakeScale(2, 2, 1)
-            self.square.layer.transform = CATransform3DMakeScale(2, 2, 1)
-            self.whiteView.layer.transform = CATransform3DMakeScale(2, 2, 1)
+            self.imageView.layer.transform = CATransform3DMakeScale(3, 3, 1)
+            self.square.removeFromSuperview()
         } completion: { _ in
-            self.imageView.isHidden = true
-            self.square.isHidden = true
-            self.whiteView.isHidden = true
-            self.performSegue(withIdentifier: "showTestViewController", sender: nil)
+            self.performSegue(withIdentifier: "show\(vc)", sender: nil)
         }
     }
     
@@ -80,17 +112,6 @@ class DSViewController: UIViewController {
         whiteView.alpha = 1
         whiteView.backgroundColor = UIColor.black
         return whiteView
-    }
-    
-    func circleAnimation() {
-        spark.isHidden = false
-        let flightAnimation = CAKeyframeAnimation(keyPath: "position")
-        flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: view.frame.midX-300, y: view.frame.midY-300, width: 600, height: 600)).cgPath
-        flightAnimation.calculationMode = CAAnimationCalculationMode.paced
-        flightAnimation.duration = 2
-        flightAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
-        flightAnimation.repeatCount = 3
-        spark.layer.add(flightAnimation, forKey: nil)
     }
     
     func startRecording() {
@@ -117,30 +138,31 @@ class DSViewController: UIViewController {
                }
                
                recognitionRequest.shouldReportPartialResults = true
-               recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
-                   
-                   var isFinal = false
-                   if result != nil {
-                       self.textView.text = result?.bestTranscription.formattedString
-                       isFinal = (result?.isFinal)!
-                       if self.textView.text == "Open the door" {
-                           self.stopRecording()
-                           self.textView.text = "문이 열립니다."
-                           self.circleAnimation()
-                           DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                               self.spark.isHidden = true
-                               self.setDSDoor()
-                           }
-                           return
-                       }
-                   }
-                   
-                   if error != nil || isFinal {
-                       self.audioEngine.stop()
-                       inputNode.removeTap(onBus: 0)
-                       
-                       self.recognitionRequest = nil
-                       self.recognitionTask = nil
+        recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
+            
+            var isFinal = false
+            if result != nil {
+                self.textView.text = result?.bestTranscription.formattedString
+                isFinal = (result?.isFinal)!
+                if self.textView.text == "Test" {
+                    if !self.check {
+                        self.textView.text = "Go to TestViewController"
+                        self.check = true
+                        self.stopRecording()
+                        self.vc = "TestViewController"
+                        self.spark.isHidden = false
+                        self.circleAnimation()
+                        self.starAnimation(index: 0)
+                    }
+                    return
+                }
+            }
+            
+            if error != nil || isFinal {
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                self.recognitionRequest = nil
+                self.recognitionTask = nil
                        self.speechButton.isEnabled = true
                    }
                })
@@ -155,7 +177,7 @@ class DSViewController: UIViewController {
                } catch {
                    print("audioEngine couldn't start because of an error.")
                }
-               textView.text = "Say something, I'm listening!"
+               textView.text = "Which page do you wanna go to?"
     }
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
@@ -167,11 +189,26 @@ class DSViewController: UIViewController {
        }
     
     func stopRecording() {
+        textView.text = "Which page do you wanna go to?"
         audioEngine.stop()
         recognitionRequest?.endAudio()
  speechButton.isEnabled = false
-        speechButton.setTitle("말하기!", for: .normal)
+        speechButton.setImage(UIImage(systemName: "mic.circle"), for: .normal)
         textView.text = ""
+    }
+    
+    func starAnimation(index:Int) {
+        print(index)
+        if index == starPoint.count {
+            spark.isHidden = true
+            setDSDoor()
+            return
+        }
+        UIView.animate(withDuration: 1) {
+            self.spark.center = self.starPoint[index]
+        } completion: { _ in
+            self.starAnimation(index: index+1)
+        }
     }
     
     @IBAction func tapSpeechButton(_ sender: Any) {
@@ -179,7 +216,7 @@ class DSViewController: UIViewController {
                   stopRecording()
                } else {
                    startRecording()
-                   speechButton.setTitle("말하기 멈추기", for: .normal)
+                   speechButton.setImage(UIImage(systemName: "mic.circle.fill"), for: .normal)
                }
     }
     

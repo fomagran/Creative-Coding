@@ -9,30 +9,25 @@ import UIKit
 
 class TestViewController: UIViewController {
     let redDot1 = UIView()
-    let redDot2 = UIView()
-    let redDot3 = UIView()
+    var points:[CGPoint] = []
     override func viewDidLoad() {
         super.viewDidLoad()
        circle()
         redDot1.frame = CGRect(x: 495, y: 495, width: 10, height: 10)
         redDot1.backgroundColor = .red
         view.addSubview(redDot1)
-        redDot2.frame = CGRect(x: 495, y: 295, width: 10, height: 10)
-        redDot2.backgroundColor = .blue
-        view.addSubview(redDot2)
         
-        drawLine(c1: redDot1.center, c2: redDot2.center)
-        
-        for i in 0..<4 {
-            let p = UIView(frame:CGRect(x: 0, y: 0, width: 10, height: 10))
-            p.backgroundColor = .red
-            let startAngle = CGFloat.pi/180 * (198 - CGFloat(i)*72)
+        for i in 0..<5 {
+            let startAngle = CGFloat.pi/180 * (270 - CGFloat(i)*72)
             let point = CGPoint(x: redDot1.center.x + 200 * cos(startAngle),
                                 y: redDot1.center.y + 200 * sin(startAngle))
-            p.center = point
-            view.addSubview(p)
-            
+            points.append(point)
         }
+        
+        for i in 1..<5 {
+            drawLine(c1: points[i-1], c2: points[i])
+        }
+        drawLine(c1: points[0], c2: points[points.count-1])
     }
     
     func circle() {
@@ -42,7 +37,11 @@ class TestViewController: UIViewController {
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = UIColor.red.cgColor
         shapeLayer.lineWidth = 3.0
-        view.layer.addSublayer(shapeLayer)
+        let gradient = CAGradientLayer()
+        gradient.frame =  CGRect(x: 0, y: 0, width:1000, height:1000)
+        gradient.colors = [UIColor.systemOrange.cgColor, UIColor.systemYellow.cgColor]
+        gradient.mask = shapeLayer
+        view.layer.addSublayer(gradient)
     }
     
     func drawLine(c1:CGPoint,c2:CGPoint) {
@@ -53,10 +52,14 @@ class TestViewController: UIViewController {
         let pathLayer = CAShapeLayer()
         pathLayer.frame = view.bounds
         pathLayer.path = path.cgPath
-        pathLayer.strokeColor = UIColor.lightGray.cgColor
+        pathLayer.strokeColor = UIColor.gray.cgColor
         pathLayer.fillColor = nil
         pathLayer.lineWidth = 2
         pathLayer.lineJoin = CAShapeLayerLineJoin.bevel
-        view.layer.addSublayer(pathLayer)
+        let gradient = CAGradientLayer()
+        gradient.frame =  CGRect(x: 0, y: 0, width:1000, height:1000)
+        gradient.colors = [UIColor.systemOrange.cgColor, UIColor.systemYellow.cgColor]
+        gradient.mask = pathLayer
+        view.layer.addSublayer(gradient)
     }
 }

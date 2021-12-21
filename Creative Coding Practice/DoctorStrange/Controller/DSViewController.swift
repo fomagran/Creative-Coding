@@ -80,11 +80,11 @@ class DSViewController: UIViewController {
     
     func setStarPoint() {
         spark.center = CGPoint(x:view.frame.midX,y:view.frame.midY - 300)
-        starPoint = [CGPoint(x:view.frame.midX - 200, y:view.frame.midY+300),
-                     CGPoint(x:view.frame.midX + 300, y:view.frame.midY),
-                     CGPoint(x:view.frame.midX - 300, y:view.frame.midY),
-                     CGPoint(x:view.frame.midX + 200, y:view.frame.midY+300),
-                     CGPoint(x:view.frame.midX, y:view.frame.midY - 300)]
+        starPoint = [ CGPoint(x:view.frame.midX - 200, y:view.frame.midY+230),
+                CGPoint(x:view.frame.midX + 285, y:view.frame.midY-100),
+                CGPoint(x:view.frame.midX - 285, y:view.frame.midY-100),
+                CGPoint(x:view.frame.midX + 200, y:view.frame.midY+230),
+                CGPoint(x:view.frame.midX, y:view.frame.midY - 300)]
     }
     
     func circleAnimation() {

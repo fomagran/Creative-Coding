@@ -13,6 +13,8 @@ class ThreeDCardViewController: UIViewController {
     var cardViews:[ThreeDCardView] = []
     var currentCardView:(Int,ThreeDCardView)!
     var scale:[CGFloat] = [1,1,1,1]
+    var rects:[CGRect] = []
+    var positions:[Int] = [0,1,2,3]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +28,13 @@ class ThreeDCardViewController: UIViewController {
         for i in 0..<images.count {
             var cardView:ThreeDCardView = ThreeDCardView()
             if i == 0{
-                cardView = ThreeDCardView(frame: CGRect(x: 0, y:0, width:self.view.frame.width/2, height:self.view.frame.height/2))
-                cardView.center = CGPoint(x: mid.x, y: mid.y)
+                cardView = ThreeDCardView(frame: CGRect(x:mid.x - self.view.frame.width/4, y:mid.y - self.view.frame.height/4, width:self.view.frame.width/2, height:self.view.frame.height/2))
+                rects.append(cardView.frame)
             }else {
-                let last = cardViews.last!
-                cardView = ThreeDCardView(frame: CGRect(x: 0, y:0, width:last.frame.width/3*2, height:last.frame.height/3*2))
-                cardView.center = CGPoint(x:last.center.x - cardView.frame.width/2, y: mid.y)
+                let last = rects.last!
+                let frame = CGRect(x: last.minX - last.width/3, y: mid.y - last.height/3, width: last.width/3*2, height: last.height/3*2)
+                cardView = ThreeDCardView(frame: frame)
+                rects.append(frame)
             }
             cardView.configure(image:images[i])
             setTransform(bgView: cardView)
@@ -41,6 +44,7 @@ class ThreeDCardViewController: UIViewController {
     }
     
     func moveRight() {
+        positions = positions.map{$0-1}
         if currentCardView.0 == cardViews.count-1 {
             return
         }
@@ -54,7 +58,9 @@ class ThreeDCardViewController: UIViewController {
                     self.scale[i] *= 1.5
                     let scale = CATransform3DMakeScale(self.scale[i],self.scale[i],1)
                     cardView.layer.transform = CATransform3DConcat(rotation,scale)
-                    cardView.center.x += self.view.frame.width/12
+                    if i > self.currentCardView.0 {
+                        cardView.center = CGPoint(x:self.rects[self.positions[i]].midX, y:self.rects[self.positions[i]].midY)
+                    }
                 })
             }
         }
@@ -62,6 +68,7 @@ class ThreeDCardViewController: UIViewController {
     }
     
     func moveLeft() {
+        positions = positions.map{$0+1}
         if currentCardView.0 == 0 {
             return
         }
@@ -76,7 +83,9 @@ class ThreeDCardViewController: UIViewController {
                     self.scale[i] *= 2/3
                     let scale = CATransform3DMakeScale(self.scale[i],self.scale[i],1)
                     cardView.layer.transform = CATransform3DConcat(rotation,scale)
-                    cardView.center.x -= self.view.frame.width/12
+                    if i > self.currentCardView.0-1 {
+                        cardView.center = CGPoint(x:self.rects[self.positions[i]].midX, y:self.rects[self.positions[i]].midY)
+                    }
                 })
             }
         }
@@ -90,7 +99,7 @@ class ThreeDCardViewController: UIViewController {
             self.scale[self.currentCardView.0-1] *= 2/3
             let scale = CATransform3DMakeScale(self.scale[self.currentCardView.0-1],self.scale[self.currentCardView.0-1],1)
             card.layer.transform = CATransform3DConcat(rotation, scale)
-            card.center.x = self.currentCardView.1.center.x + self.view.frame.width/12
+            card.center.x = self.rects[0].midX
         })
     }
     

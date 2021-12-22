@@ -12,6 +12,7 @@ class ThreeDCardViewController: UIViewController {
     var bgView:ThreeDCardView!
     var cardViews:[ThreeDCardView] = []
     var currentCardView:(Int,ThreeDCardView)!
+    var scale:[CGFloat] = [1,1,1,1]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class ThreeDCardViewController: UIViewController {
     
     func makeCardViews() {
         let mid = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
-        let images:[UIImage] = [UIImage(named: "살바도르달리.jpeg")!,UIImage(named: "폴고갱.jpeg")!,UIImage(named: "반고흐.png")!,UIImage(named: "마르셀뒤샹.png")!]
+            let images:[UIImage] = [UIImage(named: "살바도르달리.jpeg")!,UIImage(named: "폴고갱.jpeg")!,UIImage(named: "반고흐.png")!,UIImage(named: "마르셀 뒤샹.png")!]
         for i in 0..<images.count {
             var cardView:ThreeDCardView = ThreeDCardView()
             if i == 0{
@@ -43,14 +44,15 @@ class ThreeDCardViewController: UIViewController {
         if currentCardView.0 == cardViews.count-1 {
             return
         }
-        for i in currentCardView.0..<cardViews.count {
+        for i in 0..<cardViews.count {
             let cardView = cardViews[i]
             if i == currentCardView.0 {
                 rightFlipAnimation(card:cardView)
             }else {
                 UIView.animate(withDuration: 0.5, delay: 0, options:.curveEaseIn, animations: {
                     let rotation = CATransform3DMakeRotation(0.05, 0, 1, 0)
-                    let scale = CATransform3DMakeScale(1+0.25*CGFloat(i),1+0.25*CGFloat(i),1)
+                    self.scale[i] *= 1.5
+                    let scale = CATransform3DMakeScale(self.scale[i],self.scale[i],1)
                     cardView.layer.transform = CATransform3DConcat(rotation,scale)
                     cardView.center.x += self.view.frame.width/12
                 })
@@ -63,7 +65,7 @@ class ThreeDCardViewController: UIViewController {
         if currentCardView.0 == 0 {
             return
         }
-        for i in currentCardView.0-1..<cardViews.count{
+        for i in 0..<cardViews.count{
             let cardView = cardViews[i]
             if i == currentCardView.0-1 {
                leftFlipAnimation(card: cardView)
@@ -71,7 +73,8 @@ class ThreeDCardViewController: UIViewController {
                 UIView.animate(withDuration: 0.5, delay: 0, options:.curveEaseIn, animations: {
                     CATransform3DMakeTranslation(0, 1, 0)
                     let rotation = CATransform3DMakeRotation(0.05, 0, 1, 0)
-                    let scale = CATransform3DMakeScale(1,1,1)
+                    self.scale[i] *= 2/3
+                    let scale = CATransform3DMakeScale(self.scale[i],self.scale[i],1)
                     cardView.layer.transform = CATransform3DConcat(rotation,scale)
                     cardView.center.x -= self.view.frame.width/12
                 })
@@ -84,16 +87,18 @@ class ThreeDCardViewController: UIViewController {
         card.isHidden = false
         UIView.animate(withDuration: 1, delay: 0, options:.curveEaseIn, animations: {
             let rotation = CATransform3DMakeRotation(0.05, 0, 1, 0)
-            let scale = CATransform3DMakeScale(1,1,1)
+            self.scale[self.currentCardView.0-1] *= 2/3
+            let scale = CATransform3DMakeScale(self.scale[self.currentCardView.0-1],self.scale[self.currentCardView.0-1],1)
             card.layer.transform = CATransform3DConcat(rotation, scale)
-            card.center.x = self.currentCardView.1.center.x + card.frame.width/4
+            card.center.x = self.currentCardView.1.center.x + self.view.frame.width/12
         })
     }
     
     func rightFlipAnimation(card:UIView) {
         UIView.animate(withDuration: 1, delay: 0, options:.curveEaseOut, animations: {
             let rotation = CATransform3DMakeRotation(0.5, 0, 1, 0)
-            let scale = CATransform3DMakeScale(2,2,1)
+            self.scale[self.currentCardView.0] *= 1.5
+            let scale = CATransform3DMakeScale(self.scale[self.currentCardView.0],self.scale[self.currentCardView.0],1)
             card.layer.transform = CATransform3DConcat(rotation, scale)
             card.center.x = self.view.frame.maxX
         }) { _ in

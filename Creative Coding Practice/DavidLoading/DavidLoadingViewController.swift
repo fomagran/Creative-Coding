@@ -19,9 +19,13 @@ class DavidLoadingViewController: UIViewController {
         view.addSubview(david)
         pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
         david.transform = david.transform.rotated(by: .pi/4)
-        let centerY = pinkwall.center.y
-        let dot = centerY - (400*sqrt(2)/2)
-        david.center = CGPoint(x: view.frame.midX+70, y: dot)
+        let halfCross = (400*sqrt(2)/2)
+        let davidX = view.frame.midX + 70
+        david.center = CGPoint(x: davidX, y: pinkwall.center.y - halfCross)
+        let point = CGPoint(x: pinkwall.center.x + halfCross, y: pinkwall.center.y-70)
         
+        UIView.animate(withDuration: 1) {
+            david.center = point
+        }
     }
 }

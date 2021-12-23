@@ -20,24 +20,26 @@ class ThreeDCardView: UIView {
     }
     
     func configure(image:UIImage) {
-        let layer1 = CAShapeLayer()
-        layer1.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height/5*4)
-        let img1 = image.cgImage
-        layer1.contents = img1
-        layer1.masksToBounds = true
-        layer1.cornerRadius = 10
-        let layer2 = CAShapeLayer()
-        layer2.frame = CGRect(x: 0, y: frame.height/5*4+1, width: frame.width, height: frame.height/5*1)
-        let img2 = image.flipImageVertically()?.cgImage
-        layer2.masksToBounds = true
-        layer2.cornerRadius = 10
-        layer2.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
-        layer2.contents = img2
-        layer.addSublayer(layer1)
-        layer.addSublayer(layer2)
+        let imageLayer = CAShapeLayer()
+        let reflectionLayer = CAShapeLayer()
+        addSubLayer(imageLayer,image, CGRect(x: 0, y: 0, width: frame.width, height: frame.height/5*4), false)
+        addSubLayer(reflectionLayer, image, CGRect(x: 0, y: frame.height/5*4+1, width: frame.width, height: frame.height/5*1), true)
     }
     
-    func setGradient() {
+    private func addSubLayer(_ layer:CAShapeLayer,_ image:UIImage,_ frame:CGRect,_ isRefelction:Bool) {
+        var img = image
+        if isRefelction {
+            layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+            img = image.flipImageVertically()!
+        }
+        layer.contents = img.cgImage
+        layer.masksToBounds = true
+        layer.cornerRadius = 10
+        layer.frame = frame
+        self.layer.addSublayer(layer)
+    }
+    
+    private func setGradient() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
         gradientLayer.colors = [
@@ -46,19 +48,5 @@ class ThreeDCardView: UIView {
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.75)
         gradientLayer.endPoint = CGPoint(x:0.0,y:1.0)
         layer.mask = gradientLayer
-    }
-}
-
-extension UIImage {
-    func flipImageVertically() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        let bitmap = UIGraphicsGetCurrentContext()!
-        bitmap.translateBy(x: size.width / 2, y: size.height / 2)
-        bitmap.scaleBy(x: 1.0, y: 1.0)
-        bitmap.translateBy(x: -size.width / 2, y: -size.height / 2)
-        bitmap.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
     }
 }

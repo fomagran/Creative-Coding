@@ -23,6 +23,7 @@
 		0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5C0276F75650072CBBD /* TestViewController.swift */; };
 		0494B47627706A180041116C /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B47527706A180041116C /* CircleView.swift */; };
 		04B181232774AFA100D9F7CA /* DavidLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B181222774AFA100D9F7CA /* DavidLoadingViewController.swift */; };
+		04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */; };
 		04E7E905276E1371007B7B82 /* ThreeDCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E903276E1371007B7B82 /* ThreeDCardViewController.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardView.swift */; };
 		04E7E90A276E1541007B7B82 /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04E7E908276E1541007B7B82 /* Spark.sks */; };
@@ -49,6 +50,7 @@
 		0492C5C0276F75650072CBBD /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		0494B47527706A180041116C /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		04B181222774AFA100D9F7CA /* DavidLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DavidLoadingViewController.swift; sourceTree = "<group>"; };
+		04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
 		04E7E903276E1371007B7B82 /* ThreeDCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardViewController.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardView.swift; sourceTree = "<group>"; };
 		04E7E908276E1541007B7B82 /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				04E7E903276E1371007B7B82 /* ThreeDCardViewController.swift */,
 				04E7E904276E1371007B7B82 /* ThreeDCardView.swift */,
+				04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */,
 			);
 			path = 3DCard;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B181232774AFA100D9F7CA /* DavidLoadingViewController.swift in Sources */,
+				04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */,
 				041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */,
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,
 				04E7E906276E1371007B7B82 /* ThreeDCardView.swift in Sources */,

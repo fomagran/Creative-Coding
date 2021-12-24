@@ -8,7 +8,7 @@
 import UIKit
 
 class DavidLoadingViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let pinkwall:UIImageView = UIImageView(image: UIImage(named:"pinkwall.png"))
@@ -22,10 +22,22 @@ class DavidLoadingViewController: UIViewController {
         let halfCross = (400*sqrt(2)/2)
         let davidX = view.frame.midX + 70
         david.center = CGPoint(x: davidX, y: pinkwall.center.y - halfCross)
-        let point = CGPoint(x: pinkwall.center.x + halfCross, y: pinkwall.center.y-70)
-        
-        UIView.animate(withDuration: 1) {
-            david.center = point
+
+        UIView.animate(withDuration: 1.4, delay:0, options: .curveEaseIn) {
+            david.center.y += 35
         }
+
+        UIView.animate(withDuration: 3,delay:0,options: .curveEaseIn) {
+            david.transform = david.transform.rotated(by: -.pi/4)
+            pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
+        }
+        
+        UIView.animate(withDuration: 2,delay: 2.8,options: .curveEaseIn) {
+            david.transform = david.transform.rotated(by: -.pi/4)
+            pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
+            david.center.y -= 85
+            david.center.x -= 78
+        }
+        
     }
 }

@@ -109,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="912" y="129"/>
         </scene>
-        <!--ThreeD Card View Controller-->
+        <!--David Loading View Controller-->
         <scene sceneID="70r-tm-s8U">
             <objects>
-                <viewController id="4zg-2H-LXL" customClass="ThreeDCardViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4zg-2H-LXL" customClass="DavidLoadingViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1qs-j2-s1p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

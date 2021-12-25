@@ -22,9 +22,13 @@ class DavidLoadingViewController: UIViewController {
         let halfCross = (400*sqrt(2)/2)
         let davidX = view.frame.midX + 70
         david.center = CGPoint(x: davidX, y: pinkwall.center.y - halfCross)
+        
+        UIView.animate(withDuration: 0.9, delay:0, options: .curveEaseOut) {
+            david.center.y += 75
+        }
     
-        UIView.animate(withDuration: 1.4, delay:0, options: .curveEaseOut) {
-            david.center.y += 35
+        UIView.animate(withDuration: 2, delay:0.9, options: .curveEaseOut) {
+            david.center.y -= 40
         }
 
         UIView.animate(withDuration: 3,delay:0,options: .curveEaseOut) {

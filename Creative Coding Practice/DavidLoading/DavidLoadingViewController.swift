@@ -27,24 +27,35 @@ class DavidLoadingViewController: UIViewController {
         let halfCross = (400*sqrt(2)/2)
         let davidX = view.frame.midX + 70
         david.center = CGPoint(x: davidX, y: pinkwall.center.y - halfCross)
-        
-        drawArc(centerPoint:CGPoint(x:david.center.x+50, y: david.center.y+17.5), startPoint: david.center, angle:180)
-        
+        a(pinkwall: pinkwall)
+    }
+    
+    func a(pinkwall:UIView) {
+        drawArc(centerPoint:CGPoint(x:david.center.x+27.5, y: david.center.y+17.5), startPoint: david.center, angle:180)
         UIView.animate(withDuration: 2.5,delay:1,options: .curveEaseOut) {
             self.david.transform = self.david.transform.rotated(by: -.pi/4)
             pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
         } completion: { _ in
-            UIView.animate(withDuration: 2,delay: 0,options: .curveEaseOut) {
+            UIView.animate(withDuration: 1,delay: 0,options: .curveEaseOut) {
                 self.david.transform = self.david.transform.rotated(by: -.pi/8)
                 pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
-                self.david.center.x -= 100
+                self.david.center.x -= 35
                 self.david.center.y -= 55
             } completion: { _ in
-                UIView.animate(withDuration: 2,delay: 0,options: .curveEaseOut) {
+                UIView.animate(withDuration: 1,delay: 0,options: .curveEaseOut) {
                     self.david.transform = self.david.transform.rotated(by:.pi/8)
                     pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
-                    self.david.center.x -= 100
+                    self.david.center.x -= 90
                     self.david.center.y -= 20
+                } completion: { _ in
+                    UIView.animate(withDuration: 1,delay: 0,options: .curveEaseOut) {
+                        self.david.transform = self.david.transform.rotated(by:.pi/4)
+                        let halfCross = (400*sqrt(2)/2)
+                        let davidX = self.view.frame.midX + 70
+                        self.david.center = CGPoint(x: davidX, y: pinkwall.center.y - halfCross)
+                    } completion: { _ in
+                        self.a(pinkwall: pinkwall)
+                    }
                 }
             }
         }
@@ -67,9 +78,10 @@ class DavidLoadingViewController: UIViewController {
         animation.repeatCount = 1
         animation.duration = 3.0
         david.layer.add(animation, forKey: "animate position along path")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.9) {
-            self.david.layer.position = CGPoint(x: self.david.center.x + 130, y: self.david.center.y + 35)
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.isRemovedOnCompletion = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.david.layer.position = CGPoint(x: self.david.center.x + 55, y: self.david.center.y + 35)
         }
     }
     

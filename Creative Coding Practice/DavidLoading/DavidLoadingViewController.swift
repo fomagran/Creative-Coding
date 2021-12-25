@@ -22,21 +22,29 @@ class DavidLoadingViewController: UIViewController {
         let halfCross = (400*sqrt(2)/2)
         let davidX = view.frame.midX + 70
         david.center = CGPoint(x: davidX, y: pinkwall.center.y - halfCross)
-
-        UIView.animate(withDuration: 1.4, delay:0, options: .curveEaseIn) {
+    
+        UIView.animate(withDuration: 1.4, delay:0, options: .curveEaseOut) {
             david.center.y += 35
         }
 
-        UIView.animate(withDuration: 3,delay:0,options: .curveEaseIn) {
+        UIView.animate(withDuration: 3,delay:0,options: .curveEaseOut) {
+            david.center.x += 130
             david.transform = david.transform.rotated(by: -.pi/4)
             pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
         }
+
+        UIView.animate(withDuration: 2,delay: 2.8,options: .curveEaseOut) {
+            david.transform = david.transform.rotated(by: -.pi/8)
+            pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
+            david.center.x -= 100
+            david.center.y -= 55
+        }
         
-        UIView.animate(withDuration: 2,delay: 2.8,options: .curveEaseIn) {
-            david.transform = david.transform.rotated(by: -.pi/4)
-            pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
-            david.center.y -= 85
-            david.center.x -= 78
+        UIView.animate(withDuration: 2,delay: 4.8,options: .curveEaseOut) {
+            david.transform = david.transform.rotated(by:.pi/8)
+            pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
+            david.center.x -= 100
+            david.center.y -= 20
         }
         
     }

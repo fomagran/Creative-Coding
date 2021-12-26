@@ -10,12 +10,14 @@ import UIKit
 class DavidLoadingViewController: UIViewController {
     
     let david:UIImageView = UIImageView(image: UIImage(named:"david.png"))
+    let pinkwall:UIImageView = UIImageView(image: UIImage(named:"pinkwall.png"))
+    var animator : UIDynamicAnimator!
+    var gravity : UIGravityBehavior!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        let pinkwall:UIImageView = UIImageView(image: UIImage(named:"pinkwall.png"))
         pinkwall.frame = CGRect(x: view.frame.midX-200, y: view.frame.midY-200, width: 400, height: 400)
         view.addSubview(pinkwall)
         david.frame = CGRect(x: view.frame.midX-50, y: view.frame.midY-50, width: 100, height: 100)
@@ -31,41 +33,54 @@ class DavidLoadingViewController: UIViewController {
     }
     
     func a(pinkwall:UIView) {
-        drawArc(centerPoint:CGPoint(x:david.center.x+27.5, y: david.center.y+17.5), startPoint: david.center, angle:180)
-        UIView.animate(withDuration: 2.5,delay:1,options: .curveEaseOut) {
+        drawArc(centerPoint:CGPoint(x:david.center.x+24, y: david.center.y+17.5), startPoint: david.center, angle:180)
+        UIView.animate(withDuration: 2.7,delay:0.75) {
             self.david.transform = self.david.transform.rotated(by: -.pi/4)
             pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
         } completion: { _ in
-            UIView.animate(withDuration: 1,delay: 0,options: .curveEaseOut) {
+            UIView.animate(withDuration: 2,delay: 0) {
                 self.david.transform = self.david.transform.rotated(by: -.pi/8)
                 pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
                 self.david.center.x -= 35
                 self.david.center.y -= 55
             } completion: { _ in
-                UIView.animate(withDuration: 1,delay: 0,options: .curveEaseOut) {
+                UIView.animate(withDuration: 2,delay: 0) {
                     self.david.transform = self.david.transform.rotated(by:.pi/8)
                     pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
                     self.david.center.x -= 90
                     self.david.center.y -= 20
                 } completion: { _ in
-                    UIView.animate(withDuration: 1,delay: 0,options: .curveEaseOut) {
-                        self.david.transform = self.david.transform.rotated(by:.pi/4)
-                        let halfCross = (400*sqrt(2)/2)
-                        let davidX = self.view.frame.midX + 70
-                        self.david.center = CGPoint(x: davidX, y: pinkwall.center.y - halfCross)
+                    UIView.animate(withDuration: 2,delay: 0) {
+                        let davidX = self.view.frame.midX + 35
+                        self.david.center.x = davidX
                     } completion: { _ in
-                        self.a(pinkwall: pinkwall)
+                        UIView.animate(withDuration: 1.5,delay: 0,usingSpringWithDamping: 0.5, initialSpringVelocity: 1) {
+                            self.david.transform = self.david.transform.rotated(by:.pi/4)
+                            let halfCross = (400*sqrt(2)/2)
+                            self.david.center.x += 35
+                            self.david.center.y = pinkwall.center.y - halfCross
+                        } completion: { _ in
+                            self.a(pinkwall: pinkwall)
+                        }
                     }
                 }
             }
         }
     }
     
+    func addCollison() {
+        animator = UIDynamicAnimator(referenceView: self.view)
+        gravity = UIGravityBehavior(items: [david])
+        animator.addBehavior(gravity)
+        let collision = UICollisionBehavior(items: [david, pinkwall])
+        collision.addBoundary(withIdentifier: "barrier" as NSCopying, for: UIBezierPath(rect: pinkwall.frame))
+        animator.addBehavior(collision)
+    }
+    
     func drawArc(centerPoint: CGPoint, startPoint: CGPoint, angle: CGFloat) {
         let radius = getRadius(center: centerPoint, start: startPoint)
         let start = getStartAngle(center: centerPoint, point: startPoint, radius: radius)
         let end = getEndAngle(startAngle: start, angle: angle)
-
         let arcPath = UIBezierPath()
         arcPath.move(to: startPoint)
         arcPath.addArc(withCenter: centerPoint, radius: radius, startAngle: start, endAngle: end, clockwise: false)
@@ -73,6 +88,10 @@ class DavidLoadingViewController: UIViewController {
     }
     
     func arcAnimation(path:UIBezierPath) {
+        david.layer.removeAnimation(forKey: "animate position along path")
+        UIView.animate(withDuration: 2.9) {
+            self.david.layer.position = CGPoint(x: self.david.center.x + 48, y: self.david.center.y + 35)
+        }
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.path = path.cgPath
         animation.repeatCount = 1
@@ -80,9 +99,6 @@ class DavidLoadingViewController: UIViewController {
         david.layer.add(animation, forKey: "animate position along path")
         animation.fillMode = CAMediaTimingFillMode.forwards
         animation.isRemovedOnCompletion = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.david.layer.position = CGPoint(x: self.david.center.x + 55, y: self.david.center.y + 35)
-        }
     }
     
     func getRadius(center: CGPoint, start: CGPoint) -> CGFloat {

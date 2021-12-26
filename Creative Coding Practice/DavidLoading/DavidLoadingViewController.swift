@@ -6,75 +6,87 @@
 //
 
 import UIKit
+import AVFoundation
 
 class DavidLoadingViewController: UIViewController {
     
+    var player: AVAudioPlayer?
     let david:UIImageView = UIImageView(image: UIImage(named:"david.png"))
     let pinkwall:UIImageView = UIImageView(image: UIImage(named:"pinkwall.png"))
-    var animator : UIDynamicAnimator!
-    var gravity : UIGravityBehavior!
+    var pinkwallHalfCross:Double = 0
+    var davidHalfCross:Double = 0
+    var pinkwallLength:CGFloat = 200
+    var davidLength:CGFloat = 75
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        pinkwall.frame = CGRect(x: view.frame.midX-200, y: view.frame.midY-200, width: 400, height: 400)
-        view.addSubview(pinkwall)
-        david.frame = CGRect(x: view.frame.midX-50, y: view.frame.midY-50, width: 100, height: 100)
-        view.addSubview(david)
-        pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
-        david.transform = david.transform.rotated(by: .pi/4)
-        
-        
-        let halfCross = (400*sqrt(2)/2)
-        let davidX = view.frame.midX + 70
-        david.center = CGPoint(x: davidX, y: pinkwall.center.y - halfCross)
-        a(pinkwall: pinkwall)
+        configure()
+        davidLoading()
     }
     
-    func a(pinkwall:UIView) {
-        drawArc(centerPoint:CGPoint(x:david.center.x+24, y: david.center.y+17.5), startPoint: david.center, angle:180)
-        UIView.animate(withDuration: 2.7,delay:0.75) {
-            self.david.transform = self.david.transform.rotated(by: -.pi/4)
+    func configure() {
+        pinkwall.frame = CGRect(x: view.frame.midX-pinkwallLength/2, y: view.frame.midY-pinkwallLength/2, width: pinkwallLength, height: pinkwallLength)
+        view.addSubview(pinkwall)
+        david.frame = CGRect(x: view.frame.midX-50, y: view.frame.midY-50, width: davidLength, height: davidLength)
+        view.addSubview(david)
+        pinkwallHalfCross = pinkwall.frame.width*sqrt(2)/2
+        davidHalfCross = david.frame.width*sqrt(2)/2
+        pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
+        david.transform = david.transform.rotated(by: .pi/4)
+        let davidX = view.frame.midX + davidHalfCross
+        david.center = CGPoint(x: davidX, y: pinkwall.center.y - pinkwallHalfCross)
+        setAVPlayer()
+    }
+    
+    func setAVPlayer() {
+        guard let url = Bundle.main.url(forResource: "davidLoading", withExtension: "mp3") else { return }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func davidLoading() {
+        let pinkwall = pinkwall
+        let david = david
+        drawArc(centerPoint:CGPoint(x:david.center.x+davidLength/6, y:david.center.y + (pinkwallHalfCross-pinkwallLength/2 - davidLength/2)), startPoint: david.center, angle:180)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.player?.play()
+        }
+        UIView.animate(withDuration: 2,delay:0.4) {
+            david.transform = david.transform.rotated(by: -.pi/4)
             pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
         } completion: { _ in
-            UIView.animate(withDuration: 2,delay: 0) {
-                self.david.transform = self.david.transform.rotated(by: -.pi/8)
+            UIView.animate(withDuration: 1,delay: 0) {
+                david.transform = david.transform.rotated(by: -.pi/8)
                 pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
-                self.david.center.x -= 35
-                self.david.center.y -= 55
+                david.center.x -= self.davidHalfCross/2
+                david.center.y -= (self.pinkwallHalfCross - self.pinkwallLength/2)/9*6
             } completion: { _ in
                 UIView.animate(withDuration: 2,delay: 0) {
-                    self.david.transform = self.david.transform.rotated(by:.pi/8)
+                    david.transform = david.transform.rotated(by:.pi/8)
                     pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
-                    self.david.center.x -= 90
-                    self.david.center.y -= 20
+                    david.center.x -= 90
+                    david.center.y -= (self.pinkwallHalfCross - self.pinkwallLength/2)/9*3
                 } completion: { _ in
-                    UIView.animate(withDuration: 2,delay: 0) {
-                        let davidX = self.view.frame.midX + 35
-                        self.david.center.x = davidX
+                    UIView.animate(withDuration: 1,delay: 0) {
+                        let davidX = self.view.frame.midX + self.davidHalfCross/7*2
+                        david.center.x = davidX
                     } completion: { _ in
-                        UIView.animate(withDuration: 1.5,delay: 0,usingSpringWithDamping: 0.5, initialSpringVelocity: 1) {
-                            self.david.transform = self.david.transform.rotated(by:.pi/4)
-                            let halfCross = (400*sqrt(2)/2)
-                            self.david.center.x += 35
-                            self.david.center.y = pinkwall.center.y - halfCross
+                        UIView.animate(withDuration: 1.4) {
+                            david.transform = david.transform.rotated(by:.pi/4)
+                            david.center.x += self.davidHalfCross/7*5
+                            david.center.y = pinkwall.center.y - self.pinkwallHalfCross
                         } completion: { _ in
-                            self.a(pinkwall: pinkwall)
+                            self.davidLoading()
                         }
                     }
                 }
             }
         }
-    }
-    
-    func addCollison() {
-        animator = UIDynamicAnimator(referenceView: self.view)
-        gravity = UIGravityBehavior(items: [david])
-        animator.addBehavior(gravity)
-        let collision = UICollisionBehavior(items: [david, pinkwall])
-        collision.addBoundary(withIdentifier: "barrier" as NSCopying, for: UIBezierPath(rect: pinkwall.frame))
-        animator.addBehavior(collision)
     }
     
     func drawArc(centerPoint: CGPoint, startPoint: CGPoint, angle: CGFloat) {
@@ -89,13 +101,13 @@ class DavidLoadingViewController: UIViewController {
     
     func arcAnimation(path:UIBezierPath) {
         david.layer.removeAnimation(forKey: "animate position along path")
-        UIView.animate(withDuration: 2.9) {
-            self.david.layer.position = CGPoint(x: self.david.center.x + 48, y: self.david.center.y + 35)
+        UIView.animate(withDuration: 1.9) {
+            self.david.layer.position = CGPoint(x: self.david.center.x + self.davidLength/3, y:self.pinkwall.center.y - self.pinkwallLength/2 - self.davidLength/2)
         }
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.path = path.cgPath
         animation.repeatCount = 1
-        animation.duration = 3.0
+        animation.duration = 2
         david.layer.add(animation, forKey: "animate position along path")
         animation.fillMode = CAMediaTimingFillMode.forwards
         animation.isRemovedOnCompletion = false
@@ -104,20 +116,15 @@ class DavidLoadingViewController: UIViewController {
     func getRadius(center: CGPoint, start: CGPoint) -> CGFloat {
         let xDist: CGFloat = start.x - center.x
         let yDist: CGFloat = start.y - center.y
-
         let radius: CGFloat = sqrt((xDist * xDist) + (yDist * yDist))
-
         return radius
     }
     
     func getStartAngle(center: CGPoint, point: CGPoint, radius: CGFloat) -> CGFloat {
         let origin = CGPoint(x: center.x + radius, y: center.y)
-
         let v1 = CGVector(dx: origin.x - center.x, dy: origin.y - center.y)
         let v2 = CGVector(dx: point.x - center.x, dy: point.y - center.y)
-
         let angle = atan2(v2.dy, v2.dx) - atan2(v1.dy, v1.dx)
-
         return angle
     }
     

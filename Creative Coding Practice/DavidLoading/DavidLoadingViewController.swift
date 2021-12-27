@@ -44,27 +44,27 @@ class DavidLoadingViewController: UIViewController {
     func davidLoading(pinkwall:UIView) {
         yGap = (david.center.y + davidLength/2) - (view.center.y - pinkLength/2)
         drawArc(centerPoint:CGPoint(x:david.center.x+15, y: david.center.y - yGap/2), startPoint: david.center, angle:180)
-        UIView.animate(withDuration: 2.7,delay:0.75) {
+        UIView.animate(withDuration: 1.5,delay:0.25) {
             self.david.transform = self.david.transform.rotated(by: -.pi/4)
             pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
         } completion: { _ in
-            UIView.animate(withDuration: 2,delay: 0) {
+            UIView.animate(withDuration: 1,delay: 0) {
                 self.david.transform = self.david.transform.rotated(by: -.pi/8)
                 pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
                 self.david.center.x -= 32.5
                 self.david.center.y -= 22.5
             } completion: { _ in
-                UIView.animate(withDuration: 2,delay: 0) {
+                UIView.animate(withDuration: 0.5,delay: 0) {
                     self.david.transform = self.david.transform.rotated(by:.pi/8)
                     pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
                     self.david.center.x -= 40
                     self.david.center.y -= 10
                 } completion: { _ in
-                    UIView.animate(withDuration: 2,delay: 0) {
+                    UIView.animate(withDuration: 0.5,delay: 0) {
                         let davidX = self.view.frame.midX + 12
                         self.david.center.x = davidX
                     } completion: { _ in
-                        UIView.animate(withDuration: 1.5) {
+                        UIView.animate(withDuration: 0.5) {
                             self.david.transform = self.david.transform.rotated(by:.pi/4)
                             self.david.center.x += 30
                             self.david.center.y = pinkwall.center.y - self.pinkCross
@@ -89,13 +89,13 @@ class DavidLoadingViewController: UIViewController {
     
     func arcAnimation(path:UIBezierPath) {
         david.layer.removeAnimation(forKey: "animate position along path")
-        UIView.animate(withDuration: 3) {
+        UIView.animate(withDuration: 1.5) {
             self.david.layer.position = CGPoint(x: self.david.center.x + 30, y: self.david.center.y - self.yGap)
         }
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.path = path.cgPath
         animation.repeatCount = 1
-        animation.duration = 3.0
+        animation.duration = 1.5
         david.layer.add(animation, forKey: "animate position along path")
         animation.fillMode = CAMediaTimingFillMode.forwards
         animation.isRemovedOnCompletion = false

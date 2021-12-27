@@ -18,3 +18,7 @@
 ipad pro 5            |  iphone 12 pro
 :-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/47676921/146544922-11d35109-63f8-4297-b300-12dd77cfc520.gif)  |  ![](https://user-images.githubusercontent.com/47676921/146544949-2fa5a32b-0e62-45db-afdc-72ac0b680486.gif)
+
+## 4. 다비드 로딩
+
+<img src="https://user-images.githubusercontent.com/47676921/147438682-f47c9412-acf6-49a2-8bb1-6d594faee188.gif"  width="300" height="400">

@@ -6,87 +6,84 @@
 //
 
 import UIKit
-import AVFoundation
 
 class DavidLoadingViewController: UIViewController {
     
-    var player: AVAudioPlayer?
     let david:UIImageView = UIImageView(image: UIImage(named:"david.png"))
     let pinkwall:UIImageView = UIImageView(image: UIImage(named:"pinkwall.png"))
-    var pinkwallHalfCross:Double = 0
-    var davidHalfCross:Double = 0
-    var pinkwallLength:CGFloat = 200
-    var davidLength:CGFloat = 75
-    
+    let palmtree:UIImageView = UIImageView(image: UIImage(named:"palmtree.png"))
+    var animator : UIDynamicAnimator!
+    var gravity : UIGravityBehavior!
+    let davidLength:CGFloat = 60
+    let pinkLength:CGFloat = 150
+    lazy var pinkCross = pinkLength*sqrt(2)/2
+    lazy var davidCross = davidLength*sqrt(2)/2
+    var yGap:Double = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        davidLoading()
     }
     
     func configure() {
-        pinkwall.frame = CGRect(x: view.frame.midX-pinkwallLength/2, y: view.frame.midY-pinkwallLength/2, width: pinkwallLength, height: pinkwallLength)
+        palmtree.frame = CGRect(x: view.frame.midX-175, y: view.frame.midY-175, width: 350, height: 350)
+        view.addSubview(palmtree)
+        palmtree.layer.cornerRadius = palmtree.frame.height/2
+        palmtree.layer.masksToBounds = true
+        pinkwall.frame = CGRect(x: view.frame.midX-75, y: view.frame.midY-75, width: pinkLength, height: pinkLength)
         view.addSubview(pinkwall)
-        david.frame = CGRect(x: view.frame.midX-50, y: view.frame.midY-50, width: davidLength, height: davidLength)
+        david.frame = CGRect(x:0, y:0, width: davidLength, height: davidLength)
         view.addSubview(david)
-        pinkwallHalfCross = pinkwall.frame.width*sqrt(2)/2
-        davidHalfCross = david.frame.width*sqrt(2)/2
         pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
         david.transform = david.transform.rotated(by: .pi/4)
-        let davidX = view.frame.midX + davidHalfCross
-        david.center = CGPoint(x: davidX, y: pinkwall.center.y - pinkwallHalfCross)
-        setAVPlayer()
+        david.center = CGPoint(x: view.frame.midX + davidCross, y: pinkwall.center.y - pinkCross)
+        palmtree.alpha = 0
+        pinkwall.alpha = 0
+        david.alpha = 0
     }
     
-    func setAVPlayer() {
-        guard let url = Bundle.main.url(forResource: "davidLoading", withExtension: "mp3") else { return }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func davidLoading() {
-        let pinkwall = pinkwall
-        let david = david
-        drawArc(centerPoint:CGPoint(x:david.center.x+davidLength/6, y:david.center.y + (pinkwallHalfCross-pinkwallLength/2 - davidLength/2)), startPoint: david.center, angle:180)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-            self.player?.play()
-        }
-        UIView.animate(withDuration: 2,delay:0.4) {
-            david.transform = david.transform.rotated(by: -.pi/4)
+    func davidLoading(pinkwall:UIView) {
+        yGap = (david.center.y + davidLength/2) - (view.center.y - pinkLength/2)
+        drawArc(centerPoint:CGPoint(x:david.center.x+15, y: david.center.y - yGap/2), startPoint: david.center, angle:180)
+        UIView.animate(withDuration: 2.7,delay:0.75) {
+            self.david.transform = self.david.transform.rotated(by: -.pi/4)
             pinkwall.transform = pinkwall.transform.rotated(by: -.pi/4)
         } completion: { _ in
-            UIView.animate(withDuration: 1,delay: 0) {
-                david.transform = david.transform.rotated(by: -.pi/8)
+            UIView.animate(withDuration: 2,delay: 0) {
+                self.david.transform = self.david.transform.rotated(by: -.pi/8)
                 pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
-                david.center.x -= self.davidHalfCross/2
-                david.center.y -= (self.pinkwallHalfCross - self.pinkwallLength/2)/9*6
+                self.david.center.x -= 32.5
+                self.david.center.y -= 22.5
             } completion: { _ in
                 UIView.animate(withDuration: 2,delay: 0) {
-                    david.transform = david.transform.rotated(by:.pi/8)
+                    self.david.transform = self.david.transform.rotated(by:.pi/8)
                     pinkwall.transform = pinkwall.transform.rotated(by: -.pi/8)
-                    david.center.x -= 90
-                    david.center.y -= (self.pinkwallHalfCross - self.pinkwallLength/2)/9*3
+                    self.david.center.x -= 40
+                    self.david.center.y -= 10
                 } completion: { _ in
-                    UIView.animate(withDuration: 1,delay: 0) {
-                        let davidX = self.view.frame.midX + self.davidHalfCross/7*2
-                        david.center.x = davidX
+                    UIView.animate(withDuration: 2,delay: 0) {
+                        let davidX = self.view.frame.midX + 12
+                        self.david.center.x = davidX
                     } completion: { _ in
-                        UIView.animate(withDuration: 1.4) {
-                            david.transform = david.transform.rotated(by:.pi/4)
-                            david.center.x += self.davidHalfCross/7*5
-                            david.center.y = pinkwall.center.y - self.pinkwallHalfCross
+                        UIView.animate(withDuration: 1.5) {
+                            self.david.transform = self.david.transform.rotated(by:.pi/4)
+                            self.david.center.x += 30
+                            self.david.center.y = pinkwall.center.y - self.pinkCross
                         } completion: { _ in
-                            self.davidLoading()
+                            self.davidLoading(pinkwall: pinkwall)
                         }
                     }
                 }
             }
         }
+    }
+    
+    func addCollison() {
+        animator = UIDynamicAnimator(referenceView: self.view)
+        gravity = UIGravityBehavior(items: [david])
+        animator.addBehavior(gravity)
+        let collision = UICollisionBehavior(items: [david, pinkwall])
+        collision.addBoundary(withIdentifier: "barrier" as NSCopying, for: UIBezierPath(rect: pinkwall.frame))
+        animator.addBehavior(collision)
     }
     
     func drawArc(centerPoint: CGPoint, startPoint: CGPoint, angle: CGFloat) {
@@ -101,13 +98,13 @@ class DavidLoadingViewController: UIViewController {
     
     func arcAnimation(path:UIBezierPath) {
         david.layer.removeAnimation(forKey: "animate position along path")
-        UIView.animate(withDuration: 1.9) {
-            self.david.layer.position = CGPoint(x: self.david.center.x + self.davidLength/3, y:self.pinkwall.center.y - self.pinkwallLength/2 - self.davidLength/2)
+        UIView.animate(withDuration: 3) {
+            self.david.layer.position = CGPoint(x: self.david.center.x + 30, y: self.david.center.y - self.yGap)
         }
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.path = path.cgPath
         animation.repeatCount = 1
-        animation.duration = 2
+        animation.duration = 3.0
         david.layer.add(animation, forKey: "animate position along path")
         animation.fillMode = CAMediaTimingFillMode.forwards
         animation.isRemovedOnCompletion = false
@@ -130,5 +127,14 @@ class DavidLoadingViewController: UIViewController {
     
     func getEndAngle(startAngle: CGFloat, angle: CGFloat) -> CGFloat {
         return (angle * (.pi / 180)) + startAngle
+    }
+    @IBAction func tapShowDavidLoading(_ sender: Any) {
+        UIView.animate(withDuration: 2) {
+            self.view.backgroundColor = UIColor(displayP3Red: 55, green: 55, blue: 55, alpha: 0.2)
+            self.palmtree.alpha = 1
+            self.pinkwall.alpha = 1
+            self.david.alpha = 1
+        }
+        davidLoading(pinkwall: pinkwall)
     }
 }

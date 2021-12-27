@@ -116,8 +116,25 @@
                     <view key="view" contentMode="scaleToFill" id="1qs-j2-s1p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gba-aR-PoL">
+                                <rect key="frame" x="71" y="428" width="272" height="50"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="showDavidLoading">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="tapShowDavidLoading:" destination="4zg-2H-LXL" eventType="touchUpInside" id="NbR-M0-W3O"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="mth-oM-fis"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gba-aR-PoL" firstAttribute="centerX" secondItem="mth-oM-fis" secondAttribute="centerX" id="EwI-Q2-Glg"/>
+                            <constraint firstItem="gba-aR-PoL" firstAttribute="centerY" secondItem="mth-oM-fis" secondAttribute="centerY" id="i4I-Jg-jdu"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EzV-Ju-3lu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

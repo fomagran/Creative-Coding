@@ -204,6 +204,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PTS-GB-bbw"/>
+                    <connections>
+                        <outlet property="showLoadingButton" destination="gba-aR-PoL" id="BjV-AK-cnM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EzV-Ju-3lu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

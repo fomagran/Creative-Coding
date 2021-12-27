@@ -77,15 +77,6 @@ class DavidLoadingViewController: UIViewController {
         }
     }
     
-    func addCollison() {
-        animator = UIDynamicAnimator(referenceView: self.view)
-        gravity = UIGravityBehavior(items: [david])
-        animator.addBehavior(gravity)
-        let collision = UICollisionBehavior(items: [david, pinkwall])
-        collision.addBoundary(withIdentifier: "barrier" as NSCopying, for: UIBezierPath(rect: pinkwall.frame))
-        animator.addBehavior(collision)
-    }
-    
     func drawArc(centerPoint: CGPoint, startPoint: CGPoint, angle: CGFloat) {
         let radius = getRadius(center: centerPoint, start: startPoint)
         let start = getStartAngle(center: centerPoint, point: startPoint, radius: radius)
@@ -128,6 +119,7 @@ class DavidLoadingViewController: UIViewController {
     func getEndAngle(startAngle: CGFloat, angle: CGFloat) -> CGFloat {
         return (angle * (.pi / 180)) + startAngle
     }
+    
     @IBAction func tapShowDavidLoading(_ sender: Any) {
         UIView.animate(withDuration: 2) {
             self.view.backgroundColor = UIColor(displayP3Red: 55, green: 55, blue: 55, alpha: 0.2)

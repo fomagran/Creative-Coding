@@ -34,7 +34,6 @@ class DSViewController: UIViewController {
         configure()
     }
     
-    
     func configure() {
         view.addSubview(spark)
         spark.isHidden = true

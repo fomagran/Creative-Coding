@@ -15,13 +15,13 @@
 
 ## 3. 3DCardView   
 
-ipad pro 5            |  iphone 12 pro
+ipad pro 5th            |  iphone 13 pro
 :-------------------------:|:-------------------------:
-![](https://user-images.githubusercontent.com/47676921/146544922-11d35109-63f8-4297-b300-12dd77cfc520.gif)  |  ![](https://user-images.githubusercontent.com/47676921/146544949-2fa5a32b-0e62-45db-afdc-72ac0b680486.gif)
+![](https://user-images.githubusercontent.com/47676921/147451696-6b363d59-5775-44a8-b602-ef000c9ac5c2.gif)  |  ![](https://user-images.githubusercontent.com/47676921/147451723-83a6749c-e27f-47c8-8c6b-f6893abe68ab.gif)
 
-## 3. DavidLoading   
+## 4. DavidLoading   
 
-ipad pro 5            |  iphone 13 pro
+ipad pro 5th            |  iphone 13 pro
 :-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/47676921/147450991-8e8f17d7-334e-4bf5-8858-7de960102c72.gif)  |  ![](https://user-images.githubusercontent.com/47676921/147450931-1cd903ca-8a5b-4b18-946e-f3023542b79e.gif)
 

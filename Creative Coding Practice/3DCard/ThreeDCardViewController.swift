@@ -9,124 +9,108 @@ import UIKit
 
 class ThreeDCardViewController: UIViewController {
     
-    var bgView:ThreeDCardView!
-    var cardViews:[ThreeDCardView] = []
-    var currentCardView:(Int,ThreeDCardView)!
-    var scale:[CGFloat] = [1,1,1,1]
-    var rects:[CGRect] = []
-    var positions:[Int] = [0,1,2,3]
+    
+    var cardViews:[ThreeDCardCell] = []
+    var current:Card!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDrag()
-        makeCardViews()
+    }
+
+    init(cards:[Card]) {
+        self.cardViews = cards.map{ThreeDCardCell(frame: $0.frame,card:$0)}
+        current = cards.first
+        super.init(nibName: nil, bundle: nil)
     }
     
-    func makeCardViews() {
-        let mid = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
-            let images:[UIImage] = [UIImage(named: "살바도르달리.jpeg")!,UIImage(named: "폴고갱.jpeg")!,UIImage(named: "반고흐.png")!,UIImage(named: "마르셀 뒤샹.png")!]
-        for i in 0..<images.count {
-            var cardView:ThreeDCardView = ThreeDCardView()
-            if i == 0{
-                cardView = ThreeDCardView(frame: CGRect(x:mid.x - self.view.frame.width/4, y:mid.y - self.view.frame.height/4, width:self.view.frame.width/2, height:self.view.frame.height/2))
-                rects.append(cardView.frame)
-            }else {
-                let last = rects.last!
-                let frame = CGRect(x: last.minX - last.width/3, y: mid.y - last.height/3, width: last.width/3*2, height: last.height/3*2)
-                cardView = ThreeDCardView(frame: frame)
-                rects.append(frame)
-            }
-            cardView.configure(image:images[i])
-            setTransform(bgView: cardView)
-            cardViews.append(cardView)
-        }
-        currentCardView = (0,cardViews[0])
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
+    
     
     func moveRight() {
-        positions = positions.map{$0-1}
-        if currentCardView.0 == cardViews.count-1 {
+        for cardView in cardViews {
+            cardView.card.index -= 1
+        }
+        if current.index == cardViews.count-1 {
             return
         }
         for i in 0..<cardViews.count {
             let cardView = cardViews[i]
-            if i == currentCardView.0 {
+            let card = cardView.card
+            if i == current.index {
                 rightFlipAnimation(card:cardView)
             }else {
                 UIView.animate(withDuration: 0.5, delay: 0, options:.curveEaseIn, animations: {
                     let rotation = CATransform3DMakeRotation(0.05, 0, 1, 0)
-                    self.scale[i] *= 1.5
-                    let scale = CATransform3DMakeScale(self.scale[i],self.scale[i],1)
+                    self.cardViews[i].card.scale *= 1.5
+                    let cardScale = self.cardViews[i].card.scale
+                    let scale = CATransform3DMakeScale(cardScale,cardScale,1)
                     cardView.layer.transform = CATransform3DConcat(rotation,scale)
-                    if i > self.currentCardView.0 {
-                        cardView.center = CGPoint(x:self.rects[self.positions[i]].midX, y:self.rects[self.positions[i]].midY)
+                    if i > self.current.index {
+                        let frame = self.cardViews[card.index].frame
+                        cardView.center = CGPoint(x:frame.midX, y:frame.midY)
                     }
                 })
             }
         }
-        currentCardView = (currentCardView.0+1,cardViews[currentCardView.0+1])
+        current = cardViews[current.index+1].card
     }
     
     func moveLeft() {
-        positions = positions.map{$0+1}
-        if currentCardView.0 == 0 {
+        for cardView in cardViews {
+            cardView.card.index += 1
+        }
+        if current.index == 0 {
             return
         }
         for i in 0..<cardViews.count{
             let cardView = cardViews[i]
-            if i == currentCardView.0-1 {
+            let card = cardView.card
+            if i == current.index-1 {
                leftFlipAnimation(card: cardView)
             }else {
                 UIView.animate(withDuration: 0.5, delay: 0, options:.curveEaseIn, animations: {
                     CATransform3DMakeTranslation(0, 1, 0)
                     let rotation = CATransform3DMakeRotation(0.05, 0, 1, 0)
-                    self.scale[i] *= 2/3
-                    let scale = CATransform3DMakeScale(self.scale[i],self.scale[i],1)
+                    self.cardViews[i].card.scale *= 2/3
+                    let cardScale = self.cardViews[i].card.scale
+                    let scale = CATransform3DMakeScale(cardScale,cardScale,1)
                     cardView.layer.transform = CATransform3DConcat(rotation,scale)
-                    if i > self.currentCardView.0-1 {
-                        cardView.center = CGPoint(x:self.rects[self.positions[i]].midX, y:self.rects[self.positions[i]].midY)
+                    if i > self.current.index-1 {
+                        let frame = self.cardViews[card.index].frame
+                        cardView.center = CGPoint(x:frame.midX, y:frame.midY)
                     }
                 })
             }
         }
-        currentCardView = (currentCardView.0-1,cardViews[currentCardView.0-1])
+        current = cardViews[current.index-1].card
     }
     
     func leftFlipAnimation(card:UIView) {
         card.isHidden = false
         UIView.animate(withDuration: 1, delay: 0, options:.curveEaseIn, animations: {
             let rotation = CATransform3DMakeRotation(0.05, 0, 1, 0)
-            self.scale[self.currentCardView.0-1] *= 2/3
-            let scale = CATransform3DMakeScale(self.scale[self.currentCardView.0-1],self.scale[self.currentCardView.0-1],1)
+            self.cardViews[self.current.index].card.scale *= 2/3
+            let cardScale = self.cardViews[self.current.index].card.scale
+            let scale = CATransform3DMakeScale(cardScale,cardScale,1)
             card.layer.transform = CATransform3DConcat(rotation, scale)
-            card.center.x = self.rects[0].midX
+            card.center.x = self.cardViews[0].card.frame.midX
         })
     }
     
     func rightFlipAnimation(card:UIView) {
         UIView.animate(withDuration: 1, delay: 0, options:.curveEaseOut, animations: {
             let rotation = CATransform3DMakeRotation(0.5, 0, 1, 0)
-            self.scale[self.currentCardView.0] *= 1.5
-            let scale = CATransform3DMakeScale(self.scale[self.currentCardView.0],self.scale[self.currentCardView.0],1)
+            self.cardViews[self.current.index].card.scale *= 1.5
+            let cardScale = self.cardViews[self.current.index].card.scale
+            let scale = CATransform3DMakeScale(cardScale,cardScale,1)
             card.layer.transform = CATransform3DConcat(rotation, scale)
             card.center.x = self.view.frame.maxX
         }) { _ in
             card.isHidden = true
         }
-    }
-    
-    func allRightFlip() {
-        for _ in currentCardView.0..<cardViews.count-1 {
-          moveRight()
-        }
-        currentCardView = (cardViews.count-1,cardViews[cardViews.count-1])
-    }
-    
-    func allLeftFlip() {
-        for _ in stride(from: currentCardView.0, through: 1, by: -1) {
-            moveLeft()
-        }
-        currentCardView = (0,cardViews[0])
     }
     
     func setDrag() {
@@ -157,11 +141,5 @@ class ThreeDCardViewController: UIViewController {
         transformLayer.addSublayer(bgView.layer)
         view.layer.addSublayer(transformLayer)
         bgView.layer.transform = CATransform3DMakeRotation(0.05, 0, 1, 0)
-    }
-    @IBAction func tapRightButton(_ sender: Any) {
-        allRightFlip()
-    }
-    @IBAction func tapLeftButton(_ sender: Any) {
-        allLeftFlip()
     }
 }

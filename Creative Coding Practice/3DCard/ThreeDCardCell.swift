@@ -7,16 +7,19 @@
 
 import UIKit
 
-class ThreeDCardView: UIView {
+class ThreeDCardCell: UIView {
+    
+    var card:Card
         
-    override init(frame: CGRect) {
+    init(frame: CGRect,card:Card) {
+        self.card = card
         super.init(frame: frame)
+        configure(image: card.image)
         setGradient()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
+        fatalError("init(coder:) has not been implemented")
     }
     
     func configure(image:UIImage) {

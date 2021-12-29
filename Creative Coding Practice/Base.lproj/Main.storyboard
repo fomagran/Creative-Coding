@@ -244,10 +244,10 @@
             </objects>
             <point key="canvasLocation" x="-51" y="980"/>
         </scene>
-        <!--ThreeD Card View Controller-->
+        <!--View Controller-->
         <scene sceneID="oYW-f4-snH">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="w0a-3c-vGb" customClass="ThreeDCardViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="w0a-3c-vGb" customClass="AViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wKd-DI-itH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

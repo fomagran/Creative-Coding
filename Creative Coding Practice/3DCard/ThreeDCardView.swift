@@ -8,9 +8,9 @@
 import UIKit
 
 class ThreeDCardView:UIView {
-    
+
     //MARK:- Properties
-    
+
     var cardCells:[ThreeDCardCell] = []
     var current:Card!
     weak var dataSource:ThreeDCardDataSource? {
@@ -18,42 +18,44 @@ class ThreeDCardView:UIView {
             updateCards()
         }
     }
-    
+
     //MARK:- Initializer
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setDrag()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     //MARK: - Functions
-    
+
     func updateCards() {
+        backgroundColor = .red
         let images = dataSource?.setCardImages() ?? []
         let cards = makeCards(images: images)
-        cards.forEach {
-            let cell = ThreeDCardCell(frame: $0.frame, card: $0)
-            cardCells.insert(ThreeDCardCell(frame: $0.frame, card: $0),at: 0)
+        for card in cards {
+            let cell = ThreeDCardCell(frame: card.frame, card:card)
             setTransform(cell)
+            cardCells.append(cell)
         }
-        current = cards.last
+        current = cardCells.first!.card
+        print(current.index)
     }
-    
+
     func makeCards(images:[UIImage]) -> [Card] {
         var cards:[Card] = []
         var prev:Card?
         for (i,image) in images.enumerated() {
             let card:Card = Card(index: i, image: image, frame:frame, prev: prev)
-            cards.insert(card,at: 0)
+            cards.append(card)
             prev = card
         }
         return cards
     }
-    
+
     func setTransform(_ cell:UIView) {
         var perspective = CATransform3DIdentity
         perspective.m34 = -1 / 500
@@ -64,17 +66,14 @@ class ThreeDCardView:UIView {
         layer.addSublayer(transformLayer)
         cell.layer.transform = CATransform3DMakeRotation(0.05, 0, 1, 0)
     }
-    
+
     func moveRight() {
         if current.index == cardCells.count-1 {
             return
         }
         for i in 0..<cardCells.count {
             let cell = cardCells[i]
-            if i - current.index == 0 {
-                for cardCell in cardCells {
-                    cardCell.isHidden = true
-                }
+            if current.index == i {
                 rightFlipAnimation(cell)
             }else {
                 UIView.animate(withDuration: 0.5, delay: 0, options:.curveEaseIn, animations: {
@@ -83,16 +82,14 @@ class ThreeDCardView:UIView {
                     let cardScale = self.cardCells[i].card.scale
                     let scale = CATransform3DMakeScale(cardScale,cardScale,1)
                     cell.layer.transform = CATransform3DConcat(rotation,scale)
-                    if i > self.current.index {
-                        let frame = self.cardCells[i-self.current.index].frame
-                        cell.center = CGPoint(x:frame.midX, y:frame.midY)
-                    }
+                    let frame = self.cardCells[i].frame
+                    cell.center = CGPoint(x:frame.midX, y:frame.midY)
                 })
             }
         }
         current = cardCells[current.index+1].card
     }
-    
+
     func moveLeft() {
         if current.index == 0 {
             return
@@ -119,7 +116,7 @@ class ThreeDCardView:UIView {
         }
         current = cardCells[current.index-1].card
     }
-    
+
     func leftFlipAnimation(card:UIView) {
         card.isHidden = false
         UIView.animate(withDuration: 1, delay: 0, options:.curveEaseIn, animations: {
@@ -131,20 +128,20 @@ class ThreeDCardView:UIView {
             card.center.x = self.cardCells[0].card.frame.midX
         })
     }
-    
+
     func rightFlipAnimation(_ card:ThreeDCardCell) {
-//        UIView.animate(withDuration: 1, delay: 0, options:.curveEaseOut, animations: {
-//            let rotation = CATransform3DMakeRotation(0.5, 0, 1, 0)
-//            self.cardCells[self.current.index].card.scale *= 1.5
-//            let cardScale = self.cardCells[self.current.index].card.scale
-//            let scale = CATransform3DMakeScale(cardScale,cardScale,1)
-//            card.layer.transform = CATransform3DConcat(rotation, scale)
-//            card.center.x = self.frame.maxX
-//        }) { _ in
+        UIView.animate(withDuration: 1, delay: 0, options:.curveEaseOut, animations: {
+            let rotation = CATransform3DMakeRotation(0.5, 0, 1, 0)
+            self.cardCells[self.current.index].card.scale *= 1.5
+            let cardScale = self.cardCells[self.current.index].card.scale
+            let scale = CATransform3DMakeScale(cardScale,cardScale,1)
+            card.layer.transform = CATransform3DConcat(rotation, scale)
+            card.center.x = self.frame.maxX
+        }) { _ in
             card.isHidden = true
-//        }
+        }
     }
-    
+
     func setDrag() {
         let leftSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(leftSwiped))
         leftSwipeRecognizer.numberOfTouchesRequired = 1
@@ -155,11 +152,11 @@ class ThreeDCardView:UIView {
         rightSwipeRecognizer.direction = .right
         addGestureRecognizer(rightSwipeRecognizer)
     }
-    
+
     @objc private func leftSwiped(recognizer: UISwipeGestureRecognizer) {
         moveLeft()
     }
-    
+
     @objc private func rightSwiped(recognizer: UISwipeGestureRecognizer) {
         moveRight()
     }

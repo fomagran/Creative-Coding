@@ -33,6 +33,8 @@
 		04E7E90D276E1652007B7B82 /* DSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E90C276E1652007B7B82 /* DSViewController.swift */; };
 		04F376A1277C5EFC00A70B98 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F376A0277C5EFC00A70B98 /* Card.swift */; };
 		04F376A3277C6E0700A70B98 /* AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F376A2277C6E0700A70B98 /* AViewController.swift */; };
+		04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F376A4277C75E800A70B98 /* ThreeDCardView.swift */; };
+		04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F376A6277C761700A70B98 /* ThreeDCardDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		04E7E90C276E1652007B7B82 /* DSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSViewController.swift; sourceTree = "<group>"; };
 		04F376A0277C5EFC00A70B98 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		04F376A2277C6E0700A70B98 /* AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AViewController.swift; sourceTree = "<group>"; };
+		04F376A4277C75E800A70B98 /* ThreeDCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDCardView.swift; sourceTree = "<group>"; };
+		04F376A6277C761700A70B98 /* ThreeDCardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDCardDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +212,8 @@
 				04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */,
 				04F376A0277C5EFC00A70B98 /* Card.swift */,
 				04F376A2277C6E0700A70B98 /* AViewController.swift */,
+				04F376A4277C75E800A70B98 /* ThreeDCardView.swift */,
+				04F376A6277C761700A70B98 /* ThreeDCardDataSource.swift */,
 			);
 			path = 3DCard;
 			sourceTree = "<group>";
@@ -305,6 +311,7 @@
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,
 				04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */,
 				04E7E905276E1371007B7B82 /* ThreeDCardViewController.swift in Sources */,
+				04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
 				0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,
@@ -316,6 +323,7 @@
 				0438A469275B361800BFE7B5 /* Line.swift in Sources */,
 				041E199C274B4134000F8C11 /* SceneDelegate.swift in Sources */,
 				0494B47627706A180041116C /* CircleView.swift in Sources */,
+				04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */,
 				0485DC12275CC63800F029B0 /* WaveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

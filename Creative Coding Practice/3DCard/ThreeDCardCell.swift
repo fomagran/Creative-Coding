@@ -14,7 +14,7 @@ class ThreeDCardCell: UIView {
     init(frame: CGRect,card:Card) {
         self.card = card
         super.init(frame: frame)
-        configure(image: card.image)
+        configure()
         setGradient()
     }
     
@@ -22,18 +22,18 @@ class ThreeDCardCell: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(image:UIImage) {
+    func configure() {
         let imageLayer = CAShapeLayer()
         let reflectionLayer = CAShapeLayer()
-        addSubLayer(imageLayer,image, CGRect(x: 0, y: 0, width: frame.width, height: frame.height/5*4), false)
-        addSubLayer(reflectionLayer, image, CGRect(x: 0, y: frame.height/5*4+1, width: frame.width, height: frame.height/5*1), true)
+        addSubLayer(imageLayer, CGRect(x: 0, y: 0, width: frame.width, height: frame.height/5*4), false)
+        addSubLayer(reflectionLayer, CGRect(x: 0, y: frame.height/5*4+1, width: frame.width, height: frame.height/5*1), true)
     }
     
-    private func addSubLayer(_ layer:CAShapeLayer,_ image:UIImage,_ frame:CGRect,_ isRefelction:Bool) {
-        var img = image
+    private func addSubLayer(_ layer:CAShapeLayer,_ frame:CGRect,_ isRefelction:Bool) {
+        var img = card.image
         if isRefelction {
             layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
-            img = image.flipImageVertically()!
+            img = card.image.flipImageVertically()!
         }
         layer.contents = img.cgImage
         layer.masksToBounds = true

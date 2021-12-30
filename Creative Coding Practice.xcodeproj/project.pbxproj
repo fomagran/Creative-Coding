@@ -26,7 +26,6 @@
 		04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */; };
 		04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA9A8727799989002F18D9 /* MainViewController.swift */; };
 		04BA9A8B27799A30002F18D9 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA9A8A27799A30002F18D9 /* MainTableViewCell.swift */; };
-		04E7E905276E1371007B7B82 /* ThreeDCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E903276E1371007B7B82 /* ThreeDCardViewController.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */; };
 		04E7E90A276E1541007B7B82 /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04E7E908276E1541007B7B82 /* Spark.sks */; };
 		04E7E90B276E1541007B7B82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E7E909276E1541007B7B82 /* Assets.xcassets */; };
@@ -59,7 +58,6 @@
 		04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
 		04BA9A8727799989002F18D9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		04BA9A8A27799A30002F18D9 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
-		04E7E903276E1371007B7B82 /* ThreeDCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardViewController.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardCell.swift; sourceTree = "<group>"; };
 		04E7E908276E1541007B7B82 /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
 		04E7E909276E1541007B7B82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,13 +205,11 @@
 		04E7E902276E1371007B7B82 /* 3DCard */ = {
 			isa = PBXGroup;
 			children = (
-				04E7E903276E1371007B7B82 /* ThreeDCardViewController.swift */,
-				04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */,
-				04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */,
-				04F376A0277C5EFC00A70B98 /* Card.swift */,
-				04F376A2277C6E0700A70B98 /* AViewController.swift */,
-				04F376A4277C75E800A70B98 /* ThreeDCardView.swift */,
-				04F376A6277C761700A70B98 /* ThreeDCardDataSource.swift */,
+				04F376AD277CB05900A70B98 /* Controller */,
+				04F376AB277CB04600A70B98 /* View */,
+				04F376AA277CB03700A70B98 /* Model */,
+				04F376AE277CB06300A70B98 /* Utils */,
+				04F376AC277CB05200A70B98 /* Protocol */,
 			);
 			path = 3DCard;
 			sourceTree = "<group>";
@@ -227,6 +223,47 @@
 				0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */,
 			);
 			path = DoctorStrange;
+			sourceTree = "<group>";
+		};
+		04F376AA277CB03700A70B98 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04F376A0277C5EFC00A70B98 /* Card.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04F376AB277CB04600A70B98 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04F376A4277C75E800A70B98 /* ThreeDCardView.swift */,
+				04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04F376AC277CB05200A70B98 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				04F376A6277C761700A70B98 /* ThreeDCardDataSource.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		04F376AD277CB05900A70B98 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04F376A2277C6E0700A70B98 /* AViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04F376AE277CB06300A70B98 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,7 +347,6 @@
 				04F376A3277C6E0700A70B98 /* AViewController.swift in Sources */,
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,
 				04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */,
-				04E7E905276E1371007B7B82 /* ThreeDCardViewController.swift in Sources */,
 				04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
 				0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */,

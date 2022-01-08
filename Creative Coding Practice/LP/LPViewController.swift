@@ -10,6 +10,7 @@ import UIKit
 class LPViewController: UIViewController {
     
     var bezier: QuadBezier!
+    private var line = CAShapeLayer()
     
     let pathLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
@@ -19,7 +20,14 @@ class LPViewController: UIViewController {
         return layer
     }()
     
-    var shape: CircleView = {
+    var shape1: CircleView = {
+        let shape = CircleView()
+        shape.backgroundColor = .red
+        shape.frame = CGRect(origin: .zero, size: CGSize(width: 50, height: 50))
+        return shape
+    }()
+    
+    var shape2: CircleView = {
         let shape = CircleView()
         shape.backgroundColor = .red
         shape.frame = CGRect(origin: .zero, size: CGSize(width: 50, height: 50))
@@ -29,23 +37,38 @@ class LPViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.layer.addSublayer(pathLayer)
-        view.addSubview(shape)
+        view.addSubview(shape1)
+        view.addSubview(shape2)
         setPanGesture()
         self.view.backgroundColor = .white
         bezier = buildCurvedPath()
         pathLayer.path = bezier.path.cgPath
-        shape.center = bezier.point(at: 0.5)
+        shape1.center = bezier.point(at: 0.5)
+        shape2.center = CGPoint(x:view.bounds.maxX,y:view.bounds.midY)
+        addLine(start: shape1.center, end: shape2.center)
     }
     
     private func setPanGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragSquare(_:)))
-        shape.addGestureRecognizer(panGesture)
+        shape1.addGestureRecognizer(panGesture)
+    }
+    
+    private func addLine(start: CGPoint, end:CGPoint) {
+        line.removeFromSuperlayer()
+        let linePath = UIBezierPath()
+        linePath.move(to: start)
+        linePath.addLine(to: end)
+        line.path = linePath.cgPath
+        line.strokeColor = UIColor.red.cgColor
+        line.lineWidth = 1
+        view.layer.addSublayer(line)
     }
     
     //MARK:- Actions
     
     @objc func dragSquare(_ sender: UIPanGestureRecognizer) {
-        updatePosition(sender.location(in: self.view))
+        let location = sender.location(in: self.view)
+        updatePosition(location)
     }
     
     func buildCurvedPath() -> QuadBezier {
@@ -60,7 +83,8 @@ class LPViewController: UIViewController {
     func updatePosition(_ position:CGPoint) {
         let location = position
         let t = (location.y - view.bounds.minY) / view.bounds.height
-        shape.center = bezier.point(at: t)
+        shape1.center = bezier.point(at: t)
+        addLine(start:bezier.point(at: t), end: shape2.center)
     }
     
     func drawLP() {

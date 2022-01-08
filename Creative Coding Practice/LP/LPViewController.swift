@@ -37,7 +37,6 @@ class LPViewController: UIViewController {
         lpView = LPView(frame: CGRect(x: view.bounds.midX-75, y: view.bounds.midY-75, width: 150, height: 150))
         view.addSubview(lpView)
         configure()
-        lpView.rotate()
     }
     
     func configure() {
@@ -90,6 +89,19 @@ class LPViewController: UIViewController {
         needle.center.y = bezier.point(at: t).y
         needle.center.x = bezier.point(at: t).x - 20
         addLine(start:bezier.point(at: t), end:niddleLineEnd)
+        let distance = getTwoPointDistance(needle.center, lpView.center)
+        if distance <= 150 {
+            lpView.rotate()
+        }else {
+            lpView.layer.removeAllAnimations()
+        }
+        
+    }
+    
+    private func getTwoPointDistance(_ point1:CGPoint,_ point2:CGPoint) -> CGFloat {
+        let xDist:CGFloat = point2.x - point1.x
+        let yDist:CGFloat = point2.y - point1.y
+        return sqrt((xDist * xDist) + (yDist * yDist))
     }
 }
 

@@ -13,6 +13,7 @@ class LPViewController: UIViewController {
     var player: AVAudioPlayer?
     var bezier: QuadBezier!
     private var line = CAShapeLayer()
+    var lastLP:LPView!
     
     let pathLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
@@ -30,14 +31,14 @@ class LPViewController: UIViewController {
         return iv
     }()
     
-    var lpView = LPView()
+    var lpView:LPView!
     var lpViews = [LPView]()
     
     var niddleLineEnd = CGPoint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lpView = LPView(frame: CGRect(x: view.bounds.midX-75, y: view.bounds.midY-75, width: 150, height: 150))
+        lpView = LPView(frame: CGRect(x: view.bounds.midX-75, y: view.bounds.midY-75, width: 150, height: 150),color: .systemBlue,title: "Fomagran")
         view.addSubview(lpView)
         configure()
         setMusicPlayer()
@@ -53,7 +54,6 @@ class LPViewController: UIViewController {
         pathLayer.path = bezier.path.cgPath
         needle.center = bezier.point(at: 0.7)
         addLine(start:CGPoint(x: needle.center.x + 20, y: needle.center.y), end:niddleLineEnd)
-        
         setLPViews(initX: 0)
         moveLPs()
     }
@@ -62,8 +62,8 @@ class LPViewController: UIViewController {
         UIView.animate(withDuration: 0.1) {
             for lp in self.lpViews {
                 lp.center.x -= 1
-                if self.lpViews.last!.center.x + 25 < 0 {
-                    self.setLPViews(initX: Int(self.view.frame.width))
+                if lp.center.x + 50 < 0 {
+                    self.moveLast(lp: lp)
                 }
             }
         }completion: { _ in
@@ -73,11 +73,24 @@ class LPViewController: UIViewController {
     
     func setLPViews(initX:Int) {
         var x = initX
-        for _ in 0..<5 {
-            let lp = LPView(frame: CGRect(x:x, y: Int(self.view.frame.height) - 100, width: 50, height: 50))
+        let colors:[UIColor] = [.systemRed,.systemOrange,.systemYellow,.systemGreen,.systemBlue,.systemIndigo,.systemPurple]
+        let colorNames:[String] = ["Red","Orange","Yellow","Green","Blue","Indigo","Purple"]
+        for i in 0..<colors.count {
+            let lp = LPView(frame: CGRect(x:x, y: Int(self.view.frame.height) - 100, width: 50, height: 50),color: colors[i],title:colorNames[i])
             lpViews.append(lp)
             view.addSubview(lp)
             x += 100
+        }
+        lastLP = lpViews.last!
+    }
+    
+    func moveLast(lp:LPView) {
+        UIView.animate(withDuration:0.1) {
+            lp.center.y += 100
+        }completion: { _ in
+            lp.center.x = self.lastLP.center.x + 100
+            lp.center.y -= 100
+            self.lastLP = lp
         }
     }
     
@@ -144,6 +157,21 @@ class LPViewController: UIViewController {
             lpView.layer.removeAllAnimations()
             player?.stop()
         }
+    }
+    
+    func resumeAnimation(layer : CALayer){
+        let pausedTime = layer.timeOffset
+        layer.speed = 1.0
+        layer.timeOffset = 0.0
+        layer.beginTime = 0.0
+        let timeSincePause = layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+        layer.beginTime = timeSincePause
+    }
+    
+    func pauseLayer(layer : CALayer){
+        let pausedTime : CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
+        layer.speed = 0.0
+        layer.timeOffset = pausedTime
     }
     
     private func getTwoPointDistance(_ point1:CGPoint,_ point2:CGPoint) -> CGFloat {

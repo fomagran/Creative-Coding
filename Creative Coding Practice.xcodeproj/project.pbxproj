@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04194B08278938730006558B /* LPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B07278938730006558B /* LPViewController.swift */; };
+		04194B0A278941310006558B /* QuadBezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B09278941310006558B /* QuadBezier.swift */; };
 		041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E1999274B4134000F8C11 /* AppDelegate.swift */; };
 		041E199C274B4134000F8C11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E199B274B4134000F8C11 /* SceneDelegate.swift */; };
 		041E19A1274B4134000F8C11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041E199F274B4134000F8C11 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		04194B07278938730006558B /* LPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPViewController.swift; sourceTree = "<group>"; };
+		04194B09278941310006558B /* QuadBezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadBezier.swift; sourceTree = "<group>"; };
 		041E1996274B4134000F8C11 /* Creative Coding Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Creative Coding Practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		041E1999274B4134000F8C11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		041E199B274B4134000F8C11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				04194B07278938730006558B /* LPViewController.swift */,
+				04194B09278941310006558B /* QuadBezier.swift */,
 			);
 			path = LP;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,
 				04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */,
 				04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */,
+				04194B0A278941310006558B /* QuadBezier.swift in Sources */,
 				04194B08278938730006558B /* LPViewController.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
 				0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */,

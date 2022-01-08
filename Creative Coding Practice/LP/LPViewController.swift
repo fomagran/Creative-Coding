@@ -9,11 +9,58 @@ import UIKit
 
 class LPViewController: UIViewController {
     
+    var bezier: QuadBezier!
+    
+    let pathLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.lineWidth = 5
+        layer.strokeColor = UIColor.blue.cgColor
+        layer.fillColor = UIColor.clear.cgColor
+        return layer
+    }()
+    
+    var shape: CircleView = {
+        let shape = CircleView()
+        shape.backgroundColor = .red
+        shape.frame = CGRect(origin: .zero, size: CGSize(width: 50, height: 50))
+        return shape
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.layer.addSublayer(pathLayer)
+        view.addSubview(shape)
+        setPanGesture()
         self.view.backgroundColor = .white
-        drawLP()
+        bezier = buildCurvedPath()
+        pathLayer.path = bezier.path.cgPath
+        shape.center = bezier.point(at: 0.5)
+    }
+    
+    private func setPanGesture() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragSquare(_:)))
+        shape.addGestureRecognizer(panGesture)
+    }
+    
+    //MARK:- Actions
+    
+    @objc func dragSquare(_ sender: UIPanGestureRecognizer) {
+        updatePosition(sender.location(in: self.view))
+    }
+    
+    func buildCurvedPath() -> QuadBezier {
+        let bounds = view.bounds
+        let point1 = CGPoint(x: bounds.maxX, y: bounds.minY + 100)
+        let point2 = CGPoint(x: bounds.maxX, y: bounds.maxY - 100)
+        let controlPoint = CGPoint(x: bounds.maxX - 300, y: bounds.midY)
+        let path = QuadBezier(point1: point1, point2: point2, controlPoint: controlPoint)
+        return path
+    }
+    
+    func updatePosition(_ position:CGPoint) {
+        let location = position
+        let t = (location.y - view.bounds.minY) / view.bounds.height
+        shape.center = bezier.point(at: t)
     }
     
     func drawLP() {

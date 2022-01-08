@@ -7,18 +7,30 @@
 
 import UIKit
 
+protocol LPViewDelegate: AnyObject {
+    func viewTapped(view: LPView)
+}
+
 class LPView: UIView {
     
-    init(frame: CGRect,color:UIColor,title:String) {
+    var LP:LP!
+    weak var parent: LPViewDelegate?
+    var centerView:UIView!
+    var label = UILabel()
+    
+    init(frame: CGRect,lp:LP) {
         super.init(frame: frame)
-        let label = UILabel()
-        label.text = title
+        LP = lp
+        label.text = lp.title
         label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.font = UIFont.boldSystemFont(ofSize:frame.width/15)
         label.textAlignment = .center
-        drawLP(color)
-        label.frame = CGRect(x:bounds.midX-50, y: bounds.midY-50, width: 100, height: 100)
+        label.frame = CGRect(x:bounds.midX-frame.width/4, y: bounds.midY-frame.height/4, width: frame.width/2, height: frame.height/2)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapLP(sender: )))
+        drawLP(lp.color)
+        setCenterView(color:lp.color)
         addSubview(label)
+        addGestureRecognizer(tap)
     }
     
     required init?(coder: NSCoder) {
@@ -26,30 +38,42 @@ class LPView: UIView {
     }
     
     func drawLP(_ color:UIColor) {
-        var radius = frame.width
+        var radius = frame.width/2
         for i in 0..<10 {
-            radius -= frame.width/20
+            radius -= radius/20
             if i == 0 {
-                drawCircle(radius, 0.0,.black)
+                drawCircle(radius, 0.0)
                 continue
             }
-            if i == 9 {
-                drawCircle(radius, 0.5,color)
-                continue
-            }
-            drawCircle(radius, 0.5,.black)
+            drawCircle(radius, 0.5)
         }
     }
     
-    func drawCircle(_ radius:CGFloat,_ lineWidth:CGFloat,_ fillColor:UIColor) {
+    func setCenterView(color:UIColor) {
+        centerView = UIView()
+        centerView.frame = CGRect(x: bounds.midX - frame.height/4, y: bounds.midY - frame.height/4, width: frame.width/2, height: frame.height/2)
+        centerView.backgroundColor = color
+        centerView.layer.cornerRadius = centerView.frame.height/2
+        addSubview(centerView)
+    }
+    
+    func update(lp:LP) {
+        self.centerView.backgroundColor = lp.color
+        self.label.text = lp.title
+    }
+    
+    @objc func tapLP(sender: UITapGestureRecognizer) {
+        parent?.viewTapped(view: self)
+    }
+    
+    func drawCircle(_ radius:CGFloat,_ lineWidth:CGFloat) {
         let circleLayer = CAShapeLayer()
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.midX, y: bounds.midY), radius:radius, startAngle: 0.0, endAngle: CGFloat(Double.pi * 2.0), clockwise: true)
         circleLayer.path = circlePath.cgPath
-        circleLayer.fillColor = fillColor.cgColor
+        circleLayer.fillColor = UIColor.black.cgColor
         circleLayer.strokeColor = UIColor.lightGray.cgColor
         circleLayer.lineWidth = lineWidth
         circleLayer.strokeEnd = 1.0
         layer.addSublayer(circleLayer)
     }
-
 }

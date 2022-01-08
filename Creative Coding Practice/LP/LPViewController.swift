@@ -10,10 +10,30 @@ import AVFoundation
 
 class LPViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var player: AVAudioPlayer?
     var bezier: QuadBezier!
     private var line = CAShapeLayer()
     var lastLP:LPView!
+    var similarColors:[UIColor] = [
+        UIColor(displayP3Red: 91/255, green: 245/255, blue: 149/255, alpha:0.97),
+        UIColor(displayP3Red: 91/255, green: 185/255, blue: 245/255, alpha:0.97),
+        UIColor(displayP3Red: 91/255, green: 98/255, blue: 245/255, alpha:0.97),
+        UIColor(displayP3Red: 245/255, green: 91/255, blue: 100/255, alpha:0.97),
+        UIColor(displayP3Red: 245/255, green: 188/255, blue: 91/255, alpha:0.97),
+        UIColor(displayP3Red: 245/255, green: 218/255, blue: 91/255, alpha:0.97),
+        UIColor(displayP3Red: 210/255, green: 245/255, blue: 91/255, alpha:0.97)
+    ]
+    
+    var musics:[String] = ["기다린만큼 더",
+                           "Changes",
+                           "Love Ya",
+                           "못Understand",
+                           "바람사람",
+                           "나를 좋아하지 않는 그대에게",
+                           "빨간차"]
+                           
     
     let pathLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
@@ -26,76 +46,58 @@ class LPViewController: UIViewController {
     var needle: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "needle.jpg")
-        iv.frame = CGRect(origin: .zero, size: CGSize(width: 150, height: 150))
+        iv.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 100))
         iv.isUserInteractionEnabled = true
         return iv
     }()
     
     var lpView:LPView!
+    var currentLP:LP!
     var lpViews = [LPView]()
-    
     var niddleLineEnd = CGPoint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lpView = LPView(frame: CGRect(x: view.bounds.midX-75, y: view.bounds.midY-75, width: 150, height: 150),color: .systemBlue,title: "Fomagran")
+        let lp = LP(title:musics[0], color: .red, musicName:musics[0],similarColor:similarColors[0])
+        lpView = LPView(frame: CGRect(x: view.bounds.midX-150, y: view.bounds.midY-150, width: 300, height: 300),lp:lp)
+        currentLP = lpView.LP
         view.addSubview(lpView)
         configure()
-        setMusicPlayer()
+        setMusicPlayer(lp: lpView.LP)
+        lpView.parent = self
+        self.view.backgroundColor = lpView.LP.similarColor
+        self.scrollView.showsHorizontalScrollIndicator = false
     }
     
     func configure() {
         view.layer.addSublayer(pathLayer)
         view.addSubview(needle)
         setPanGesture()
-        self.view.backgroundColor = .white
         niddleLineEnd = CGPoint(x: view.bounds.maxX, y: view.bounds.midY)
         bezier = buildCurvedPath()
         pathLayer.path = bezier.path.cgPath
         needle.center = bezier.point(at: 0.7)
         addLine(start:CGPoint(x: needle.center.x + 20, y: needle.center.y), end:niddleLineEnd)
         setLPViews(initX: 0)
-        moveLPs()
-    }
-    
-    func moveLPs() {
-        UIView.animate(withDuration: 0.1) {
-            for lp in self.lpViews {
-                lp.center.x -= 1
-                if lp.center.x + 50 < 0 {
-                    self.moveLast(lp: lp)
-                }
-            }
-        }completion: { _ in
-            self.moveLPs()
-        }
     }
     
     func setLPViews(initX:Int) {
         var x = initX
         let colors:[UIColor] = [.systemRed,.systemOrange,.systemYellow,.systemGreen,.systemBlue,.systemIndigo,.systemPurple]
-        let colorNames:[String] = ["Red","Orange","Yellow","Green","Blue","Indigo","Purple"]
         for i in 0..<colors.count {
-            let lp = LPView(frame: CGRect(x:x, y: Int(self.view.frame.height) - 100, width: 50, height: 50),color: colors[i],title:colorNames[i])
-            lpViews.append(lp)
-            view.addSubview(lp)
+            let lp = LP(title:musics[i], color:colors[i], musicName: musics[i],similarColor:similarColors[i])
+            let lpView = LPView(frame: CGRect(x:x, y: 0, width:100, height: 100),lp:lp)
+            scrollView.addSubview(lpView)
+            scrollView.contentSize.width = lpView.frame.width * CGFloat(i + 1)
+            lpViews.append(lpView)
+            lpView.parent = self
             x += 100
         }
         lastLP = lpViews.last!
     }
-    
-    func moveLast(lp:LPView) {
-        UIView.animate(withDuration:0.1) {
-            lp.center.y += 100
-        }completion: { _ in
-            lp.center.x = self.lastLP.center.x + 100
-            lp.center.y -= 100
-            self.lastLP = lp
-        }
-    }
-    
-    func setMusicPlayer() {
-        let url = Bundle.main.url(forResource:"기다린만큼 더", withExtension: "mp3")!
+        
+    func setMusicPlayer(lp:LP) {
+        let url = Bundle.main.url(forResource:lp.musicName, withExtension: "mp3")!
         do {
             player = try AVAudioPlayer(contentsOf: url)
             guard let player = player else { return }
@@ -178,6 +180,15 @@ class LPViewController: UIViewController {
         let xDist:CGFloat = point2.x - point1.x
         let yDist:CGFloat = point2.y - point1.y
         return sqrt((xDist * xDist) + (yDist * yDist))
+    }
+}
+
+extension LPViewController:LPViewDelegate {
+    func viewTapped(view: LPView) {
+        setMusicPlayer(lp: view.LP)
+        self.currentLP = view.LP
+        self.lpView.update(lp:currentLP)
+        self.view.backgroundColor = view.LP.similarColor
     }
 }
 

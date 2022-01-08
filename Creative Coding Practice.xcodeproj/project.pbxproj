@@ -11,6 +11,13 @@
 		04194B0A278941310006558B /* QuadBezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B09278941310006558B /* QuadBezier.swift */; };
 		04194B0C278951B40006558B /* LPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B0B278951B40006558B /* LPView.swift */; };
 		04194B102789570E0006558B /* 기다린만큼 더.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B0F2789570E0006558B /* 기다린만큼 더.mp3 */; };
+		04194B1227896F080006558B /* LP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B1127896F080006558B /* LP.swift */; };
+		04194B1D27898D090006558B /* Love Ya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1627898D070006558B /* Love Ya.mp3 */; };
+		04194B1E27898D090006558B /* 나를 좋아하지 않는 그대에게.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1727898D070006558B /* 나를 좋아하지 않는 그대에게.mp3 */; };
+		04194B1F27898D090006558B /* Changes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1827898D080006558B /* Changes.mp3 */; };
+		04194B2027898D090006558B /* 못Understand.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1927898D080006558B /* 못Understand.mp3 */; };
+		04194B2127898D090006558B /* 빨간차.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1A27898D080006558B /* 빨간차.mp3 */; };
+		04194B2227898D090006558B /* 바람사람.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1B27898D090006558B /* 바람사람.mp3 */; };
 		041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E1999274B4134000F8C11 /* AppDelegate.swift */; };
 		041E199C274B4134000F8C11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E199B274B4134000F8C11 /* SceneDelegate.swift */; };
 		041E19A1274B4134000F8C11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041E199F274B4134000F8C11 /* Main.storyboard */; };
@@ -45,6 +52,13 @@
 		04194B09278941310006558B /* QuadBezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadBezier.swift; sourceTree = "<group>"; };
 		04194B0B278951B40006558B /* LPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPView.swift; sourceTree = "<group>"; };
 		04194B0F2789570E0006558B /* 기다린만큼 더.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "기다린만큼 더.mp3"; sourceTree = "<group>"; };
+		04194B1127896F080006558B /* LP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LP.swift; sourceTree = "<group>"; };
+		04194B1627898D070006558B /* Love Ya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Love Ya.mp3"; sourceTree = "<group>"; };
+		04194B1727898D070006558B /* 나를 좋아하지 않는 그대에게.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "나를 좋아하지 않는 그대에게.mp3"; sourceTree = "<group>"; };
+		04194B1827898D080006558B /* Changes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Changes.mp3; sourceTree = "<group>"; };
+		04194B1927898D080006558B /* 못Understand.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "못Understand.mp3"; sourceTree = "<group>"; };
+		04194B1A27898D080006558B /* 빨간차.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "빨간차.mp3"; sourceTree = "<group>"; };
+		04194B1B27898D090006558B /* 바람사람.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "바람사람.mp3"; sourceTree = "<group>"; };
 		041E1996274B4134000F8C11 /* Creative Coding Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Creative Coding Practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		041E1999274B4134000F8C11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		041E199B274B4134000F8C11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,12 +104,27 @@
 		04194B062789385C0006558B /* LP */ = {
 			isa = PBXGroup;
 			children = (
-				04194B0F2789570E0006558B /* 기다린만큼 더.mp3 */,
+				04194B1327898CB20006558B /* musics */,
 				04194B0B278951B40006558B /* LPView.swift */,
 				04194B07278938730006558B /* LPViewController.swift */,
 				04194B09278941310006558B /* QuadBezier.swift */,
+				04194B1127896F080006558B /* LP.swift */,
 			);
 			path = LP;
+			sourceTree = "<group>";
+		};
+		04194B1327898CB20006558B /* musics */ = {
+			isa = PBXGroup;
+			children = (
+				04194B1A27898D080006558B /* 빨간차.mp3 */,
+				04194B1727898D070006558B /* 나를 좋아하지 않는 그대에게.mp3 */,
+				04194B1927898D080006558B /* 못Understand.mp3 */,
+				04194B1B27898D090006558B /* 바람사람.mp3 */,
+				04194B1627898D070006558B /* Love Ya.mp3 */,
+				04194B1827898D080006558B /* Changes.mp3 */,
+				04194B0F2789570E0006558B /* 기다린만큼 더.mp3 */,
+			);
+			path = musics;
 			sourceTree = "<group>";
 		};
 		041E198D274B4134000F8C11 = {
@@ -345,11 +374,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				041E19A6274B4135000F8C11 /* LaunchScreen.storyboard in Resources */,
+				04194B1E27898D090006558B /* 나를 좋아하지 않는 그대에게.mp3 in Resources */,
+				04194B2227898D090006558B /* 바람사람.mp3 in Resources */,
 				04E7E90A276E1541007B7B82 /* Spark.sks in Resources */,
 				0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */,
+				04194B2127898D090006558B /* 빨간차.mp3 in Resources */,
 				04194B102789570E0006558B /* 기다린만큼 더.mp3 in Resources */,
+				04194B1D27898D090006558B /* Love Ya.mp3 in Resources */,
 				041E19A3274B4135000F8C11 /* Assets.xcassets in Resources */,
+				04194B1F27898D090006558B /* Changes.mp3 in Resources */,
 				041E19A1274B4134000F8C11 /* Main.storyboard in Resources */,
+				04194B2027898D090006558B /* 못Understand.mp3 in Resources */,
 				04E7E90B276E1541007B7B82 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +399,7 @@
 				04B181232774AFA100D9F7CA /* DavidLoadingViewController.swift in Sources */,
 				04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */,
 				04F376A1277C5EFC00A70B98 /* Card.swift in Sources */,
+				04194B1227896F080006558B /* LP.swift in Sources */,
 				041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */,
 				04F376A3277C6E0700A70B98 /* AViewController.swift in Sources */,
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,

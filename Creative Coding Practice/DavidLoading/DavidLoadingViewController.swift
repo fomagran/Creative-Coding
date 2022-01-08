@@ -22,6 +22,7 @@ class DavidLoadingViewController: UIViewController {
     lazy var davidCross = davidLength*sqrt(2)/2
     var yGap:Double = 0
     var xGap:Double = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()

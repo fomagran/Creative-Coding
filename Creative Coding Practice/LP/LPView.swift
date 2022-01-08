@@ -32,7 +32,7 @@ class LPView: UIView {
     func drawLP() {
         var radius = frame.width
         for i in 0..<10 {
-            radius -= 10
+            radius -= frame.width/20
             if i == 0 {
                 drawCircle(radius, 0.0,.black)
                 continue

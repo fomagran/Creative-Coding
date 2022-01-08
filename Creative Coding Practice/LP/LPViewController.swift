@@ -11,7 +11,6 @@ import AVFoundation
 class LPViewController: UIViewController {
     
     var player: AVAudioPlayer?
-    
     var bezier: QuadBezier!
     private var line = CAShapeLayer()
     
@@ -32,6 +31,7 @@ class LPViewController: UIViewController {
     }()
     
     var lpView = LPView()
+    var lpViews = [LPView]()
     
     var niddleLineEnd = CGPoint()
     
@@ -53,6 +53,32 @@ class LPViewController: UIViewController {
         pathLayer.path = bezier.path.cgPath
         needle.center = bezier.point(at: 0.7)
         addLine(start:CGPoint(x: needle.center.x + 20, y: needle.center.y), end:niddleLineEnd)
+        
+        setLPViews(initX: 0)
+        moveLPs()
+    }
+    
+    func moveLPs() {
+        UIView.animate(withDuration: 0.1) {
+            for lp in self.lpViews {
+                lp.center.x -= 1
+                if self.lpViews.last!.center.x + 25 < 0 {
+                    self.setLPViews(initX: Int(self.view.frame.width))
+                }
+            }
+        }completion: { _ in
+            self.moveLPs()
+        }
+    }
+    
+    func setLPViews(initX:Int) {
+        var x = initX
+        for _ in 0..<5 {
+            let lp = LPView(frame: CGRect(x:x, y: Int(self.view.frame.height) - 100, width: 50, height: 50))
+            lpViews.append(lp)
+            view.addSubview(lp)
+            x += 100
+        }
     }
     
     func setMusicPlayer() {

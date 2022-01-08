@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class LPViewController: UIViewController {
+    
+    var player: AVAudioPlayer?
     
     var bezier: QuadBezier!
     private var line = CAShapeLayer()
@@ -37,6 +40,7 @@ class LPViewController: UIViewController {
         lpView = LPView(frame: CGRect(x: view.bounds.midX-75, y: view.bounds.midY-75, width: 150, height: 150))
         view.addSubview(lpView)
         configure()
+        setMusicPlayer()
     }
     
     func configure() {
@@ -49,6 +53,17 @@ class LPViewController: UIViewController {
         pathLayer.path = bezier.path.cgPath
         needle.center = bezier.point(at: 0.7)
         addLine(start:CGPoint(x: needle.center.x + 20, y: needle.center.y), end:niddleLineEnd)
+    }
+    
+    func setMusicPlayer() {
+        let url = Bundle.main.url(forResource:"기다린만큼 더", withExtension: "mp3")!
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.prepareToPlay()
+        } catch let error as NSError {
+            print(error.description)
+        }
     }
     
     private func setPanGesture() {
@@ -89,13 +104,20 @@ class LPViewController: UIViewController {
         needle.center.y = bezier.point(at: t).y
         needle.center.x = bezier.point(at: t).x - 20
         addLine(start:bezier.point(at: t), end:niddleLineEnd)
-        let distance = getTwoPointDistance(needle.center, lpView.center)
+        touchLP(needle.center)
+    }
+    
+    func touchLP(_ needle:CGPoint) {
+        let distance = getTwoPointDistance(needle, lpView.center)
         if distance <= 150 {
-            lpView.rotate()
+            if lpView.layer.animation(forKey: "rotation") == nil {
+                lpView.rotate()
+                player?.play()
+            }
         }else {
             lpView.layer.removeAllAnimations()
+            player?.stop()
         }
-        
     }
     
     private func getTwoPointDistance(_ point1:CGPoint,_ point2:CGPoint) -> CGFloat {
@@ -112,6 +134,6 @@ extension UIView{
         rotation.duration = 1
         rotation.isCumulative = true
         rotation.repeatCount = Float.greatestFiniteMagnitude
-        self.layer.add(rotation, forKey: "rotationAnimation")
+        self.layer.add(rotation, forKey: "rotation")
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Card {
+struct Card {
     var index:Int
     var image:UIImage
     var scale:CGFloat

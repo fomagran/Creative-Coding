@@ -16,6 +16,7 @@ class AViewController: UIViewController {
         t = ThreeDCardView(frame:view.frame)
         t.dataSource = self
         view.addSubview(t)
+        t.backgroundColor = .systemRed
     }
 }
 

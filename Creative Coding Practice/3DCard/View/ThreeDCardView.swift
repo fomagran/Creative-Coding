@@ -34,7 +34,6 @@ class ThreeDCardView:UIView {
     //MARK: - Functions
 
     func updateCards() {
-        backgroundColor = .red
         let images = dataSource?.setCardImages() ?? []
         let cards = makeCards(images: images)
         for card in cards {

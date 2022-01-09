@@ -10,31 +10,10 @@ import AVFoundation
 
 class LPViewController: UIViewController {
     
+    //MARK:- UI
+    
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    var player: AVAudioPlayer?
-    var bezier: QuadBezier!
-    private var line = CAShapeLayer()
-    var lastLP:LPView!
-    var similarColors:[UIColor] = [
-        UIColor(displayP3Red: 91/255, green: 245/255, blue: 149/255, alpha:0.97),
-        UIColor(displayP3Red: 91/255, green: 185/255, blue: 245/255, alpha:0.97),
-        UIColor(displayP3Red: 91/255, green: 98/255, blue: 245/255, alpha:0.97),
-        UIColor(displayP3Red: 245/255, green: 91/255, blue: 100/255, alpha:0.97),
-        UIColor(displayP3Red: 245/255, green: 188/255, blue: 91/255, alpha:0.97),
-        UIColor(displayP3Red: 245/255, green: 218/255, blue: 91/255, alpha:0.97),
-        UIColor(displayP3Red: 210/255, green: 245/255, blue: 91/255, alpha:0.97)
-    ]
-    
-    var musics:[String] = ["기다린만큼 더",
-                           "Changes",
-                           "Love Ya",
-                           "못Understand",
-                           "바람사람",
-                           "나를 좋아하지 않는 그대에게",
-                           "빨간차"]
-                           
-    
+
     let pathLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.lineWidth = 5
@@ -51,41 +30,63 @@ class LPViewController: UIViewController {
         return iv
     }()
     
-    var lpView:LPView!
+    //MARK:- Properties
+    
+    var player: AVAudioPlayer?
+    var bezier: QuadBezier!
+    var line = CAShapeLayer()
+    let cons = LPConstants()
+    var bigLPView:LPView!
     var currentLP:LP!
     var lpViews = [LPView]()
     var niddleLineEnd = CGPoint()
     
+    
+    //MARK:- Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let lp = LP(title:musics[0], color: .red, musicName:musics[0],similarColor:similarColors[0])
-        lpView = LPView(frame: CGRect(x: view.bounds.midX-150, y: view.bounds.midY-150, width: 300, height: 300),lp:lp)
-        currentLP = lpView.LP
-        view.addSubview(lpView)
         configure()
-        setMusicPlayer(lp: lpView.LP)
-        lpView.parent = self
-        self.view.backgroundColor = lpView.LP.similarColor
-        self.scrollView.showsHorizontalScrollIndicator = false
     }
     
+    //MARK:- Help Functions
+    
+    
     func configure() {
+        let lp = LP(title:cons.musics[0], color: .red, musicName:cons.musics[0],similarColor:cons.similarColors[0])
+        bigLPView = LPView(frame: CGRect(x: view.bounds.midX-150, y: view.bounds.midY-150, width: 300, height: 300),lp:lp)
+        currentLP = bigLPView.LP
+        bigLPView.parent = self
+        view.addSubview(bigLPView)
         view.layer.addSublayer(pathLayer)
         view.addSubview(needle)
+        updateBigLPView(lp: currentLP)
         setPanGesture()
         niddleLineEnd = CGPoint(x: view.bounds.maxX, y: view.bounds.midY)
-        bezier = buildCurvedPath()
+        bezier = setCurvedPath()
         pathLayer.path = bezier.path.cgPath
         needle.center = bezier.point(at: 0.7)
         addLine(start:CGPoint(x: needle.center.x + 20, y: needle.center.y), end:niddleLineEnd)
-        setLPViews(initX: 0)
+        setSmallLPViews()
+        setScrollView()
     }
     
-    func setLPViews(initX:Int) {
-        var x = initX
-        let colors:[UIColor] = [.systemRed,.systemOrange,.systemYellow,.systemGreen,.systemBlue,.systemIndigo,.systemPurple]
-        for i in 0..<colors.count {
-            let lp = LP(title:musics[i], color:colors[i], musicName: musics[i],similarColor:similarColors[i])
+    func setScrollView() {
+        self.scrollView.showsHorizontalScrollIndicator = false
+        scrollView.contentOffset = CGPoint(x:50,y:0)
+    }
+    
+    func updateBigLPView(lp:LP) {
+        setMusicPlayer(lp: lp)
+        self.currentLP = lp
+        self.bigLPView.update(lp:currentLP)
+        self.view.backgroundColor = lp.similarColor
+    }
+    
+    func setSmallLPViews() {
+        var x = 0
+        for i in 0..<cons.colors.count {
+            let lp = LP(title:cons.musics[i], color:cons.colors[i], musicName: cons.musics[i],similarColor:cons.similarColors[i])
             let lpView = LPView(frame: CGRect(x:x, y: 0, width:100, height: 100),lp:lp)
             scrollView.addSubview(lpView)
             scrollView.contentSize.width = lpView.frame.width * CGFloat(i + 1)
@@ -93,7 +94,6 @@ class LPViewController: UIViewController {
             lpView.parent = self
             x += 100
         }
-        lastLP = lpViews.last!
     }
         
     func setMusicPlayer(lp:LP) {
@@ -123,14 +123,7 @@ class LPViewController: UIViewController {
         view.layer.addSublayer(line)
     }
     
-    //MARK:- Actions
-    
-    @objc func drag(_ sender: UIPanGestureRecognizer) {
-        let location = sender.location(in: self.view)
-        updatePosition(location)
-    }
-    
-    func buildCurvedPath() -> QuadBezier {
+    func setCurvedPath() -> QuadBezier {
         let bounds = view.bounds
         let point1 = CGPoint(x: bounds.maxX, y: bounds.minY + 100)
         let point2 = CGPoint(x: bounds.maxX, y: bounds.maxY - 100)
@@ -139,7 +132,7 @@ class LPViewController: UIViewController {
         return path
     }
     
-    func updatePosition(_ position:CGPoint) {
+    func updateNeedlePosition(_ position:CGPoint) {
         let location = position
         let t = (location.y - view.bounds.minY) / view.bounds.height
         needle.center.y = bezier.point(at: t).y
@@ -149,31 +142,16 @@ class LPViewController: UIViewController {
     }
     
     func touchLP(_ needle:CGPoint) {
-        let distance = getTwoPointDistance(needle, lpView.center)
+        let distance = getTwoPointDistance(needle, bigLPView.center)
         if distance <= 150 {
-            if lpView.layer.animation(forKey: "rotation") == nil {
-                lpView.rotate()
+            if bigLPView.layer.animation(forKey: "rotation") == nil {
+                bigLPView.rotate()
                 player?.play()
             }
         }else {
-            lpView.layer.removeAllAnimations()
+            bigLPView.layer.removeAllAnimations()
             player?.stop()
         }
-    }
-    
-    func resumeAnimation(layer : CALayer){
-        let pausedTime = layer.timeOffset
-        layer.speed = 1.0
-        layer.timeOffset = 0.0
-        layer.beginTime = 0.0
-        let timeSincePause = layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
-        layer.beginTime = timeSincePause
-    }
-    
-    func pauseLayer(layer : CALayer){
-        let pausedTime : CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
-        layer.speed = 0.0
-        layer.timeOffset = pausedTime
     }
     
     private func getTwoPointDistance(_ point1:CGPoint,_ point2:CGPoint) -> CGFloat {
@@ -181,24 +159,19 @@ class LPViewController: UIViewController {
         let yDist:CGFloat = point2.y - point1.y
         return sqrt((xDist * xDist) + (yDist * yDist))
     }
-}
-
-extension LPViewController:LPViewDelegate {
-    func viewTapped(view: LPView) {
-        setMusicPlayer(lp: view.LP)
-        self.currentLP = view.LP
-        self.lpView.update(lp:currentLP)
-        self.view.backgroundColor = view.LP.similarColor
+    
+    //MARK:- @objc
+    
+    @objc func drag(_ sender: UIPanGestureRecognizer) {
+        let location = sender.location(in: self.view)
+        updateNeedlePosition(location)
     }
 }
 
-extension UIView{
-    func rotate() {
-        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotation.toValue = NSNumber(value: Double.pi * 2)
-        rotation.duration = 1
-        rotation.isCumulative = true
-        rotation.repeatCount = Float.greatestFiniteMagnitude
-        self.layer.add(rotation, forKey: "rotation")
+//MARK:- LPViewDelegate
+
+extension LPViewController:LPViewDelegate {
+    func viewTapped(view: LPView) {
+        updateBigLPView(lp: view.LP)
     }
 }

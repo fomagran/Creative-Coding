@@ -23,8 +23,9 @@ class LPView: UIView {
         LP = lp
         label.text = lp.title
         label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize:frame.width/15)
+        label.font = UIFont.boldSystemFont(ofSize:frame.width/12)
         label.textAlignment = .center
+        label.numberOfLines = 2
         label.frame = CGRect(x:bounds.midX-frame.width/4, y: bounds.midY-frame.height/4, width: frame.width/2, height: frame.height/2)
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapLP(sender: )))
         drawLP(lp.color)

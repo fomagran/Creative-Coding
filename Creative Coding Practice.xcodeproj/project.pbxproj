@@ -37,6 +37,8 @@
 		04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */; };
 		04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA9A8727799989002F18D9 /* MainViewController.swift */; };
 		04BA9A8B27799A30002F18D9 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA9A8A27799A30002F18D9 /* MainTableViewCell.swift */; };
+		04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */; };
+		04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D957278ABC270067C4A5 /* LPConstants.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */; };
 		04E7E90A276E1541007B7B82 /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04E7E908276E1541007B7B82 /* Spark.sks */; };
 		04E7E90B276E1541007B7B82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E7E909276E1541007B7B82 /* Assets.xcassets */; };
@@ -80,6 +82,8 @@
 		04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
 		04BA9A8727799989002F18D9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		04BA9A8A27799A30002F18D9 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
+		04D8D957278ABC270067C4A5 /* LPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPConstants.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardCell.swift; sourceTree = "<group>"; };
 		04E7E908276E1541007B7B82 /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
 		04E7E909276E1541007B7B82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				04194B07278938730006558B /* LPViewController.swift */,
 				04194B09278941310006558B /* QuadBezier.swift */,
 				04194B1127896F080006558B /* LP.swift */,
+				04D8D957278ABC270067C4A5 /* LPConstants.swift */,
 			);
 			path = LP;
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 				046669712757964B00C0BA70 /* Wave */,
 				041E19AD274B4408000F8C11 /* Swing Square */,
 				04BA9A8927799A04002F18D9 /* Main */,
+				04D8D954278ABBDE0067C4A5 /* Extensions */,
 				041E1999274B4134000F8C11 /* AppDelegate.swift */,
 				041E199B274B4134000F8C11 /* SceneDelegate.swift */,
 				041E199F274B4134000F8C11 /* Main.storyboard */,
@@ -249,6 +255,14 @@
 				04BA9A8A27799A30002F18D9 /* MainTableViewCell.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		04D8D954278ABBDE0067C4A5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		04E7E902276E1371007B7B82 /* 3DCard */ = {
@@ -404,6 +418,7 @@
 				04F376A3277C6E0700A70B98 /* AViewController.swift in Sources */,
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,
 				04194B0C278951B40006558B /* LPView.swift in Sources */,
+				04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */,
 				04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */,
 				04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */,
 				04194B0A278941310006558B /* QuadBezier.swift in Sources */,
@@ -421,6 +436,7 @@
 				0494B47627706A180041116C /* CircleView.swift in Sources */,
 				04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */,
 				0485DC12275CC63800F029B0 /* WaveView.swift in Sources */,
+				04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

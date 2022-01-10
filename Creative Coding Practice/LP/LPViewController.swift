@@ -40,7 +40,7 @@ class LPViewController: UIViewController {
     var currentLP:LP!
     var lpViews = [LPView]()
     var niddleLineEnd = CGPoint()
-    
+    var radius:CGFloat = 0
     
     //MARK:- Life Cycle
     
@@ -53,8 +53,9 @@ class LPViewController: UIViewController {
     
     
     func configure() {
+        radius = self.view.frame.width/3
         let lp = LP(title:cons.musics[0], color: .red, musicName:cons.musics[0],similarColor:cons.similarColors[0])
-        bigLPView = LPView(frame: CGRect(x: view.bounds.midX-150, y: view.bounds.midY-150, width: 300, height: 300),lp:lp)
+        bigLPView = LPView(frame: CGRect(x: view.bounds.midX-radius, y: view.bounds.midY-radius, width: radius*2, height: radius*2),lp:lp)
         currentLP = bigLPView.LP
         bigLPView.parent = self
         view.addSubview(bigLPView)
@@ -73,7 +74,7 @@ class LPViewController: UIViewController {
     
     func setScrollView() {
         self.scrollView.showsHorizontalScrollIndicator = false
-        scrollView.contentOffset = CGPoint(x:50,y:0)
+        scrollView.contentOffset = CGPoint(x:radius/6,y:0)
     }
     
     func updateBigLPView(lp:LP) {
@@ -84,15 +85,15 @@ class LPViewController: UIViewController {
     }
     
     func setSmallLPViews() {
-        var x = 0
+        var x:CGFloat = 0
         for i in 0..<cons.colors.count {
             let lp = LP(title:cons.musics[i], color:cons.colors[i], musicName: cons.musics[i],similarColor:cons.similarColors[i])
-            let lpView = LPView(frame: CGRect(x:x, y: 0, width:100, height: 100),lp:lp)
+            let lpView = LPView(frame: CGRect(x:x, y: 0, width:radius/3*2, height: radius/3*2),lp:lp)
             scrollView.addSubview(lpView)
             scrollView.contentSize.width = lpView.frame.width * CGFloat(i + 1)
             lpViews.append(lpView)
             lpView.parent = self
-            x += 100
+            x += radius/3*2
         }
     }
         
@@ -127,7 +128,7 @@ class LPViewController: UIViewController {
         let bounds = view.bounds
         let point1 = CGPoint(x: bounds.maxX, y: bounds.minY + 100)
         let point2 = CGPoint(x: bounds.maxX, y: bounds.maxY - 100)
-        let controlPoint = CGPoint(x: bounds.maxX - 150, y: bounds.midY)
+        let controlPoint = CGPoint(x: bounds.maxX - CGFloat(radius), y: bounds.midY)
         let path = QuadBezier(point1: point1, point2: point2, controlPoint: controlPoint)
         return path
     }
@@ -143,7 +144,7 @@ class LPViewController: UIViewController {
     
     func touchLP(_ needle:CGPoint) {
         let distance = getTwoPointDistance(needle, bigLPView.center)
-        if distance <= 150 {
+        if distance <= radius {
             if bigLPView.layer.animation(forKey: "rotation") == nil {
                 bigLPView.rotate()
                 player?.play()

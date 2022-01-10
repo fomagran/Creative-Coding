@@ -252,12 +252,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DKm-1A-evX">
-                                <rect key="frame" x="0.0" y="721" width="414" height="141"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DKm-1A-evX">
+                                <rect key="frame" x="0.0" y="683" width="414" height="179"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="XvG-Ag-25v"/>
-                                </constraints>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ubf-eu-8Ou"/>
@@ -265,6 +262,7 @@
                         <constraints>
                             <constraint firstItem="DKm-1A-evX" firstAttribute="leading" secondItem="Ubf-eu-8Ou" secondAttribute="leading" id="AFM-4n-ixJ"/>
                             <constraint firstItem="Ubf-eu-8Ou" firstAttribute="bottom" secondItem="DKm-1A-evX" secondAttribute="bottom" id="jSy-8M-Pp7"/>
+                            <constraint firstItem="DKm-1A-evX" firstAttribute="height" secondItem="qMz-KK-F4v" secondAttribute="height" multiplier="0.2" id="nHe-I7-6O7"/>
                             <constraint firstItem="DKm-1A-evX" firstAttribute="centerX" secondItem="qMz-KK-F4v" secondAttribute="centerX" id="tia-pT-uha"/>
                         </constraints>
                     </view>

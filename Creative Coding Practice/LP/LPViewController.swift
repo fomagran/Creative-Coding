@@ -30,6 +30,12 @@ class LPViewController: UIViewController {
         return iv
     }()
     
+    var aperture:UIView = {
+        let v = UIView()
+        v.backgroundColor = .systemMint
+        return v
+    }()
+    
     //MARK:- Properties
     
     var player: AVAudioPlayer?
@@ -70,11 +76,23 @@ class LPViewController: UIViewController {
         addLine(start:CGPoint(x: needle.center.x + 20, y: needle.center.y), end:niddleLineEnd)
         setSmallLPViews()
         setScrollView()
+        setAperture()
+    }
+    
+    func setAperture() {
+        var safeAreaBottom:CGFloat = 0
+        if #available(iOS 13.0, *) {
+            let window = UIApplication.shared.windows.first
+            safeAreaBottom = (window?.safeAreaInsets.bottom)!
+        }
+        aperture.frame = CGRect(origin:.zero, size:CGSize(width: 10, height:scrollView.frame.height+safeAreaBottom))
+        aperture.center = CGPoint(x:view.center.x - 5,y:view.frame.height - scrollView.frame.height)
+        self.view.addSubview(aperture)
     }
     
     func setScrollView() {
         self.scrollView.showsHorizontalScrollIndicator = false
-        scrollView.contentOffset = CGPoint(x:radius/6,y:0)
+        scrollView.contentOffset = CGPoint(x:radius/3,y:0)
     }
     
     func updateBigLPView(lp:LP) {

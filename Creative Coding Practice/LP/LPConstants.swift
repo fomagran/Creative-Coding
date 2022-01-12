@@ -8,7 +8,16 @@
 import UIKit
 
 class LPConstants {
-    let colors:[UIColor] = [.systemRed,.systemOrange,.systemYellow,.systemGreen,.systemBlue,.systemIndigo,.systemPurple]
+    let colors:[UIColor] = [
+        .systemRed,
+        .systemOrange,
+        .systemYellow,
+        .systemGreen,
+        .systemBlue,
+        .systemIndigo,
+        .systemPurple
+    ]
+    
     var similarColors:[UIColor] = [
         UIColor(displayP3Red: 91/255, green: 245/255, blue: 149/255, alpha:0.97),
         UIColor(displayP3Red: 91/255, green: 185/255, blue: 245/255, alpha:0.97),

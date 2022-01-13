@@ -47,6 +47,9 @@ class LPViewController: UIViewController {
     var lpViews = [LPView]()
     var niddleLineEnd = CGPoint()
     var radius:CGFloat = 0
+    var smallLps:[LPView] = []
+    var scrollViewTop:CGFloat = 0
+    var scrollViewBottom:CGFloat = 0
     
     //MARK:- Life Cycle
     
@@ -77,17 +80,46 @@ class LPViewController: UIViewController {
         setSmallLPViews()
         setScrollView()
         setAperture()
+        setBigLPPanGesture()
+    }
+    
+    private func setBigLPPanGesture() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragLP(_:)))
+        bigLPView.addGestureRecognizer(panGesture)
+    }
+    
+    @objc func dragLP(_ sender: UIPanGestureRecognizer) {
+        let location = sender.location(in: self.view)
+        if sender.state == .began {
+            UIView.animate(withDuration: 0.1) {
+                let scale = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                self.bigLPView.transform = scale
+            }
+        }else if sender.state == .changed {
+            bigLPView.center = location
+            if scrollViewTop...scrollViewBottom ~= location.y {
+                aperture.isHidden = false
+            }else {
+                aperture.isHidden = true
+            }
+        }else {
+            UIView.animate(withDuration: 0.1) {
+                let scale = CGAffineTransform(scaleX: 1, y: 1)
+                self.bigLPView.transform = scale
+                self.bigLPView.center = self.view.center
+            }
+        }
     }
     
     func setAperture() {
-        var safeAreaBottom:CGFloat = 0
-        if #available(iOS 13.0, *) {
-            let window = UIApplication.shared.windows.first
-            safeAreaBottom = (window?.safeAreaInsets.bottom)!
-        }
-        aperture.frame = CGRect(origin:.zero, size:CGSize(width: 10, height:scrollView.frame.height+safeAreaBottom))
-        aperture.center = CGPoint(x:view.center.x - 5,y:view.frame.height - scrollView.frame.height)
+        scrollView.layer.borderWidth = 1
+        scrollView.layer.borderColor = UIColor.blue.cgColor
+        aperture.frame = CGRect(origin:.zero, size:CGSize(width: 10, height:smallLps[0].frame.height))
+        scrollViewTop = scrollView.frame.minY - aperture.frame.height/2
+        scrollViewBottom = scrollView.frame.maxY - aperture.frame.height/2
+        aperture.center = CGPoint(x:view.center.x - 5,y:scrollViewTop + aperture.frame.height/2)
         self.view.addSubview(aperture)
+        aperture.isHidden = true
     }
     
     func setScrollView() {
@@ -107,6 +139,7 @@ class LPViewController: UIViewController {
         for i in 0..<cons.colors.count {
             let lp = LP(title:cons.musics[i], color:cons.colors[i], musicName: cons.musics[i],similarColor:cons.similarColors[i])
             let lpView = LPView(frame: CGRect(x:x, y: 0, width:radius/3*2, height: radius/3*2),lp:lp)
+            smallLps.append(lpView)
             scrollView.addSubview(lpView)
             scrollView.contentSize.width = lpView.frame.width * CGFloat(i + 1)
             lpViews.append(lpView)

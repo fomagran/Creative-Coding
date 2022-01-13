@@ -83,20 +83,20 @@ class LPViewController: UIViewController {
         setBigLPPanGesture()
     }
     
-    func findClosestLP() -> LPView {
+    func findClosestLP() -> (LPView,Int) {
         var minDistance = Int.max
-        var minLP = bigLPView
-        for lp in smallLps {
+        var minLP = (bigLPView!,0)
+        for (i,lp) in smallLps.enumerated() {
             if lp.center.x - scrollView.contentOffset.x < 0 {
                 continue
             }
             let distance = abs(lp.center.x - scrollView.contentOffset.x - bigLPView.center.x)
             if minDistance > Int(distance) {
                 minDistance = Int(distance)
-                minLP = lp
+                minLP = (lp,i)
             }
         }
-        return minLP!
+        return minLP
     }
     
     private func setBigLPPanGesture() {
@@ -106,6 +106,7 @@ class LPViewController: UIViewController {
     
     @objc func dragLP(_ sender: UIPanGestureRecognizer) {
         let location = sender.location(in: self.view)
+        var minLP = (bigLPView!,0)
         if sender.state == .began {
             UIView.animate(withDuration: 0.1) {
                 let scale = CGAffineTransform(scaleX: 0.5, y: 0.5)
@@ -118,13 +119,29 @@ class LPViewController: UIViewController {
             }else {
                 aperture.isHidden = true
             }
-            let minLP = findClosestLP()
-            print(minLP.LP.title)
+            minLP = findClosestLP()
+            print(minLP.0.LP.title,minLP.1)
+            aperture.center.x =  minLP.0.center.x - scrollView.contentOffset.x + smallLps[0].frame.width/2
         }else {
-            UIView.animate(withDuration: 0.1) {
-                let scale = CGAffineTransform(scaleX: 1, y: 1)
-                self.bigLPView.transform = scale
-                self.bigLPView.center = self.view.center
+            if  aperture.isHidden {
+                UIView.animate(withDuration: 0.1) {
+                    let scale = CGAffineTransform(scaleX: 1, y: 1)
+                    self.bigLPView.transform = scale
+                    self.bigLPView.center = self.view.center
+                }
+            }else {
+                bigLPView.isHidden = true
+                let x = minLP.0.center.x - scrollView.contentOffset.x + radius/3*2 + 10
+                let lpView = LPView(frame: CGRect(x:x, y:0, width: radius/3*2, height: radius/3*2), lp: bigLPView.LP)
+                smallLps.insert(lpView, at: minLP.1)
+                let index = findClosestLP().1
+                for i in index+1..<smallLps.count  {
+                    smallLps[i].center.x += smallLps[0].frame.width
+                }
+                scrollView.contentSize.width += smallLps[0].frame.width
+                scrollView.addSubview(lpView)
+                lpView.parent = self
+                aperture.isHidden = true
             }
         }
     }

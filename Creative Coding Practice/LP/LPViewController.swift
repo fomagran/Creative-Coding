@@ -83,6 +83,22 @@ class LPViewController: UIViewController {
         setBigLPPanGesture()
     }
     
+    func findClosestLP() -> LPView {
+        var minDistance = Int.max
+        var minLP = bigLPView
+        for lp in smallLps {
+            if lp.center.x - scrollView.contentOffset.x < 0 {
+                continue
+            }
+            let distance = abs(lp.center.x - scrollView.contentOffset.x - bigLPView.center.x)
+            if minDistance > Int(distance) {
+                minDistance = Int(distance)
+                minLP = lp
+            }
+        }
+        return minLP!
+    }
+    
     private func setBigLPPanGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragLP(_:)))
         bigLPView.addGestureRecognizer(panGesture)
@@ -102,6 +118,8 @@ class LPViewController: UIViewController {
             }else {
                 aperture.isHidden = true
             }
+            let minLP = findClosestLP()
+            print(minLP.LP.title)
         }else {
             UIView.animate(withDuration: 0.1) {
                 let scale = CGAffineTransform(scaleX: 1, y: 1)
@@ -112,12 +130,10 @@ class LPViewController: UIViewController {
     }
     
     func setAperture() {
-        scrollView.layer.borderWidth = 1
-        scrollView.layer.borderColor = UIColor.blue.cgColor
-        aperture.frame = CGRect(origin:.zero, size:CGSize(width: 10, height:smallLps[0].frame.height))
+        aperture.frame = CGRect(origin:.zero, size:CGSize(width: 5, height:smallLps[0].frame.height))
         scrollViewTop = scrollView.frame.minY - aperture.frame.height/2
         scrollViewBottom = scrollView.frame.maxY - aperture.frame.height/2
-        aperture.center = CGPoint(x:view.center.x - 5,y:scrollViewTop + aperture.frame.height/2)
+        aperture.center = CGPoint(x:view.center.x - 2.5,y:scrollViewTop + aperture.frame.height/2)
         self.view.addSubview(aperture)
         aperture.isHidden = true
     }

@@ -105,15 +105,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04037BEA279179B4007625B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04194B1127896F080006558B /* LP.swift */,
+				04194B09278941310006558B /* QuadBezier.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04037BEB279179BE007625B6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04194B07278938730006558B /* LPViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04037BEC279179C5007625B6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04194B0B278951B40006558B /* LPView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04037BED279179D3007625B6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				04D8D957278ABC270067C4A5 /* LPConstants.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		04194B062789385C0006558B /* LP */ = {
 			isa = PBXGroup;
 			children = (
+				04037BED279179D3007625B6 /* Utils */,
+				04037BEC279179C5007625B6 /* View */,
+				04037BEB279179BE007625B6 /* Controller */,
+				04037BEA279179B4007625B6 /* Model */,
 				04194B1327898CB20006558B /* musics */,
-				04194B0B278951B40006558B /* LPView.swift */,
-				04194B07278938730006558B /* LPViewController.swift */,
-				04194B09278941310006558B /* QuadBezier.swift */,
-				04194B1127896F080006558B /* LP.swift */,
-				04D8D957278ABC270067C4A5 /* LPConstants.swift */,
 			);
 			path = LP;
 			sourceTree = "<group>";

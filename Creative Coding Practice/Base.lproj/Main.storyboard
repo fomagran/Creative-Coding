@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZcM-nn-B25">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AoW-4t-FvR">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -69,6 +69,7 @@
                         <segue destination="7d1-G2-MQs" kind="show" identifier="showWaveViewController" id="yk7-Yb-ev2"/>
                         <segue destination="oZC-k0-73v" kind="show" identifier="showSwingSquareViewController" id="x3W-JJ-QNy"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showDSViewController" id="zDS-A7-adb"/>
+                        <segue destination="ZcM-nn-B25" kind="show" identifier="showLPViewController" id="cXc-St-gHY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNq-9L-Q1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -266,6 +267,7 @@
                             <constraint firstItem="DKm-1A-evX" firstAttribute="centerX" secondItem="qMz-KK-F4v" secondAttribute="centerX" id="tia-pT-uha"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="4YQ-0f-Kf0"/>
                     <connections>
                         <outlet property="scrollView" destination="DKm-1A-evX" id="1Lg-er-rYH"/>
                     </connections>

@@ -11,7 +11,7 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var table: UITableView!
     
-    let vcName:[String] = ["DavidLoadingViewController","DSViewController","ThreeDCardViewController","WaveViewController","SwingSquareViewController"]
+    let vcName:[String] = ["DavidLoadingViewController","DSViewController","ThreeDCardViewController","WaveViewController","SwingSquareViewController","LPViewController"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

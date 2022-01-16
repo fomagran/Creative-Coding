@@ -83,6 +83,17 @@ class LPViewController: UIViewController {
         setBigLPPanGesture()
     }
     
+    func transformLP() {
+        let transformView = TransformView(frame: view.bounds)
+        view.addSubview(transformView)
+        var transform = CATransform3DIdentity
+        transform.m34 = CGFloat(-1) / transformView.bounds.width
+        transform = CATransform3DRotate(transform, 0.85 * .pi/2, 1, 0, 0)
+        transformView.layer.transform = transform
+        bigLPView.center = CGPoint(x: transformView.bounds.midX, y: transformView.bounds.midY)
+        transformView.addSubview(bigLPView)
+    }
+    
     func findClosestLP() -> (LPView,Int) {
         var minDistance = Int.max
         var minLP = (bigLPView!,0)
@@ -230,6 +241,7 @@ class LPViewController: UIViewController {
     func touchLP(_ needle:CGPoint) {
         let distance = getTwoPointDistance(needle, bigLPView.center)
         if distance <= radius {
+            transformLP()
             if bigLPView.layer.animation(forKey: "rotation") == nil {
                 bigLPView.rotate()
                 player?.play()
@@ -295,5 +307,11 @@ extension LPViewController:LPViewDelegate {
                 }
             }
         }
+    }
+}
+
+class TransformView: UIView {
+    class func layerClass() -> AnyClass {
+        return CATransformLayer.self
     }
 }

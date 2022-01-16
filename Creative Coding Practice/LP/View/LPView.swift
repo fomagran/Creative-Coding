@@ -72,7 +72,7 @@ class LPView: UIView {
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.midX, y: bounds.midY), radius:radius, startAngle: 0.0, endAngle: CGFloat(Double.pi * 2.0), clockwise: true)
         circleLayer.path = circlePath.cgPath
         circleLayer.fillColor = UIColor.black.cgColor
-        circleLayer.strokeColor = UIColor.lightGray.cgColor
+        circleLayer.strokeColor = UIColor.darkGray.cgColor
         circleLayer.lineWidth = lineWidth
         circleLayer.strokeEnd = 1.0
         layer.addSublayer(circleLayer)

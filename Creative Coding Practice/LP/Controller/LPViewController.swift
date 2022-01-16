@@ -48,8 +48,6 @@ class LPViewController: UIViewController {
     var niddleLineEnd = CGPoint()
     var radius:CGFloat = 0
     var smallLps:[LPView] = []
-    var scrollViewTop:CGFloat = 0
-    var scrollViewBottom:CGFloat = 0
     var setBigLP:Bool = false
     
     //MARK:- Life Cycle
@@ -115,17 +113,18 @@ class LPViewController: UIViewController {
             }
         }else if sender.state == .changed {
             bigLPView.center = location
-            if scrollViewTop...scrollViewBottom ~= location.y {
+            let distance = abs(scrollView.frame.minY - location.y)
+            if distance < bigLPView.frame.height/2 {
                 aperture.isHidden = false
             }else {
                 aperture.isHidden = true
             }
             let minLP = findClosestLP()
-            aperture.center.x =  minLP.0.center.x - scrollView.contentOffset.x + smallLps[0].frame.width/2
+            aperture.center.x =  minLP.0.frame.maxX
         }else {
-            if  aperture.isHidden {
+            if aperture.isHidden {
                 UIView.animate(withDuration: 0.1) {
-                    let scale = CGAffineTransform(scaleX: 1, y: 1)
+                    let scale = CGAffineTransform(scaleX: 2, y: 2)
                     self.bigLPView.transform = scale
                     self.bigLPView.center = self.view.center
                 }
@@ -133,7 +132,7 @@ class LPViewController: UIViewController {
                 setBigLP = false
                 bigLPView.isHidden = true
                 let minLP = findClosestLP()
-                let x = minLP.0.center.x  + smallLps[0].frame.width
+                let x = minLP.0.center.x + smallLps[0].frame.width
                 for lp in smallLps  {
                     if minLP.0.center.x < lp.center.x {
                         lp.center.x += smallLps[0].frame.width
@@ -149,11 +148,9 @@ class LPViewController: UIViewController {
     }
     
     func setAperture() {
-        aperture.frame = CGRect(origin:.zero, size:CGSize(width: 5, height:smallLps[0].frame.height))
-        scrollViewTop = scrollView.frame.minY - aperture.frame.height/2
-        scrollViewBottom = scrollView.frame.maxY - aperture.frame.height/2
-        aperture.center = CGPoint(x:view.center.x - 2.5,y:scrollViewTop + aperture.frame.height/2)
-        self.view.addSubview(aperture)
+        aperture.frame = CGRect(origin:.zero, size:CGSize(width: 5, height:radius/3*4))
+        aperture.center = CGPoint(x:view.center.x - 2.5,y:0)
+        scrollView.addSubview(aperture)
         aperture.isHidden = true
     }
     
@@ -270,7 +267,8 @@ extension LPViewController:LPViewDelegate {
             }else if sender.state == .changed {
                 bigLPView.center = location
             }else if sender.state == .ended {
-                if !(scrollViewTop...scrollViewBottom ~= location.y) {
+                let distance = abs(scrollView.frame.minY - location.y)
+                if distance > bigLPView.frame.height/2 {
                     var centerX:CGFloat = 0
                     for lp in smallLps {
                         if lp.LP.title == lpView.LP.title {

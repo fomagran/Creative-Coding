@@ -50,6 +50,7 @@ class LPViewController: UIViewController {
     var smallLps:[LPView] = []
     var scrollViewTop:CGFloat = 0
     var scrollViewBottom:CGFloat = 0
+    var setBigLP:Bool = false
     
     //MARK:- Life Cycle
     
@@ -62,15 +63,16 @@ class LPViewController: UIViewController {
     
     
     func configure() {
+        view.backgroundColor = UIColor(displayP3Red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
         radius = self.view.frame.width/3
         let lp = LP(title:cons.musics[0], color: .red, musicName:cons.musics[0],similarColor:cons.similarColors[0])
-        bigLPView = LPView(frame: CGRect(x: view.bounds.midX-radius, y: view.bounds.midY-radius, width: radius*2, height: radius*2),lp:lp)
+        bigLPView = LPView(frame: CGRect(x: view.bounds.midX-radius, y: view.bounds.midY-radius, width: radius, height: radius),lp:lp)
         currentLP = bigLPView.LP
         bigLPView.parent = self
+        bigLPView.isHidden = true
         view.addSubview(bigLPView)
         view.layer.addSublayer(pathLayer)
         view.addSubview(needle)
-        updateBigLPView(lp: currentLP)
         setPanGesture()
         niddleLineEnd = CGPoint(x: view.bounds.maxX, y: view.bounds.midY)
         bezier = setCurvedPath()
@@ -108,7 +110,7 @@ class LPViewController: UIViewController {
         let location = sender.location(in: self.view)
         if sender.state == .began {
             UIView.animate(withDuration: 0.1) {
-                let scale = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                let scale = CGAffineTransform(scaleX: 1, y: 1)
                 self.bigLPView.transform = scale
             }
         }else if sender.state == .changed {
@@ -128,6 +130,7 @@ class LPViewController: UIViewController {
                     self.bigLPView.center = self.view.center
                 }
             }else {
+                setBigLP = false
                 bigLPView.isHidden = true
                 let minLP = findClosestLP()
                 print(minLP.0.LP.title,minLP.0.center.x)
@@ -160,11 +163,13 @@ class LPViewController: UIViewController {
         scrollView.contentOffset = CGPoint(x:radius/3,y:0)
     }
     
-    func updateBigLPView(lp:LP) {
+    func updateBigLPView(lp:LP,isDrag:Bool) {
         setMusicPlayer(lp: lp)
         self.currentLP = lp
         self.bigLPView.update(lp:currentLP)
-        self.view.backgroundColor = lp.similarColor
+        if !isDrag {
+            self.view.backgroundColor = lp.similarColor
+        }
     }
     
     func setSmallLPViews() {
@@ -256,16 +261,28 @@ class LPViewController: UIViewController {
 //MARK:- LPViewDelegate
 
 extension LPViewController:LPViewDelegate {
-    func viewDragged(sender:UIPanGestureRecognizer) {
-//        updateBigLPView(lp: view.LP)
-        if sender.state == .began {
-            print("began")
-        }
-        if sender.state == .changed {
-            print("changed")
-        }
-        if sender.state == .ended {
-            print("ended")
+    func viewDragged(lpView:LPView,sender:UIPanGestureRecognizer) {
+        if !setBigLP {
+            let location = sender.location(in: view)
+            if sender.state == .began {
+                updateBigLPView(lp: lpView.LP,isDrag: true)
+                bigLPView.center = location
+                bigLPView.isHidden = false
+            }else if sender.state == .changed {
+                bigLPView.center = location
+            }else if sender.state == .ended {
+                if !(scrollViewTop...scrollViewBottom ~= location.y) {
+                    bigLPView.center = self.view.center
+                    let scale = CGAffineTransform(scaleX: 2, y: 2)
+                    self.bigLPView.transform = scale
+                    self.view.backgroundColor = lpView.LP.similarColor
+                    setBigLP = true
+                }else {
+                    let scale = CGAffineTransform(scaleX: 1, y: 1)
+                    self.bigLPView.transform = scale
+                    bigLPView.isHidden = true
+                }
+            }
         }
     }
 }

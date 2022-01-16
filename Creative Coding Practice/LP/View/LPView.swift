@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LPViewDelegate: AnyObject {
-    func viewDragged(sender: UIPanGestureRecognizer)
+    func viewDragged(lpView:LPView,sender: UIPanGestureRecognizer)
 }
 
 class LPView: UIView {
@@ -64,7 +64,7 @@ class LPView: UIView {
     }
     
     @objc func dragLP(_ sender: UIPanGestureRecognizer) {
-        parent?.viewDragged(sender:sender)
+        parent?.viewDragged(lpView:self,sender:sender)
     }
     
     func drawCircle(_ radius:CGFloat,_ lineWidth:CGFloat) {

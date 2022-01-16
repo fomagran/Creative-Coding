@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LPViewDelegate: AnyObject {
-    func viewTapped(view: LPView)
+    func viewDragged(sender: UIPanGestureRecognizer)
 }
 
 class LPView: UIView {
@@ -27,11 +27,11 @@ class LPView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 2
         label.frame = CGRect(x:bounds.midX-frame.width/4, y: bounds.midY-frame.height/4, width: frame.width/2, height: frame.height/2)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapLP(sender: )))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragLP(_:)))
         drawLP(lp.color)
         setCenterView(color:lp.color)
         addSubview(label)
-        addGestureRecognizer(tap)
+        addGestureRecognizer(panGesture)
     }
     
     required init?(coder: NSCoder) {
@@ -63,8 +63,8 @@ class LPView: UIView {
         self.label.text = lp.title
     }
     
-    @objc func tapLP(sender: UITapGestureRecognizer) {
-        parent?.viewTapped(view: self)
+    @objc func dragLP(_ sender: UIPanGestureRecognizer) {
+        parent?.viewDragged(sender:sender)
     }
     
     func drawCircle(_ radius:CGFloat,_ lineWidth:CGFloat) {

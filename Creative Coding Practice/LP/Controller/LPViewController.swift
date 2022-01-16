@@ -256,7 +256,16 @@ class LPViewController: UIViewController {
 //MARK:- LPViewDelegate
 
 extension LPViewController:LPViewDelegate {
-    func viewTapped(view: LPView) {
-        updateBigLPView(lp: view.LP)
+    func viewDragged(sender:UIPanGestureRecognizer) {
+//        updateBigLPView(lp: view.LP)
+        if sender.state == .began {
+            print("began")
+        }
+        if sender.state == .changed {
+            print("changed")
+        }
+        if sender.state == .ended {
+            print("ended")
+        }
     }
 }

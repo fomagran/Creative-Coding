@@ -63,7 +63,7 @@ class LPViewController: UIViewController {
     
     
     func configure() {
-        view.backgroundColor = UIColor(displayP3Red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
+        view.backgroundColor = .white
         radius = self.view.frame.width/3
         let lp = LP(title:cons.musics[0], color: .red, musicName:cons.musics[0],similarColor:cons.similarColors[0])
         bigLPView = LPView(frame: CGRect(x: view.bounds.midX-radius, y: view.bounds.midY-radius, width: radius, height: radius),lp:lp)
@@ -133,17 +133,16 @@ class LPViewController: UIViewController {
                 setBigLP = false
                 bigLPView.isHidden = true
                 let minLP = findClosestLP()
-                print(minLP.0.LP.title,minLP.0.center.x)
-                let x = minLP.0.center.x  + smallLps[0].frame.width/2
-                let lpView = LPView(frame: CGRect(x:x, y:0, width: radius/3*2, height: radius/3*2), lp: bigLPView.LP)
-                smallLps.insert(lpView, at: minLP.1)
-                let index = findClosestLP().1
-                for i in index+1..<smallLps.count  {
-                    smallLps[i].center.x += smallLps[0].frame.width
+                let x = minLP.0.center.x  + smallLps[0].frame.width
+                for lp in smallLps  {
+                    if minLP.0.center.x < lp.center.x {
+                        lp.center.x += smallLps[0].frame.width
+                    }
+                    if lp.center.x < 0 {
+                        lp.center.x = x
+                    }
                 }
                 scrollView.contentSize.width += smallLps[0].frame.width
-                scrollView.addSubview(lpView)
-                lpView.parent = self
                 aperture.isHidden = true
             }
         }
@@ -272,11 +271,25 @@ extension LPViewController:LPViewDelegate {
                 bigLPView.center = location
             }else if sender.state == .ended {
                 if !(scrollViewTop...scrollViewBottom ~= location.y) {
+                    var centerX:CGFloat = 0
+                    for lp in smallLps {
+                        if lp.LP.title == lpView.LP.title {
+                            centerX = lp.center.x
+                            lp.center.x = -500
+                            break
+                        }
+                    }
                     bigLPView.center = self.view.center
                     let scale = CGAffineTransform(scaleX: 2, y: 2)
                     self.bigLPView.transform = scale
                     self.view.backgroundColor = lpView.LP.similarColor
                     setBigLP = true
+                    for lp in smallLps  {
+                        if centerX < lp.center.x {
+                            lp.center.x -= smallLps[0].frame.width
+                        }
+                    }
+                    scrollView.contentSize.width -= smallLps[0].frame.width
                 }else {
                     let scale = CGAffineTransform(scaleX: 1, y: 1)
                     self.bigLPView.transform = scale

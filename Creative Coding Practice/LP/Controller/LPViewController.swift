@@ -75,7 +75,7 @@ class LPViewController: UIViewController {
         niddleLineEnd = CGPoint(x: view.bounds.maxX, y: view.bounds.midY)
         bezier = setCurvedPath()
         pathLayer.path = bezier.path.cgPath
-        needle.center = bezier.point(at: 0.7)
+        needle.center = bezier.point(at: 0.3)
         addLine(start:CGPoint(x: needle.center.x + 20, y: needle.center.y), end:niddleLineEnd)
         setSmallLPViews()
         setScrollView()
@@ -232,15 +232,17 @@ class LPViewController: UIViewController {
     func updateNeedlePosition(_ position:CGPoint) {
         let location = position
         let t = (location.y - view.bounds.minY) / view.bounds.height
-        needle.center.y = bezier.point(at: t).y
-        needle.center.x = bezier.point(at: t).x - 20
-        addLine(start:bezier.point(at: t), end:niddleLineEnd)
-        touchLP(needle.center)
+        if bezier.point(at: t).y <= bigLPView.center.y {
+            needle.center.y = bezier.point(at: t).y
+            needle.center.x = bezier.point(at: t).x - 20
+            addLine(start:bezier.point(at: t), end:niddleLineEnd)
+            touchLP(needle.center)
+        }
     }
     
     func touchLP(_ needle:CGPoint) {
-        let distance = getTwoPointDistance(needle, bigLPView.center)
-        if distance <= radius {
+        print(needle.y,bigLPView.center.y)
+        if abs(needle.y - bigLPView.center.y) < 5 {
             transformLP()
             if bigLPView.layer.animation(forKey: "rotation") == nil {
                 bigLPView.rotate()

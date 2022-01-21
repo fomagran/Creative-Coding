@@ -12,6 +12,8 @@ class MacMillerViewController: UIViewController {
     // MARK: - Properties
     
     var iv:UIImageView!
+    var glitchView:GlitchView!
+    
     lazy var panGestureRecognizer:
     UIPanGestureRecognizer = {
         let gestureRecognizer = UIPanGestureRecognizer()
@@ -31,16 +33,24 @@ class MacMillerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        glitchView = GlitchView(frame:CGRect(origin: .zero, size: CGSize(width: 200, height: 250)))
+        view.addSubview(glitchView)
+        glitchView.isHidden = true
         iv = UIImageView(image: UIImage(named: "macmiller.png"))
         iv.frame = CGRect(origin: .zero, size: CGSize(width: 200, height: 250))
         iv.center = view.center
         view.addSubview(iv)
         view.backgroundColor = .systemRed
         iv.isUserInteractionEnabled = true
-//        springAnimation()
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handDoubleTap))
+        doubleTap.numberOfTapsRequired = 2
+        iv.addGestureRecognizer(doubleTap)
         let tap = UITapGestureRecognizer(target: self, action: #selector(handTap))
+        tap.numberOfTapsRequired = 1
         iv.addGestureRecognizer(tap)
         iv.addGestureRecognizer(panGestureRecognizer)
+        tap.require(toFail: doubleTap)
+        
     }
     
     func springAnimation() {
@@ -50,6 +60,16 @@ class MacMillerViewController: UIViewController {
             UIView.animate(withDuration: 0.3) {
                 self.iv.layer.transform = CATransform3DMakeScale(1,1,1)
             }
+        }
+    }
+    
+    func showGlitch() {
+        glitchView.center = iv.center
+        iv.isHidden = true
+        glitchView.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
+            self.glitchView.isHidden = true
+            self.iv.isHidden = false
         }
     }
     
@@ -73,6 +93,10 @@ class MacMillerViewController: UIViewController {
     
     @objc func handTap(sender:UITapGestureRecognizer) {
         springAnimation()
+    }
+    
+    @objc func handDoubleTap(sender:UITapGestureRecognizer) {
+       showGlitch()
     }
 }
 

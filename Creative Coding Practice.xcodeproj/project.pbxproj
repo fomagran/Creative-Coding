@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */; };
 		04090750279A659E00A5AA03 /* Particle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409074F279A659E00A5AA03 /* Particle.swift */; };
+		04090752279A69D700A5AA03 /* GilitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090751279A69D700A5AA03 /* GilitchView.swift */; };
 		04194B08278938730006558B /* LPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B07278938730006558B /* LPViewController.swift */; };
 		04194B0A278941310006558B /* QuadBezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B09278941310006558B /* QuadBezier.swift */; };
 		04194B0C278951B40006558B /* LPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B0B278951B40006558B /* LPView.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacMillerViewController.swift; sourceTree = "<group>"; };
 		0409074F279A659E00A5AA03 /* Particle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Particle.swift; sourceTree = "<group>"; };
+		04090751279A69D700A5AA03 /* GilitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GilitchView.swift; sourceTree = "<group>"; };
 		04194B07278938730006558B /* LPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPViewController.swift; sourceTree = "<group>"; };
 		04194B09278941310006558B /* QuadBezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadBezier.swift; sourceTree = "<group>"; };
 		04194B0B278951B40006558B /* LPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */,
 				0409074F279A659E00A5AA03 /* Particle.swift */,
+				04090751279A69D700A5AA03 /* GilitchView.swift */,
 			);
 			path = MacMiller;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				04F376A1277C5EFC00A70B98 /* Card.swift in Sources */,
 				04194B1227896F080006558B /* LP.swift in Sources */,
 				041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */,
+				04090752279A69D700A5AA03 /* GilitchView.swift in Sources */,
 				04F376A3277C6E0700A70B98 /* AViewController.swift in Sources */,
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,
 				04194B0C278951B40006558B /* LPView.swift in Sources */,

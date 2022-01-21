@@ -9,7 +9,7 @@ import UIKit
 
 public class Particle: CAEmitterCell {
     
-    public override init() {
+    override init() {
         super.init()
         self.birthRate = 5
         self.lifetime = 1.0
@@ -21,7 +21,7 @@ public class Particle: CAEmitterCell {
         self.scale = 0.5
         self.scaleRange = 0.25
         self.alphaSpeed = -1
-        self.contents = UIImage(named: "macmiller.png")?.cgImage
+        self.contents = UIImage(named: "macmiller.png")!.cgImage!
     }
     
     required init?(coder: NSCoder) {

@@ -10,9 +10,10 @@ import UIKit
 class MacMillerViewController: UIViewController {
     
     // MARK: - Properties
-    
     var iv:UIImageView!
     var glitchView:GlitchView!
+    let particle = Particle()
+    var random:[CGFloat] = [1,0,0,1,0,1,0,1]
     
     lazy var panGestureRecognizer:
     UIPanGestureRecognizer = {
@@ -29,13 +30,8 @@ class MacMillerViewController: UIViewController {
         return emitter
     }()
     
-    let starParticle = Particle()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        glitchView = GlitchView(frame:CGRect(origin: .zero, size: CGSize(width: 200, height: 250)))
-        view.addSubview(glitchView)
-        glitchView.isHidden = true
         iv = UIImageView(image: UIImage(named: "macmiller.png"))
         iv.frame = CGRect(origin: .zero, size: CGSize(width: 200, height: 250))
         iv.center = view.center
@@ -50,33 +46,46 @@ class MacMillerViewController: UIViewController {
         iv.addGestureRecognizer(tap)
         iv.addGestureRecognizer(panGestureRecognizer)
         tap.require(toFail: doubleTap)
-        
     }
     
-    func springAnimation() {
+    func springAnimation(gview:UIView?) {
+        let v = gview == nil ? iv : gview
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity:0.1, options:[]) {
-            self.iv.layer.transform = CATransform3DMakeScale(1.5,1.5,1)
+            v!.layer.transform = CATransform3DMakeScale(1.3,1.3,1)
         } completion: { _ in
             UIView.animate(withDuration: 0.3) {
-                self.iv.layer.transform = CATransform3DMakeScale(1,1,1)
+                v!.layer.transform = CATransform3DMakeScale(1,1,1)
             }
         }
     }
     
     func showGlitch() {
+        let glitchView = GlitchView(frame:CGRect(x:0, y:0, width: 200, height: 250))
+        glitchView.bounds.origin = CGPoint(x: iv.center.x-100, y: iv.center.y-125)
+        view.addSubview(glitchView)
+        glitchView.decode = random
         glitchView.center = iv.center
         iv.isHidden = true
         glitchView.isHidden = false
+        springAnimation(gview: glitchView)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
-            self.glitchView.isHidden = true
+            glitchView.removeFromSuperview()
             self.iv.isHidden = false
         }
+        let random1 = (0...10).randomElement()!
+        let random2 = (0...10).randomElement()!
+        let random3 = 0
+        let random4 = 1
+        let random5 = 0
+        let random6 = 1
+        random = [ CGFloat(1), CGFloat(0),
+                   CGFloat(random1),CGFloat(random2),CGFloat(random3),CGFloat(random4),CGFloat(random5),CGFloat(random6)]
     }
     
     // MARK: - Actions
     
     func showStars() {
-        particleEmitter.emitterCells = [starParticle]
+        particleEmitter.emitterCells = [particle]
         self.view.layer.addSublayer(particleEmitter)
     }
     
@@ -92,11 +101,11 @@ class MacMillerViewController: UIViewController {
     }
     
     @objc func handTap(sender:UITapGestureRecognizer) {
-        springAnimation()
+        showGlitch()
     }
     
     @objc func handDoubleTap(sender:UITapGestureRecognizer) {
-       showGlitch()
+        springAnimation(gview: nil)
     }
 }
 

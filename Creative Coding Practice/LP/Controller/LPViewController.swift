@@ -49,6 +49,7 @@ class LPViewController: UIViewController {
     var radius:CGFloat = 0
     var smallLps:[LPView] = []
     var setBigLP:Bool = false
+    var isPlaying:Bool = false
     
     //MARK:- Life Cycle
     
@@ -232,7 +233,7 @@ class LPViewController: UIViewController {
     func updateNeedlePosition(_ position:CGPoint) {
         let location = position
         let t = (location.y - view.bounds.minY) / view.bounds.height
-        if bezier.point(at: t).y <= bigLPView.center.y {
+        if !isPlaying {
             needle.center.y = bezier.point(at: t).y
             needle.center.x = bezier.point(at: t).x - 20
             addLine(start:bezier.point(at: t), end:niddleLineEnd)
@@ -241,14 +242,16 @@ class LPViewController: UIViewController {
     }
     
     func touchLP(_ needle:CGPoint) {
-        print(needle.y,bigLPView.center.y)
         if abs(needle.y - bigLPView.center.y) < 5 {
             transformLP()
             if bigLPView.layer.animation(forKey: "rotation") == nil {
                 bigLPView.rotate()
                 player?.play()
+                isPlaying = true
+                bigLPView.isUserInteractionEnabled = false
             }
         }else {
+            isPlaying = false
             bigLPView.layer.removeAllAnimations()
             player?.stop()
         }

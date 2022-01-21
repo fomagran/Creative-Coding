@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */; };
 		04194B08278938730006558B /* LPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B07278938730006558B /* LPViewController.swift */; };
 		04194B0A278941310006558B /* QuadBezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B09278941310006558B /* QuadBezier.swift */; };
 		04194B0C278951B40006558B /* LPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B0B278951B40006558B /* LPView.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacMillerViewController.swift; sourceTree = "<group>"; };
 		04194B07278938730006558B /* LPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPViewController.swift; sourceTree = "<group>"; };
 		04194B09278941310006558B /* QuadBezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadBezier.swift; sourceTree = "<group>"; };
 		04194B0B278951B40006558B /* LPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		0409074C279A5B5200A5AA03 /* MacMiller */ = {
+			isa = PBXGroup;
+			children = (
+				0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */,
+			);
+			path = MacMiller;
+			sourceTree = "<group>";
+		};
 		04194B062789385C0006558B /* LP */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +193,7 @@
 		041E1998274B4134000F8C11 /* Creative Coding Practice */ = {
 			isa = PBXGroup;
 			children = (
+				0409074C279A5B5200A5AA03 /* MacMiller */,
 				04194B062789385C0006558B /* LP */,
 				04B181212774AF8700D9F7CA /* DavidLoading */,
 				04E7E907276E137A007B7B82 /* DoctorStrange */,
@@ -455,6 +466,7 @@
 				04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */,
 				04194B0A278941310006558B /* QuadBezier.swift in Sources */,
 				04194B08278938730006558B /* LPViewController.swift in Sources */,
+				0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
 				0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,

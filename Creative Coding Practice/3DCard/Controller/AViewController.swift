@@ -13,10 +13,11 @@ class AViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
         t = ThreeDCardView(frame:view.frame)
         t.dataSource = self
         view.addSubview(t)
-        t.backgroundColor = .systemRed
+        t.backgroundColor = .white
     }
 }
 

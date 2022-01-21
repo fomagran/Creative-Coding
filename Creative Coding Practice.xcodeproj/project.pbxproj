@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */; };
+		04090750279A659E00A5AA03 /* Particle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409074F279A659E00A5AA03 /* Particle.swift */; };
 		04194B08278938730006558B /* LPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B07278938730006558B /* LPViewController.swift */; };
 		04194B0A278941310006558B /* QuadBezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B09278941310006558B /* QuadBezier.swift */; };
 		04194B0C278951B40006558B /* LPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B0B278951B40006558B /* LPView.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacMillerViewController.swift; sourceTree = "<group>"; };
+		0409074F279A659E00A5AA03 /* Particle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Particle.swift; sourceTree = "<group>"; };
 		04194B07278938730006558B /* LPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPViewController.swift; sourceTree = "<group>"; };
 		04194B09278941310006558B /* QuadBezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadBezier.swift; sourceTree = "<group>"; };
 		04194B0B278951B40006558B /* LPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */,
+				0409074F279A659E00A5AA03 /* Particle.swift */,
 			);
 			path = MacMiller;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */,
 				0485DC12275CC63800F029B0 /* WaveView.swift in Sources */,
 				04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */,
+				04090750279A659E00A5AA03 /* Particle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

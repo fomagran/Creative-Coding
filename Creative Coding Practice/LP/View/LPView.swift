@@ -15,22 +15,14 @@ class LPView: UIView {
     
     var LP:LP!
     weak var parent: LPViewDelegate?
-    var centerView:UIView!
-    var label = UILabel()
+    var centerView:UIImageView!
     
     init(frame: CGRect,lp:LP) {
         super.init(frame: frame)
         LP = lp
-        label.text = lp.title
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize:frame.width/12)
-        label.textAlignment = .center
-        label.numberOfLines = 2
-        label.frame = CGRect(x:bounds.midX-frame.width/4, y: bounds.midY-frame.height/4, width: frame.width/2, height: frame.height/2)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragLP(_:)))
         drawLP(lp.color)
         setCenterView(color:lp.color)
-        addSubview(label)
         addGestureRecognizer(panGesture)
     }
     
@@ -51,16 +43,17 @@ class LPView: UIView {
     }
     
     func setCenterView(color:UIColor) {
-        centerView = UIView()
+        centerView = UIImageView()
         centerView.frame = CGRect(x: bounds.midX - frame.height/4, y: bounds.midY - frame.height/4, width: frame.width/2, height: frame.height/2)
         centerView.backgroundColor = color
+        centerView.image = UIImage(named: "마르셀뒤샹.png")
         centerView.layer.cornerRadius = centerView.frame.height/2
+        centerView.layer.masksToBounds = true
         addSubview(centerView)
     }
     
     func update(lp:LP) {
         self.centerView.backgroundColor = lp.color
-        self.label.text = lp.title
     }
     
     @objc func dragLP(_ sender: UIPanGestureRecognizer) {

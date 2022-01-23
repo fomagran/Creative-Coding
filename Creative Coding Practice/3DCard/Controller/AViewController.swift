@@ -23,7 +23,7 @@ class AViewController: UIViewController {
 
 extension AViewController:ThreeDCardDataSource {
     func setCardImages() -> [UIImage] {
-        let images:[UIImage] = [UIImage(named: "살바도르달리.jpeg")!,UIImage(named: "폴고갱.jpeg")!,UIImage(named: "반고흐.png")!,UIImage(named: "마르셀 뒤샹.png")!]
+        let images:[UIImage] = [UIImage(named: "살바도르달리.jpeg")!,UIImage(named: "폴고갱.jpeg")!,UIImage(named: "반고흐.png")!,UIImage(named: "마르셀뒤샹.png")!]
         return images
     }
 }

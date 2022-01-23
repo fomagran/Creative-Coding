@@ -67,31 +67,12 @@ class LPViewController: UIViewController {
     func configure() {
         view.backgroundColor = .white
         radius = self.view.frame.width/3
-        let lp = LP(title:cons.musics[0], color: .red, musicName:cons.musics[0],similarColor:cons.similarColors[0],album:UIImage(named: cons.albums[0])!)
-        bigLPView = LPView(frame: CGRect(x: 0, y: 0, width: radius, height: radius),lp:lp)
-        currentLP = bigLPView.LP
-        bigLPView.parent = self
-        transformView = TransformView(frame:CGRect(x:view.center.x, y: view.center.y, width:radius*2, height: radius*2))
-        transformView.center = view.center
-        bigLPView.isHidden = true
-        view.addSubview(bigLPView)
-        transformLPView = LPView(frame: transformView.bounds, lp: bigLPView.LP)
-        transformView.addSubview(transformLPView)
-        view.layer.addSublayer(pathLayer)
-        view.addSubview(needle)
-        view.addSubview(transformView)
-        originalTransform = transformView.layer.transform
-        transformView.isHidden = true
-        setNeedleGesture()
-        niddleLineEnd = CGPoint(x: view.bounds.maxX, y: view.bounds.midY)
-        bezier = setCurvedPath()
-        pathLayer.path = bezier.path.cgPath
-        needle.center = bezier.point(at: 0.3)
-        addLine(start:CGPoint(x: needle.center.x + 20, y: needle.center.y), end:niddleLineEnd)
+        setBigLPView()
+        setNeedle()
+        setTransformView()
         setSmallLPViews()
         setScrollView()
         setAperture()
-        setBigLPPanGesture()
     }
     
     func findClosestLP() -> (LPView,Int) {
@@ -110,9 +91,15 @@ class LPViewController: UIViewController {
         return minLP
     }
     
-    private func setBigLPPanGesture() {
+    private func setBigLPView() {
+        let lp = LP(title:cons.musics[0], color: .red, musicName:cons.musics[0],album:UIImage(named: cons.albums[0])!)
+        bigLPView = LPView(frame: CGRect(x: 0, y: 0, width: radius, height: radius),lp:lp)
+        currentLP = bigLPView.LP
+        view.addSubview(bigLPView)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragLP(_:)))
         bigLPView.addGestureRecognizer(panGesture)
+        bigLPView.parent = self
+        bigLPView.isHidden = true
     }
     
     @objc func dragLP(_ sender: UIPanGestureRecognizer) {
@@ -158,6 +145,16 @@ class LPViewController: UIViewController {
         }
     }
     
+    func setTransformView() {
+        transformView = TransformView(frame:CGRect(x:view.center.x, y: view.center.y, width:radius*2, height: radius*2))
+        transformView.center = view.center
+        transformLPView = LPView(frame: transformView.bounds, lp: bigLPView.LP)
+        transformView.addSubview(transformLPView)
+        originalTransform = transformView.layer.transform
+        view.addSubview(transformView)
+        transformView.isHidden = true
+    }
+    
     func setAperture() {
         aperture.frame = CGRect(origin:.zero, size:CGSize(width: 5, height:radius/3*4))
         aperture.center = CGPoint(x:view.center.x - 2.5,y:0)
@@ -176,14 +173,14 @@ class LPViewController: UIViewController {
         self.bigLPView.update(lp:currentLP)
         self.transformLPView.update(lp: currentLP)
         if !isDrag {
-            self.view.backgroundColor = self.currentLP.album.averageColor
+            self.view.backgroundColor = self.currentLP.averageColor
         }
     }
     
     func setSmallLPViews() {
         var x:CGFloat = 0
         for i in 0..<cons.colors.count {
-            let lp = LP(title:cons.musics[i], color:cons.colors[i], musicName: cons.musics[i],similarColor:cons.similarColors[i],album:UIImage(named:cons.albums[i])!)
+            let lp = LP(title:cons.musics[i], color:cons.colors[i], musicName: cons.musics[i],album:UIImage(named:cons.albums[i])!)
             let lpView = LPView(frame: CGRect(x:x, y: 0, width:radius/3*2, height: radius/3*2),lp:lp)
             smallLps.append(lpView)
             scrollView.addSubview(lpView)
@@ -205,9 +202,16 @@ class LPViewController: UIViewController {
         }
     }
     
-    private func setNeedleGesture() {
+    private func setNeedle() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.drag(_:)))
         needle.addGestureRecognizer(panGesture)
+        bezier = setCurvedPath()
+        pathLayer.path = bezier.path.cgPath
+        needle.center = bezier.point(at: 0.3)
+        niddleLineEnd = CGPoint(x: view.bounds.maxX, y: view.bounds.midY)
+        addLine(start:CGPoint(x: needle.center.x + 20, y: needle.center.y), end:niddleLineEnd)
+        view.layer.addSublayer(pathLayer)
+        view.addSubview(needle)
     }
     
     private func addLine(start: CGPoint, end:CGPoint) {
@@ -280,12 +284,6 @@ class LPViewController: UIViewController {
         }
     }
     
-    private func getTwoPointDistance(_ point1:CGPoint,_ point2:CGPoint) -> CGFloat {
-        let xDist:CGFloat = point2.x - point1.x
-        let yDist:CGFloat = point2.y - point1.y
-        return sqrt((xDist * xDist) + (yDist * yDist))
-    }
-    
     //MARK:- @objc
     
     @objc func drag(_ sender: UIPanGestureRecognizer) {
@@ -321,7 +319,7 @@ extension LPViewController:LPViewDelegate {
                     bigLPView.isHidden = false
                     let scale = CGAffineTransform(scaleX: 2, y: 2)
                     self.bigLPView.transform = scale
-                    self.view.backgroundColor = lpView.LP.album.averageColor
+                    self.view.backgroundColor = lpView.LP.averageColor
                     setBigLP = true
                     for lp in smallLps  {
                         if centerX < lp.center.x {

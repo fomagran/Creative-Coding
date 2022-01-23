@@ -11,6 +11,8 @@ struct LP {
     let title:String
     let color:UIColor
     let musicName:String
-    let similarColor:UIColor
     let album:UIImage
+    var averageColor:UIColor {
+        return album.averageColor ?? .white
+    }
 }

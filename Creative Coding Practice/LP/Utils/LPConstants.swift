@@ -17,16 +17,6 @@ class LPConstants {
         .systemIndigo,
         .systemPurple
     ]
-    
-    var similarColors:[UIColor] = [
-        UIColor(displayP3Red: 91/255, green: 245/255, blue: 149/255, alpha:0.97),
-        UIColor(displayP3Red: 91/255, green: 185/255, blue: 245/255, alpha:0.97),
-        UIColor(displayP3Red: 91/255, green: 98/255, blue: 245/255, alpha:0.97),
-        UIColor(displayP3Red: 245/255, green: 91/255, blue: 100/255, alpha:0.97),
-        UIColor(displayP3Red: 245/255, green: 188/255, blue: 91/255, alpha:0.97),
-        UIColor(displayP3Red: 245/255, green: 218/255, blue: 91/255, alpha:0.97),
-        UIColor(displayP3Red: 210/255, green: 245/255, blue: 91/255, alpha:0.97)
-    ]
 
     var musics:[String] = ["Shotta flow",
                            "Headlights",

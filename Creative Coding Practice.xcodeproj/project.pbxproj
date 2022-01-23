@@ -13,14 +13,7 @@
 		04194B08278938730006558B /* LPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B07278938730006558B /* LPViewController.swift */; };
 		04194B0A278941310006558B /* QuadBezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B09278941310006558B /* QuadBezier.swift */; };
 		04194B0C278951B40006558B /* LPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B0B278951B40006558B /* LPView.swift */; };
-		04194B102789570E0006558B /* 기다린만큼 더.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B0F2789570E0006558B /* 기다린만큼 더.mp3 */; };
 		04194B1227896F080006558B /* LP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B1127896F080006558B /* LP.swift */; };
-		04194B1D27898D090006558B /* Love Ya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1627898D070006558B /* Love Ya.mp3 */; };
-		04194B1E27898D090006558B /* 나를 좋아하지 않는 그대에게.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1727898D070006558B /* 나를 좋아하지 않는 그대에게.mp3 */; };
-		04194B1F27898D090006558B /* Changes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1827898D080006558B /* Changes.mp3 */; };
-		04194B2027898D090006558B /* 못Understand.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1927898D080006558B /* 못Understand.mp3 */; };
-		04194B2127898D090006558B /* 빨간차.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1A27898D080006558B /* 빨간차.mp3 */; };
-		04194B2227898D090006558B /* 바람사람.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04194B1B27898D090006558B /* 바람사람.mp3 */; };
 		041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E1999274B4134000F8C11 /* AppDelegate.swift */; };
 		041E199C274B4134000F8C11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E199B274B4134000F8C11 /* SceneDelegate.swift */; };
 		041E19A1274B4134000F8C11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041E199F274B4134000F8C11 /* Main.storyboard */; };
@@ -36,6 +29,14 @@
 		0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */; };
 		0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5C0276F75650072CBBD /* TestViewController.swift */; };
 		0494B47627706A180041116C /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B47527706A180041116C /* CircleView.swift */; };
+		0497A7DF279D2FEC0060616A /* Highest in the room.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7D8279D2FEA0060616A /* Highest in the room.mp3 */; };
+		0497A7E0279D2FEC0060616A /* Monster.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7D9279D2FEA0060616A /* Monster.mp3 */; };
+		0497A7E1279D2FEC0060616A /* Shotta flow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DA279D2FEB0060616A /* Shotta flow.mp3 */; };
+		0497A7E2279D2FEC0060616A /* BOP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DB279D2FEB0060616A /* BOP.mp3 */; };
+		0497A7E3279D2FEC0060616A /* Clubhouse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DC279D2FEB0060616A /* Clubhouse.mp3 */; };
+		0497A7E4279D2FEC0060616A /* Headlights.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DD279D2FEB0060616A /* Headlights.mp3 */; };
+		0497A7E5279D2FEC0060616A /* Hot shower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DE279D2FEC0060616A /* Hot shower.mp3 */; };
+		0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0497A7E8279D348D0060616A /* UIImage + Extennsions.swift */; };
 		04B181232774AFA100D9F7CA /* DavidLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B181222774AFA100D9F7CA /* DavidLoadingViewController.swift */; };
 		04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */; };
 		04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA9A8727799989002F18D9 /* MainViewController.swift */; };
@@ -59,14 +60,7 @@
 		04194B07278938730006558B /* LPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPViewController.swift; sourceTree = "<group>"; };
 		04194B09278941310006558B /* QuadBezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadBezier.swift; sourceTree = "<group>"; };
 		04194B0B278951B40006558B /* LPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPView.swift; sourceTree = "<group>"; };
-		04194B0F2789570E0006558B /* 기다린만큼 더.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "기다린만큼 더.mp3"; sourceTree = "<group>"; };
 		04194B1127896F080006558B /* LP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LP.swift; sourceTree = "<group>"; };
-		04194B1627898D070006558B /* Love Ya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Love Ya.mp3"; sourceTree = "<group>"; };
-		04194B1727898D070006558B /* 나를 좋아하지 않는 그대에게.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "나를 좋아하지 않는 그대에게.mp3"; sourceTree = "<group>"; };
-		04194B1827898D080006558B /* Changes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Changes.mp3; sourceTree = "<group>"; };
-		04194B1927898D080006558B /* 못Understand.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "못Understand.mp3"; sourceTree = "<group>"; };
-		04194B1A27898D080006558B /* 빨간차.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "빨간차.mp3"; sourceTree = "<group>"; };
-		04194B1B27898D090006558B /* 바람사람.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "바람사람.mp3"; sourceTree = "<group>"; };
 		041E1996274B4134000F8C11 /* Creative Coding Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Creative Coding Practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		041E1999274B4134000F8C11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		041E199B274B4134000F8C11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +78,14 @@
 		0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView + Extensions.swift"; sourceTree = "<group>"; };
 		0492C5C0276F75650072CBBD /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		0494B47527706A180041116C /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		0497A7D8279D2FEA0060616A /* Highest in the room.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Highest in the room.mp3"; sourceTree = "<group>"; };
+		0497A7D9279D2FEA0060616A /* Monster.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Monster.mp3; sourceTree = "<group>"; };
+		0497A7DA279D2FEB0060616A /* Shotta flow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Shotta flow.mp3"; sourceTree = "<group>"; };
+		0497A7DB279D2FEB0060616A /* BOP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BOP.mp3; sourceTree = "<group>"; };
+		0497A7DC279D2FEB0060616A /* Clubhouse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Clubhouse.mp3; sourceTree = "<group>"; };
+		0497A7DD279D2FEB0060616A /* Headlights.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Headlights.mp3; sourceTree = "<group>"; };
+		0497A7DE279D2FEC0060616A /* Hot shower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hot shower.mp3"; sourceTree = "<group>"; };
+		0497A7E8279D348D0060616A /* UIImage + Extennsions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extennsions.swift"; sourceTree = "<group>"; };
 		04B181222774AFA100D9F7CA /* DavidLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DavidLoadingViewController.swift; sourceTree = "<group>"; };
 		04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
 		04BA9A8727799989002F18D9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -169,13 +171,13 @@
 		04194B1327898CB20006558B /* musics */ = {
 			isa = PBXGroup;
 			children = (
-				04194B1A27898D080006558B /* 빨간차.mp3 */,
-				04194B1727898D070006558B /* 나를 좋아하지 않는 그대에게.mp3 */,
-				04194B1927898D080006558B /* 못Understand.mp3 */,
-				04194B1B27898D090006558B /* 바람사람.mp3 */,
-				04194B1627898D070006558B /* Love Ya.mp3 */,
-				04194B1827898D080006558B /* Changes.mp3 */,
-				04194B0F2789570E0006558B /* 기다린만큼 더.mp3 */,
+				0497A7DB279D2FEB0060616A /* BOP.mp3 */,
+				0497A7DC279D2FEB0060616A /* Clubhouse.mp3 */,
+				0497A7DD279D2FEB0060616A /* Headlights.mp3 */,
+				0497A7D8279D2FEA0060616A /* Highest in the room.mp3 */,
+				0497A7DE279D2FEC0060616A /* Hot shower.mp3 */,
+				0497A7D9279D2FEA0060616A /* Monster.mp3 */,
+				0497A7DA279D2FEB0060616A /* Shotta flow.mp3 */,
 			);
 			path = musics;
 			sourceTree = "<group>";
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */,
+				0497A7E8279D348D0060616A /* UIImage + Extennsions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -437,17 +440,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				041E19A6274B4135000F8C11 /* LaunchScreen.storyboard in Resources */,
-				04194B1E27898D090006558B /* 나를 좋아하지 않는 그대에게.mp3 in Resources */,
-				04194B2227898D090006558B /* 바람사람.mp3 in Resources */,
+				0497A7E0279D2FEC0060616A /* Monster.mp3 in Resources */,
+				0497A7E1279D2FEC0060616A /* Shotta flow.mp3 in Resources */,
 				04E7E90A276E1541007B7B82 /* Spark.sks in Resources */,
+				0497A7E2279D2FEC0060616A /* BOP.mp3 in Resources */,
+				0497A7E4279D2FEC0060616A /* Headlights.mp3 in Resources */,
+				0497A7DF279D2FEC0060616A /* Highest in the room.mp3 in Resources */,
 				0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */,
-				04194B2127898D090006558B /* 빨간차.mp3 in Resources */,
-				04194B102789570E0006558B /* 기다린만큼 더.mp3 in Resources */,
-				04194B1D27898D090006558B /* Love Ya.mp3 in Resources */,
+				0497A7E5279D2FEC0060616A /* Hot shower.mp3 in Resources */,
+				0497A7E3279D2FEC0060616A /* Clubhouse.mp3 in Resources */,
 				041E19A3274B4135000F8C11 /* Assets.xcassets in Resources */,
-				04194B1F27898D090006558B /* Changes.mp3 in Resources */,
 				041E19A1274B4134000F8C11 /* Main.storyboard in Resources */,
-				04194B2027898D090006558B /* 못Understand.mp3 in Resources */,
 				04E7E90B276E1541007B7B82 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +476,7 @@
 				04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */,
 				04194B0A278941310006558B /* QuadBezier.swift in Sources */,
 				04194B08278938730006558B /* LPViewController.swift in Sources */,
+				0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */,
 				0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
 				0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */,

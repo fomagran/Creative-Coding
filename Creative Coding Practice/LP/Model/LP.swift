@@ -12,4 +12,5 @@ struct LP {
     let color:UIColor
     let musicName:String
     let similarColor:UIColor
+    let album:UIImage
 }

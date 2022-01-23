@@ -50,6 +50,9 @@ class LPViewController: UIViewController {
     var smallLps:[LPView] = []
     var setBigLP:Bool = false
     var isPlaying:Bool = false
+    var transformView:TransformView!
+    var transformLPView:LPView!
+    var originalTransform:CATransform3D!
     
     //MARK:- Life Cycle
     
@@ -64,15 +67,22 @@ class LPViewController: UIViewController {
     func configure() {
         view.backgroundColor = .white
         radius = self.view.frame.width/3
-        let lp = LP(title:cons.musics[0], color: .red, musicName:cons.musics[0],similarColor:cons.similarColors[0])
-        bigLPView = LPView(frame: CGRect(x: view.bounds.midX-radius, y: view.bounds.midY-radius, width: radius, height: radius),lp:lp)
+        let lp = LP(title:cons.musics[0], color: .red, musicName:cons.musics[0],similarColor:cons.similarColors[0],album:UIImage(named: cons.albums[0])!)
+        bigLPView = LPView(frame: CGRect(x: 0, y: 0, width: radius, height: radius),lp:lp)
         currentLP = bigLPView.LP
         bigLPView.parent = self
+        transformView = TransformView(frame:CGRect(x:view.center.x, y: view.center.y, width:radius*2, height: radius*2))
+        transformView.center = view.center
         bigLPView.isHidden = true
         view.addSubview(bigLPView)
+        transformLPView = LPView(frame: transformView.bounds, lp: bigLPView.LP)
+        transformView.addSubview(transformLPView)
         view.layer.addSublayer(pathLayer)
         view.addSubview(needle)
-        setPanGesture()
+        view.addSubview(transformView)
+        originalTransform = transformView.layer.transform
+        transformView.isHidden = true
+        setNeedleGesture()
         niddleLineEnd = CGPoint(x: view.bounds.maxX, y: view.bounds.midY)
         bezier = setCurvedPath()
         pathLayer.path = bezier.path.cgPath
@@ -82,17 +92,6 @@ class LPViewController: UIViewController {
         setScrollView()
         setAperture()
         setBigLPPanGesture()
-    }
-    
-    func transformLP() {
-        let transformView = TransformView(frame: view.bounds)
-        view.addSubview(transformView)
-        var transform = CATransform3DIdentity
-        transform.m34 = CGFloat(-1) / transformView.bounds.width
-        transform = CATransform3DRotate(transform, 0.85 * .pi/2, 1, 0, 0)
-        transformView.layer.transform = transform
-        bigLPView.center = CGPoint(x: transformView.bounds.midX, y: transformView.bounds.midY)
-        transformView.addSubview(bigLPView)
     }
     
     func findClosestLP() -> (LPView,Int) {
@@ -175,15 +174,16 @@ class LPViewController: UIViewController {
         setMusicPlayer(lp: lp)
         self.currentLP = lp
         self.bigLPView.update(lp:currentLP)
+        self.transformLPView.update(lp: currentLP)
         if !isDrag {
-            self.view.backgroundColor = lp.similarColor
+            self.view.backgroundColor = self.currentLP.album.averageColor
         }
     }
     
     func setSmallLPViews() {
         var x:CGFloat = 0
         for i in 0..<cons.colors.count {
-            let lp = LP(title:cons.musics[i], color:cons.colors[i], musicName: cons.musics[i],similarColor:cons.similarColors[i])
+            let lp = LP(title:cons.musics[i], color:cons.colors[i], musicName: cons.musics[i],similarColor:cons.similarColors[i],album:UIImage(named:cons.albums[i])!)
             let lpView = LPView(frame: CGRect(x:x, y: 0, width:radius/3*2, height: radius/3*2),lp:lp)
             smallLps.append(lpView)
             scrollView.addSubview(lpView)
@@ -205,7 +205,7 @@ class LPViewController: UIViewController {
         }
     }
     
-    private func setPanGesture() {
+    private func setNeedleGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.drag(_:)))
         needle.addGestureRecognizer(panGesture)
     }
@@ -233,27 +233,50 @@ class LPViewController: UIViewController {
     func updateNeedlePosition(_ position:CGPoint) {
         let location = position
         let t = (location.y - view.bounds.minY) / view.bounds.height
-        if !isPlaying {
-            needle.center.y = bezier.point(at: t).y
-            needle.center.x = bezier.point(at: t).x - 20
-            addLine(start:bezier.point(at: t), end:niddleLineEnd)
-            touchLP(needle.center)
-        }
+        needle.center.y = bezier.point(at: t).y
+        needle.center.x = bezier.point(at: t).x - 20
+        addLine(start:bezier.point(at: t), end:niddleLineEnd)
+        touchLP(needle.center)
     }
     
     func touchLP(_ needle:CGPoint) {
-        if abs(needle.y - bigLPView.center.y) < 5 {
-            transformLP()
-            if bigLPView.layer.animation(forKey: "rotation") == nil {
-                bigLPView.rotate()
-                player?.play()
-                isPlaying = true
-                bigLPView.isUserInteractionEnabled = false
+        if abs(needle.y - bigLPView.center.y) < 15 {
+            if transformLPView.layer.animation(forKey: "rotation") == nil {
+                startPlaying()
             }
         }else {
-            isPlaying = false
-            bigLPView.layer.removeAllAnimations()
-            player?.stop()
+            stopPlaying()
+        }
+    }
+    
+    func startPlaying() {
+        self.bigLPView.isHidden = true
+        self.transformView.isHidden = false
+        transformLPView.rotate()
+        player?.play()
+        isPlaying = true
+        bigLPView.isUserInteractionEnabled = false
+        UIView.animate(withDuration: 2) {
+            var transform = CATransform3DIdentity
+            transform.m34 = CGFloat(-1) / self.transformView.bounds.width
+            transform = CATransform3DRotate(transform, 0.85 * .pi/2, 1, 0, 0)
+            self.transformView.layer.transform = transform
+        }
+    }
+    
+    func stopPlaying() {
+        if isPlaying {
+            self.isPlaying = false
+            self.player?.stop()
+            UIView.animate(withDuration:3) {
+                self.transformView.layer.transform = self.originalTransform
+            }completion: { _ in
+                self.transformLPView.layer.removeAllAnimations()
+                self.transformView.isHidden = true
+                self.bigLPView.isHidden = false
+                self.bigLPView.isUserInteractionEnabled = true
+                
+            }
         }
     }
     
@@ -295,9 +318,10 @@ extension LPViewController:LPViewDelegate {
                         }
                     }
                     bigLPView.center = self.view.center
+                    bigLPView.isHidden = false
                     let scale = CGAffineTransform(scaleX: 2, y: 2)
                     self.bigLPView.transform = scale
-                    self.view.backgroundColor = lpView.LP.similarColor
+                    self.view.backgroundColor = lpView.LP.album.averageColor
                     setBigLP = true
                     for lp in smallLps  {
                         if centerX < lp.center.x {

@@ -28,12 +28,14 @@ class LPConstants {
         UIColor(displayP3Red: 210/255, green: 245/255, blue: 91/255, alpha:0.97)
     ]
 
-    var musics:[String] = ["기다린만큼 더",
-                           "Changes",
-                           "Love Ya",
-                           "못Understand",
-                           "바람사람",
-                           "나를 좋아하지 않는 그대에게",
-                           "빨간차"]
+    var musics:[String] = ["Shotta flow",
+                           "Headlights",
+                           "Clubhouse",
+                           "BOP",
+                           "Highest in the room",
+                           "Monster",
+                           "Hot shower"]
+    
+    var albums:[String] = ["Shotta Flow.jpeg","The Marshall Mathers LP2.jpeg","GO:OD AM.jpeg","KIRK.jpeg","Highest in the room.jpeg","My Beautiful Dark Twisted Fantasy.jpeg","The Big Day.jpeg"]
 }
 

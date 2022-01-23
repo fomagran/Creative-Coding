@@ -46,7 +46,8 @@ class LPView: UIView {
         centerView = UIImageView()
         centerView.frame = CGRect(x: bounds.midX - frame.height/4, y: bounds.midY - frame.height/4, width: frame.width/2, height: frame.height/2)
         centerView.backgroundColor = color
-        centerView.image = UIImage(named: "마르셀뒤샹.png")
+        centerView.image = LP.album
+        centerView.contentMode = .scaleAspectFit
         centerView.layer.cornerRadius = centerView.frame.height/2
         centerView.layer.masksToBounds = true
         addSubview(centerView)
@@ -54,6 +55,7 @@ class LPView: UIView {
     
     func update(lp:LP) {
         self.centerView.backgroundColor = lp.color
+        self.centerView.image = lp.album
     }
     
     @objc func dragLP(_ sender: UIPanGestureRecognizer) {

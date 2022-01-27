@@ -21,19 +21,19 @@ iphone 13 pro            |  ipad pro 5th
 
 ## 4. DavidLoading   
 
-iphone 13 pro         |  ipad pro 5   
+iphone 13 pro         |  ipad pro 5th  
 :-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/47676921/147450931-1cd903ca-8a5b-4b18-946e-f3023542b79e.gif)  |  ![](https://user-images.githubusercontent.com/47676921/147450991-8e8f17d7-334e-4bf5-8858-7de960102c72.gif)   
 
 ## 5. LP
 
-ipad pro 5th            |  iphone 13 pro
+ iphone 13 pro           |  ipad pro 5th
 :-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/47676921/150670345-9afb93ee-49ae-45d7-bb71-b6ab9fafbd3d.gif)  |  ![](https://user-images.githubusercontent.com/47676921/150670530-131ad61d-6bcd-46bd-a392-2c71890913f0.gif)
 
 ## 6. Mac Miller
 
-ipad pro 5th            |  iphone 13 pro
+iphone 13 pro           |  ipad pro 5th
 :-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/47676921/150763781-b0de933b-4b70-4a6c-be61-7e5a39a16b29.gif)  |  ![](https://user-images.githubusercontent.com/47676921/150763049-2ed9b237-1e38-4107-99ff-1d147c46b7ed.gif)
 

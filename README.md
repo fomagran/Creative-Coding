@@ -33,8 +33,6 @@ ipad pro 5th            |  iphone 13 pro
 
 ## 6. Mac Miller
 
-맥 밀러 "Clubhouse"를 듣고 영감 받아 만든 인터랙티브 프로젝트
-
 ipad pro 5th            |  iphone 13 pro
 :-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/47676921/150763781-b0de933b-4b70-4a6c-be61-7e5a39a16b29.gif)  |  ![](https://user-images.githubusercontent.com/47676921/150763049-2ed9b237-1e38-4107-99ff-1d147c46b7ed.gif)

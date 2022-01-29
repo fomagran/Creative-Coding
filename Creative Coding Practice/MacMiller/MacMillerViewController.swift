@@ -148,7 +148,7 @@ class MacMillerViewController: UIViewController {
         particleEmitter.lifetime = 1.0
     }
     
-    //MARK:- @obfc
+    //MARK:- @objc
     
     @objc func handTap(sender:UITapGestureRecognizer) {
         showGlitch(scale:1.3)

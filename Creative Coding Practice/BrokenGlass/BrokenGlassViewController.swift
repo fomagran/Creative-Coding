@@ -11,7 +11,7 @@ class BrokenGlassViewController: UIViewController {
     
     var glass:UIView = {
         let v:UIView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 300))
-        v.backgroundColor = .lightGray
+        v.backgroundColor = .white.withAlphaComponent(0.25)
         v.layer.cornerRadius = 10
         return v
     }()
@@ -23,30 +23,43 @@ class BrokenGlassViewController: UIViewController {
         return v
     }()
     
+    var gradientLayer = CAGradientLayer()
+    
+    var isBroken:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        gradientLayer.frame = view.frame
+        gradientLayer.colors = [UIColor.magenta.cgColor, UIColor.cyan.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.95)
+          gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.05)
+        view.layer.addSublayer(gradientLayer)
+        glass.center  = view.center
+        glass.layer.shadowColor = UIColor.black.cgColor
+        glass.layer.shadowOpacity = 0.1
+        glass.layer.shadowOffset = CGSize(width: 0, height: 0)
+        glass.layer.shadowRadius = 10
+        glass.layer.shadowPath = UIBezierPath(rect: glass.bounds).cgPath
         self.view.addSubview(glass)
         self.view.addSubview(dot)
-        glass.center  = view.center
         setTapGesture()
     }
     
     func getEdges() {
         let edges = [CGPoint(x:view.center.x - 100,y:view.center.y),
-                     CGPoint(x:view.center.x - 100,y:view.center.y-20),
-                     CGPoint(x:view.center.x - 100,y:view.center.y+40),
+                     CGPoint(x:view.center.x - 100,y:view.center.y-75),
+                     CGPoint(x:view.center.x - 100,y:view.center.y+75),
                      CGPoint(x:view.center.x + 100,y:view.center.y),
-                     CGPoint(x:view.center.x + 100,y:view.center.y-30),
-                     CGPoint(x:view.center.x + 100,y:view.center.y+20),
+                     CGPoint(x:view.center.x + 100,y:view.center.y-75),
+                     CGPoint(x:view.center.x + 100,y:view.center.y+75),
                      CGPoint(x:view.center.x,y:view.center.y - 150),
-                     CGPoint(x:view.center.x-10,y:view.center.y - 150),
-                     CGPoint(x:view.center.x+60,y:view.center.y - 150),
+                     CGPoint(x:view.center.x-50,y:view.center.y - 150),
+                     CGPoint(x:view.center.x+50,y:view.center.y - 150),
                      CGPoint(x:view.center.x,y:view.center.y + 150),
-                     CGPoint(x:view.center.x-35,y:view.center.y + 150),
-                     CGPoint(x:view.center.x+15,y:view.center.y + 150)]
+                     CGPoint(x:view.center.x-50,y:view.center.y + 150),
+                     CGPoint(x:view.center.x+50,y:view.center.y + 150)]
         for edge in edges {
             let v = UIView(frame: CGRect(x: edge.x, y: edge.y, width: 2, height: 2))
-            v.backgroundColor = .red
             self.view.addSubview(v)
             let line = CAShapeLayer()
             addLine(line: line, start: dot.center, end: v.center)
@@ -57,9 +70,12 @@ class BrokenGlassViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapGlass(_:)))
         glass.addGestureRecognizer(tap)
     }
-        
+    
     @objc func tapGlass(_ sender:UITapGestureRecognizer) {
-        dot.center = sender.location(in: view)
-        getEdges()
+        if !isBroken {
+            dot.center = sender.location(in: view)
+            getEdges()
+        }
+        isBroken = true
     }
 }

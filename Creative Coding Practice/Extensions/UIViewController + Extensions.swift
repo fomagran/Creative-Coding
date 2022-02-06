@@ -15,7 +15,7 @@ extension UIViewController {
         linePath.move(to: start)
         linePath.addLine(to: end)
         line.path = linePath.cgPath
-        line.strokeColor = UIColor.darkGray.cgColor
+        line.strokeColor = UIColor.gray.cgColor
         line.lineWidth = 1
         view.layer.addSublayer(line)
     }

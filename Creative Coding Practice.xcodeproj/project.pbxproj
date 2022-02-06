@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04089A9327B07FDB0031EF82 /* BrokenGlassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04089A9227B07FDB0031EF82 /* BrokenGlassViewController.swift */; };
+		04089A9527B08B010031EF82 /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04089A9427B08B010031EF82 /* UIViewController + Extensions.swift */; };
 		0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */; };
 		04090750279A659E00A5AA03 /* Particle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409074F279A659E00A5AA03 /* Particle.swift */; };
 		04090752279A69D700A5AA03 /* GilitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04090751279A69D700A5AA03 /* GilitchView.swift */; };
@@ -54,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04089A9227B07FDB0031EF82 /* BrokenGlassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenGlassViewController.swift; sourceTree = "<group>"; };
+		04089A9427B08B010031EF82 /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		0409074D279A5B6B00A5AA03 /* MacMillerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacMillerViewController.swift; sourceTree = "<group>"; };
 		0409074F279A659E00A5AA03 /* Particle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Particle.swift; sourceTree = "<group>"; };
 		04090751279A69D700A5AA03 /* GilitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GilitchView.swift; sourceTree = "<group>"; };
@@ -146,6 +150,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		04089A9127B07FB30031EF82 /* BrokenGlass */ = {
+			isa = PBXGroup;
+			children = (
+				04089A9227B07FDB0031EF82 /* BrokenGlassViewController.swift */,
+			);
+			path = BrokenGlass;
+			sourceTree = "<group>";
+		};
 		0409074C279A5B5200A5AA03 /* MacMiller */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +213,7 @@
 		041E1998274B4134000F8C11 /* Creative Coding Practice */ = {
 			isa = PBXGroup;
 			children = (
+				04089A9127B07FB30031EF82 /* BrokenGlass */,
 				0409074C279A5B5200A5AA03 /* MacMiller */,
 				04194B062789385C0006558B /* LP */,
 				04B181212774AF8700D9F7CA /* DavidLoading */,
@@ -313,6 +326,7 @@
 			children = (
 				04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */,
 				0497A7E8279D348D0060616A /* UIImage + Extennsions.swift */,
+				04089A9427B08B010031EF82 /* UIViewController + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -469,6 +483,7 @@
 				041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */,
 				04090752279A69D700A5AA03 /* GilitchView.swift in Sources */,
 				04F376A3277C6E0700A70B98 /* AViewController.swift in Sources */,
+				04089A9527B08B010031EF82 /* UIViewController + Extensions.swift in Sources */,
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,
 				04194B0C278951B40006558B /* LPView.swift in Sources */,
 				04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */,
@@ -482,6 +497,7 @@
 				0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,
 				04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */,
+				04089A9327B07FDB0031EF82 /* BrokenGlassViewController.swift in Sources */,
 				04BA9A8B27799A30002F18D9 /* MainTableViewCell.swift in Sources */,
 				041E19AF274B443F000F8C11 /* SwingEffectViewController.swift in Sources */,
 				04E7E90D276E1652007B7B82 /* DSViewController.swift in Sources */,

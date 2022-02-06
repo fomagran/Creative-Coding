@@ -63,12 +63,21 @@ class BrokenGlassViewController: UIViewController {
             self.view.addSubview(v)
             let line = CAShapeLayer()
             addLine(line: line, start: dot.center, end: v.center)
+            drawLineAntimation(line)
         }
     }
     
     func setTapGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapGlass(_:)))
         glass.addGestureRecognizer(tap)
+    }
+    
+    func drawLineAntimation(_ pathLayer:CAShapeLayer) {
+        let pathAnimation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        pathAnimation.duration = 2.0
+        pathAnimation.fromValue = 0
+        pathAnimation.toValue = 1
+        pathLayer.add(pathAnimation, forKey: "strokeEnd")
     }
     
     @objc func tapGlass(_ sender:UITapGestureRecognizer) {

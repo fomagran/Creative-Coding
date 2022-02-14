@@ -27,6 +27,7 @@
 		043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */; };
 		046669732757965500C0BA70 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046669722757965500C0BA70 /* WaveViewController.swift */; };
 		0485DC12275CC63800F029B0 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485DC11275CC63800F029B0 /* WaveView.swift */; };
+		0489E54927B9E48400110D5A /* GlassPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0489E54827B9E48400110D5A /* GlassPiece.swift */; };
 		0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */; };
 		0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */; };
 		0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5C0276F75650072CBBD /* TestViewController.swift */; };
@@ -78,6 +79,7 @@
 		043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew + Extensions.swift"; sourceTree = "<group>"; };
 		046669722757965500C0BA70 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
 		0485DC11275CC63800F029B0 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
+		0489E54827B9E48400110D5A /* GlassPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassPiece.swift; sourceTree = "<group>"; };
 		0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SquareSpark.sks; sourceTree = "<group>"; };
 		0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView + Extensions.swift"; sourceTree = "<group>"; };
 		0492C5C0276F75650072CBBD /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				04089A9227B07FDB0031EF82 /* BrokenGlassViewController.swift */,
+				0489E54827B9E48400110D5A /* GlassPiece.swift */,
 			);
 			path = BrokenGlass;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				04B181232774AFA100D9F7CA /* DavidLoadingViewController.swift in Sources */,
 				04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */,
 				04F376A1277C5EFC00A70B98 /* Card.swift in Sources */,
+				0489E54927B9E48400110D5A /* GlassPiece.swift in Sources */,
 				04194B1227896F080006558B /* LP.swift in Sources */,
 				041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */,
 				04090752279A69D700A5AA03 /* GilitchView.swift in Sources */,

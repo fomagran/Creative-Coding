@@ -24,8 +24,12 @@ class BrokenGlassViewController: UIViewController {
     }()
     
     var gradientLayer = CAGradientLayer()
-    
     var isBroken:Bool = false
+    var squareView:UIView!
+    var collision: UICollisionBehavior!
+    var animator:UIDynamicAnimator!
+    var gravity:UIGravityBehavior!
+    var itemBehavior:UIDynamicItemBehavior!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +47,43 @@ class BrokenGlassViewController: UIViewController {
         self.view.addSubview(glass)
         self.view.addSubview(dot)
         setTapGesture()
+        doCollision()
+    }
+    
+    func doCollision() {
+        let squareSize = CGSize(width: 30.0, height: 30.0)
+        let centerX = self.view.bounds.midX - (squareSize.width/2)
+        let centerY = self.view.bounds.midY - (squareSize.height/2)
+        var squares:[UIView] = []
+        let color:[UIColor] = [.red,.blue,.green,.orange,.black,.systemPink,.systemTeal,.purple,.systemIndigo]
+        let centers:[CGPoint] = [CGPoint(x: centerX-glass.frame.width/2-10, y: centerY-glass.frame.height/2),
+                                 CGPoint(x: centerX, y: centerY-glass.frame.height/2),
+                                 CGPoint(x: centerX+glass.frame.width/2+10, y: centerY-glass.frame.height/2),
+                                 CGPoint(x: centerX-glass.frame.width/2-20, y: centerY),
+                                 CGPoint(x: centerX, y: centerY),
+                                 CGPoint(x: centerX+glass.frame.width/2-30, y: centerY),
+                                 CGPoint(x: centerX-glass.frame.width/2+20, y: centerY+glass.frame.height/2),
+                                 CGPoint(x: centerX+10, y: centerY+glass.frame.height/2),
+                                 CGPoint(x: centerX+glass.frame.width/2-30, y: centerY+glass.frame.height/2)]
+        for (i,c) in color.enumerated() {
+            let frame = CGRect(origin: centers[i], size: squareSize)
+            let v = UIView()
+            v.backgroundColor = c
+            v.frame = frame
+            view.addSubview(v)
+            squares.append(v)
+        }
+        
+        animator = UIDynamicAnimator(referenceView: view)
+        gravity = UIGravityBehavior(items:squares)
+        animator.addBehavior(gravity)
+        collision = UICollisionBehavior(items:squares)
+        collision.translatesReferenceBoundsIntoBoundary = true
+        animator.addBehavior(collision)
+        itemBehavior = UIDynamicItemBehavior(items:squares)
+        itemBehavior.elasticity = 0.8
+        itemBehavior.density = 2
+        animator.addBehavior(itemBehavior)
     }
     
     func getEdges() {

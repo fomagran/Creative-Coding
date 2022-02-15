@@ -21,5 +21,21 @@ extension UIImage {
 
         return UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
     }
+    
+    func imageByApplyingMaskingBezierPath(_ path: UIBezierPath, _ pathFrame: CGRect) -> UIImage {
+
+                UIGraphicsBeginImageContext(self.size)
+                let context = UIGraphicsGetCurrentContext()!
+
+                context.addPath(path.cgPath)
+                context.clip()
+                draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+
+                let maskedImage = UIGraphicsGetImageFromCurrentImageContext()!
+
+                UIGraphicsEndImageContext()
+
+                return maskedImage
+            }
 }
 

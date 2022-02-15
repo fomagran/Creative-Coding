@@ -23,6 +23,11 @@ class BrokenGlassViewController: UIViewController {
         return v
     }()
     
+    var glassPiece:UIImageView = {
+        let iv:UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        return iv
+    }()
+    
     var gradientLayer = CAGradientLayer()
     var isBroken:Bool = false
     var squareView:UIView!
@@ -30,6 +35,8 @@ class BrokenGlassViewController: UIViewController {
     var animator:UIDynamicAnimator!
     var gravity:UIGravityBehavior!
     var itemBehavior:UIDynamicItemBehavior!
+    var bezierPath:UIBezierPath!
+    var lines:[CAShapeLayer] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +54,14 @@ class BrokenGlassViewController: UIViewController {
         self.view.addSubview(glass)
         self.view.addSubview(dot)
         setTapGesture()
-        doCollision()
+        view.addSubview(glassPiece)
+        glassPiece.center = CGPoint(x: 100, y: 100)
+        
+        bezierPath = UIBezierPath()
+        bezierPath.move(to: CGPoint(x: self.glass.frame.width / 2, y: self.glass.frame.height))
+        bezierPath.addLine(to: CGPoint(x: 0, y: 0))
+        bezierPath.addLine(to: CGPoint(x: self.glass.frame.width, y: 0))
+        bezierPath.close()
     }
     
     func doCollision() {
@@ -55,7 +69,6 @@ class BrokenGlassViewController: UIViewController {
         let centerX = self.view.bounds.midX - (squareSize.width/2)
         let centerY = self.view.bounds.midY - (squareSize.height/2)
         var squares:[UIView] = []
-        let color:[UIColor] = [.red,.blue,.green,.orange,.black,.systemPink,.systemTeal,.purple,.systemIndigo]
         let centers:[CGPoint] = [CGPoint(x: centerX-glass.frame.width/2-10, y: centerY-glass.frame.height/2),
                                  CGPoint(x: centerX, y: centerY-glass.frame.height/2),
                                  CGPoint(x: centerX+glass.frame.width/2+10, y: centerY-glass.frame.height/2),
@@ -65,13 +78,11 @@ class BrokenGlassViewController: UIViewController {
                                  CGPoint(x: centerX-glass.frame.width/2+20, y: centerY+glass.frame.height/2),
                                  CGPoint(x: centerX+10, y: centerY+glass.frame.height/2),
                                  CGPoint(x: centerX+glass.frame.width/2-30, y: centerY+glass.frame.height/2)]
-        for (i,c) in color.enumerated() {
-            let frame = CGRect(origin: centers[i], size: squareSize)
-            let v = UIView()
-            v.backgroundColor = c
-            v.frame = frame
-            view.addSubview(v)
-            squares.append(v)
+        for i in 0..<centers.count {
+            let imageView = UIImageView(frame: CGRect(x: centers[i].x, y: centers[i].y, width: 30, height: 30))
+            imageView.image =      UIImage(named:"glass.png")?.imageByApplyingMaskingBezierPath(bezierPath, imageView.frame)
+            view.addSubview(imageView)
+            squares.append(imageView)
         }
         
         animator = UIDynamicAnimator(referenceView: view)
@@ -103,7 +114,8 @@ class BrokenGlassViewController: UIViewController {
             let v = UIView(frame: CGRect(x: edge.x, y: edge.y, width: 2, height: 2))
             self.view.addSubview(v)
             let line = CAShapeLayer()
-            addLine(line: line, start: dot.center, end: v.center)
+            lines.append(line)
+            addLineToGlass(line: line, start: dot.center, end: v.center)
             drawLineAntimation(line)
         }
     }
@@ -113,9 +125,20 @@ class BrokenGlassViewController: UIViewController {
         glass.addGestureRecognizer(tap)
     }
     
+    func addLineToGlass(line:CAShapeLayer,start: CGPoint, end:CGPoint) {
+        line.removeFromSuperlayer()
+        let linePath = UIBezierPath()
+        linePath.move(to: start)
+        linePath.addLine(to: end)
+        line.path = linePath.cgPath
+        line.strokeColor = UIColor.gray.cgColor
+        line.lineWidth = 1
+        view.layer.addSublayer(line)
+    }
+    
     func drawLineAntimation(_ pathLayer:CAShapeLayer) {
         let pathAnimation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        pathAnimation.duration = 2.0
+        pathAnimation.duration = 0.5
         pathAnimation.fromValue = 0
         pathAnimation.toValue = 1
         pathLayer.add(pathAnimation, forKey: "strokeEnd")
@@ -125,7 +148,14 @@ class BrokenGlassViewController: UIViewController {
         if !isBroken {
             dot.center = sender.location(in: view)
             getEdges()
+            isBroken = true
+        }else {
+            glass.isHidden = true
+            dot.isHidden = true
+            doCollision()
+            for line in lines {
+                line.removeFromSuperlayer()
+            }
         }
-        isBroken = true
     }
 }

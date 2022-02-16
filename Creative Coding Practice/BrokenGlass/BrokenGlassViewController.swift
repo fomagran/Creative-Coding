@@ -61,13 +61,15 @@ class BrokenGlassViewController: UIViewController {
     
     func doCollision() {
         var squares:[UIView] = []
-        for i in 0..<bezierPaths.count {
-            let imageView = UIImageView(frame: CGRect(x:view.center.x-50, y:view.center.y-50, width:100, height: 100))
-            let piece = UIImage(named:"glass.png")?.imageByApplyingMaskingBezierPath(bezierPaths[i], imageView.frame)
-            imageView.image = piece
-            view.addSubview(imageView)
-            squares.append(imageView)
+        for _ in 0..<bezierPaths.count {
+            let random = CGFloat((-50...50).randomElement()!)
+            let width =  CGFloat((10...100).randomElement()!)
+            let height =  CGFloat((10...100).randomElement()!)
+            let g = GlassPiece(frame: CGRect(x: view.center.x - random, y: view.center.y-random, width:width, height: height))
+            view.addSubview(g)
+            squares.append(g)
         }
+
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items:squares)
         animator.addBehavior(gravity)
@@ -75,8 +77,7 @@ class BrokenGlassViewController: UIViewController {
         collision.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collision)
         itemBehavior = UIDynamicItemBehavior(items:squares)
-        itemBehavior.elasticity = 0.8
-        itemBehavior.density = 2
+        itemBehavior.elasticity = 0.4
         animator.addBehavior(itemBehavior)
     }
     
@@ -174,7 +175,6 @@ class BrokenGlassViewController: UIViewController {
                 past = edge
                 continue
             }
-            past = edge
             bezierPaths.append(b)
             let line = CAShapeLayer()
             lines.append(line)

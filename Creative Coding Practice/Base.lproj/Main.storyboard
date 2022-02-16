@@ -70,6 +70,8 @@
                         <segue destination="oZC-k0-73v" kind="show" identifier="showSwingSquareViewController" id="x3W-JJ-QNy"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showDSViewController" id="zDS-A7-adb"/>
                         <segue destination="ZcM-nn-B25" kind="show" identifier="showLPViewController" id="cXc-St-gHY"/>
+                        <segue destination="3Ew-Ss-Z2j" kind="show" identifier="showBrokenGlassViewController" id="K4f-rf-oza"/>
+                        <segue destination="pAA-fP-VqV" kind="show" identifier="showMacMillerViewController" id="ecg-nP-db7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNq-9L-Q1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -286,6 +288,7 @@
                         <viewLayoutGuide key="safeArea" id="AeM-Ur-in3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ezC-pj-AhB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9P8-dA-jJc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -335,6 +338,7 @@
                         <viewLayoutGuide key="safeArea" id="Dwn-hk-7CK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="zDn-oK-IYp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="peX-jv-HMZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

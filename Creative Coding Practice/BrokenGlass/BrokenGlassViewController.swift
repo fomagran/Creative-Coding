@@ -37,6 +37,7 @@ class BrokenGlassViewController: UIViewController {
     var itemBehavior:UIDynamicItemBehavior!
     var bezierPath:UIBezierPath!
     var lines:[CAShapeLayer] = []
+    var bezierPaths:[UIBezierPath] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,35 +57,17 @@ class BrokenGlassViewController: UIViewController {
         setTapGesture()
         view.addSubview(glassPiece)
         glassPiece.center = CGPoint(x: 100, y: 100)
-        
-        bezierPath = UIBezierPath()
-        bezierPath.move(to: CGPoint(x: self.glass.frame.width / 2, y: self.glass.frame.height))
-        bezierPath.addLine(to: CGPoint(x: 0, y: 0))
-        bezierPath.addLine(to: CGPoint(x: self.glass.frame.width, y: 0))
-        bezierPath.close()
     }
     
     func doCollision() {
-        let squareSize = CGSize(width: 30.0, height: 30.0)
-        let centerX = self.view.bounds.midX - (squareSize.width/2)
-        let centerY = self.view.bounds.midY - (squareSize.height/2)
         var squares:[UIView] = []
-        let centers:[CGPoint] = [CGPoint(x: centerX-glass.frame.width/2-10, y: centerY-glass.frame.height/2),
-                                 CGPoint(x: centerX, y: centerY-glass.frame.height/2),
-                                 CGPoint(x: centerX+glass.frame.width/2+10, y: centerY-glass.frame.height/2),
-                                 CGPoint(x: centerX-glass.frame.width/2-20, y: centerY),
-                                 CGPoint(x: centerX, y: centerY),
-                                 CGPoint(x: centerX+glass.frame.width/2-30, y: centerY),
-                                 CGPoint(x: centerX-glass.frame.width/2+20, y: centerY+glass.frame.height/2),
-                                 CGPoint(x: centerX+10, y: centerY+glass.frame.height/2),
-                                 CGPoint(x: centerX+glass.frame.width/2-30, y: centerY+glass.frame.height/2)]
-        for i in 0..<centers.count {
-            let imageView = UIImageView(frame: CGRect(x: centers[i].x, y: centers[i].y, width: 30, height: 30))
-            imageView.image =      UIImage(named:"glass.png")?.imageByApplyingMaskingBezierPath(bezierPath, imageView.frame)
+        for i in 0..<bezierPaths.count {
+            let imageView = UIImageView(frame: CGRect(x:view.center.x-50, y:view.center.y-50, width:100, height: 100))
+            let piece = UIImage(named:"glass.png")?.imageByApplyingMaskingBezierPath(bezierPaths[i], imageView.frame)
+            imageView.image = piece
             view.addSubview(imageView)
             squares.append(imageView)
         }
-        
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items:squares)
         animator.addBehavior(gravity)
@@ -98,6 +81,11 @@ class BrokenGlassViewController: UIViewController {
     }
     
     func getEdges() {
+        let left = view.center.x - 100
+        let right = view.center.x + 100
+        let top = view.center.y - 150
+        let bottom = view.center.y + 150
+        
         let edges = [CGPoint(x:view.center.x - 100,y:view.center.y),
                      CGPoint(x:view.center.x - 100,y:view.center.y-75),
                      CGPoint(x:view.center.x - 100,y:view.center.y+75),
@@ -110,12 +98,87 @@ class BrokenGlassViewController: UIViewController {
                      CGPoint(x:view.center.x,y:view.center.y + 150),
                      CGPoint(x:view.center.x-50,y:view.center.y + 150),
                      CGPoint(x:view.center.x+50,y:view.center.y + 150)]
+        var past = CGPoint(x:0,y:0)
         for edge in edges {
-            let v = UIView(frame: CGRect(x: edge.x, y: edge.y, width: 2, height: 2))
-            self.view.addSubview(v)
+            let b = UIBezierPath()
+            if edge.x == left && past.x == left {
+                print("left","left")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:left, y:edge.y))
+                b.addLine(to: CGPoint(x:left, y:past.y))
+            }else if edge.x == right && past.x == right {
+                print("right","right",edge,past)
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:right, y:edge.y))
+                b.addLine(to: CGPoint(x:right, y:past.y))
+            }else if edge.y == top && past.y == top {
+                print("top","top")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:edge.x, y:top))
+                b.addLine(to: CGPoint(x:past.x, y:top))
+            }else if edge.y == bottom && edge.y == bottom {
+                print("bottom","bottom")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:edge.x, y:bottom))
+                b.addLine(to: CGPoint(x:past.x, y:bottom))
+            }else if edge.x == left && past.y == top {
+                print("left","top")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:left, y:edge.y))
+                b.addLine(to: CGPoint(x:left, y:top))
+                b.addLine(to: CGPoint(x:past.x, y:top))
+            }else if edge.y == top && past.x == left {
+                print("top","left")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:left, y:edge.y))
+                b.addLine(to: CGPoint(x:left, y:top))
+                b.addLine(to: CGPoint(x:past.x, y:top))
+            }else if edge.x == left && past.y == bottom {
+                print("left","bottom")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:left, y:edge.y))
+                b.addLine(to: CGPoint(x:left, y:bottom))
+                b.addLine(to: CGPoint(x:past.x, y:bottom))
+            }else if edge.y == bottom && past.x == left {
+                print("bottom","left")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:left, y:edge.y))
+                b.addLine(to: CGPoint(x:left, y:bottom))
+                b.addLine(to: CGPoint(x:past.x, y:bottom))
+            }else if edge.x == right && past.y == top {
+                print("right","top")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:right, y:edge.y))
+                b.addLine(to: CGPoint(x:right, y:top))
+                b.addLine(to: CGPoint(x:past.x, y:top))
+            }else if edge.y == top && past.x == right {
+                print("top","right")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:right, y:edge.y))
+                b.addLine(to: CGPoint(x:right, y:top))
+                b.addLine(to: CGPoint(x:past.x, y:top))
+            }else if edge.x == right && past.y == bottom {
+                print("right","bottom")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:right, y:edge.y))
+                b.addLine(to: CGPoint(x:right, y:bottom))
+                b.addLine(to: CGPoint(x:past.x, y:bottom))
+            }else if edge.y == bottom && past.x == right {
+                print("bottom","right")
+                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
+                b.addLine(to: CGPoint(x:right, y:edge.y))
+                b.addLine(to: CGPoint(x:right, y:bottom))
+                b.addLine(to: CGPoint(x:past.x, y:bottom))
+                b.close()
+            }else {
+                past = edge
+                continue
+            }
+            past = edge
+            bezierPaths.append(b)
             let line = CAShapeLayer()
             lines.append(line)
-            addLineToGlass(line: line, start: dot.center, end: v.center)
+            addLineToGlass(line: line, start: dot.center, end: edge)
             drawLineAntimation(line)
         }
     }

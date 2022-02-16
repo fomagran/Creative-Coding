@@ -11,7 +11,7 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var table: UITableView!
     
-    let vcName:[String] = ["DavidLoadingViewController","DSViewController","ThreeDCardViewController","WaveViewController","SwingSquareViewController","LPViewController"]
+    let vcName:[String] = ["DavidLoading","DS","ThreeDCard","Wave","SwingSquare","LP","MacMiller","BrokenGlass"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,6 @@ extension MainViewController:UITableViewDataSource {
 
 extension MainViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "show\(vcName[indexPath.row])", sender: nil)
+        performSegue(withIdentifier: "show\(vcName[indexPath.row])ViewController", sender: nil)
     }
 }

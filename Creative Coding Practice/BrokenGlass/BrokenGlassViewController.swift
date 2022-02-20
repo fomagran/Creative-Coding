@@ -57,6 +57,29 @@ class BrokenGlassViewController: UIViewController {
         setTapGesture()
         view.addSubview(glassPiece)
         glassPiece.center = CGPoint(x: 100, y: 100)
+        addCurve()
+    }
+    
+    func addCurve() {
+        let line = CAShapeLayer()
+        let path = UIBezierPath()
+        path.move(to: view.center)
+        path.addQuadCurve(to: CGPoint(x: 100, y: 100), controlPoint:CGPoint(x: 200, y: 200))
+        line.path = path.cgPath
+        line.strokeColor = UIColor.black.cgColor
+        line.fillColor = UIColor.clear.cgColor
+        view.layer.addSublayer(line)
+        
+        let flightAnimation = CAKeyframeAnimation(keyPath: "position")
+        flightAnimation.path = path.cgPath
+        flightAnimation.calculationMode = CAAnimationCalculationMode.paced
+        flightAnimation.duration = 0.5
+        flightAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
+        flightAnimation.repeatCount = 1
+        let v = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        view.addSubview(v)
+        v.backgroundColor = .black
+        v.layer.add(flightAnimation, forKey: nil)
     }
     
     func doCollision() {
@@ -82,11 +105,6 @@ class BrokenGlassViewController: UIViewController {
     }
     
     func getEdges() {
-        let left = view.center.x - 100
-        let right = view.center.x + 100
-        let top = view.center.y - 150
-        let bottom = view.center.y + 150
-        
         let edges = [CGPoint(x:view.center.x - 100,y:view.center.y),
                      CGPoint(x:view.center.x - 100,y:view.center.y-75),
                      CGPoint(x:view.center.x - 100,y:view.center.y+75),
@@ -99,82 +117,8 @@ class BrokenGlassViewController: UIViewController {
                      CGPoint(x:view.center.x,y:view.center.y + 150),
                      CGPoint(x:view.center.x-50,y:view.center.y + 150),
                      CGPoint(x:view.center.x+50,y:view.center.y + 150)]
-        var past = CGPoint(x:0,y:0)
         for edge in edges {
             let b = UIBezierPath()
-            if edge.x == left && past.x == left {
-                print("left","left")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:left, y:edge.y))
-                b.addLine(to: CGPoint(x:left, y:past.y))
-            }else if edge.x == right && past.x == right {
-                print("right","right",edge,past)
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:right, y:edge.y))
-                b.addLine(to: CGPoint(x:right, y:past.y))
-            }else if edge.y == top && past.y == top {
-                print("top","top")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:edge.x, y:top))
-                b.addLine(to: CGPoint(x:past.x, y:top))
-            }else if edge.y == bottom && edge.y == bottom {
-                print("bottom","bottom")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:edge.x, y:bottom))
-                b.addLine(to: CGPoint(x:past.x, y:bottom))
-            }else if edge.x == left && past.y == top {
-                print("left","top")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:left, y:edge.y))
-                b.addLine(to: CGPoint(x:left, y:top))
-                b.addLine(to: CGPoint(x:past.x, y:top))
-            }else if edge.y == top && past.x == left {
-                print("top","left")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:left, y:edge.y))
-                b.addLine(to: CGPoint(x:left, y:top))
-                b.addLine(to: CGPoint(x:past.x, y:top))
-            }else if edge.x == left && past.y == bottom {
-                print("left","bottom")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:left, y:edge.y))
-                b.addLine(to: CGPoint(x:left, y:bottom))
-                b.addLine(to: CGPoint(x:past.x, y:bottom))
-            }else if edge.y == bottom && past.x == left {
-                print("bottom","left")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:left, y:edge.y))
-                b.addLine(to: CGPoint(x:left, y:bottom))
-                b.addLine(to: CGPoint(x:past.x, y:bottom))
-            }else if edge.x == right && past.y == top {
-                print("right","top")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:right, y:edge.y))
-                b.addLine(to: CGPoint(x:right, y:top))
-                b.addLine(to: CGPoint(x:past.x, y:top))
-            }else if edge.y == top && past.x == right {
-                print("top","right")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:right, y:edge.y))
-                b.addLine(to: CGPoint(x:right, y:top))
-                b.addLine(to: CGPoint(x:past.x, y:top))
-            }else if edge.x == right && past.y == bottom {
-                print("right","bottom")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:right, y:edge.y))
-                b.addLine(to: CGPoint(x:right, y:bottom))
-                b.addLine(to: CGPoint(x:past.x, y:bottom))
-            }else if edge.y == bottom && past.x == right {
-                print("bottom","right")
-                b.move(to: CGPoint(x: dot.center.x, y:dot.center.y))
-                b.addLine(to: CGPoint(x:right, y:edge.y))
-                b.addLine(to: CGPoint(x:right, y:bottom))
-                b.addLine(to: CGPoint(x:past.x, y:bottom))
-                b.close()
-            }else {
-                past = edge
-                continue
-            }
             bezierPaths.append(b)
             let line = CAShapeLayer()
             lines.append(line)

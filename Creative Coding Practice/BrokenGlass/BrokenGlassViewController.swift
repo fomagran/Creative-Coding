@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class BrokenGlassViewController: UIViewController {
     
@@ -39,6 +40,7 @@ class BrokenGlassViewController: UIViewController {
     var lines:[CAShapeLayer] = []
     var bezierPaths:[UIBezierPath] = []
     var positions:[CGPoint] = []
+    var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +61,18 @@ class BrokenGlassViewController: UIViewController {
         view.addSubview(glassPiece)
         glassPiece.center = CGPoint(x: 100, y: 100)
         explosionAnimation(views: [UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView()])
+    }
+    
+    func setMusicPlayer(name:String,ex:String) {
+        let url = Bundle.main.url(forResource:name, withExtension:ex)!
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.prepareToPlay()
+            player.play()
+        } catch let error as NSError {
+            print(error.description)
+        }
     }
     
     func explosionAnimation(views:[UIView]) {
@@ -188,6 +202,7 @@ class BrokenGlassViewController: UIViewController {
             dot.center = sender.location(in: view)
             getEdges()
             isBroken = true
+            setMusicPlayer(name: "crack",ex:"wav")
         }else {
             glass.isHidden = true
             dot.isHidden = true
@@ -195,6 +210,7 @@ class BrokenGlassViewController: UIViewController {
             for line in lines {
                 line.removeFromSuperlayer()
             }
+            setMusicPlayer(name: "break",ex:"mp3")
         }
     }
 }

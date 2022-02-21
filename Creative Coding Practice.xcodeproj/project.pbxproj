@@ -22,6 +22,8 @@
 		041E19A3274B4135000F8C11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041E19A2274B4135000F8C11 /* Assets.xcassets */; };
 		041E19A6274B4135000F8C11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041E19A4274B4135000F8C11 /* LaunchScreen.storyboard */; };
 		041E19AF274B443F000F8C11 /* SwingEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E19AE274B443F000F8C11 /* SwingEffectViewController.swift */; };
+		0432DDFD27C345D1009A16AD /* crack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0432DDFC27C345D1009A16AD /* crack.wav */; };
+		0432DDFF27C345F8009A16AD /* break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0432DDFE27C345F8009A16AD /* break.mp3 */; };
 		0438A467275B361300BFE7B5 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438A466275B361300BFE7B5 /* Point.swift */; };
 		0438A469275B361800BFE7B5 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438A468275B361800BFE7B5 /* Line.swift */; };
 		043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */; };
@@ -74,6 +76,8 @@
 		041E19A5274B4135000F8C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041E19A7274B4135000F8C11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		041E19AE274B443F000F8C11 /* SwingEffectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingEffectViewController.swift; sourceTree = "<group>"; };
+		0432DDFC27C345D1009A16AD /* crack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = crack.wav; sourceTree = "<group>"; };
+		0432DDFE27C345F8009A16AD /* break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = break.mp3; sourceTree = "<group>"; };
 		0438A466275B361300BFE7B5 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		0438A468275B361800BFE7B5 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew + Extensions.swift"; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 			children = (
 				04089A9227B07FDB0031EF82 /* BrokenGlassViewController.swift */,
 				0489E54827B9E48400110D5A /* GlassPiece.swift */,
+				0432DDFC27C345D1009A16AD /* crack.wav */,
+				0432DDFE27C345F8009A16AD /* break.mp3 */,
 			);
 			path = BrokenGlass;
 			sourceTree = "<group>";
@@ -458,8 +464,10 @@
 			files = (
 				041E19A6274B4135000F8C11 /* LaunchScreen.storyboard in Resources */,
 				0497A7E0279D2FEC0060616A /* Monster.mp3 in Resources */,
+				0432DDFD27C345D1009A16AD /* crack.wav in Resources */,
 				0497A7E1279D2FEC0060616A /* Shotta flow.mp3 in Resources */,
 				04E7E90A276E1541007B7B82 /* Spark.sks in Resources */,
+				0432DDFF27C345F8009A16AD /* break.mp3 in Resources */,
 				0497A7E2279D2FEC0060616A /* BOP.mp3 in Resources */,
 				0497A7E4279D2FEC0060616A /* Headlights.mp3 in Resources */,
 				0497A7DF279D2FEC0060616A /* Highest in the room.mp3 in Resources */,

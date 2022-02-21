@@ -58,33 +58,36 @@ class BrokenGlassViewController: UIViewController {
         setTapGesture()
         view.addSubview(glassPiece)
         glassPiece.center = CGPoint(x: 100, y: 100)
+        explosionAnimation(views: [UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView(),UIView()])
     }
     
     func explosionAnimation(views:[UIView]) {
-        let startY = view.center.y + 100
-        let leftX = view.center.x - 100
-        let rightX = view.center.x + 100
+        let startY = view.frame.maxY-100
+        let leftX = view.center.x
+        let rightX = view.center.x
         var start = 0
         var control = 0
-        var controlStart = 10
+        var controlStart = 20
+        var plus = 25
         
         for (i,v) in views.enumerated() {
             let x = i <= 5 ? leftX:rightX
             let line = CAShapeLayer()
             let path = UIBezierPath()
             path.move(to: view.center)
-            path.addQuadCurve(to: CGPoint(x: Int(x), y: Int(startY)-start), controlPoint:CGPoint(x: Int(x)+control, y:Int(startY)-start-25))
+            path.addQuadCurve(to: CGPoint(x: Int(x)-start, y: Int(startY)), controlPoint:CGPoint(x: Int(x)-start/2, y:Int(view.center.y)-100+control))
             line.path = path.cgPath
             line.fillColor = UIColor.clear.cgColor
             view.layer.addSublayer(line)
-            start += 25
+            start += plus
             control += controlStart
             followPath(path: path,v:v)
-            positions.append(CGPoint(x: Int(x), y: Int(startY)-start))
+            positions.append(CGPoint(x: Int(x)-start, y: Int(startY)))
             if i == 5 {
                 start = 0
                 control = 0
-                controlStart = -10
+                controlStart = -20
+                plus  = -25
             }
         }
     }
@@ -93,8 +96,8 @@ class BrokenGlassViewController: UIViewController {
         let anim = CAKeyframeAnimation(keyPath: "position")
         anim.path = path.cgPath
         anim.calculationMode = CAAnimationCalculationMode.paced
-        anim.duration = 0.5
-//        anim.rotationMode = CAAnimationRotationMode.rotateAuto
+        anim.duration = 0.8
+        anim.rotationMode = CAAnimationRotationMode.rotateAuto
         anim.repeatCount = 1
         anim.fillMode = .forwards
         anim.isRemovedOnCompletion = false
@@ -112,14 +115,11 @@ class BrokenGlassViewController: UIViewController {
             squares.append(g)
         }
         explosionAnimation(views: squares)
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.45) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.8) {
             for (i,square) in squares.enumerated() {
-                square.layer.removeAnimation(forKey: "explosion")
                 square.center = self.positions[i]
+                square.layer.removeAnimation(forKey: "explosion")
             }
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.45) {
             self.setCollision(squares)
         }
     }
@@ -177,7 +177,7 @@ class BrokenGlassViewController: UIViewController {
     
     func drawLineAntimation(_ pathLayer:CAShapeLayer) {
         let pathAnimation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        pathAnimation.duration = 0.5
+        pathAnimation.duration = 0.3
         pathAnimation.fromValue = 0
         pathAnimation.toValue = 1
         pathLayer.add(pathAnimation, forKey: "strokeEnd")

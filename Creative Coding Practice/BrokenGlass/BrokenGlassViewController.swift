@@ -38,6 +38,7 @@ class BrokenGlassViewController: UIViewController {
     var bezierPath:UIBezierPath!
     var lines:[CAShapeLayer] = []
     var bezierPaths:[UIBezierPath] = []
+    var positions:[CGPoint] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,29 +58,47 @@ class BrokenGlassViewController: UIViewController {
         setTapGesture()
         view.addSubview(glassPiece)
         glassPiece.center = CGPoint(x: 100, y: 100)
-        addCurve()
     }
     
-    func addCurve() {
-        let line = CAShapeLayer()
-        let path = UIBezierPath()
-        path.move(to: view.center)
-        path.addQuadCurve(to: CGPoint(x: 100, y: 100), controlPoint:CGPoint(x: 200, y: 200))
-        line.path = path.cgPath
-        line.strokeColor = UIColor.black.cgColor
-        line.fillColor = UIColor.clear.cgColor
-        view.layer.addSublayer(line)
+    func explosionAnimation(views:[UIView]) {
+        let startY = view.center.y + 100
+        let leftX = view.center.x - 100
+        let rightX = view.center.x + 100
+        var start = 0
+        var control = 0
+        var controlStart = 10
         
-        let flightAnimation = CAKeyframeAnimation(keyPath: "position")
-        flightAnimation.path = path.cgPath
-        flightAnimation.calculationMode = CAAnimationCalculationMode.paced
-        flightAnimation.duration = 0.5
-        flightAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
-        flightAnimation.repeatCount = 1
-        let v = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        view.addSubview(v)
-        v.backgroundColor = .black
-        v.layer.add(flightAnimation, forKey: nil)
+        for (i,v) in views.enumerated() {
+            let x = i <= 5 ? leftX:rightX
+            let line = CAShapeLayer()
+            let path = UIBezierPath()
+            path.move(to: view.center)
+            path.addQuadCurve(to: CGPoint(x: Int(x), y: Int(startY)-start), controlPoint:CGPoint(x: Int(x)+control, y:Int(startY)-start-25))
+            line.path = path.cgPath
+            line.fillColor = UIColor.clear.cgColor
+            view.layer.addSublayer(line)
+            start += 25
+            control += controlStart
+            followPath(path: path,v:v)
+            positions.append(CGPoint(x: Int(x), y: Int(startY)-start))
+            if i == 5 {
+                start = 0
+                control = 0
+                controlStart = -10
+            }
+        }
+    }
+    
+    func followPath(path:UIBezierPath,v:UIView) {
+        let anim = CAKeyframeAnimation(keyPath: "position")
+        anim.path = path.cgPath
+        anim.calculationMode = CAAnimationCalculationMode.paced
+        anim.duration = 0.5
+//        anim.rotationMode = CAAnimationRotationMode.rotateAuto
+        anim.repeatCount = 1
+        anim.fillMode = .forwards
+        anim.isRemovedOnCompletion = false
+        v.layer.add(anim, forKey: "explosion")
     }
     
     func doCollision() {
@@ -92,16 +111,29 @@ class BrokenGlassViewController: UIViewController {
             view.addSubview(g)
             squares.append(g)
         }
-
-        animator = UIDynamicAnimator(referenceView: view)
+        explosionAnimation(views: squares)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.45) {
+            for (i,square) in squares.enumerated() {
+                square.layer.removeAnimation(forKey: "explosion")
+                square.center = self.positions[i]
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.45) {
+            self.setCollision(squares)
+        }
+    }
+    
+    func setCollision(_ squares:[UIView]) {
+        animator = UIDynamicAnimator(referenceView: self.view)
         gravity = UIGravityBehavior(items:squares)
-        animator.addBehavior(gravity)
+        animator.addBehavior(self.gravity)
         collision = UICollisionBehavior(items:squares)
         collision.translatesReferenceBoundsIntoBoundary = true
-        animator.addBehavior(collision)
+        animator.addBehavior(self.collision)
         itemBehavior = UIDynamicItemBehavior(items:squares)
         itemBehavior.elasticity = 0.4
-        animator.addBehavior(itemBehavior)
+        animator.addBehavior(self.itemBehavior)
     }
     
     func getEdges() {

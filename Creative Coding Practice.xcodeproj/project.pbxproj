@@ -30,6 +30,7 @@
 		046669732757965500C0BA70 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046669722757965500C0BA70 /* WaveViewController.swift */; };
 		0485DC12275CC63800F029B0 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485DC11275CC63800F029B0 /* WaveView.swift */; };
 		0489E54927B9E48400110D5A /* GlassPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0489E54827B9E48400110D5A /* GlassPiece.swift */; };
+		048B344727DE8C05001E6643 /* ChocoChipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B344627DE8C05001E6643 /* ChocoChipViewController.swift */; };
 		0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */; };
 		0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */; };
 		0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5C0276F75650072CBBD /* TestViewController.swift */; };
@@ -84,6 +85,7 @@
 		046669722757965500C0BA70 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
 		0485DC11275CC63800F029B0 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		0489E54827B9E48400110D5A /* GlassPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassPiece.swift; sourceTree = "<group>"; };
+		048B344627DE8C05001E6643 /* ChocoChipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChocoChipViewController.swift; sourceTree = "<group>"; };
 		0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SquareSpark.sks; sourceTree = "<group>"; };
 		0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView + Extensions.swift"; sourceTree = "<group>"; };
 		0492C5C0276F75650072CBBD /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		041E1998274B4134000F8C11 /* Creative Coding Practice */ = {
 			isa = PBXGroup;
 			children = (
+				048B344527DE8BC4001E6643 /* ChocoChip */,
 				04089A9127B07FB30031EF82 /* BrokenGlass */,
 				0409074C279A5B5200A5AA03 /* MacMiller */,
 				04194B062789385C0006558B /* LP */,
@@ -284,6 +287,14 @@
 				046669722757965500C0BA70 /* WaveViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		048B344527DE8BC4001E6643 /* ChocoChip */ = {
+			isa = PBXGroup;
+			children = (
+				048B344627DE8C05001E6643 /* ChocoChipViewController.swift */,
+			);
+			path = ChocoChip;
 			sourceTree = "<group>";
 		};
 		0492C5BC276F616E0072CBBD /* sks */ = {
@@ -519,6 +530,7 @@
 				0494B47627706A180041116C /* CircleView.swift in Sources */,
 				04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */,
 				0485DC12275CC63800F029B0 /* WaveView.swift in Sources */,
+				048B344727DE8C05001E6643 /* ChocoChipViewController.swift in Sources */,
 				04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */,
 				04090750279A659E00A5AA03 /* Particle.swift in Sources */,
 			);

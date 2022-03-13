@@ -71,11 +71,9 @@ class ChocoChipViewController: UIViewController {
                     self.animating = false
             })
         } else {
-            let additionalHeight = min(gesture.translation(in: view).y,0)
-            
-            let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
-            let baseHeight = (view.frame.height - minimalHeight) + additionalHeight - waveHeight
-            
+            let movingHegiht = gesture.translation(in: view).y
+            let waveHeight = min(movingHegiht * 0.6, maxWaveHeight)
+            let baseHeight = (view.frame.height - minimalHeight) + movingHegiht - waveHeight
             let locationX = gesture.location(in: gesture.view).x
             
             layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
@@ -117,6 +115,7 @@ class ChocoChipViewController: UIViewController {
         bezierPath.addCurve(to: r1ControlPointView.dg_center(usePresentationLayerIfPossible: animating), controlPoint1: cControlPointView.dg_center(usePresentationLayerIfPossible: animating), controlPoint2: r1ControlPointView.dg_center(usePresentationLayerIfPossible: animating))
 
         bezierPath.addCurve(to: r3ControlPointView.dg_center(usePresentationLayerIfPossible: animating), controlPoint1: r1ControlPointView.dg_center(usePresentationLayerIfPossible: animating), controlPoint2: r2ControlPointView.dg_center(usePresentationLayerIfPossible: animating))
+        
         bezierPath.addLine(to: CGPoint(x: width, y:view.bounds.maxY))
         
         bezierPath.close()

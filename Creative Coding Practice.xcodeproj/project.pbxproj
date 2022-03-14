@@ -31,6 +31,7 @@
 		0485DC12275CC63800F029B0 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485DC11275CC63800F029B0 /* WaveView.swift */; };
 		0489E54927B9E48400110D5A /* GlassPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0489E54827B9E48400110D5A /* GlassPiece.swift */; };
 		048B344727DE8C05001E6643 /* ChocoChipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B344627DE8C05001E6643 /* ChocoChipViewController.swift */; };
+		048B344927DEACF6001E6643 /* CookieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B344827DEACF6001E6643 /* CookieView.swift */; };
 		0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */; };
 		0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */; };
 		0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5C0276F75650072CBBD /* TestViewController.swift */; };
@@ -86,6 +87,7 @@
 		0485DC11275CC63800F029B0 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		0489E54827B9E48400110D5A /* GlassPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassPiece.swift; sourceTree = "<group>"; };
 		048B344627DE8C05001E6643 /* ChocoChipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChocoChipViewController.swift; sourceTree = "<group>"; };
+		048B344827DEACF6001E6643 /* CookieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieView.swift; sourceTree = "<group>"; };
 		0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SquareSpark.sks; sourceTree = "<group>"; };
 		0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView + Extensions.swift"; sourceTree = "<group>"; };
 		0492C5C0276F75650072CBBD /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				048B344627DE8C05001E6643 /* ChocoChipViewController.swift */,
+				048B344827DEACF6001E6643 /* CookieView.swift */,
 			);
 			path = ChocoChip;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048B344927DEACF6001E6643 /* CookieView.swift in Sources */,
 				04B181232774AFA100D9F7CA /* DavidLoadingViewController.swift in Sources */,
 				04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */,
 				04F376A1277C5EFC00A70B98 /* Card.swift in Sources */,

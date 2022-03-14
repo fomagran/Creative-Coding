@@ -31,6 +31,14 @@ class ChocoChipViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
+        let cookie = CookieView(frame: CGRect(x: view.center.x-50, y: view.center.y-50, width: 100, height: 100))
+        cookie.layer.cornerRadius = cookie.frame.height/2
+        cookie.layer.borderColor = UIColor.black.cgColor
+        cookie.layer.borderWidth = 1
+        view.addSubview(cookie)
+    }
+    
+    func setChocoSauce() {
         shapeLayer.fillColor = UIColor(red: 123/255.0, green: 63/255.0, blue: 0/255.0, alpha: 1.0).cgColor
         shapeLayer.actions = ["position" : NSNull(), "bounds" : NSNull(), "path" : NSNull()]
         view.layer.addSublayer(shapeLayer)

@@ -35,7 +35,6 @@ class CookieView: UIView {
         }else if 270...360 ~= startAngle{
             endAngle = 180 + (360-startAngle)
         }
-        print(startAngle,endAngle)
         let r = frame.width/2
         let path = UIBezierPath()
         let x1 = frame.size.width / 2 + r*cos(CGFloat.pi/180*CGFloat(startAngle))

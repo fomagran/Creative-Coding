@@ -9,17 +9,26 @@ import UIKit
 
 class ChocoChipViewController: UIViewController {
     
-    private let minimalHeight: CGFloat = 200.0
-    private let maxWaveHeight: CGFloat = 250.0
-    private let shapeLayer = CAShapeLayer()
-    
-    private var displayLink: CADisplayLink!
-    private var animating = false {
-        didSet {
-            view.isUserInteractionEnabled = !animating
-            displayLink.isPaused = !animating
-        }
-    }
+    private lazy var label:UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(origin: .zero, size: CGSize(width: view.frame.width, height: 200))
+        label.center = CGPoint(x:view.center.x, y: view.frame.height-200)
+        label.textAlignment = .center
+        label.text = "Fomagran"
+        label.font = UIFont(name: "nutella-Bold", size: 60)
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "Fomagran")
+        attributedString.setColor(color: .systemRed, forText: "omagran")
+        label.attributedText = attributedString
+        label.backgroundColor = .white
+        label.layer.cornerRadius = 10
+        label.layer.masksToBounds = true
+        return label
+    }()
+    private lazy var chocoView:UIView = {
+        let v:UIView = UIView(frame:CGRect(x:0, y: view.frame.height-400, width: view.frame.width, height: 400))
+        v.backgroundColor = UIColor(red: 123/255.0, green: 63/255.0, blue: 0/255.0, alpha: 1.0)
+        return v
+    }()
     
     private let l3ControlPointView = UIView()
     private let l2ControlPointView = UIView()
@@ -36,107 +45,62 @@ class ChocoChipViewController: UIViewController {
         cookie.layer.borderColor = UIColor.black.cgColor
         cookie.layer.borderWidth = 1
         view.addSubview(cookie)
+        view.addSubview(chocoView)
+        view.addSubview(label)
+        setNutellaEdge()
     }
     
-    func setChocoSauce() {
-        shapeLayer.fillColor = UIColor(red: 123/255.0, green: 63/255.0, blue: 0/255.0, alpha: 1.0).cgColor
-        shapeLayer.actions = ["position" : NSNull(), "bounds" : NSNull(), "path" : NSNull()]
-        view.layer.addSublayer(shapeLayer)
-
-        let panGesture = UIPanGestureRecognizer(target: self, action:#selector(panGestureDidMove(_:)))
-        view.addGestureRecognizer(panGesture)
-
-        view.addSubview(l3ControlPointView)
-        view.addSubview(l2ControlPointView)
-        view.addSubview(l1ControlPointView)
-        view.addSubview(cControlPointView)
-        view.addSubview(r1ControlPointView)
-        view.addSubview(r2ControlPointView)
-        view.addSubview(r3ControlPointView)
-
-        layoutControlPoints(baseHeight: view.frame.height - minimalHeight, waveHeight: 0.0, locationX: view.bounds.width / 2.0)
-        updateShapeLayer()
-
-        displayLink = CADisplayLink(target: self, selector: #selector(updateShapeLayer))
-        displayLink.add(to: RunLoop.main, forMode: RunLoop.Mode.default)
-        displayLink.isPaused = true
-    }
-
-    @objc func panGestureDidMove(_ gesture: UIPanGestureRecognizer) {
-        if gesture.state == .ended || gesture.state == .failed || gesture.state == .cancelled {
-            let centerY = view.frame.height - minimalHeight
-            
-            animating = true
-            UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -> Void in
-                self.l3ControlPointView.center.y = centerY
-                self.l2ControlPointView.center.y = centerY
-                self.l1ControlPointView.center.y = centerY
-                self.cControlPointView.center.y = centerY
-                self.r1ControlPointView.center.y = centerY
-                self.r2ControlPointView.center.y = centerY
-                self.r3ControlPointView.center.y = centerY
-                }, completion: { _ in
-                    self.animating = false
-            })
-        } else {
-            let movingHegiht = gesture.translation(in: view).y
-            let waveHeight = min(movingHegiht * 0.6, maxWaveHeight)
-            let baseHeight = (view.frame.height - minimalHeight) + movingHegiht - waveHeight
-            let locationX = gesture.location(in: gesture.view).x
-            
-            layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
-            updateShapeLayer()
-        }
-    }
+    func setNutellaEdge() {
+        let leftBottomShape:CAShapeLayer = CAShapeLayer()
+        let leftBottomPath = UIBezierPath()
+        leftBottomPath.move(to: CGPoint(x: 0, y: view.frame.height-100))
+        leftBottomPath.addCurve(to: CGPoint(x: 50, y: view.frame.height), controlPoint1: CGPoint(x:5, y: view.frame.height-50), controlPoint2: CGPoint(x:60, y: view.frame.height))
+        leftBottomPath.addLine(to: CGPoint(x:0, y: view.frame.height+25))
+        leftBottomShape.strokeColor = UIColor.clear.cgColor
+        leftBottomShape.fillColor = UIColor.white.cgColor
+        leftBottomPath.close()
+        leftBottomShape.path = leftBottomPath.cgPath
+        view.layer.addSublayer(leftBottomShape)
+        
+        let rightBottomShape:CAShapeLayer = CAShapeLayer()
+        let rightBottomPath = UIBezierPath()
+        rightBottomPath.move(to: CGPoint(x:view.frame.width, y: view.frame.height-100))
+        rightBottomPath.addCurve(to: CGPoint(x: view.frame.width-50, y: view.frame.height), controlPoint1: CGPoint(x:view.frame.width-5, y: view.frame.height-50), controlPoint2: CGPoint(x:view.frame.width-60, y: view.frame.height))
+        rightBottomPath.addLine(to: CGPoint(x:view.frame.width, y: view.frame.height+25))
+        rightBottomShape.strokeColor = UIColor.clear.cgColor
+        rightBottomShape.fillColor = UIColor.white.cgColor
+        rightBottomPath.close()
+        rightBottomShape.path = rightBottomPath.cgPath
+        view.layer.addSublayer(rightBottomShape)
+        
+        let leftTopShape:CAShapeLayer = CAShapeLayer()
+        let leftTopPath = UIBezierPath()
+        leftTopPath.move(to: CGPoint(x: 0, y: view.frame.height-300))
+        leftTopPath.addCurve(to: CGPoint(x: 50, y: view.frame.height-400), controlPoint1: CGPoint(x:5, y: view.frame.height-350), controlPoint2: CGPoint(x:60, y: view.frame.height-400))
+        leftTopPath.addLine(to: CGPoint(x:0, y: view.frame.height-425))
+        leftTopShape.strokeColor = UIColor.clear.cgColor
+        leftTopShape.fillColor = UIColor.white.cgColor
+        leftTopPath.close()
+        leftTopShape.path = leftTopPath.cgPath
+        view.layer.addSublayer(leftTopShape)
+        
+        let rightTopShape:CAShapeLayer = CAShapeLayer()
+        let rightTopPath = UIBezierPath()
+        rightTopPath.move(to: CGPoint(x:view.frame.width, y: view.frame.height-300))
+        rightTopPath.addCurve(to: CGPoint(x: view.frame.width-50, y: view.frame.height-400), controlPoint1: CGPoint(x:view.frame.width-5, y: view.frame.height-350), controlPoint2: CGPoint(x:view.frame.width-60, y: view.frame.height-400))
+        rightTopPath.addLine(to: CGPoint(x:view.frame.width, y: view.frame.height-425))
+        rightTopShape.strokeColor = UIColor.clear.cgColor
+        rightTopShape.fillColor = UIColor.white.cgColor
+        rightTopPath.close()
+        rightTopShape.path = rightTopPath.cgPath
+        view.layer.addSublayer(rightTopShape)
     
-    private func layoutControlPoints(baseHeight: CGFloat, waveHeight: CGFloat, locationX: CGFloat) {
-        let width = view.bounds.width
-        
-        let minLeftX = min((locationX - width / 2.0) * 0.28, 0.0)
-        let maxRightX = max(width + (locationX - width / 2.0) * 0.28, width)
-        
-        let leftPartWidth = locationX - minLeftX
-        let rightPartWidth = maxRightX - locationX
-        
-        l3ControlPointView.center = CGPoint(x: minLeftX, y: baseHeight)
-        l2ControlPointView.center = CGPoint(x: minLeftX + leftPartWidth * 0.44, y: baseHeight)
-        l1ControlPointView.center = CGPoint(x: minLeftX + leftPartWidth * 0.71, y: baseHeight + waveHeight * 0.64)
-        cControlPointView.center = CGPoint(x: locationX , y: baseHeight + waveHeight * 1.36)
-        r1ControlPointView.center = CGPoint(x: maxRightX - rightPartWidth * 0.71, y: baseHeight + waveHeight * 0.64)
-        r2ControlPointView.center = CGPoint(x: maxRightX - (rightPartWidth * 0.44), y: baseHeight)
-        r3ControlPointView.center = CGPoint(x: maxRightX, y: baseHeight)
     }
-    
-    @objc func updateShapeLayer() {
-        shapeLayer.path = currentPath()
-    }
-    
-    private func currentPath() -> CGPath {
-        let width = view.bounds.width
-        
-        let bezierPath = UIBezierPath()
-        bezierPath.move(to: CGPoint(x: 0.0, y: view.bounds.maxY))
-        bezierPath.addLine(to: CGPoint(x: 0.0, y: l3ControlPointView.dg_center(usePresentationLayerIfPossible: animating).y))
-
-        bezierPath.addCurve(to: l1ControlPointView.dg_center(usePresentationLayerIfPossible: animating), controlPoint1: l3ControlPointView.dg_center(usePresentationLayerIfPossible: animating), controlPoint2: l2ControlPointView.dg_center(usePresentationLayerIfPossible: animating))
-
-        bezierPath.addCurve(to: r1ControlPointView.dg_center(usePresentationLayerIfPossible: animating), controlPoint1: cControlPointView.dg_center(usePresentationLayerIfPossible: animating), controlPoint2: r1ControlPointView.dg_center(usePresentationLayerIfPossible: animating))
-
-        bezierPath.addCurve(to: r3ControlPointView.dg_center(usePresentationLayerIfPossible: animating), controlPoint1: r1ControlPointView.dg_center(usePresentationLayerIfPossible: animating), controlPoint2: r2ControlPointView.dg_center(usePresentationLayerIfPossible: animating))
-        
-        bezierPath.addLine(to: CGPoint(x: width, y:view.bounds.maxY))
-        
-        bezierPath.close()
-        return bezierPath.cgPath
-    }
-    
 }
 
-extension UIView {
-  func dg_center(usePresentationLayerIfPossible: Bool) -> CGPoint {
-      if usePresentationLayerIfPossible, let presentationLayer = layer.presentation() {
-      return presentationLayer.position
+extension NSMutableAttributedString {
+    func setColor(color: UIColor, forText stringValue: String) {
+       let range: NSRange = self.mutableString.range(of: stringValue, options: .caseInsensitive)
+        self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
     }
-    return center
-  }
 }

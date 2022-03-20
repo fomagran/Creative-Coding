@@ -9,6 +9,8 @@ import UIKit
 
 class ChocoChipViewController: UIViewController {
     
+    lazy var topLine:CGFloat = view.frame.height - 400
+    
     private lazy var label:UILabel = {
         let label = UILabel()
         label.frame = CGRect(origin: .zero, size: CGSize(width: view.frame.width, height: 200))
@@ -25,30 +27,54 @@ class ChocoChipViewController: UIViewController {
         return label
     }()
     
+    var cookie:CookieView!
+    var cookiePercent:Double = 0.0
+
     private lazy var chocoView:UIView = {
         let v:UIView = UIView(frame:CGRect(x:0, y: view.frame.height-400, width: view.frame.width, height: 400))
         v.backgroundColor = UIColor(red: 81/255.0, green: 45/255.0, blue: 27/255.0, alpha: 1.0)
         return v
     }()
+    
+    override func viewDidLoad() {
+        setCookieView()
+        
+        let line = UIView(frame: CGRect(x:0, y:view.frame.height-400 , width: view.frame.width, height:1))
+        line.backgroundColor = .black
+        view.addSubview(line)
 
-    override func loadView() {
-        super.loadView()
-        let cookie = CookieView(frame: CGRect(x: view.center.x-50, y: view.center.y-50, width: 100, height: 100))
+    }
+    
+    func setCookieView() {
+        cookie = CookieView(frame: CGRect(x: view.center.x-50, y: view.center.y-200, width: 100, height: 100))
         cookie.layer.cornerRadius = cookie.frame.height/2
         cookie.layer.borderColor = UIColor.black.cgColor
         cookie.layer.borderWidth = 1
+        let panGesture = UIPanGestureRecognizer(target: self, action:#selector(cookieDidMove(_:)))
+        cookie.addGestureRecognizer(panGesture)
         view.addSubview(cookie)
-        view.addSubview(chocoView)
-        view.addSubview(label)
-        setNutellaEdge()
-        
+    }
+    
+    @objc func cookieDidMove(_ gesture:UIPanGestureRecognizer) {
+        cookie.center = gesture.location(in: view)
+        if cookie.center.y+cookie.frame.height/2 > topLine {
+            var gap = cookie.center.y+cookie.frame.height/2 - topLine
+            if gap > cookie.frame.height {
+               gap = cookie.frame.height
+            }
+            let percent = gap/cookie.frame.height
+            cookiePercent = max(cookiePercent,percent)
+            cookie.updateBezierPath(angle:Int(180 - (cookiePercent * 180)))
+        }
+    }
+    
+    func setNutellaElastic() {
         let w = view.frame.width-40
-        let v = UIView(frame: CGRect(x:view.center.x-w/2, y:view.frame.height-500, width:w, height: 200))
+        let v = UIView(frame: CGRect(x:view.center.x-w/2, y:view.frame.height-400, width:w, height: 100))
         v.backgroundColor = .white
         view.addSubview(v)
         
-        let nutella = NutellaView(frame:v.frame)
-        nutella.center = v.center
+        let nutella = NutellaView(frame:CGRect(x:view.center.x-w/2, y:view.frame.height-500, width:w, height: 200))
         nutella.layer.masksToBounds = true
         view.addSubview(nutella)
     }

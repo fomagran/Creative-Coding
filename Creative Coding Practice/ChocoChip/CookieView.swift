@@ -13,12 +13,10 @@ class CookieView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        
         shapeLayer.strokeColor = UIColor.clear.cgColor
         shapeLayer.fillColor = UIColor(red: 123/255.0, green: 63/255.0, blue: 0/255.0, alpha: 1.0).cgColor
         //1부터 180 사이까지 가능
-        updateBezierPath(angle:60)
+        updateBezierPath(angle:180)
         layer.addSublayer(shapeLayer)
     }
     

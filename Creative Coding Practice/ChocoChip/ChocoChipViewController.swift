@@ -13,8 +13,8 @@ class ChocoChipViewController: UIViewController {
     
     private lazy var label:UILabel = {
         let label = UILabel()
-        label.frame = CGRect(origin: .zero, size: CGSize(width: view.frame.width, height: 200))
-        label.center = CGPoint(x:view.center.x, y: view.frame.height-200)
+        label.frame = CGRect(origin: .zero, size: CGSize(width: view.frame.width, height: 100))
+        label.center = CGPoint(x:view.center.x, y: view.frame.height-250)
         label.textAlignment = .center
         label.text = "Fomagran"
         label.font = UIFont(name: "nutella-Bold", size: 60)
@@ -25,6 +25,23 @@ class ChocoChipViewController: UIViewController {
         label.layer.cornerRadius = 10
         label.layer.masksToBounds = true
         return label
+    }()
+    
+    private lazy var breadImage:UIImageView =  {
+        let imageView = UIImageView(frame: CGRect(x:view.center.x - view.frame.width/2, y: view.frame.height - 230, width:view.frame.width , height: 150))
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .white
+        imageView.layer.cornerRadius = 20
+        imageView.layer.masksToBounds = true
+        imageView.image = UIImage(named: "bread.jpeg")
+        return imageView
+    }()
+    
+    private lazy var nutella:NutellaView = {
+        let w = view.frame.width-97
+        let nutella = NutellaView(frame:CGRect(x:view.center.x-w/2, y:view.frame.height-560, width:w, height: 200))
+        nutella.layer.masksToBounds = true
+        return nutella
     }()
     
     var cookie:CookieView!
@@ -38,11 +55,11 @@ class ChocoChipViewController: UIViewController {
     
     override func viewDidLoad() {
         setCookieView()
-        
-        let line = UIView(frame: CGRect(x:0, y:view.frame.height-400 , width: view.frame.width, height:1))
-        line.backgroundColor = .black
-        view.addSubview(line)
-
+        view.addSubview(chocoView)
+        view.addSubview(nutella)
+        setNutellaEdge()
+        view.addSubview(label)
+        view.addSubview(breadImage)
     }
     
     func setCookieView() {
@@ -56,27 +73,40 @@ class ChocoChipViewController: UIViewController {
     }
     
     @objc func cookieDidMove(_ gesture:UIPanGestureRecognizer) {
-        cookie.center = gesture.location(in: view)
-        if cookie.center.y+cookie.frame.height/2 > topLine {
-            var gap = cookie.center.y+cookie.frame.height/2 - topLine
-            if gap > cookie.frame.height {
-               gap = cookie.frame.height
+        let location = gesture.location(in: view)
+        if gesture.state == .cancelled || gesture.state == .ended || gesture.state == .failed {
+            if nutella.didTouch {
+            doElasticAnimation()
             }
-            let percent = gap/cookie.frame.height
-            cookiePercent = max(cookiePercent,percent)
-            cookie.updateBezierPath(angle:Int(180 - (cookiePercent * 180)))
+        }else {
+            cookie.center = gesture.location(in: view)
+            if cookie.center.y+cookie.frame.height/2 > topLine {
+                var gap = cookie.center.y+cookie.frame.height/2 - topLine
+                if gap > cookie.frame.height {
+                    gap = cookie.frame.height
+                }
+                let percent = gap/cookie.frame.height
+                cookiePercent = max(cookiePercent,percent)
+                cookie.updateBezierPath(angle:Int(181 - (cookiePercent * 180)))
+                if !nutella.didTouch {
+                    nutella.startPoint = location
+                    nutella.didTouch = true
+                }
+            }
+            if nutella.didTouch {
+                nutella.touchNutella("Changed",location)
+            }
+            if location.y < 342 {
+                if nutella.didTouch {
+                doElasticAnimation()
+                }
+            }
         }
     }
     
-    func setNutellaElastic() {
-        let w = view.frame.width-40
-        let v = UIView(frame: CGRect(x:view.center.x-w/2, y:view.frame.height-400, width:w, height: 100))
-        v.backgroundColor = .white
-        view.addSubview(v)
-        
-        let nutella = NutellaView(frame:CGRect(x:view.center.x-w/2, y:view.frame.height-500, width:w, height: 200))
-        nutella.layer.masksToBounds = true
-        view.addSubview(nutella)
+    func doElasticAnimation() {
+        nutella.touchNutella("Ended",CGPoint(x:0,y:0))
+        nutella.didTouch = false
     }
     
     func setNutellaEdge() {

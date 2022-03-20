@@ -19,7 +19,9 @@ class NutellaView:UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var startPoint:CGPoint!
+    var startPoint:CGPoint = CGPoint(x:0,y:0)
+    var didTouch:Bool = false
+    private var isUP = false
     private lazy var minimalHeight: CGFloat = frame.height/2 - frame.height/5
     private lazy var maxWaveHeight: CGFloat = 0
     private let shapeLayer = CAShapeLayer()
@@ -44,9 +46,6 @@ class NutellaView:UIView {
         shapeLayer.actions = ["position" : NSNull(), "bounds" : NSNull(), "path" : NSNull()]
         layer.addSublayer(shapeLayer)
 
-        let panGesture = UIPanGestureRecognizer(target: self, action:#selector(panGestureDidMove(_:)))
-        addGestureRecognizer(panGesture)
-
         addSubview(l3ControlPointView)
         addSubview(l2ControlPointView)
         addSubview(l1ControlPointView)
@@ -63,51 +62,53 @@ class NutellaView:UIView {
         displayLink.isPaused = true
     }
 
-    @objc func panGestureDidMove(_ gesture: UIPanGestureRecognizer) {
-        if gesture.state == .began {
-          startPoint = gesture.location(in: gesture.view)
-        }else if gesture.state == .ended || gesture.state == .failed || gesture.state == .cancelled {
-            let centerY = frame.height - minimalHeight
-            animating = true
-            UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -> Void in
-                self.l3ControlPointView.center.y = centerY
-                self.l2ControlPointView.center.y = centerY
-                self.l1ControlPointView.center.y = centerY
-                self.cControlPointView.center.y = centerY
-                self.r1ControlPointView.center.y = centerY
-                self.r2ControlPointView.center.y = centerY
-                self.r3ControlPointView.center.y = centerY
-                }, completion: { _ in
-                    self.animating = false
-            })
+    func touchNutella(_ state:String,_ location:CGPoint) {
+        let location = CGPoint(x: location.x-50, y: location.y)
+        if state == "Ended" {
+            elasticAnimation()
         } else {
-            let location = gesture.location(in: gesture.view)
-            let gapY = location.y - startPoint.y
-            let movingHegiht = -gesture.translation(in: self).y
-            var waveHeight = min(movingHegiht * 0.6, maxWaveHeight)
-            let baseHeight = (frame.height - minimalHeight) - movingHegiht - waveHeight
+            let gapY = startPoint.y - location.y
+            isUP = gapY > 0
+            print(location.y,startPoint.y)
+            let movingHegiht = -(location.y - startPoint.y)
+            var waveHeight = min(movingHegiht, maxWaveHeight)
+            let baseHeight = (frame.height - minimalHeight) - movingHegiht
             waveHeight = gapY < 0 ? waveHeight : 0
-            if abs(gapY) < 50 {
+            if abs(gapY) < 200{
                 layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: location.x)
-            updateShapeLayer()
+                updateShapeLayer()
             }
         }
     }
     
+    func elasticAnimation() {
+        let centerY = frame.height - minimalHeight
+        animating = true
+        UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -> Void in
+            self.l3ControlPointView.center.y = centerY
+            self.l2ControlPointView.center.y = centerY
+            self.l1ControlPointView.center.y = centerY
+            self.cControlPointView.center.y = centerY
+            self.r1ControlPointView.center.y = centerY
+            self.r2ControlPointView.center.y = centerY
+            self.r3ControlPointView.center.y = centerY
+        }, completion: { _ in
+            self.animating = false
+        })
+    }
+    
     private func layoutControlPoints(baseHeight: CGFloat, waveHeight: CGFloat, locationX: CGFloat) {
         let width = bounds.width
-        var baseHeight = baseHeight
-        
         let minLeftX = min((locationX - width / 2.0) * 0.28, 0.0)
         let maxRightX = max(width + (locationX - width / 2.0) * 0.28, width)
     
         let leftPartWidth = locationX - minLeftX
         let rightPartWidth = maxRightX - locationX
         
-        if startPoint != nil {
+        var baseHeight = baseHeight
+        if didTouch && isUP {
             baseHeight = baseHeight-50
         }
-        
         let h = frame.height - minimalHeight
         l3ControlPointView.center = CGPoint(x: minLeftX, y:h)
         l2ControlPointView.center = CGPoint(x: minLeftX + leftPartWidth * 0.44, y: h)

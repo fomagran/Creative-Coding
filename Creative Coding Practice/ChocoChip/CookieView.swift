@@ -14,10 +14,11 @@ class CookieView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         shapeLayer.strokeColor = UIColor.clear.cgColor
-        shapeLayer.fillColor = UIColor(red: 123/255.0, green: 63/255.0, blue: 0/255.0, alpha: 1.0).cgColor
+        shapeLayer.fillColor = UIColor(red: 81/255.0, green: 45/255.0, blue: 27/255.0, alpha: 1.0).withAlphaComponent(0.8).cgColor
         //1부터 180 사이까지 가능
         updateBezierPath(angle:180)
         layer.addSublayer(shapeLayer)
+        layer.contents = UIImage(named: "cookie.webp")?.cgImage
     }
     
     required init?(coder: NSCoder) {

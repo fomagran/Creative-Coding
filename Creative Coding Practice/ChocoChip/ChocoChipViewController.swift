@@ -24,19 +24,12 @@ class ChocoChipViewController: UIViewController {
         label.layer.masksToBounds = true
         return label
     }()
+    
     private lazy var chocoView:UIView = {
         let v:UIView = UIView(frame:CGRect(x:0, y: view.frame.height-400, width: view.frame.width, height: 400))
-        v.backgroundColor = UIColor(red: 123/255.0, green: 63/255.0, blue: 0/255.0, alpha: 1.0)
+        v.backgroundColor = UIColor(red: 81/255.0, green: 45/255.0, blue: 27/255.0, alpha: 1.0)
         return v
     }()
-    
-    private let l3ControlPointView = UIView()
-    private let l2ControlPointView = UIView()
-    private let l1ControlPointView = UIView()
-    private let cControlPointView = UIView()
-    private let r1ControlPointView = UIView()
-    private let r2ControlPointView = UIView()
-    private let r3ControlPointView = UIView()
 
     override func loadView() {
         super.loadView()
@@ -48,6 +41,16 @@ class ChocoChipViewController: UIViewController {
         view.addSubview(chocoView)
         view.addSubview(label)
         setNutellaEdge()
+        
+        let w = view.frame.width-40
+        let v = UIView(frame: CGRect(x:view.center.x-w/2, y:view.frame.height-500, width:w, height: 200))
+        v.backgroundColor = .white
+        view.addSubview(v)
+        
+        let nutella = NutellaView(frame:v.frame)
+        nutella.center = v.center
+        nutella.layer.masksToBounds = true
+        view.addSubview(nutella)
     }
     
     func setNutellaEdge() {
@@ -65,7 +68,7 @@ class ChocoChipViewController: UIViewController {
         let rightBottomShape:CAShapeLayer = CAShapeLayer()
         let rightBottomPath = UIBezierPath()
         rightBottomPath.move(to: CGPoint(x:view.frame.width, y: view.frame.height-100))
-        rightBottomPath.addCurve(to: CGPoint(x: view.frame.width-50, y: view.frame.height), controlPoint1: CGPoint(x:view.frame.width-5, y: view.frame.height-50), controlPoint2: CGPoint(x:view.frame.width-60, y: view.frame.height))
+        rightBottomPath.addCurve(to: CGPoint(x: view.frame.width-50, y: view.frame.height), controlPoint1: CGPoint(x:view.frame.width-5, y: view.frame.height-50), controlPoint2: CGPoint(x:view.frame.width-50, y: view.frame.height))
         rightBottomPath.addLine(to: CGPoint(x:view.frame.width, y: view.frame.height+25))
         rightBottomShape.strokeColor = UIColor.clear.cgColor
         rightBottomShape.fillColor = UIColor.white.cgColor
@@ -76,7 +79,7 @@ class ChocoChipViewController: UIViewController {
         let leftTopShape:CAShapeLayer = CAShapeLayer()
         let leftTopPath = UIBezierPath()
         leftTopPath.move(to: CGPoint(x: 0, y: view.frame.height-300))
-        leftTopPath.addCurve(to: CGPoint(x: 50, y: view.frame.height-400), controlPoint1: CGPoint(x:5, y: view.frame.height-350), controlPoint2: CGPoint(x:60, y: view.frame.height-400))
+        leftTopPath.addCurve(to: CGPoint(x: 50, y: view.frame.height-400), controlPoint1: CGPoint(x:5, y: view.frame.height-350), controlPoint2: CGPoint(x:50, y: view.frame.height-400))
         leftTopPath.addLine(to: CGPoint(x:0, y: view.frame.height-425))
         leftTopShape.strokeColor = UIColor.clear.cgColor
         leftTopShape.fillColor = UIColor.white.cgColor
@@ -87,7 +90,7 @@ class ChocoChipViewController: UIViewController {
         let rightTopShape:CAShapeLayer = CAShapeLayer()
         let rightTopPath = UIBezierPath()
         rightTopPath.move(to: CGPoint(x:view.frame.width, y: view.frame.height-300))
-        rightTopPath.addCurve(to: CGPoint(x: view.frame.width-50, y: view.frame.height-400), controlPoint1: CGPoint(x:view.frame.width-5, y: view.frame.height-350), controlPoint2: CGPoint(x:view.frame.width-60, y: view.frame.height-400))
+        rightTopPath.addCurve(to: CGPoint(x: view.frame.width-50, y: view.frame.height-400), controlPoint1: CGPoint(x:view.frame.width-5, y: view.frame.height-350), controlPoint2: CGPoint(x:view.frame.width-50, y: view.frame.height-400))
         rightTopPath.addLine(to: CGPoint(x:view.frame.width, y: view.frame.height-425))
         rightTopShape.strokeColor = UIColor.clear.cgColor
         rightTopShape.fillColor = UIColor.white.cgColor

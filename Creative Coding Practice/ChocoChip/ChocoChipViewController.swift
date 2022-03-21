@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import AVFAudio
 
 class ChocoChipViewController: UIViewController {
     
     lazy var topLine:CGFloat = view.frame.height - 400
+    var cookie:CookieView!
+    var cookiePercent:Double = 0.0
+    var player: AVAudioPlayer?
     
     private lazy var label:UILabel = {
         let label = UILabel()
@@ -43,9 +47,6 @@ class ChocoChipViewController: UIViewController {
         nutella.layer.masksToBounds = true
         return nutella
     }()
-    
-    var cookie:CookieView!
-    var cookiePercent:Double = 0.0
 
     private lazy var chocoView:UIView = {
         let v:UIView = UIView(frame:CGRect(x:0, y: view.frame.height-400, width: view.frame.width, height: 400))
@@ -60,6 +61,19 @@ class ChocoChipViewController: UIViewController {
         setNutellaEdge()
         view.addSubview(label)
         view.addSubview(breadImage)
+        view.backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 240/255, alpha: 1)
+    }
+    
+    func setMusicPlayer(name:String,ex:String) {
+        let url = Bundle.main.url(forResource:name, withExtension:ex)!
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.prepareToPlay()
+            player.play()
+        } catch let error as NSError {
+            print(error.description)
+        }
     }
     
     func setCookieView() {
@@ -89,6 +103,7 @@ class ChocoChipViewController: UIViewController {
                 cookiePercent = max(cookiePercent,percent)
                 cookie.updateBezierPath(angle:Int(181 - (cookiePercent * 180)))
                 if !nutella.didTouch {
+                    setMusicPlayer(name: "gooey2", ex:"mp3")
                     nutella.startPoint = location
                     nutella.didTouch = true
                 }
@@ -98,7 +113,8 @@ class ChocoChipViewController: UIViewController {
             }
             if location.y < 342 {
                 if nutella.didTouch {
-                doElasticAnimation()
+                    setMusicPlayer(name: "gooey1", ex:"mp3")
+                    doElasticAnimation()
                 }
             }
         }
@@ -116,7 +132,7 @@ class ChocoChipViewController: UIViewController {
         leftBottomPath.addCurve(to: CGPoint(x: 50, y: view.frame.height), controlPoint1: CGPoint(x:5, y: view.frame.height-50), controlPoint2: CGPoint(x:60, y: view.frame.height))
         leftBottomPath.addLine(to: CGPoint(x:0, y: view.frame.height+25))
         leftBottomShape.strokeColor = UIColor.clear.cgColor
-        leftBottomShape.fillColor = UIColor.white.cgColor
+        leftBottomShape.fillColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 240/255, alpha: 1).cgColor
         leftBottomPath.close()
         leftBottomShape.path = leftBottomPath.cgPath
         view.layer.addSublayer(leftBottomShape)
@@ -127,7 +143,7 @@ class ChocoChipViewController: UIViewController {
         rightBottomPath.addCurve(to: CGPoint(x: view.frame.width-50, y: view.frame.height), controlPoint1: CGPoint(x:view.frame.width-5, y: view.frame.height-50), controlPoint2: CGPoint(x:view.frame.width-50, y: view.frame.height))
         rightBottomPath.addLine(to: CGPoint(x:view.frame.width, y: view.frame.height+25))
         rightBottomShape.strokeColor = UIColor.clear.cgColor
-        rightBottomShape.fillColor = UIColor.white.cgColor
+        rightBottomShape.fillColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 240/255, alpha: 1).cgColor
         rightBottomPath.close()
         rightBottomShape.path = rightBottomPath.cgPath
         view.layer.addSublayer(rightBottomShape)
@@ -138,7 +154,7 @@ class ChocoChipViewController: UIViewController {
         leftTopPath.addCurve(to: CGPoint(x: 50, y: view.frame.height-400), controlPoint1: CGPoint(x:5, y: view.frame.height-350), controlPoint2: CGPoint(x:50, y: view.frame.height-400))
         leftTopPath.addLine(to: CGPoint(x:0, y: view.frame.height-425))
         leftTopShape.strokeColor = UIColor.clear.cgColor
-        leftTopShape.fillColor = UIColor.white.cgColor
+        leftTopShape.fillColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 240/255, alpha: 1).cgColor
         leftTopPath.close()
         leftTopShape.path = leftTopPath.cgPath
         view.layer.addSublayer(leftTopShape)
@@ -149,7 +165,7 @@ class ChocoChipViewController: UIViewController {
         rightTopPath.addCurve(to: CGPoint(x: view.frame.width-50, y: view.frame.height-400), controlPoint1: CGPoint(x:view.frame.width-5, y: view.frame.height-350), controlPoint2: CGPoint(x:view.frame.width-50, y: view.frame.height-400))
         rightTopPath.addLine(to: CGPoint(x:view.frame.width, y: view.frame.height-425))
         rightTopShape.strokeColor = UIColor.clear.cgColor
-        rightTopShape.fillColor = UIColor.white.cgColor
+        rightTopShape.fillColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 240/255, alpha: 1).cgColor
         rightTopPath.close()
         rightTopShape.path = rightTopPath.cgPath
         view.layer.addSublayer(rightTopShape)

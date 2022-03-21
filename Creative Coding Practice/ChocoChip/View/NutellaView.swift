@@ -69,7 +69,6 @@ class NutellaView:UIView {
         } else {
             let gapY = startPoint.y - location.y
             isUP = gapY > 0
-            print(location.y,startPoint.y)
             let movingHegiht = -(location.y - startPoint.y)
             var waveHeight = min(movingHegiht, maxWaveHeight)
             let baseHeight = (frame.height - minimalHeight) - movingHegiht

@@ -44,7 +44,6 @@ class TransformerViewController: UIViewController {
         progress.percent = 1
         
         view.addSubview(progress)
-        
     }
     
     func animateGradient() {

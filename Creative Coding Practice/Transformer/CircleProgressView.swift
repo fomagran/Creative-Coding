@@ -25,7 +25,7 @@ class CircularProgressView: UIView {
         let progressAngle = radians(of: CircularProgressView.startDegrees + (360 - CircularProgressView.startDegrees + CircularProgressView.endDegrees) * CGFloat(max(0.0, min(percent, 1.0))))
 
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        let radius = min(center.x, center.y) - trackBorderWidth / 2 - 10
+        let radius = min(center.x, center.y) - trackBorderWidth / 2 - 20
 
         let arcPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: progressAngle, clockwise: true)
         arcPath.lineWidth = trackBorderWidth
@@ -35,8 +35,8 @@ class CircularProgressView: UIView {
         arcPath.stroke()
         
         let straightPath = UIBezierPath()
-        straightPath.move(to: CGPoint(x: center.x, y: 10))
-        straightPath.addLine(to: CGPoint(x: center.x, y:50))
+        straightPath.move(to: CGPoint(x: center.x, y: 20))
+        straightPath.addLine(to: CGPoint(x: center.x, y:40))
         straightPath.lineWidth = trackBorderWidth
         straightPath.lineCapStyle = .round
         

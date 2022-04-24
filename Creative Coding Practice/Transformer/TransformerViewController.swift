@@ -27,11 +27,26 @@ class TransformerViewController: UIViewController {
     
     func buttonDrawAnimation(i:Int) {
         if i == 101 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.powerButton.isReverse = true
+                self.buttonReverseDrawAnimation(i: 100)
+            }
             return
         }
-        self.powerButton.percent = Double(i)/100
+        self.powerButton.backgroundPercent = Double(i)/100
+        self.powerButton.bezierPercent = Double(i)/100
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
             self.buttonDrawAnimation(i: i+1)
+        }
+    }
+    
+    func buttonReverseDrawAnimation(i:Int) {
+        if i == -1 {
+            return
+        }
+        self.powerButton.bezierPercent = Double(i)/100
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+            self.buttonReverseDrawAnimation(i: i-1)
         }
     }
     
@@ -40,7 +55,8 @@ class TransformerViewController: UIViewController {
         powerButton.addTarget(self, action: #selector(tapPowerButton), for: .touchUpInside)
         powerButton.layer.cornerRadius = 20
         powerButton.layer.masksToBounds = true
-        powerButton.percent = 0
+        powerButton.backgroundPercent = 0
+        powerButton.bezierPercent = 0
         
         let shadow = UIView(frame: CGRect(x: view.center.x - 50, y: view.center.y - 35, width: 100, height: 100))
         shadow.backgroundColor = .black
@@ -53,7 +69,8 @@ class TransformerViewController: UIViewController {
     
     @objc func tapPowerButton() {
         powerButton.center = CGPoint(x: buttonFrame.midX, y: buttonFrame.midY + 15)
-        powerButton.percent = 0
+        powerButton.backgroundPercent = 0
+        powerButton.bezierPercent = 0
         buttonDrawAnimation(i: 0)
     }
     

@@ -12,7 +12,7 @@ class TransformerViewController: UIViewController {
     var gradientSet = [[CGColor]]()
     var currentGradient: Int = 0
     let radius:CGFloat = .pi/2
-    
+    var buttonFrame:CGRect = .zero
     lazy var powerButton = PowerButton(frame: CGRect(x: view.center.x - 50, y: view.center.y - 50, width: 100, height: 100))
     
     override func viewDidLoad() {
@@ -25,12 +25,22 @@ class TransformerViewController: UIViewController {
         setButton()
     }
     
+    func buttonDrawAnimation(i:Int) {
+        if i == 101 {
+            return
+        }
+        self.powerButton.percent = Double(i)/100
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+            self.buttonDrawAnimation(i: i+1)
+        }
+    }
+    
     private func setButton() {
+        buttonFrame = powerButton.frame
         powerButton.addTarget(self, action: #selector(tapPowerButton), for: .touchUpInside)
-        powerButton.backgroundColor = UIColor(red: 55/255, green: 50/255, blue: 115/255, alpha:1)
         powerButton.layer.cornerRadius = 20
         powerButton.layer.masksToBounds = true
-        powerButton.percent = 1
+        powerButton.percent = 0
         
         let shadow = UIView(frame: CGRect(x: view.center.x - 50, y: view.center.y - 35, width: 100, height: 100))
         shadow.backgroundColor = .black
@@ -42,8 +52,9 @@ class TransformerViewController: UIViewController {
     }
     
     @objc func tapPowerButton() {
-        let frame = powerButton.frame
-        powerButton.center = CGPoint(x: frame.midX, y: frame.midY + 15)
+        powerButton.center = CGPoint(x: buttonFrame.midX, y: buttonFrame.midY + 15)
+        powerButton.percent = 0
+        buttonDrawAnimation(i: 0)
     }
     
     private func setBackground() {
@@ -64,6 +75,7 @@ class TransformerViewController: UIViewController {
         self.view.layer.addSublayer(gradient)
         
         animateGradient()
+        
     }
     
     func animateGradient() {
@@ -77,17 +89,10 @@ class TransformerViewController: UIViewController {
         gradientChangeAnimation.duration = 5.0
         gradientChangeAnimation.toValue = gradientSet[currentGradient]
         gradientChangeAnimation.fillMode = CAMediaTimingFillMode.forwards
+        gradientChangeAnimation.autoreverses = true
+        gradientChangeAnimation.repeatCount = Float.infinity
         gradientChangeAnimation.isRemovedOnCompletion = false
         gradient.add(gradientChangeAnimation, forKey: "colorChange")
     }
     
-}
-
-extension TransformerViewController: CAAnimationDelegate {
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if flag {
-            gradient.colors = gradientSet[currentGradient]
-            animateGradient()
-        }
-    }
 }

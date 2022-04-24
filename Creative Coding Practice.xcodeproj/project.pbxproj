@@ -53,7 +53,7 @@
 		0497A7E5279D2FEC0060616A /* Hot shower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DE279D2FEC0060616A /* Hot shower.mp3 */; };
 		0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0497A7E8279D348D0060616A /* UIImage + Extennsions.swift */; };
 		04A7FD14280B7004006E146D /* TransformerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7FD13280B7004006E146D /* TransformerViewController.swift */; };
-		04A7FD18280B76AC006E146D /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7FD17280B76AC006E146D /* CircleProgressView.swift */; };
+		04A7FD18280B76AC006E146D /* PowerButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7FD17280B76AC006E146D /* PowerButon.swift */; };
 		04B181232774AFA100D9F7CA /* DavidLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B181222774AFA100D9F7CA /* DavidLoadingViewController.swift */; };
 		04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */; };
 		04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA9A8727799989002F18D9 /* MainViewController.swift */; };
@@ -119,7 +119,7 @@
 		0497A7DE279D2FEC0060616A /* Hot shower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hot shower.mp3"; sourceTree = "<group>"; };
 		0497A7E8279D348D0060616A /* UIImage + Extennsions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extennsions.swift"; sourceTree = "<group>"; };
 		04A7FD13280B7004006E146D /* TransformerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerViewController.swift; sourceTree = "<group>"; };
-		04A7FD17280B76AC006E146D /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		04A7FD17280B76AC006E146D /* PowerButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerButon.swift; sourceTree = "<group>"; };
 		04B181222774AFA100D9F7CA /* DavidLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DavidLoadingViewController.swift; sourceTree = "<group>"; };
 		04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
 		04BA9A8727799989002F18D9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				04A7FD13280B7004006E146D /* TransformerViewController.swift */,
-				04A7FD17280B76AC006E146D /* CircleProgressView.swift */,
+				04A7FD17280B76AC006E146D /* PowerButon.swift */,
 			);
 			path = Transformer;
 			sourceTree = "<group>";
@@ -608,7 +608,7 @@
 				04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */,
 				04090750279A659E00A5AA03 /* Particle.swift in Sources */,
 				047849EB27E58C44004C2D83 /* NutellaView.swift in Sources */,
-				04A7FD18280B76AC006E146D /* CircleProgressView.swift in Sources */,
+				04A7FD18280B76AC006E146D /* PowerButon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

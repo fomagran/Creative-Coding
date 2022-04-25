@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFAudio
 
 class TransformerViewController: UIViewController {
     let gradient = CAGradientLayer()
@@ -25,12 +26,25 @@ class TransformerViewController: UIViewController {
     }()
     var alpahbet:[String] = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M"]
     var keyboardButons:[UIButton] = []
+    var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupKeyboard()
         setTapGesture()
+    }
+    
+    func setMusicPlayer(name:String,ex:String) {
+        let url = Bundle.main.url(forResource:name, withExtension:ex)!
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.prepareToPlay()
+            player.play()
+        } catch let error as NSError {
+            print(error.description)
+        }
     }
     
     private func setTapGesture() {
@@ -42,6 +56,7 @@ class TransformerViewController: UIViewController {
         animateKeyboard(i: 0)
         self.placeHolder.text = ""
         self.placeHolder.textColor = UIColor(displayP3Red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
+        setMusicPlayer(name: "buttonAppear", ex: "mp3")
     }
     
     
@@ -53,7 +68,7 @@ class TransformerViewController: UIViewController {
             self.keyboardButons[i].backgroundColor = UIColor(displayP3Red: 55/255, green: 55/255, blue: 55/255, alpha: 255/255)
             self.keyboardButons[i].setTitleColor(UIColor(displayP3Red: 245/255, green: 241/255, blue: 80/255, alpha: 255/255), for: .normal)
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.animateKeyboard(i: i+1)
         }
     }
@@ -81,6 +96,7 @@ class TransformerViewController: UIViewController {
     
     @objc func tapKeyboardButton(_ sender:UIButton) {
         placeHolder.text! += sender.titleLabel?.text ?? ""
+        setMusicPlayer(name: "buttonTap", ex: "mp3")
     }
     
     private func setupUI() {
@@ -94,7 +110,7 @@ class TransformerViewController: UIViewController {
     }
     
     func inputAnimation() {
-        UIView.animate(withDuration: 2, delay: 1, options:.curveEaseInOut) {
+        UIView.animate(withDuration: 1, delay: 1, options:.curveEaseInOut) {
             self.shadow.frame = CGRect(x:self.view.center.x-150, y: self.view.center.y-25, width: 300, height: 50)
             self.shadow.backgroundColor = .white
             self.shadow.layer.borderColor = UIColor.lightGray.cgColor
@@ -112,16 +128,16 @@ class TransformerViewController: UIViewController {
     }
     
     func buttonDrawAnimation(i:Int) {
-        if i == 101 {
+        if i == 201 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.powerButton.isReverse = true
-                self.buttonReverseDrawAnimation(i: 100)
+                self.buttonReverseDrawAnimation(i: 200)
             }
             return
         }
-        self.powerButton.backgroundPercent = Double(i)/100
-        self.powerButton.bezierPercent = Double(i)/100
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+        self.powerButton.backgroundPercent = Double(i)/200
+        self.powerButton.bezierPercent = Double(i)/200
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             self.buttonDrawAnimation(i: i+1)
         }
     }
@@ -132,8 +148,8 @@ class TransformerViewController: UIViewController {
             inputAnimation()
             return
         }
-        self.powerButton.bezierPercent = Double(i)/100
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+        self.powerButton.bezierPercent = Double(i)/200
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             self.buttonReverseDrawAnimation(i: i-1)
         }
     }
@@ -159,6 +175,7 @@ class TransformerViewController: UIViewController {
         powerButton.backgroundPercent = 0
         powerButton.bezierPercent = 0
         buttonDrawAnimation(i: 0)
+        setMusicPlayer(name: "turnOn", ex:"m4a")
     }
     
     private func setBackground() {

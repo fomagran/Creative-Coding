@@ -59,6 +59,9 @@
 		04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA9A8727799989002F18D9 /* MainViewController.swift */; };
 		04BA9A8B27799A30002F18D9 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA9A8A27799A30002F18D9 /* MainTableViewCell.swift */; };
 		04C7806D28162368006DF829 /* KeyboardCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7806C28162368006DF829 /* KeyboardCharacter.swift */; };
+		04C7808228164A5F006DF829 /* turnOn.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 04C7808128164A5F006DF829 /* turnOn.m4a */; };
+		04C7808828164D3B006DF829 /* buttonAppear.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C7808728164D3B006DF829 /* buttonAppear.mp3 */; };
+		04C7808A28164DBA006DF829 /* buttonTap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C7808928164DBA006DF829 /* buttonTap.mp3 */; };
 		04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */; };
 		04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D957278ABC270067C4A5 /* LPConstants.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */; };
@@ -126,6 +129,9 @@
 		04BA9A8727799989002F18D9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		04BA9A8A27799A30002F18D9 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		04C7806C28162368006DF829 /* KeyboardCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCharacter.swift; sourceTree = "<group>"; };
+		04C7808128164A5F006DF829 /* turnOn.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = turnOn.m4a; sourceTree = "<group>"; };
+		04C7808728164D3B006DF829 /* buttonAppear.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonAppear.mp3; sourceTree = "<group>"; };
+		04C7808928164DBA006DF829 /* buttonTap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonTap.mp3; sourceTree = "<group>"; };
 		04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		04D8D957278ABC270067C4A5 /* LPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPConstants.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardCell.swift; sourceTree = "<group>"; };
@@ -385,6 +391,9 @@
 		04A7FD12280B6FEA006E146D /* Transformer */ = {
 			isa = PBXGroup;
 			children = (
+				04C7808728164D3B006DF829 /* buttonAppear.mp3 */,
+				04C7808928164DBA006DF829 /* buttonTap.mp3 */,
+				04C7808128164A5F006DF829 /* turnOn.m4a */,
 				04A7FD13280B7004006E146D /* TransformerViewController.swift */,
 				04A7FD17280B76AC006E146D /* PowerButon.swift */,
 				04C7806C28162368006DF829 /* KeyboardCharacter.swift */,
@@ -546,6 +555,7 @@
 				0497A7E0279D2FEC0060616A /* Monster.mp3 in Resources */,
 				0432DDFD27C345D1009A16AD /* crack.wav in Resources */,
 				047849F327E6F86E004C2D83 /* gooey2.mp3 in Resources */,
+				04C7808828164D3B006DF829 /* buttonAppear.mp3 in Resources */,
 				0497A7E1279D2FEC0060616A /* Shotta flow.mp3 in Resources */,
 				04E7E90A276E1541007B7B82 /* Spark.sks in Resources */,
 				047849F527E6F939004C2D83 /* gooey1.mp3 in Resources */,
@@ -553,7 +563,9 @@
 				0497A7E2279D2FEC0060616A /* BOP.mp3 in Resources */,
 				0497A7E4279D2FEC0060616A /* Headlights.mp3 in Resources */,
 				047849ED27E6D414004C2D83 /* cookie.webp in Resources */,
+				04C7808A28164DBA006DF829 /* buttonTap.mp3 in Resources */,
 				0497A7DF279D2FEC0060616A /* Highest in the room.mp3 in Resources */,
+				04C7808228164A5F006DF829 /* turnOn.m4a in Resources */,
 				0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */,
 				0497A7E5279D2FEC0060616A /* Hot shower.mp3 in Resources */,
 				0497A7E3279D2FEC0060616A /* Clubhouse.mp3 in Resources */,

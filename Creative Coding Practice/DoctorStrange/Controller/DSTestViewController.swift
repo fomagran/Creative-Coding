@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TestViewController: UIViewController {
+class DSTestViewController: UIViewController {
     let redDot1 = UIView()
     var points:[CGPoint] = []
     override func viewDidLoad() {

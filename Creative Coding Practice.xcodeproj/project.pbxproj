@@ -33,15 +33,15 @@
 		047849EF27E6D86A004C2D83 /* bread.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 047849EE27E6D86A004C2D83 /* bread.jpeg */; };
 		047849F327E6F86E004C2D83 /* gooey2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 047849F227E6F86E004C2D83 /* gooey2.mp3 */; };
 		047849F527E6F939004C2D83 /* gooey1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 047849F427E6F939004C2D83 /* gooey1.mp3 */; };
-		04784A0127E804F4004C2D83 /* BezierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04784A0027E804F4004C2D83 /* BezierViewController.swift */; };
-		04784A0527E8050E004C2D83 /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04784A0427E8050E004C2D83 /* BezierView.swift */; };
+		04784A0127E804F4004C2D83 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04784A0027E804F4004C2D83 /* TestViewController.swift */; };
+		04784A0527E8050E004C2D83 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04784A0427E8050E004C2D83 /* TestView.swift */; };
 		0485DC12275CC63800F029B0 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485DC11275CC63800F029B0 /* WaveView.swift */; };
 		0489E54927B9E48400110D5A /* GlassPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0489E54827B9E48400110D5A /* GlassPiece.swift */; };
 		048B344727DE8C05001E6643 /* ChocoChipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B344627DE8C05001E6643 /* ChocoChipViewController.swift */; };
 		048B344927DEACF6001E6643 /* CookieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B344827DEACF6001E6643 /* CookieView.swift */; };
 		0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */; };
 		0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */; };
-		0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5C0276F75650072CBBD /* TestViewController.swift */; };
+		0492C5C1276F75650072CBBD /* DSTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5C0276F75650072CBBD /* DSTestViewController.swift */; };
 		0494B47627706A180041116C /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B47527706A180041116C /* CircleView.swift */; };
 		0496F59827E5708500AC54A5 /* nutellaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0496F59727E5707000AC54A5 /* nutellaBold.ttf */; };
 		0497A7DF279D2FEC0060616A /* Highest in the room.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7D8279D2FEA0060616A /* Highest in the room.mp3 */; };
@@ -103,15 +103,15 @@
 		047849EE27E6D86A004C2D83 /* bread.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bread.jpeg; sourceTree = "<group>"; };
 		047849F227E6F86E004C2D83 /* gooey2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gooey2.mp3; sourceTree = "<group>"; };
 		047849F427E6F939004C2D83 /* gooey1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gooey1.mp3; sourceTree = "<group>"; };
-		04784A0027E804F4004C2D83 /* BezierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierViewController.swift; sourceTree = "<group>"; };
-		04784A0427E8050E004C2D83 /* BezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
+		04784A0027E804F4004C2D83 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		04784A0427E8050E004C2D83 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		0485DC11275CC63800F029B0 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		0489E54827B9E48400110D5A /* GlassPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassPiece.swift; sourceTree = "<group>"; };
 		048B344627DE8C05001E6643 /* ChocoChipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChocoChipViewController.swift; sourceTree = "<group>"; };
 		048B344827DEACF6001E6643 /* CookieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieView.swift; sourceTree = "<group>"; };
 		0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SquareSpark.sks; sourceTree = "<group>"; };
 		0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView + Extensions.swift"; sourceTree = "<group>"; };
-		0492C5C0276F75650072CBBD /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		0492C5C0276F75650072CBBD /* DSTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTestViewController.swift; sourceTree = "<group>"; };
 		0494B47527706A180041116C /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		0496F59727E5707000AC54A5 /* nutellaBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nutellaBold.ttf; sourceTree = "<group>"; };
 		0497A7D8279D2FEA0060616A /* Highest in the room.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Highest in the room.mp3"; sourceTree = "<group>"; };
@@ -329,8 +329,8 @@
 		047849FF27E804D5004C2D83 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				04784A0027E804F4004C2D83 /* BezierViewController.swift */,
-				04784A0427E8050E004C2D83 /* BezierView.swift */,
+				04784A0027E804F4004C2D83 /* TestViewController.swift */,
+				04784A0427E8050E004C2D83 /* TestView.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -375,7 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				04E7E90C276E1652007B7B82 /* DSViewController.swift */,
-				0492C5C0276F75650072CBBD /* TestViewController.swift */,
+				0492C5C0276F75650072CBBD /* DSTestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -584,7 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				048B344927DEACF6001E6643 /* CookieView.swift in Sources */,
-				04784A0527E8050E004C2D83 /* BezierView.swift in Sources */,
+				04784A0527E8050E004C2D83 /* TestView.swift in Sources */,
 				04B181232774AFA100D9F7CA /* DavidLoadingViewController.swift in Sources */,
 				04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */,
 				04A7FD14280B7004006E146D /* TransformerViewController.swift in Sources */,
@@ -606,12 +606,12 @@
 				0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */,
 				0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
-				0492C5C1276F75650072CBBD /* TestViewController.swift in Sources */,
+				0492C5C1276F75650072CBBD /* DSTestViewController.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,
 				04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */,
 				04089A9327B07FDB0031EF82 /* BrokenGlassViewController.swift in Sources */,
 				04BA9A8B27799A30002F18D9 /* MainTableViewCell.swift in Sources */,
-				04784A0127E804F4004C2D83 /* BezierViewController.swift in Sources */,
+				04784A0127E804F4004C2D83 /* TestViewController.swift in Sources */,
 				041E19AF274B443F000F8C11 /* SwingEffectViewController.swift in Sources */,
 				04E7E90D276E1652007B7B82 /* DSViewController.swift in Sources */,
 				046669732757965500C0BA70 /* WaveViewController.swift in Sources */,

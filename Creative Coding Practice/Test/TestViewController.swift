@@ -7,12 +7,11 @@
 
 import UIKit
 
-class BezierViewController: UIViewController {
-
+class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let bezierView:BezierView = BezierView(frame:view.frame)
-        bezierView.backgroundColor = .clear
-        view.addSubview(bezierView)
+        let testView:TestView = TestView(frame:view.frame)
+        testView.backgroundColor = .white
+        view.addSubview(testView)
     }
 }

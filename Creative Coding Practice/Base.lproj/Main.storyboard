@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kmi-oc-up5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OJD-jn-7I1">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -374,10 +374,10 @@
             </objects>
             <point key="canvasLocation" x="-52" y="1716"/>
         </scene>
-        <!--Bezier View Controller-->
+        <!--Test View Controller-->
         <scene sceneID="g01-84-R0k">
             <objects>
-                <viewController id="OJD-jn-7I1" customClass="BezierViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OJD-jn-7I1" customClass="TestViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dNc-lw-WYV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

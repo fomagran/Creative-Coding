@@ -23,8 +23,10 @@ class ZipperLine:UIView {
         
         for i in 0..<20 {
             let line = i%2 == 0 ? creatLeftLine(0, y) : creatRightLine(rect.maxX, y)
+            let angle:CGFloat = i%2 == 0 ? 15 : -15
             UIColor.white.setFill()
             UIColor.clear.setStroke()
+            line.rotateAroundCenter(angle:angle)
             line.fill()
             line.stroke()
             line.close()
@@ -50,5 +52,18 @@ class ZipperLine:UIView {
         lineDot.addLine(to: CGPoint(x:x,y: y+h))
         lineDot.addLine(to: CGPoint(x:x,y:y))
         return lineDot
+    }
+}
+
+extension UIBezierPath
+{
+    func rotateAroundCenter(angle: CGFloat)
+    {
+        let center = CGPoint(x: bounds.minX+bounds.size.width/2, y: bounds.minY+bounds.size.height/2)
+        var transform = CGAffineTransform.identity
+        transform = transform.translatedBy(x: center.x, y: center.y)
+        transform = transform.rotated(by: angle)
+        transform = transform.translatedBy(x: -center.x, y: -center.y)
+        self.apply(transform)
     }
 }

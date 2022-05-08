@@ -26,7 +26,7 @@ class ZipperLine:UIView {
                 line = i%2 == 1 ? creatLeftLine(x-w/4, y) : creatRightLine(x+w/4, y)
             }
             UIColor.white.setFill()
-            UIColor.clear.setStroke()
+            UIColor(displayP3Red: 55/255, green: 55/255, blue: 55/255, alpha: 1).setStroke()
             line.fill()
             line.stroke()
             line.close()

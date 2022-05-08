@@ -64,6 +64,9 @@
 		04C7808A28164DBA006DF829 /* buttonTap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C7808928164DBA006DF829 /* buttonTap.mp3 */; };
 		04C7808D28271F62006DF829 /* ZipperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7808C28271F62006DF829 /* ZipperViewController.swift */; };
 		04C7808F2827375C006DF829 /* ZipperLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7808E2827375C006DF829 /* ZipperLine.swift */; };
+		04C780912828541A006DF829 /* zipper.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C780902828541A006DF829 /* zipper.png */; };
+		04C78093282857F0006DF829 /* Zipper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C78092282857F0006DF829 /* Zipper.swift */; };
+		04C7809528286207006DF829 /* ZipperTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7809428286207006DF829 /* ZipperTop.swift */; };
 		04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */; };
 		04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D957278ABC270067C4A5 /* LPConstants.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */; };
@@ -136,6 +139,9 @@
 		04C7808928164DBA006DF829 /* buttonTap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonTap.mp3; sourceTree = "<group>"; };
 		04C7808C28271F62006DF829 /* ZipperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipperViewController.swift; sourceTree = "<group>"; };
 		04C7808E2827375C006DF829 /* ZipperLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipperLine.swift; sourceTree = "<group>"; };
+		04C780902828541A006DF829 /* zipper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zipper.png; sourceTree = "<group>"; };
+		04C78092282857F0006DF829 /* Zipper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zipper.swift; sourceTree = "<group>"; };
+		04C7809428286207006DF829 /* ZipperTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipperTop.swift; sourceTree = "<group>"; };
 		04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		04D8D957278ABC270067C4A5 /* LPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPConstants.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardCell.swift; sourceTree = "<group>"; };
@@ -426,8 +432,11 @@
 		04C7808B28271F4D006DF829 /* Zipper */ = {
 			isa = PBXGroup;
 			children = (
+				04C780902828541A006DF829 /* zipper.png */,
 				04C7808C28271F62006DF829 /* ZipperViewController.swift */,
 				04C7808E2827375C006DF829 /* ZipperLine.swift */,
+				04C78092282857F0006DF829 /* Zipper.swift */,
+				04C7809428286207006DF829 /* ZipperTop.swift */,
 			);
 			path = Zipper;
 			sourceTree = "<group>";
@@ -569,6 +578,7 @@
 				0497A7E0279D2FEC0060616A /* Monster.mp3 in Resources */,
 				0432DDFD27C345D1009A16AD /* crack.wav in Resources */,
 				047849F327E6F86E004C2D83 /* gooey2.mp3 in Resources */,
+				04C780912828541A006DF829 /* zipper.png in Resources */,
 				04C7808828164D3B006DF829 /* buttonAppear.mp3 in Resources */,
 				0497A7E1279D2FEC0060616A /* Shotta flow.mp3 in Resources */,
 				04E7E90A276E1541007B7B82 /* Spark.sks in Resources */,
@@ -614,6 +624,7 @@
 				04194B0C278951B40006558B /* LPView.swift in Sources */,
 				04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */,
 				04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */,
+				04C78093282857F0006DF829 /* Zipper.swift in Sources */,
 				04C7806D28162368006DF829 /* KeyboardCharacter.swift in Sources */,
 				04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */,
 				04194B0A278941310006558B /* QuadBezier.swift in Sources */,
@@ -621,6 +632,7 @@
 				0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */,
 				0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
+				04C7809528286207006DF829 /* ZipperTop.swift in Sources */,
 				0492C5C1276F75650072CBBD /* DSTestViewController.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,
 				04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */,

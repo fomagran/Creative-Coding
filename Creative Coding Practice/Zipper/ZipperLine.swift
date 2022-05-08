@@ -20,7 +20,7 @@ class ZipperLine:UIView {
             if current*100-y > 0 {
                 x = i%2 == 0 ? rect.width/2 + (y - current*100) : rect.width/2 - (y - current*100)
                 line = i%2 == 1 ? creatLeftLine(x-w/4, y) : creatRightLine(x+w/4, y)
-                line.rotateAroundCenter(angle:i%2 == 0 ? (y/100-current)/2 : -(y/100-current)/2)
+                line.rotateAroundCenter(angle:i%2 == 0 ? (y/100-current)/3 : -(y/100-current)/3)
             }else {
                 x = rect.width/2
                 line = i%2 == 1 ? creatLeftLine(x-w/4, y) : creatRightLine(x+w/4, y)

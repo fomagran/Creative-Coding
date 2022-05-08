@@ -9,22 +9,19 @@ import UIKit
 
 class ZipperViewController: UIViewController {
 
+    var zl:ZipperLine!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let zl:ZipperLine = ZipperLine(frame: CGRect(x:view.center.x - view.frame.width/2, y: view.center.y - 150, width: view.frame.width, height: 300))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(drag(_:)))
+        zl = ZipperLine(frame: CGRect(x:view.center.x - view.frame.width/2, y: view.center.y - view.frame.height/2, width: view.frame.width, height: view.frame.height))
         zl.backgroundColor = .blue
         view.addSubview(zl)
-        
-        func a(_ i:Double) {
-            if Int(i) == 3 {
-                return
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.05) {
-                zl.current = i
-                a(i+0.05)
-            }
-        }
-        
-        a(0)
+        view.addGestureRecognizer(panGesture)
+    }
+    
+    @objc func drag(_ sender:UIPanGestureRecognizer) {
+        let y = sender.location(in: view).y
+        zl.current = y/view.frame.height*4
     }
 }

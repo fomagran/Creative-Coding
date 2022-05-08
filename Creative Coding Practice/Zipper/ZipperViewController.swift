@@ -8,10 +8,11 @@
 import UIKit
 
 class ZipperViewController: UIViewController {
-
+    
     var zl:ZipperLine!
     var zipper:Zipper!
     var zipperTop:ZipperTop!
+    var angle:CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +34,19 @@ class ZipperViewController: UIViewController {
     }
     
     @objc func drag(_ sender:UIPanGestureRecognizer) {
-        let location = sender.location(in: view).y
-        zipperTop.center.y = location - 50
-        zipper.center.y = location
+        let location = sender.location(in: view)
+        zipperTop.center.y = location.y - 50
+        zipper.center.y = location.y
+        angle = view.center.x - location.x > 0 ? min(25,view.center.x - location.x) : max(-25,view.center.x - location.x)
+        zipper.transform = CGAffineTransform(rotationAngle: (angle * CGFloat.pi / 180))
+        zipper.center.x = view.center.x - angle/5*4
         zl.current = (zipper.center.y-50)/view.frame.height*4
+        
+        if sender.state == .ended {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut) {
+                self.zipper.transform = CGAffineTransform(rotationAngle: (0 * CGFloat.pi / 180))
+                self.zipper.center.x = self.view.center.x
+            }
+        }
     }
 }

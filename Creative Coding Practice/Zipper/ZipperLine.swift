@@ -3,6 +3,8 @@ import UIKit
 class ZipperLine:UIView {
     var h:CGFloat = 0
     var w:CGFloat = 0
+    var topLeft:CGFloat = 0
+    var topRight:CGFloat = 0
     var current: Double = 0 {
         didSet {
             setNeedsDisplay()
@@ -14,8 +16,9 @@ class ZipperLine:UIView {
         w = 25
         var x:CGFloat = rect.width/2
         var y:CGFloat = 0
-        
+  
         for i in 0..<20 {
+   
             var line:UIBezierPath = UIBezierPath()
             if current*100-y > 0 {
                 x = i%2 == 0 ? rect.width/2 + (y - current*100) : rect.width/2 - (y - current*100)
@@ -24,6 +27,12 @@ class ZipperLine:UIView {
             }else {
                 x = rect.width/2
                 line = i%2 == 1 ? creatLeftLine(x-w/4, y) : creatRightLine(x+w/4, y)
+            }
+            if i == 0 {
+                topLeft = x
+            }
+            if i == 1 {
+                topRight = x
             }
             UIColor.white.setFill()
             UIColor(displayP3Red: 55/255, green: 55/255, blue: 55/255, alpha: 1).setStroke()

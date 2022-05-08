@@ -1,10 +1,3 @@
-//
-//  ZipperLine.swift
-//  Creative Coding Practice
-//
-//  Created by Fomagran on 2022/05/07.
-//
-
 import UIKit
 
 class ZipperLine:UIView {
@@ -17,20 +10,27 @@ class ZipperLine:UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        h = rect.height/20
-        w = rect.width/2
+        h = (rect.height-100)/20
+        w = 25
+        var x:CGFloat = rect.width/2
         var y:CGFloat = 0
         
         for i in 0..<20 {
-            let line = i%2 == 0 ? creatLeftLine(0, y) : creatRightLine(rect.maxX, y)
-            let angle:CGFloat = i%2 == 0 ? 15 : -15
+            var line:UIBezierPath = UIBezierPath()
+            if current*100-y > 0 {
+                x = i%2 == 0 ? rect.width/2 + (y - current*100) : rect.width/2 - (y - current*100)
+                line = i%2 == 1 ? creatLeftLine(x-w/4, y) : creatRightLine(x+w/4, y)
+                line.rotateAroundCenter(angle:i%2 == 0 ? (y/100-current)/2 : -(y/100-current)/2)
+            }else {
+                x = rect.width/2
+                line = i%2 == 1 ? creatLeftLine(x-w/4, y) : creatRightLine(x+w/4, y)
+            }
             UIColor.white.setFill()
             UIColor.clear.setStroke()
-            line.rotateAroundCenter(angle:angle)
             line.fill()
             line.stroke()
             line.close()
-            y += h+10
+            y += h+5
         }
     }
     
@@ -39,7 +39,7 @@ class ZipperLine:UIView {
         lineDot.move(to: CGPoint(x: x,y:y))
         lineDot.addLine(to: CGPoint(x:x,y: y+h))
         lineDot.addLine(to: CGPoint(x:x+w,y:y+h))
-        lineDot.addQuadCurve(to: CGPoint(x:x+w,y:y), controlPoint: CGPoint(x:w*1.2,y:y+h/2))
+        lineDot.addQuadCurve(to: CGPoint(x:x+w,y:y), controlPoint: CGPoint(x:x+w*1.2,y:y+h/2))
         lineDot.addLine(to: CGPoint(x:x,y:y))
         return lineDot
     }

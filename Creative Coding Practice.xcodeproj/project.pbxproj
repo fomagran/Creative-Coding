@@ -62,6 +62,8 @@
 		04C7808228164A5F006DF829 /* turnOn.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 04C7808128164A5F006DF829 /* turnOn.m4a */; };
 		04C7808828164D3B006DF829 /* buttonAppear.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C7808728164D3B006DF829 /* buttonAppear.mp3 */; };
 		04C7808A28164DBA006DF829 /* buttonTap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C7808928164DBA006DF829 /* buttonTap.mp3 */; };
+		04C7808D28271F62006DF829 /* ZipperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7808C28271F62006DF829 /* ZipperViewController.swift */; };
+		04C7808F2827375C006DF829 /* ZipperLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7808E2827375C006DF829 /* ZipperLine.swift */; };
 		04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */; };
 		04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D957278ABC270067C4A5 /* LPConstants.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */; };
@@ -132,6 +134,8 @@
 		04C7808128164A5F006DF829 /* turnOn.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = turnOn.m4a; sourceTree = "<group>"; };
 		04C7808728164D3B006DF829 /* buttonAppear.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonAppear.mp3; sourceTree = "<group>"; };
 		04C7808928164DBA006DF829 /* buttonTap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonTap.mp3; sourceTree = "<group>"; };
+		04C7808C28271F62006DF829 /* ZipperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipperViewController.swift; sourceTree = "<group>"; };
+		04C7808E2827375C006DF829 /* ZipperLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipperLine.swift; sourceTree = "<group>"; };
 		04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		04D8D957278ABC270067C4A5 /* LPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPConstants.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardCell.swift; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 		041E1998274B4134000F8C11 /* Creative Coding Practice */ = {
 			isa = PBXGroup;
 			children = (
+				04C7808B28271F4D006DF829 /* Zipper */,
 				04A7FD12280B6FEA006E146D /* Transformer */,
 				047849FF27E804D5004C2D83 /* Test */,
 				048B344527DE8BC4001E6643 /* ChocoChip */,
@@ -416,6 +421,15 @@
 				04BA9A8A27799A30002F18D9 /* MainTableViewCell.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		04C7808B28271F4D006DF829 /* Zipper */ = {
+			isa = PBXGroup;
+			children = (
+				04C7808C28271F62006DF829 /* ZipperViewController.swift */,
+				04C7808E2827375C006DF829 /* ZipperLine.swift */,
+			);
+			path = Zipper;
 			sourceTree = "<group>";
 		};
 		04D8D954278ABBDE0067C4A5 /* Extensions */ = {
@@ -591,6 +605,7 @@
 				04F376A1277C5EFC00A70B98 /* Card.swift in Sources */,
 				0489E54927B9E48400110D5A /* GlassPiece.swift in Sources */,
 				04194B1227896F080006558B /* LP.swift in Sources */,
+				04C7808D28271F62006DF829 /* ZipperViewController.swift in Sources */,
 				041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */,
 				04090752279A69D700A5AA03 /* GilitchView.swift in Sources */,
 				04F376A3277C6E0700A70B98 /* AViewController.swift in Sources */,
@@ -615,6 +630,7 @@
 				041E19AF274B443F000F8C11 /* SwingEffectViewController.swift in Sources */,
 				04E7E90D276E1652007B7B82 /* DSViewController.swift in Sources */,
 				046669732757965500C0BA70 /* WaveViewController.swift in Sources */,
+				04C7808F2827375C006DF829 /* ZipperLine.swift in Sources */,
 				0438A469275B361800BFE7B5 /* Line.swift in Sources */,
 				041E199C274B4134000F8C11 /* SceneDelegate.swift in Sources */,
 				0494B47627706A180041116C /* CircleView.swift in Sources */,

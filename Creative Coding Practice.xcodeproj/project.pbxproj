@@ -64,9 +64,11 @@
 		04C7808A28164DBA006DF829 /* buttonTap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C7808928164DBA006DF829 /* buttonTap.mp3 */; };
 		04C7808D28271F62006DF829 /* ZipperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7808C28271F62006DF829 /* ZipperViewController.swift */; };
 		04C7808F2827375C006DF829 /* ZipperLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7808E2827375C006DF829 /* ZipperLine.swift */; };
-		04C780912828541A006DF829 /* zipper.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C780902828541A006DF829 /* zipper.png */; };
 		04C78093282857F0006DF829 /* Zipper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C78092282857F0006DF829 /* Zipper.swift */; };
 		04C7809528286207006DF829 /* ZipperTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7809428286207006DF829 /* ZipperTop.swift */; };
+		04C7809728288F51006DF829 /* FugazOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04C7809628288F51006DF829 /* FugazOne-Regular.ttf */; };
+		04C780A2282893F5006DF829 /* zipper.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C780A1282893F5006DF829 /* zipper.mp3 */; };
+		04C780A4282895ED006DF829 /* rattle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C780A3282895ED006DF829 /* rattle.mp3 */; };
 		04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */; };
 		04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D957278ABC270067C4A5 /* LPConstants.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */; };
@@ -139,9 +141,11 @@
 		04C7808928164DBA006DF829 /* buttonTap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonTap.mp3; sourceTree = "<group>"; };
 		04C7808C28271F62006DF829 /* ZipperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipperViewController.swift; sourceTree = "<group>"; };
 		04C7808E2827375C006DF829 /* ZipperLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipperLine.swift; sourceTree = "<group>"; };
-		04C780902828541A006DF829 /* zipper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zipper.png; sourceTree = "<group>"; };
 		04C78092282857F0006DF829 /* Zipper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zipper.swift; sourceTree = "<group>"; };
 		04C7809428286207006DF829 /* ZipperTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipperTop.swift; sourceTree = "<group>"; };
+		04C7809628288F51006DF829 /* FugazOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FugazOne-Regular.ttf"; sourceTree = "<group>"; };
+		04C780A1282893F5006DF829 /* zipper.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zipper.mp3; sourceTree = "<group>"; };
+		04C780A3282895ED006DF829 /* rattle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rattle.mp3; sourceTree = "<group>"; };
 		04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		04D8D957278ABC270067C4A5 /* LPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPConstants.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardCell.swift; sourceTree = "<group>"; };
@@ -432,7 +436,9 @@
 		04C7808B28271F4D006DF829 /* Zipper */ = {
 			isa = PBXGroup;
 			children = (
-				04C780902828541A006DF829 /* zipper.png */,
+				04C780A3282895ED006DF829 /* rattle.mp3 */,
+				04C780A1282893F5006DF829 /* zipper.mp3 */,
+				04C7809628288F51006DF829 /* FugazOne-Regular.ttf */,
 				04C7808C28271F62006DF829 /* ZipperViewController.swift */,
 				04C7808E2827375C006DF829 /* ZipperLine.swift */,
 				04C78092282857F0006DF829 /* Zipper.swift */,
@@ -578,11 +584,11 @@
 				0497A7E0279D2FEC0060616A /* Monster.mp3 in Resources */,
 				0432DDFD27C345D1009A16AD /* crack.wav in Resources */,
 				047849F327E6F86E004C2D83 /* gooey2.mp3 in Resources */,
-				04C780912828541A006DF829 /* zipper.png in Resources */,
 				04C7808828164D3B006DF829 /* buttonAppear.mp3 in Resources */,
 				0497A7E1279D2FEC0060616A /* Shotta flow.mp3 in Resources */,
 				04E7E90A276E1541007B7B82 /* Spark.sks in Resources */,
 				047849F527E6F939004C2D83 /* gooey1.mp3 in Resources */,
+				04C780A2282893F5006DF829 /* zipper.mp3 in Resources */,
 				0432DDFF27C345F8009A16AD /* break.mp3 in Resources */,
 				0497A7E2279D2FEC0060616A /* BOP.mp3 in Resources */,
 				0497A7E4279D2FEC0060616A /* Headlights.mp3 in Resources */,
@@ -591,11 +597,13 @@
 				0497A7DF279D2FEC0060616A /* Highest in the room.mp3 in Resources */,
 				04C7808228164A5F006DF829 /* turnOn.m4a in Resources */,
 				0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */,
+				04C7809728288F51006DF829 /* FugazOne-Regular.ttf in Resources */,
 				0497A7E5279D2FEC0060616A /* Hot shower.mp3 in Resources */,
 				0497A7E3279D2FEC0060616A /* Clubhouse.mp3 in Resources */,
 				041E19A3274B4135000F8C11 /* Assets.xcassets in Resources */,
 				041E19A1274B4134000F8C11 /* Main.storyboard in Resources */,
 				047849EF27E6D86A004C2D83 /* bread.jpeg in Resources */,
+				04C780A4282895ED006DF829 /* rattle.mp3 in Resources */,
 				04E7E90B276E1541007B7B82 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

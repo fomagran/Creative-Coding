@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ZipperViewController: UIViewController {
     
@@ -15,16 +16,18 @@ class ZipperViewController: UIViewController {
     var angle:CGFloat = 0
     var coverView:UIView!
     var shapeLayer:CAShapeLayer = CAShapeLayer()
+    var label:UILabel!
+    var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.layer.addSublayer(shapeLayer)
         view.backgroundColor = UIColor(displayP3Red: 253/255, green: 211/255, blue: 29/255, alpha: 1)
-        let label:UILabel = UILabel(frame: CGRect(x: view.center.x-75, y: view.center.y - 50, width: 150, height: 100))
+        label = UILabel(frame: CGRect(x: view.center.x-75, y: view.center.y - 50, width: 150, height: 100))
         label.text = "Zipper"
         label.backgroundColor = UIColor.clear
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 40)
+        label.textColor = UIColor(displayP3Red: 253/255, green: 211/255, blue: 29/255, alpha: 1)
+        label.font = UIFont(name: "FugazOne-Regular", size: 35)
         label.textAlignment = .center
         label.layer.cornerRadius = 10
         label.layer.masksToBounds = true
@@ -53,7 +56,22 @@ class ZipperViewController: UIViewController {
         zipper.isUserInteractionEnabled = true
     }
     
+    func setMusicPlayer(name:String,ex:String) {
+        let url = Bundle.main.url(forResource:name, withExtension:ex)!
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.prepareToPlay()
+        } catch let error as NSError {
+            print(error.description)
+        }
+    }
+    
     @objc func drag(_ sender:UIPanGestureRecognizer) {
+        if sender.state == .began {
+            setMusicPlayer(name: "zipper", ex: "mp3")
+            player?.play()
+        }
         let location = sender.location(in: view)
         zipperTop.center.y = location.y - 50
         zipper.center.y = location.y
@@ -61,7 +79,7 @@ class ZipperViewController: UIViewController {
         zipper.transform = CGAffineTransform(rotationAngle: (angle * CGFloat.pi / 180))
         zipper.center.x = view.center.x - angle/5*4
         zl.current = (zipper.center.y-50)/view.frame.height*4
-        coverView.center.y = location.y + 120
+        coverView.center.y = location.y + 160
         
         let bp = UIBezierPath()
         bp.move(to:CGPoint(x: zl.topLeft, y: 0))
@@ -70,10 +88,20 @@ class ZipperViewController: UIViewController {
         shapeLayer.path = bp.cgPath
         shapeLayer.fillColor = UIColor.black.cgColor
         
+        if location.y < view.center.y {
+            self.label.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+        
+        player?.play()
+        
         if sender.state == .ended {
+            player?.pause()
+            setMusicPlayer(name: "rattle", ex: "mp3")
+            player?.play()
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut) {
                 self.zipper.transform = CGAffineTransform(rotationAngle: (0 * CGFloat.pi / 180))
                 self.zipper.center.x = self.view.center.x
+                self.label.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             }
         }
     }

@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>nutellaBold.ttf</string>
+		<string>FugazOne-Regular.ttf</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string></string>

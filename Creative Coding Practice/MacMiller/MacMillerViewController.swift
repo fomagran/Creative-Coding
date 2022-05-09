@@ -57,6 +57,10 @@ class MacMillerViewController: UIViewController {
         timerStart()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        player.pause()
+    }
+    
     func springAnimation(gview:UIView?,scale:CGFloat) {
         let v = gview == nil ? iv : gview
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity:0.1, options:[]) {

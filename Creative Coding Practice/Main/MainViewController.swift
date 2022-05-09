@@ -8,13 +8,24 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
 
     @IBOutlet weak var table: UITableView!
     
-    let vcName:[String] = ["DavidLoading","DS","ThreeDCard","Wave","SwingSquare","LP","MacMiller","BrokenGlass"]
+    let vcName:[String] = ["DavidLoading","DS","ThreeDCard","Wave","SwingSquare","LP","MacMiller","BrokenGlass","ChocoChip","Transformer","Zipper"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
 
     }
 }

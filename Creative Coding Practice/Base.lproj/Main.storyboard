@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vNj-CA-noi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AoW-4t-FvR">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -72,6 +72,9 @@
                         <segue destination="ZcM-nn-B25" kind="show" identifier="showLPViewController" id="cXc-St-gHY"/>
                         <segue destination="3Ew-Ss-Z2j" kind="show" identifier="showBrokenGlassViewController" id="K4f-rf-oza"/>
                         <segue destination="pAA-fP-VqV" kind="show" identifier="showMacMillerViewController" id="ecg-nP-db7"/>
+                        <segue destination="FHl-zc-cf2" kind="show" identifier="showChocoChipViewController" id="NUP-Cd-1ug"/>
+                        <segue destination="Kmi-oc-up5" kind="show" identifier="showTransformerViewController" id="rbg-A5-8ZT"/>
+                        <segue destination="vNj-CA-noi" kind="show" identifier="showZipperViewController" id="jv5-hY-46B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNq-9L-Q1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -146,13 +149,13 @@
         <!--Test View Controller-->
         <scene sceneID="ClH-Ke-58X">
             <objects>
-                <viewController storyboardIdentifier="TestViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IEr-vy-x71" customClass="TestViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TestViewController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IEr-vy-x71" customClass="TestViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CFJ-UX-TUl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here is TestViewController." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVf-Vk-pWh">
-                                <rect key="frame" x="20" y="390" width="374" height="126.5"/>
+                                <rect key="frame" x="20" y="380" width="374" height="126.5"/>
                                 <fontDescription key="fontDescription" name="SnellRoundhand" family="Snell Roundhand" pointSize="50"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -241,6 +244,7 @@
                         <viewLayoutGuide key="safeArea" id="3tP-Ir-8Gh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="DeM-69-63J"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DpA-ME-akf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -369,6 +373,7 @@
                         <viewLayoutGuide key="safeArea" id="N55-D4-5SU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="bSa-Wm-xKJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuD-Ye-rLy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -384,6 +389,7 @@
                         <viewLayoutGuide key="safeArea" id="eyh-ue-qXH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="H7s-m8-V87"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u2D-ql-Chd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

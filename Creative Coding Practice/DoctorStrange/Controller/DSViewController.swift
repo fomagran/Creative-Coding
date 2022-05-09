@@ -35,6 +35,7 @@ class DSViewController: UIViewController {
     }
     
     func configure() {
+        self.textView.isEditable = false
         view.addSubview(spark)
         spark.isHidden = true
         view.addSubview(spark1)
@@ -47,19 +48,19 @@ class DSViewController: UIViewController {
     }
     
     func drawCircle() {
-        let circleView = CircleView(frame: CGRect(x:view.frame.midX-300, y:view.frame.midY-300, width:600, height:600))
+        let circleView = CircleView(frame: CGRect(x:view.frame.midX-150, y:view.frame.midY-150, width:300, height:300))
         view.addSubview(circleView)
         circleView.animateCircle(duration: 2.0)
     }
     
     func drawStar() {
         let path = UIBezierPath()
-        path.move(to: CGPoint(x:view.frame.midX,y:view.frame.midY - 300))
-        path.addLine(to: CGPoint(x:view.frame.midX - 200, y:view.frame.midY+230))
-        path.addLine(to: CGPoint(x:view.frame.midX + 285, y:view.frame.midY-100))
-        path.addLine(to: CGPoint(x:view.frame.midX - 285, y:view.frame.midY-100))
-        path.addLine(to: CGPoint(x:view.frame.midX + 200, y:view.frame.midY+230))
-        path.addLine(to: CGPoint(x:view.frame.midX, y:view.frame.midY - 300))
+        path.move(to: CGPoint(x:view.frame.midX,y:view.frame.midY - 150))
+        path.addLine(to: CGPoint(x:view.frame.midX - 100, y:view.frame.midY+115))
+        path.addLine(to: CGPoint(x:view.frame.midX + 142.5, y:view.frame.midY-50))
+        path.addLine(to: CGPoint(x:view.frame.midX - 142.5, y:view.frame.midY-50))
+        path.addLine(to: CGPoint(x:view.frame.midX + 100, y:view.frame.midY+115))
+        path.addLine(to: CGPoint(x:view.frame.midX, y:view.frame.midY - 150))
         
         let pathLayer = CAShapeLayer()
         pathLayer.frame = view.bounds
@@ -78,12 +79,12 @@ class DSViewController: UIViewController {
     }
     
     func setStarPoint() {
-        spark.center = CGPoint(x:view.frame.midX,y:view.frame.midY - 300)
-        starPoint = [ CGPoint(x:view.frame.midX - 200, y:view.frame.midY+230),
-                CGPoint(x:view.frame.midX + 285, y:view.frame.midY-100),
-                CGPoint(x:view.frame.midX - 285, y:view.frame.midY-100),
-                CGPoint(x:view.frame.midX + 200, y:view.frame.midY+230),
-                CGPoint(x:view.frame.midX, y:view.frame.midY - 300)]
+        spark.center = CGPoint(x:view.frame.midX,y:view.frame.midY - 150)
+        starPoint = [ CGPoint(x:view.frame.midX - 100, y:view.frame.midY+115),
+                      CGPoint(x:view.frame.midX + 142.5, y:view.frame.midY-50),
+                      CGPoint(x:view.frame.midX - 142.5, y:view.frame.midY-50),
+                CGPoint(x:view.frame.midX + 100, y:view.frame.midY+115),
+                CGPoint(x:view.frame.midX, y:view.frame.midY - 150)]
     }
     
     func circleAnimation() {
@@ -91,7 +92,7 @@ class DSViewController: UIViewController {
         drawStar()
         spark1.isHidden = false
         let flightAnimation = CAKeyframeAnimation(keyPath: "position")
-        flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: view.frame.midX-300, y: view.frame.midY-300, width: 600, height: 600)).cgPath
+        flightAnimation.path = UIBezierPath(ovalIn:CGRect(x: view.frame.midX-150, y: view.frame.midY-150, width: 300, height: 300)).cgPath
         flightAnimation.calculationMode = CAAnimationCalculationMode.paced
         flightAnimation.duration = 2
         flightAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
@@ -104,15 +105,16 @@ class DSViewController: UIViewController {
     }
     
     func setDSDoor() {
-        square.frame = CGRect(x: view.bounds.midX-800, y: view.bounds.midY-800, width: 1600, height: 1600)
+        square.frame = CGRect(x: view.bounds.midX-400, y: view.bounds.midY-400, width: 800, height: 800)
         square.contentMode = .scaleAspectFit
         whiteView = setCenterCircle(view:square)
         square.addSubview(whiteView)
         view.addSubview(square)
-        imageView.frame = CGRect(x: view.bounds.midX-300, y: view.bounds.midY-300, width: 600, height: 600)
+        imageView.frame = CGRect(x: view.bounds.midX-150, y: view.bounds.midY-150, width: 300, height: 300)
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.layer.masksToBounds = true
         view.addSubview(imageView)
+        self.textView.isHidden = true
     }
     
     func tapDSDoor(vc:String) {

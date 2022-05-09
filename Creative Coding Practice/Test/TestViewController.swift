@@ -10,8 +10,5 @@ import UIKit
 class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let testView:TestView = TestView(frame:view.frame)
-        testView.backgroundColor = .white
-        view.addSubview(testView)
     }
 }

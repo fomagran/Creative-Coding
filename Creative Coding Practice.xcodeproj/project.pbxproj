@@ -41,7 +41,6 @@
 		048B344927DEACF6001E6643 /* CookieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B344827DEACF6001E6643 /* CookieView.swift */; };
 		0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */; };
 		0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */; };
-		0492C5C1276F75650072CBBD /* DSTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5C0276F75650072CBBD /* DSTestViewController.swift */; };
 		0494B47627706A180041116C /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B47527706A180041116C /* CircleView.swift */; };
 		0496F59827E5708500AC54A5 /* nutellaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0496F59727E5707000AC54A5 /* nutellaBold.ttf */; };
 		0497A7DF279D2FEC0060616A /* Highest in the room.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7D8279D2FEA0060616A /* Highest in the room.mp3 */; };
@@ -118,7 +117,6 @@
 		048B344827DEACF6001E6643 /* CookieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieView.swift; sourceTree = "<group>"; };
 		0492C5BA276F3B7B0072CBBD /* SquareSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SquareSpark.sks; sourceTree = "<group>"; };
 		0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView + Extensions.swift"; sourceTree = "<group>"; };
-		0492C5C0276F75650072CBBD /* DSTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTestViewController.swift; sourceTree = "<group>"; };
 		0494B47527706A180041116C /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		0496F59727E5707000AC54A5 /* nutellaBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nutellaBold.ttf; sourceTree = "<group>"; };
 		0497A7D8279D2FEA0060616A /* Highest in the room.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Highest in the room.mp3"; sourceTree = "<group>"; };
@@ -390,7 +388,6 @@
 			isa = PBXGroup;
 			children = (
 				04E7E90C276E1652007B7B82 /* DSViewController.swift */,
-				0492C5C0276F75650072CBBD /* DSTestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -641,7 +638,6 @@
 				0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
 				04C7809528286207006DF829 /* ZipperTop.swift in Sources */,
-				0492C5C1276F75650072CBBD /* DSTestViewController.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,
 				04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */,
 				04089A9327B07FDB0031EF82 /* BrokenGlassViewController.swift in Sources */,

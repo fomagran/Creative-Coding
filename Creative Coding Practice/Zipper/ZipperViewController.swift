@@ -19,8 +19,25 @@ class ZipperViewController: UIViewController {
     var label:UILabel!
     var player: AVAudioPlayer?
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeLeft
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let value = UIInterfaceOrientation.landscapeLeft.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+            self.configure()
+        }
+    }
+    
+    private func configure() {
         view.layer.addSublayer(shapeLayer)
         view.backgroundColor = UIColor(displayP3Red: 253/255, green: 211/255, blue: 29/255, alpha: 1)
         label = UILabel(frame: CGRect(x: view.center.x-75, y: view.center.y - 50, width: 150, height: 100))

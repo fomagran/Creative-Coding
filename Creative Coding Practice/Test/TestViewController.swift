@@ -14,11 +14,11 @@ class TestViewController: UIViewController {
         
         let easierPath = EasierPath(100,100)
                     .right(100)
-                    .curve(.down(200), .bezier(.rightDown(50,50), .leftDown(25,150)))
+                    .curve(to:.down(200), .bezier(.rightDown(50,50), .leftDown(25,150)))
                     .left(100)
-                    .curve(.up(200), .bezier(.rightUp(25,50), .leftUp(50,150)))
+                    .curve(to:.up(200), .bezier(.rightUp(25,50), .leftUp(50,150)))
         
-        let layer = easierPath.makeLayer(3,.white,.systemPink)
+        let layer = easierPath.makeLayer(lineWidth: 3, lineColor: .white, fillColor: .systemPink)
         view.layer.addSublayer(layer)
     }
 }

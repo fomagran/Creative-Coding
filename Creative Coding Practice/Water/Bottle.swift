@@ -12,11 +12,14 @@ class Bottle: UIView {
     
     //MARK: Properties
     
+    private var timer1 : Timer?
     private var timer : Timer?
     private var y:CGFloat = 0
     private var add:CGFloat = 1
     private var waterHeight:CGFloat = 0
     private var percent: CGFloat = 0
+    private var waterColor: UIColor = UIColor(displayP3Red: 224/255, green: 239/255, blue: 247/255, alpha: 0.5)
+    var left: CGFloat = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +32,7 @@ class Bottle: UIView {
     func startAnimation(_ percent:CGFloat) {
         drawBorderShape()
         self.percent = percent
-        timer = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(fillWater), userInfo: nil, repeats: true)
     }
 
     private func animateWave() {
@@ -47,7 +50,7 @@ class Bottle: UIView {
             .up(waterHeight)
             .end()
         
-        let waterLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor:.systemBlue.withAlphaComponent(0.7))
+        let waterLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor:waterColor)
         layer.addSublayer(waterLayer)
     }
     
@@ -56,15 +59,15 @@ class Bottle: UIView {
             layer.sublayers!.removeLast()
         }
         let bottom = frame.height
-        let easierPath:EasierPath = EasierPath(0,bottom-waterHeight)
+        let easierPath:EasierPath = EasierPath(0,bottom-waterHeight-left/2)
         easierPath
-            .right(frame.width)
-            .down(frame.height/4*3)
+            .rightDown(frame.width,left)
+            .down(frame.height/4*3-left/2)
             .left(frame.width)
-            .up(frame.height/4*3)
+            .up(frame.height/4*3-left/2)
             .end()
         
-        let waterLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor:.systemBlue.withAlphaComponent(0.7))
+        let waterLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor:waterColor)
         layer.addSublayer(waterLayer)
     }
     
@@ -81,13 +84,13 @@ class Bottle: UIView {
             .leftDown(frame.width/3,frame.height/5)
             .end()
         
-        let waterLayer = easierPath.makeLayer(lineWidth: 3, lineColor: .black, fillColor: .clear)
+        let waterLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .black, fillColor: .clear)
         layer.addSublayer(waterLayer)
     }
     
     //MARK:- @objc Functions
     
-    @objc func timerCallback() {
+    @objc func fillWater() {
         add = abs(y) == 15 ? -add : add
         y += add
 
@@ -96,7 +99,18 @@ class Bottle: UIView {
             animateWave()
         }else {
             timer?.invalidate()
+            print("??")
+            timer1 = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(leanToLeft), userInfo: nil, repeats: true)
             drawWaterShape()
+        }
+    }
+    
+    @objc func leanToLeft() {
+       left += 1
+        print(left)
+        drawWaterShape()
+        if left > 100 {
+            timer1?.invalidate()
         }
     }
 }

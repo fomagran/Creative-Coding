@@ -17,4 +17,15 @@ extension UIView{
         rotation.repeatCount = Float.greatestFiniteMagnitude
         self.layer.add(rotation, forKey: "rotation")
     }
+    
+    func rotate(_ start:Double,_ degree:Double) {
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.fromValue = NSNumber(value: start)
+        rotation.toValue = NSNumber(value: degree)
+        rotation.duration = 1
+        rotation.repeatCount = 0
+        rotation.fillMode = .forwards
+        rotation.isRemovedOnCompletion = false
+        self.layer.add(rotation, forKey: "rotation")
+    }
 }

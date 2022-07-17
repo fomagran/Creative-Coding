@@ -68,6 +68,7 @@
 		04C780A4282895ED006DF829 /* rattle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C780A3282895ED006DF829 /* rattle.mp3 */; };
 		04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */; };
 		04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D957278ABC270067C4A5 /* LPConstants.swift */; };
+		04D99F9B2883A9C400E46018 /* Bottle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D99F9A2883A9C400E46018 /* Bottle.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */; };
 		04E7E90A276E1541007B7B82 /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04E7E908276E1541007B7B82 /* Spark.sks */; };
 		04E7E90B276E1541007B7B82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E7E909276E1541007B7B82 /* Assets.xcassets */; };
@@ -143,6 +144,7 @@
 		04C780A3282895ED006DF829 /* rattle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rattle.mp3; sourceTree = "<group>"; };
 		04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		04D8D957278ABC270067C4A5 /* LPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPConstants.swift; sourceTree = "<group>"; };
+		04D99F9A2883A9C400E46018 /* Bottle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bottle.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardCell.swift; sourceTree = "<group>"; };
 		04E7E908276E1541007B7B82 /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
 		04E7E909276E1541007B7B82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				04AEC958285EE00900CA66A8 /* WaterViewController.swift */,
+				04D99F9A2883A9C400E46018 /* Bottle.swift */,
 			);
 			path = Water;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */,
 				04090750279A659E00A5AA03 /* Particle.swift in Sources */,
 				047849EB27E58C44004C2D83 /* NutellaView.swift in Sources */,
+				04D99F9B2883A9C400E46018 /* Bottle.swift in Sources */,
 				04A7FD18280B76AC006E146D /* PowerButon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

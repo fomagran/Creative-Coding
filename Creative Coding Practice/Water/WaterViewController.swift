@@ -17,37 +17,73 @@ class WaterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+        drawBorderShape()
+        timer = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
     }
     
-    private func addCurve() {
-        view.layer.sublayers = nil
-        let easierPath:EasierPath = EasierPath(view.center.x-100, view.center.y-h)
-        easierPath.curve(to: .right(200), .bezier(.rightUp(75,y), .rightDown(150,y)))
-        easierPath.leftDown(20, 100+h).left(160).leftUp(20, 100+h)
-        let layer = easierPath.makeLayer(lineWidth: 1, lineColor: .black, fillColor: .systemBlue)
+    private func animateWave() {
+        if view.layer.sublayers?.count ?? 0 > 1 {
+            view.layer.sublayers!.removeLast()
+        }
+        let easierPath:EasierPath = EasierPath(view.center.x-100, view.center.y+150-h)
+        easierPath
+            .curve(to:
+                .right(100),
+                .bezier(.rightUp(25,y), .rightDown(75,y)))
+            .down(h)
+            .left(100)
+            .up(h)
+        
+        let layer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor:.systemBlue.withAlphaComponent(0.7))
+        view.layer.addSublayer(layer)
+    }
+    
+    func drawWaterShape() {
+        if view.layer.sublayers?.count ?? 0 > 1 {
+            view.layer.sublayers!.removeLast()
+        }
+        let easierPath:EasierPath = EasierPath(view.center.x-100, view.center.y+150-h)
+        easierPath
+            .right(100)
+            .down(150)
+            .left(100)
+            .up(150)
+            .end()
+        
+        let layer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor:.systemBlue.withAlphaComponent(0.7))
+        view.layer.addSublayer(layer)
+    }
+    
+    func drawBorderShape() {
+        let easierPath:EasierPath = EasierPath(view.center.x-100, view.center.y-50)
+        easierPath
+            .down(200)
+            .right(100)
+            .up(200)
+            .leftUp(30, 50)
+            .up(10)
+            .left(40)
+            .down(10)
+            .leftDown(30, 50)
+            .end()
+        
+        let layer = easierPath.makeLayer(lineWidth: 3, lineColor: .black, fillColor: .clear)
         view.layer.addSublayer(layer)
     }
     
     //MARK:- @objc Functions
     
     @objc func timerCallback() {
-        
-        if y > 30 {
-            add = -1
-        }
-        
-        if y < -30 {
-            add = 1
-        }
-        
+        add = abs(y) == 15 ? -add : add
         y += add
-        
-        if h < 100 {
+
+        if h < 150 {
             h += 1
+            animateWave()
+        }else {
+            timer?.invalidate()
+            drawWaterShape()
         }
-        
-        addCurve()
     }
     
 }

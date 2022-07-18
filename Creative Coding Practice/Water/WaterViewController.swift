@@ -15,9 +15,10 @@ class WaterViewController: UIViewController {
     var bottle: Bottle = Bottle(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 200)))
     
     override func viewDidLoad() {
+        view.backgroundColor = .black
         bottle.center = view.center
         view.addSubview(bottle)
-        bottle.startAnimation(0.75)
+        bottle.startAnimation(1)
         
 //        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
 //            self.timer = Timer.scheduledTimer(timeInterval:0.1, target: self, selector: #selector(self.fillWater), userInfo: nil, repeats: true)

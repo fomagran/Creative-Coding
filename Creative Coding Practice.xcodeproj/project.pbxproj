@@ -65,7 +65,6 @@
 		04C7809528286207006DF829 /* ZipperTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7809428286207006DF829 /* ZipperTop.swift */; };
 		04C7809728288F51006DF829 /* FugazOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04C7809628288F51006DF829 /* FugazOne-Regular.ttf */; };
 		04C780A2282893F5006DF829 /* zipper.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C780A1282893F5006DF829 /* zipper.mp3 */; };
-		04C780A4282895ED006DF829 /* rattle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C780A3282895ED006DF829 /* rattle.mp3 */; };
 		04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */; };
 		04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D957278ABC270067C4A5 /* LPConstants.swift */; };
 		04D99F9B2883A9C400E46018 /* Bottle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D99F9A2883A9C400E46018 /* Bottle.swift */; };
@@ -141,7 +140,6 @@
 		04C7809428286207006DF829 /* ZipperTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipperTop.swift; sourceTree = "<group>"; };
 		04C7809628288F51006DF829 /* FugazOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FugazOne-Regular.ttf"; sourceTree = "<group>"; };
 		04C780A1282893F5006DF829 /* zipper.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zipper.mp3; sourceTree = "<group>"; };
-		04C780A3282895ED006DF829 /* rattle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rattle.mp3; sourceTree = "<group>"; };
 		04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		04D8D957278ABC270067C4A5 /* LPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPConstants.swift; sourceTree = "<group>"; };
 		04D99F9A2883A9C400E46018 /* Bottle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bottle.swift; sourceTree = "<group>"; };
@@ -445,7 +443,6 @@
 		04C7808B28271F4D006DF829 /* Zipper */ = {
 			isa = PBXGroup;
 			children = (
-				04C780A3282895ED006DF829 /* rattle.mp3 */,
 				04C780A1282893F5006DF829 /* zipper.mp3 */,
 				04C7809628288F51006DF829 /* FugazOne-Regular.ttf */,
 				04C7808C28271F62006DF829 /* ZipperViewController.swift */,
@@ -628,7 +625,6 @@
 				041E19A3274B4135000F8C11 /* Assets.xcassets in Resources */,
 				041E19A1274B4134000F8C11 /* Main.storyboard in Resources */,
 				047849EF27E6D86A004C2D83 /* bread.jpeg in Resources */,
-				04C780A4282895ED006DF829 /* rattle.mp3 in Resources */,
 				04E7E90B276E1541007B7B82 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

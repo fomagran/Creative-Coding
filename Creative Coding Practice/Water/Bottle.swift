@@ -19,7 +19,10 @@ class Bottle: UIView {
     private var waterHeight:CGFloat = 0
     private var percent: CGFloat = 0
     private var waterColor: UIColor = UIColor(displayP3Red: 224/255, green: 239/255, blue: 247/255, alpha: 0.5)
+    private lazy var entrance: CGFloat = frame.height/5 + frame.height/20
+    private lazy var body: CGFloat = frame.height - entrance
     var left: CGFloat = 0
+    var test: CGFloat = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,13 +37,15 @@ class Bottle: UIView {
         self.percent = percent
         timer = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(fillWater), userInfo: nil, repeats: true)
     }
-
+    
     private func animateWave() {
-        if layer.sublayers?.count ?? 0 > 1 {
+        if layer.sublayers?.count ?? 0 > 3 {
+            layer.sublayers!.removeLast()
+            layer.sublayers!.removeLast()
             layer.sublayers!.removeLast()
         }
-        let bottom = frame.height
-        let easierPath:EasierPath = EasierPath(0, bottom-waterHeight)
+
+        let easierPath:EasierPath = EasierPath(0,frame.height-waterHeight)
         easierPath
             .curve(to:
                     .right(frame.width),
@@ -52,23 +57,27 @@ class Bottle: UIView {
         
         let waterLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor:waterColor)
         layer.addSublayer(waterLayer)
+        
+        drawBottleSide()
     }
     
     func drawWaterShape() {
-        if layer.sublayers?.count ?? 0 > 1 {
+        if layer.sublayers?.count ?? 0 > 3 {
             layer.sublayers!.removeLast()
         }
-        let bottom = frame.height
-        let easierPath:EasierPath = EasierPath(0,bottom-waterHeight-left/2)
+
+        let easierPath:EasierPath = EasierPath(0,frame.height-waterHeight)
         easierPath
-            .rightDown(frame.width,left)
-            .down(frame.height/4*3-left/2)
+            .down(waterHeight)
+            .right(frame.width)
+            .up(waterHeight)
             .left(frame.width)
-            .up(frame.height/4*3-left/2)
             .end()
         
         let waterLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor:waterColor)
         layer.addSublayer(waterLayer)
+        
+        drawBottleSide()
     }
     
     func drawBorderShape() {
@@ -77,15 +86,38 @@ class Bottle: UIView {
             .down(frame.height)
             .right(frame.width)
             .up(frame.height)
-            .leftUp(frame.width/3,frame.height/5)
-            .up(frame.height/20)
-            .left(frame.width - frame.width/3*2)
-            .down(frame.height/20)
-            .leftDown(frame.width/3,frame.height/5)
+            .left(frame.width)
             .end()
         
-        let waterLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .black, fillColor: .clear)
+        let waterLayer = easierPath.makeLayer(lineWidth: 0, lineColor: .black, fillColor: .white)
         layer.addSublayer(waterLayer)
+        
+        drawBottleSide()
+        
+    }
+    
+    func drawBottleSide() {
+        let leftSide: EasierPath = EasierPath(0,0)
+        leftSide
+            .down(entrance)
+            .rightUp(frame.width/3, frame.height/5)
+            .up(frame.height/20)
+            .left(frame.height/5)
+            .end()
+        
+        let rightSide: EasierPath = EasierPath(frame.width,0)
+        rightSide
+            .down(entrance)
+            .leftUp(frame.width/3, frame.height/5)
+            .up(frame.height/20)
+            .right(frame.height/5)
+            .end()
+        
+        let leftLayer = leftSide.makeLayer(lineWidth: 5, lineColor: .black, fillColor: .black)
+        layer.addSublayer(leftLayer)
+        
+        let rightLayer = rightSide.makeLayer(lineWidth: 5, lineColor: .black, fillColor: .black)
+        layer.addSublayer(rightLayer)
     }
     
     //MARK:- @objc Functions
@@ -93,24 +125,24 @@ class Bottle: UIView {
     @objc func fillWater() {
         add = abs(y) == 15 ? -add : add
         y += add
-
+        
         if waterHeight < frame.height * percent {
             waterHeight += 1
             animateWave()
         }else {
             timer?.invalidate()
-            print("??")
             timer1 = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(leanToLeft), userInfo: nil, repeats: true)
             drawWaterShape()
         }
     }
     
     @objc func leanToLeft() {
-       left += 1
-        print(left)
-        drawWaterShape()
-        if left > 100 {
+        if left <= 100 {
+            left += 1
+        } else {
             timer1?.invalidate()
         }
+        drawWaterShape()
+
     }
 }

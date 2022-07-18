@@ -64,14 +64,16 @@ class Bottle: UIView {
     func drawWaterShape() {
         if layer.sublayers?.count ?? 0 > 3 {
             layer.sublayers!.removeLast()
+            layer.sublayers!.removeLast()
+            layer.sublayers!.removeLast()
         }
-
-        let easierPath:EasierPath = EasierPath(0,frame.height-waterHeight)
+        
+        let easierPath:EasierPath = EasierPath(0,frame.height-waterHeight-left)
         easierPath
-            .down(waterHeight)
+            .down(waterHeight+left)
             .right(frame.width)
-            .up(waterHeight)
-            .left(frame.width)
+            .up(waterHeight-left)
+            .leftUp(frame.width,(waterHeight+left)*left/100)
             .end()
         
         let waterLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor:waterColor)
@@ -131,7 +133,7 @@ class Bottle: UIView {
             animateWave()
         }else {
             timer?.invalidate()
-            timer1 = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(leanToLeft), userInfo: nil, repeats: true)
+            timer1 = Timer.scheduledTimer(timeInterval:0.1, target: self, selector: #selector(leanToLeft), userInfo: nil, repeats: true)
             drawWaterShape()
         }
     }

@@ -51,6 +51,7 @@
 		0497A7E4279D2FEC0060616A /* Headlights.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DD279D2FEB0060616A /* Headlights.mp3 */; };
 		0497A7E5279D2FEC0060616A /* Hot shower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DE279D2FEC0060616A /* Hot shower.mp3 */; };
 		0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0497A7E8279D348D0060616A /* UIImage + Extennsions.swift */; };
+		049F9B9C288CFDEA00A01C93 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049F9B9B288CFDEA00A01C93 /* Water.swift */; };
 		04A7FD14280B7004006E146D /* TransformerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7FD13280B7004006E146D /* TransformerViewController.swift */; };
 		04A7FD18280B76AC006E146D /* PowerButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7FD17280B76AC006E146D /* PowerButon.swift */; };
 		04AEC959285EE00900CA66A8 /* WaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AEC958285EE00900CA66A8 /* WaterViewController.swift */; };
@@ -126,6 +127,7 @@
 		0497A7DD279D2FEB0060616A /* Headlights.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Headlights.mp3; sourceTree = "<group>"; };
 		0497A7DE279D2FEC0060616A /* Hot shower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hot shower.mp3"; sourceTree = "<group>"; };
 		0497A7E8279D348D0060616A /* UIImage + Extennsions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extennsions.swift"; sourceTree = "<group>"; };
+		049F9B9B288CFDEA00A01C93 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		04A7FD13280B7004006E146D /* TransformerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerViewController.swift; sourceTree = "<group>"; };
 		04A7FD17280B76AC006E146D /* PowerButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerButon.swift; sourceTree = "<group>"; };
 		04AEC958285EE00900CA66A8 /* WaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterViewController.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 			children = (
 				04AEC958285EE00900CA66A8 /* WaterViewController.swift */,
 				04D99F9A2883A9C400E46018 /* Bottle.swift */,
+				049F9B9B288CFDEA00A01C93 /* Water.swift */,
 			);
 			path = Water;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				04194B08278938730006558B /* LPViewController.swift in Sources */,
 				0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */,
 				0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */,
+				049F9B9C288CFDEA00A01C93 /* Water.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
 				04C7809528286207006DF829 /* ZipperTop.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,

@@ -104,7 +104,6 @@ class Bottle: UIView {
             .down(entrance)
             .rightUp(frame.width/3, frame.height/5)
             .up(frame.height/20)
-            .left(frame.height/5)
             .end()
         
         let rightSide: EasierPath = EasierPath(frame.width,0)
@@ -112,7 +111,6 @@ class Bottle: UIView {
             .down(entrance)
             .leftUp(frame.width/3, frame.height/5)
             .up(frame.height/20)
-            .right(frame.height/5)
             .end()
         
         let leftLayer = leftSide.makeLayer(lineWidth: 5, lineColor: .black, fillColor: .black)
@@ -133,13 +131,13 @@ class Bottle: UIView {
             animateWave()
         }else {
             timer?.invalidate()
-            timer1 = Timer.scheduledTimer(timeInterval:0.1, target: self, selector: #selector(leanToLeft), userInfo: nil, repeats: true)
+            timer1 = Timer.scheduledTimer(timeInterval:0.05, target: self, selector: #selector(leanToLeft), userInfo: nil, repeats: true)
             drawWaterShape()
         }
     }
     
     @objc func leanToLeft() {
-        if left <= 100 {
+        if left <= 150 {
             left += 1
         } else {
             timer1?.invalidate()

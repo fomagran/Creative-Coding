@@ -1,0 +1,16 @@
+PODS:
+  - EasierPath (1.1.0)
+
+DEPENDENCIES:
+  - EasierPath
+
+SPEC REPOS:
+  trunk:
+    - EasierPath
+
+SPEC CHECKSUMS:
+  EasierPath: f505a4ca3314ec842944962748a88a2930039e6a
+
+PODFILE CHECKSUM: ed2d1972bea25f25a91374d5a8826a6d73c5ae42
+
+COCOAPODS: 1.11.2

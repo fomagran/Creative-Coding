@@ -16,6 +16,7 @@
 		04194B0A278941310006558B /* QuadBezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B09278941310006558B /* QuadBezier.swift */; };
 		04194B0C278951B40006558B /* LPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B0B278951B40006558B /* LPView.swift */; };
 		04194B1227896F080006558B /* LP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04194B1127896F080006558B /* LP.swift */; };
+		041BC1B2288E00B500403D1D /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041BC1B1288E00B500403D1D /* Water.swift */; };
 		041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E1999274B4134000F8C11 /* AppDelegate.swift */; };
 		041E199C274B4134000F8C11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E199B274B4134000F8C11 /* SceneDelegate.swift */; };
 		041E19A1274B4134000F8C11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041E199F274B4134000F8C11 /* Main.storyboard */; };
@@ -43,13 +44,6 @@
 		0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */; };
 		0494B47627706A180041116C /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B47527706A180041116C /* CircleView.swift */; };
 		0496F59827E5708500AC54A5 /* nutellaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0496F59727E5707000AC54A5 /* nutellaBold.ttf */; };
-		0497A7DF279D2FEC0060616A /* Highest in the room.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7D8279D2FEA0060616A /* Highest in the room.mp3 */; };
-		0497A7E0279D2FEC0060616A /* Monster.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7D9279D2FEA0060616A /* Monster.mp3 */; };
-		0497A7E1279D2FEC0060616A /* Shotta flow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DA279D2FEB0060616A /* Shotta flow.mp3 */; };
-		0497A7E2279D2FEC0060616A /* BOP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DB279D2FEB0060616A /* BOP.mp3 */; };
-		0497A7E3279D2FEC0060616A /* Clubhouse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DC279D2FEB0060616A /* Clubhouse.mp3 */; };
-		0497A7E4279D2FEC0060616A /* Headlights.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DD279D2FEB0060616A /* Headlights.mp3 */; };
-		0497A7E5279D2FEC0060616A /* Hot shower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0497A7DE279D2FEC0060616A /* Hot shower.mp3 */; };
 		0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0497A7E8279D348D0060616A /* UIImage + Extennsions.swift */; };
 		04A7FD14280B7004006E146D /* TransformerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7FD13280B7004006E146D /* TransformerViewController.swift */; };
 		04A7FD18280B76AC006E146D /* PowerButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7FD17280B76AC006E146D /* PowerButon.swift */; };
@@ -89,6 +83,7 @@
 		04194B09278941310006558B /* QuadBezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadBezier.swift; sourceTree = "<group>"; };
 		04194B0B278951B40006558B /* LPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPView.swift; sourceTree = "<group>"; };
 		04194B1127896F080006558B /* LP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LP.swift; sourceTree = "<group>"; };
+		041BC1B1288E00B500403D1D /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		041E1996274B4134000F8C11 /* Creative Coding Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Creative Coding Practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		041E1999274B4134000F8C11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		041E199B274B4134000F8C11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,13 +113,6 @@
 		0492C5BE276F61AA0072CBBD /* SKView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKView + Extensions.swift"; sourceTree = "<group>"; };
 		0494B47527706A180041116C /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		0496F59727E5707000AC54A5 /* nutellaBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nutellaBold.ttf; sourceTree = "<group>"; };
-		0497A7D8279D2FEA0060616A /* Highest in the room.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Highest in the room.mp3"; sourceTree = "<group>"; };
-		0497A7D9279D2FEA0060616A /* Monster.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Monster.mp3; sourceTree = "<group>"; };
-		0497A7DA279D2FEB0060616A /* Shotta flow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Shotta flow.mp3"; sourceTree = "<group>"; };
-		0497A7DB279D2FEB0060616A /* BOP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BOP.mp3; sourceTree = "<group>"; };
-		0497A7DC279D2FEB0060616A /* Clubhouse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Clubhouse.mp3; sourceTree = "<group>"; };
-		0497A7DD279D2FEB0060616A /* Headlights.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Headlights.mp3; sourceTree = "<group>"; };
-		0497A7DE279D2FEC0060616A /* Hot shower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hot shower.mp3"; sourceTree = "<group>"; };
 		0497A7E8279D348D0060616A /* UIImage + Extennsions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extennsions.swift"; sourceTree = "<group>"; };
 		04A7FD13280B7004006E146D /* TransformerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerViewController.swift; sourceTree = "<group>"; };
 		04A7FD17280B76AC006E146D /* PowerButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerButon.swift; sourceTree = "<group>"; };
@@ -237,13 +225,6 @@
 		04194B1327898CB20006558B /* musics */ = {
 			isa = PBXGroup;
 			children = (
-				0497A7DB279D2FEB0060616A /* BOP.mp3 */,
-				0497A7DC279D2FEB0060616A /* Clubhouse.mp3 */,
-				0497A7DD279D2FEB0060616A /* Headlights.mp3 */,
-				0497A7D8279D2FEA0060616A /* Highest in the room.mp3 */,
-				0497A7DE279D2FEC0060616A /* Hot shower.mp3 */,
-				0497A7D9279D2FEA0060616A /* Monster.mp3 */,
-				0497A7DA279D2FEB0060616A /* Shotta flow.mp3 */,
 			);
 			path = musics;
 			sourceTree = "<group>";
@@ -419,6 +400,7 @@
 			children = (
 				04AEC958285EE00900CA66A8 /* WaterViewController.swift */,
 				04D99F9A2883A9C400E46018 /* Bottle.swift */,
+				041BC1B1288E00B500403D1D /* Water.swift */,
 			);
 			path = Water;
 			sourceTree = "<group>";
@@ -606,22 +588,15 @@
 			files = (
 				041E19A6274B4135000F8C11 /* LaunchScreen.storyboard in Resources */,
 				0496F59827E5708500AC54A5 /* nutellaBold.ttf in Resources */,
-				0497A7E0279D2FEC0060616A /* Monster.mp3 in Resources */,
 				0432DDFD27C345D1009A16AD /* crack.wav in Resources */,
 				047849F327E6F86E004C2D83 /* gooey2.mp3 in Resources */,
-				0497A7E1279D2FEC0060616A /* Shotta flow.mp3 in Resources */,
 				04E7E90A276E1541007B7B82 /* Spark.sks in Resources */,
 				047849F527E6F939004C2D83 /* gooey1.mp3 in Resources */,
 				04C780A2282893F5006DF829 /* zipper.mp3 in Resources */,
 				0432DDFF27C345F8009A16AD /* break.mp3 in Resources */,
-				0497A7E2279D2FEC0060616A /* BOP.mp3 in Resources */,
-				0497A7E4279D2FEC0060616A /* Headlights.mp3 in Resources */,
 				047849ED27E6D414004C2D83 /* cookie.webp in Resources */,
-				0497A7DF279D2FEC0060616A /* Highest in the room.mp3 in Resources */,
 				0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */,
 				04C7809728288F51006DF829 /* FugazOne-Regular.ttf in Resources */,
-				0497A7E5279D2FEC0060616A /* Hot shower.mp3 in Resources */,
-				0497A7E3279D2FEC0060616A /* Clubhouse.mp3 in Resources */,
 				041E19A3274B4135000F8C11 /* Assets.xcassets in Resources */,
 				041E19A1274B4134000F8C11 /* Main.storyboard in Resources */,
 				047849EF27E6D86A004C2D83 /* bread.jpeg in Resources */,
@@ -703,6 +678,7 @@
 				04194B08278938730006558B /* LPViewController.swift in Sources */,
 				0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */,
 				0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */,
+				041BC1B2288E00B500403D1D /* Water.swift in Sources */,
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
 				04C7809528286207006DF829 /* ZipperTop.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,

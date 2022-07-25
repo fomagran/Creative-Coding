@@ -123,6 +123,9 @@ class WaterViewController: UIViewController {
     
     @objc func startRotate() {
         rotateAngle -= 1
+        if rotateAngle < -90 {
+            rotateBottletimer?.invalidate()
+        }
         bottle.leanLeft()
         self.bottle.rotate(degrees:rotateAngle)
     }

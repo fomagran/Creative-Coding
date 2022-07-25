@@ -9,55 +9,112 @@ import UIKit
 
 class WaterViewController: UIViewController {
     
-    var b = false
-    private var timer : Timer?
+    var isDrip: Bool = true
+    private var dripWatertimer : Timer?
+    private var rotateBottletimer : Timer?
     var bottle: Bottle = Bottle(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 200)))
-    var water1: Water = Water(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: 10)))
-    var water2: Water = Water(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 0)))
+    var dripWater: Water = Water(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: 10)))
+    var bottomWater: Water = Water(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 0)))
+    var rotateAngle: Double = 0
+    var waterLength: Int = 0
+    var startButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 50))
+        button.setTitle("Start", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
+    var stopButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 50))
+        button.setTitle("Stop", for: .normal)
+        button.backgroundColor = .systemRed
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
     
     override func viewDidLoad() {
+        configure()
+        view.addSubview(startButton)
+        startButton.center = CGPoint(x: view.center.x - 100, y: view.center.y + 200)
+        startButton.addTarget(self, action:#selector(start), for: .touchUpInside)
+        view.addSubview(stopButton)
+        stopButton.center = CGPoint(x: view.center.x + 100, y: view.center.y + 200)
+        stopButton.addTarget(self, action:#selector(stop), for: .touchUpInside)
+    }
+    
+    @objc func start() {
+        startDripAnimation()
+    }
+    
+    @objc func stop() {
+        isDrip = false
+    }
+    
+    func configure() {
         view.backgroundColor = .black
         bottle.center = view.center
         bottle.clipsToBounds = true
         view.addSubview(bottle)
         bottle.startAnimation(0.5)
         
-        water1.center = CGPoint(x: view.center.x - 12.5 , y: view.center.y - 102.5)
-        water1.layer.cornerRadius = 5
+        dripWater.center = CGPoint(x: view.center.x - 12.5 , y: view.center.y - 102.5)
+        dripWater.layer.cornerRadius = 5
         
-        water2.center = CGPoint(x:0 , y: view.center.y - 102.5)
-        water2.layer.cornerRadius = 5
+        bottomWater.center = CGPoint(x:0 , y: view.center.y - 102.5)
+        bottomWater.layer.cornerRadius = 5
         
-        view.addSubview(water1)
-        view.addSubview(water2)
-        
-        self.timer = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(self.fillWater), userInfo: nil, repeats: true)
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now()) {
-//
-//        }
+        view.addSubview(dripWater)
+        view.addSubview(bottomWater)
     }
     
-    @objc func fillWater() {
-//        self.bottle.rotate(degrees:a)
-        if water1.frame.size.width < 50 && !b {
-            water1.frame.size.width += 1
+    func startRotateAnimation() {
+        self.rotateBottletimer = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(self.startRotate), userInfo: nil, repeats: true)
+    }
+    
+    
+    
+    func startDripAnimation() {
+        self.dripWatertimer = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(self.startDrip), userInfo: nil, repeats: true)
+    }
+    
+    func resetWaters() {
+        UIView.animate(withDuration: 1, delay: 0) {
+            self.bottomWater.alpha = 0
+        } completion: { _ in
+            self.dripWater.center = CGPoint(x: self.view.center.x - 12.5 , y: self.view.center.y - 102.5)
+            self.bottomWater.alpha = 1
+            self.isDrip = true
+            self.bottomWater.frame.size.height = 0
+            self.bottomWater.center.y = self.view.center.y - 102.5
+        }
+    }
+    
+    @objc func startDrip() {
+        if !isDrip {
+            dripWater.frame.size.width += 1
         } else {
-            b = true
+            isDrip = false
         }
         
-        if water1.frame.size.width == 0 {
-            water1.center = CGPoint(x: view.center.x - 12.5 , y: view.center.y - 102.5)
-            timer?.invalidate()
+        if dripWater.frame.size.width == 0 {
+            self.resetWaters()
+            dripWatertimer?.invalidate()
         }
         
-        if water1.center.x < water1.frame.width/2 {
-            water1.frame.size.width -= 1
-            water2.frame.size.height += 1
-            water2.center.y -= 0.5
+        if dripWater.center.x < dripWater.frame.width/2 {
+            dripWater.frame.size.width -= 1
+            bottomWater.frame.size.height += 1
+            bottomWater.center.y -= 0.5
         } else {
-            water1.center.x -= 1
+            dripWater.center.x -= 1
         }
+    }
+    
+    @objc func startRotate() {
+        self.bottle.rotate(degrees:rotateAngle)
+
     }
     
 }

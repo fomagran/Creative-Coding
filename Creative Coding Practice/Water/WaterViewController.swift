@@ -9,11 +9,11 @@ import UIKit
 
 class WaterViewController: UIViewController {
     
-    
+    var b = false
     private var timer : Timer?
-    var a:Double = 0
     var bottle: Bottle = Bottle(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 200)))
-    var water: Water = Water(frame: CGRect(origin: .zero, size: CGSize(width: 50, height: 10)))
+    var water1: Water = Water(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: 10)))
+    var water2: Water = Water(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 0)))
     
     override func viewDidLoad() {
         view.backgroundColor = .black
@@ -22,24 +22,41 @@ class WaterViewController: UIViewController {
         view.addSubview(bottle)
         bottle.startAnimation(0.5)
         
-        water.center = CGPoint(x: view.center.x - 25 - 50/6 , y: view.center.y - 102.5)
-        water.layer.cornerRadius = 5
+        water1.center = CGPoint(x: view.center.x - 12.5 , y: view.center.y - 102.5)
+        water1.layer.cornerRadius = 5
         
-        view.addSubview(water)
+        water2.center = CGPoint(x:0 , y: view.center.y - 102.5)
+        water2.layer.cornerRadius = 5
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+4) {
-            self.timer = Timer.scheduledTimer(timeInterval:0.1, target: self, selector: #selector(self.fillWater), userInfo: nil, repeats: true)
-        }
+        view.addSubview(water1)
+        view.addSubview(water2)
+        
+        self.timer = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(self.fillWater), userInfo: nil, repeats: true)
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now()) {
+//
+//        }
     }
     
     @objc func fillWater() {
-        a += 1
 //        self.bottle.rotate(degrees:a)
-        water.frame.size.width += 1
-        water.center.x -= 1
+        if water1.frame.size.width < 50 && !b {
+            water1.frame.size.width += 1
+        } else {
+            b = true
+        }
         
-        if a > 100 {
+        if water1.frame.size.width == 0 {
+            water1.center = CGPoint(x: view.center.x - 12.5 , y: view.center.y - 102.5)
             timer?.invalidate()
+        }
+        
+        if water1.center.x < water1.frame.width/2 {
+            water1.frame.size.width -= 1
+            water2.frame.size.height += 1
+            water2.center.y -= 0.5
+        } else {
+            water1.center.x -= 1
         }
     }
     

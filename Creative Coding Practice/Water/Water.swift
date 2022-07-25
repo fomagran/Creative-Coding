@@ -9,7 +9,7 @@ import UIKit
 
 class Water: UIView {
     
-    private var waterColor: UIColor = UIColor(displayP3Red: 224/255, green: 239/255, blue: 247/255, alpha: 0.5)
+    private var waterColor: UIColor = UIColor(displayP3Red: 224/255, green: 239/255, blue: 247/255, alpha: 1)
 
     override init(frame: CGRect) {
         super.init(frame: frame)

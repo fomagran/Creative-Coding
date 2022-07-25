@@ -66,12 +66,11 @@ class Bottle: UIView {
             layer.sublayers!.remove(at: 1)
         }
         
-        let easierPath:EasierPath = EasierPath(0,frame.height-waterHeight-left)
+        let easierPath:EasierPath = EasierPath(0,frame.height - waterHeight)
         easierPath
-            .down(waterHeight+left)
-            .right(frame.width)
-            .up(waterHeight-left)
-            .leftUp(frame.width,(waterHeight+left)*left/100)
+            .down(waterHeight)
+            .right(frame.height)
+            .up(waterHeight)
             .end()
         
         let waterLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor:waterColor)

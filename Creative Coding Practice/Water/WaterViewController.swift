@@ -45,11 +45,14 @@ class WaterViewController: UIViewController {
     }
     
     @objc func start() {
-        startDripAnimation()
+//        startDripAnimation()
+        startRotateAnimation()
+        
     }
     
     @objc func stop() {
-        isDrip = false
+//        isDrip = false
+        stopRotateAnimation()
     }
     
     func configure() {
@@ -57,7 +60,7 @@ class WaterViewController: UIViewController {
         bottle.center = view.center
         bottle.clipsToBounds = true
         view.addSubview(bottle)
-        bottle.startAnimation(0.5)
+        bottle.startWaterFillAnimation(percent:0.5)
         
         dripWater.center = CGPoint(x: view.center.x - 12.5 , y: view.center.y - 102.5)
         dripWater.layer.cornerRadius = 5
@@ -70,13 +73,19 @@ class WaterViewController: UIViewController {
     }
     
     func startRotateAnimation() {
-        self.rotateBottletimer = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(self.startRotate), userInfo: nil, repeats: true)
+        self.rotateBottletimer = Timer.scheduledTimer(timeInterval:0.1, target: self, selector: #selector(self.startRotate), userInfo: nil, repeats: true)
     }
-    
-    
     
     func startDripAnimation() {
         self.dripWatertimer = Timer.scheduledTimer(timeInterval:0.01, target: self, selector: #selector(self.startDrip), userInfo: nil, repeats: true)
+    }
+    
+    func stopRotateAnimation() {
+        rotateBottletimer?.invalidate()
+    }
+    
+    func stopDripAnimation() {
+        dripWatertimer?.invalidate()
     }
     
     func resetWaters() {
@@ -113,8 +122,9 @@ class WaterViewController: UIViewController {
     }
     
     @objc func startRotate() {
+        rotateAngle -= 1
+        bottle.leanLeft()
         self.bottle.rotate(degrees:rotateAngle)
-
     }
     
 }

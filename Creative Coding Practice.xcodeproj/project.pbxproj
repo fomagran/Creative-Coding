@@ -70,7 +70,7 @@
 		04F376A3277C6E0700A70B98 /* AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F376A2277C6E0700A70B98 /* AViewController.swift */; };
 		04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F376A4277C75E800A70B98 /* ThreeDCardView.swift */; };
 		04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F376A6277C761700A70B98 /* ThreeDCardDataSource.swift */; };
-		46B57EDF31919274512F4A4B /* Pods_Creative_Coding_Practice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCAAB3231B62D81D2814D7EE /* Pods_Creative_Coding_Practice.framework */; };
+		D8C9F13EF1A939DA82E61B87 /* Pods_Creative_Coding_Practice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 340A7A438544D8A7AB594CA8 /* Pods_Creative_Coding_Practice.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,9 +139,9 @@
 		04F376A2277C6E0700A70B98 /* AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AViewController.swift; sourceTree = "<group>"; };
 		04F376A4277C75E800A70B98 /* ThreeDCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDCardView.swift; sourceTree = "<group>"; };
 		04F376A6277C761700A70B98 /* ThreeDCardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDCardDataSource.swift; sourceTree = "<group>"; };
-		A8C9F8E9399295B00C545CF3 /* Pods-Creative Coding Practice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Creative Coding Practice.release.xcconfig"; path = "Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice.release.xcconfig"; sourceTree = "<group>"; };
-		B475A98195B6EF270B753974 /* Pods-Creative Coding Practice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Creative Coding Practice.debug.xcconfig"; path = "Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice.debug.xcconfig"; sourceTree = "<group>"; };
-		BCAAB3231B62D81D2814D7EE /* Pods_Creative_Coding_Practice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Creative_Coding_Practice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23C7C895F95040C658486D46 /* Pods-Creative Coding Practice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Creative Coding Practice.release.xcconfig"; path = "Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice.release.xcconfig"; sourceTree = "<group>"; };
+		340A7A438544D8A7AB594CA8 /* Pods_Creative_Coding_Practice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Creative_Coding_Practice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EDB1FB06F10CECFB23F4B04 /* Pods-Creative Coding Practice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Creative Coding Practice.debug.xcconfig"; path = "Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,13 +149,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46B57EDF31919274512F4A4B /* Pods_Creative_Coding_Practice.framework in Frameworks */,
+				D8C9F13EF1A939DA82E61B87 /* Pods_Creative_Coding_Practice.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		037F728BF860156938434144 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				340A7A438544D8A7AB594CA8 /* Pods_Creative_Coding_Practice.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		04037BEA279179B4007625B6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,7 +243,7 @@
 				041E1998274B4134000F8C11 /* Creative Coding Practice */,
 				041E1997274B4134000F8C11 /* Products */,
 				2E60B33854F87198A3E623A8 /* Pods */,
-				1D684D58F9A1DE0D260A1A02 /* Frameworks */,
+				037F728BF860156938434144 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -509,19 +517,11 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		1D684D58F9A1DE0D260A1A02 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BCAAB3231B62D81D2814D7EE /* Pods_Creative_Coding_Practice.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2E60B33854F87198A3E623A8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B475A98195B6EF270B753974 /* Pods-Creative Coding Practice.debug.xcconfig */,
-				A8C9F8E9399295B00C545CF3 /* Pods-Creative Coding Practice.release.xcconfig */,
+				8EDB1FB06F10CECFB23F4B04 /* Pods-Creative Coding Practice.debug.xcconfig */,
+				23C7C895F95040C658486D46 /* Pods-Creative Coding Practice.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -533,11 +533,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 041E19AA274B4135000F8C11 /* Build configuration list for PBXNativeTarget "Creative Coding Practice" */;
 			buildPhases = (
-				D276AEFD305E7CAB0A30809A /* [CP] Check Pods Manifest.lock */,
+				07CAEBDDDF5773DBDB7AD778 /* [CP] Check Pods Manifest.lock */,
 				041E1992274B4134000F8C11 /* Sources */,
 				041E1993274B4134000F8C11 /* Frameworks */,
 				041E1994274B4134000F8C11 /* Resources */,
-				94E644223CC3DB767F8671D9 /* [CP] Embed Pods Frameworks */,
+				1B8E0D2314A5F32BBC11FC55 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -607,24 +607,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		94E644223CC3DB767F8671D9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D276AEFD305E7CAB0A30809A /* [CP] Check Pods Manifest.lock */ = {
+		07CAEBDDDF5773DBDB7AD778 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -644,6 +627,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1B8E0D2314A5F32BBC11FC55 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -844,7 +844,7 @@
 		};
 		041E19AB274B4135000F8C11 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B475A98195B6EF270B753974 /* Pods-Creative Coding Practice.debug.xcconfig */;
+			baseConfigurationReference = 8EDB1FB06F10CECFB23F4B04 /* Pods-Creative Coding Practice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -875,7 +875,7 @@
 		};
 		041E19AC274B4135000F8C11 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8C9F8E9399295B00C545CF3 /* Pods-Creative Coding Practice.release.xcconfig */;
+			baseConfigurationReference = 23C7C895F95040C658486D46 /* Pods-Creative Coding Practice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

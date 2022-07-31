@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import EasierPath
 
 class WaterViewController: UIViewController {
+    
+    //The operation could not 어쩌고 오류난 이유 git local하고 remote하고 다를 때 억지로 local을 remote 브랜치로 reset시킬 때 해당 오류가 발생함
     
     var isDrip: Bool = true
     private var dripWatertimer : Timer?
@@ -42,8 +45,31 @@ class WaterViewController: UIViewController {
         view.addSubview(stopButton)
         stopButton.center = CGPoint(x: view.center.x + 100, y: view.center.y + 200)
         stopButton.addTarget(self, action:#selector(stop), for: .touchUpInside)
+
+        let transparentView = makeTransparentView(parent:view)
+        view.addSubview(transparentView)
     }
     
+    func makeTransparentView(parent:UIView) -> UIView {
+        let backgroundView = UIView(frame: parent.frame)
+        backgroundView.backgroundColor = .black.withAlphaComponent(0.6)
+        
+        let maskLayer = CAShapeLayer()
+        let backgroundPath = UIBezierPath(rect: parent.frame)
+        
+        let transparentPath = EasierPath(view.center.x-50,view.center.y-100)
+        transparentPath.right(100)
+        transparentPath.down(200)
+        transparentPath.left(100)
+        transparentPath.up(200)
+        
+        backgroundPath.append(transparentPath.path)
+        maskLayer.fillRule = .evenOdd
+        maskLayer.path = backgroundPath.cgPath
+        backgroundView.layer.mask = maskLayer
+        return backgroundView
+    }
+  
     @objc func start() {
 //        startDripAnimation()
         startRotateAnimation()

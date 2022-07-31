@@ -89,7 +89,6 @@ class Bottle: UIView {
         let waterLayer = easierPath.makeLayer(lineWidth: 0, lineColor: .black, fillColor: .white)
         layer.addSublayer(waterLayer)
         drawBottleSide()
-        
     }
     
     func drawBottleSide() {

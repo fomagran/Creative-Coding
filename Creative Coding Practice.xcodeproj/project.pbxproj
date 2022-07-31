@@ -61,7 +61,6 @@
 		04C780A2282893F5006DF829 /* zipper.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C780A1282893F5006DF829 /* zipper.mp3 */; };
 		04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */; };
 		04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D957278ABC270067C4A5 /* LPConstants.swift */; };
-		04D99F9B2883A9C400E46018 /* Bottle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D99F9A2883A9C400E46018 /* Bottle.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */; };
 		04E7E90A276E1541007B7B82 /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04E7E908276E1541007B7B82 /* Spark.sks */; };
 		04E7E90B276E1541007B7B82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E7E909276E1541007B7B82 /* Assets.xcassets */; };
@@ -70,6 +69,7 @@
 		04F376A3277C6E0700A70B98 /* AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F376A2277C6E0700A70B98 /* AViewController.swift */; };
 		04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F376A4277C75E800A70B98 /* ThreeDCardView.swift */; };
 		04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F376A6277C761700A70B98 /* ThreeDCardDataSource.swift */; };
+		04FC9C4F2896283200442743 /* BottleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC9C4E2896283200442743 /* BottleShape.swift */; };
 		D8C9F13EF1A939DA82E61B87 /* Pods_Creative_Coding_Practice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 340A7A438544D8A7AB594CA8 /* Pods_Creative_Coding_Practice.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,7 +130,6 @@
 		04C780A1282893F5006DF829 /* zipper.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zipper.mp3; sourceTree = "<group>"; };
 		04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		04D8D957278ABC270067C4A5 /* LPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPConstants.swift; sourceTree = "<group>"; };
-		04D99F9A2883A9C400E46018 /* Bottle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bottle.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardCell.swift; sourceTree = "<group>"; };
 		04E7E908276E1541007B7B82 /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
 		04E7E909276E1541007B7B82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -139,6 +138,7 @@
 		04F376A2277C6E0700A70B98 /* AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AViewController.swift; sourceTree = "<group>"; };
 		04F376A4277C75E800A70B98 /* ThreeDCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDCardView.swift; sourceTree = "<group>"; };
 		04F376A6277C761700A70B98 /* ThreeDCardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDCardDataSource.swift; sourceTree = "<group>"; };
+		04FC9C4E2896283200442743 /* BottleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleShape.swift; sourceTree = "<group>"; };
 		23C7C895F95040C658486D46 /* Pods-Creative Coding Practice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Creative Coding Practice.release.xcconfig"; path = "Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice.release.xcconfig"; sourceTree = "<group>"; };
 		340A7A438544D8A7AB594CA8 /* Pods_Creative_Coding_Practice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Creative_Coding_Practice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDB1FB06F10CECFB23F4B04 /* Pods-Creative Coding Practice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Creative Coding Practice.debug.xcconfig"; path = "Target Support Files/Pods-Creative Coding Practice/Pods-Creative Coding Practice.debug.xcconfig"; sourceTree = "<group>"; };
@@ -407,8 +407,8 @@
 			isa = PBXGroup;
 			children = (
 				04AEC958285EE00900CA66A8 /* WaterViewController.swift */,
-				04D99F9A2883A9C400E46018 /* Bottle.swift */,
 				041BC1B1288E00B500403D1D /* Water.swift */,
+				04FC9C4E2896283200442743 /* BottleShape.swift */,
 			);
 			path = Water;
 			sourceTree = "<group>";
@@ -696,10 +696,10 @@
 				04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */,
 				0485DC12275CC63800F029B0 /* WaveView.swift in Sources */,
 				048B344727DE8C05001E6643 /* ChocoChipViewController.swift in Sources */,
+				04FC9C4F2896283200442743 /* BottleShape.swift in Sources */,
 				04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */,
 				04090750279A659E00A5AA03 /* Particle.swift in Sources */,
 				047849EB27E58C44004C2D83 /* NutellaView.swift in Sources */,
-				04D99F9B2883A9C400E46018 /* Bottle.swift in Sources */,
 				04A7FD18280B76AC006E146D /* PowerButon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

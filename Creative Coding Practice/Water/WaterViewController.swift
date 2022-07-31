@@ -15,7 +15,7 @@ class WaterViewController: UIViewController {
     var isDrip: Bool = true
     private var dripWatertimer : Timer?
     private var rotateBottletimer : Timer?
-    var bottle: Bottle = Bottle(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 200)))
+
     var dripWater: Water = Water(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: 10)))
     var bottomWater: Water = Water(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 0)))
     var rotateAngle: Double = 0
@@ -38,32 +38,34 @@ class WaterViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        configure()
-        view.addSubview(startButton)
-        startButton.center = CGPoint(x: view.center.x - 100, y: view.center.y + 200)
-        startButton.addTarget(self, action:#selector(start), for: .touchUpInside)
-        view.addSubview(stopButton)
-        stopButton.center = CGPoint(x: view.center.x + 100, y: view.center.y + 200)
-        stopButton.addTarget(self, action:#selector(stop), for: .touchUpInside)
+//        configure()
+//        view.addSubview(startButton)
+//        startButton.center = CGPoint(x: view.center.x - 100, y: view.center.y + 200)
+//        startButton.addTarget(self, action:#selector(start), for: .touchUpInside)
+//        view.addSubview(stopButton)
+//        stopButton.center = CGPoint(x: view.center.x + 100, y: view.center.y + 200)
+//        stopButton.addTarget(self, action:#selector(stop), for: .touchUpInside)
+        
+        let waterView: Water = Water(frame: CGRect(x: view.center.x-100, y: view.center.y-100, width: 200, height: 200))
+        waterView.backgroundColor = .red
+        view.addSubview(waterView)
+        waterView.startFill(percent: 0.5)
 
-        let transparentView = makeTransparentView(parent:view)
-        view.addSubview(transparentView)
+//
+//        let transparentView = makeTransparentView(parent:view)
+//        view.addSubview(transparentView)
     }
     
     func makeTransparentView(parent:UIView) -> UIView {
         let backgroundView = UIView(frame: parent.frame)
-        backgroundView.backgroundColor = .black.withAlphaComponent(0.6)
+        backgroundView.backgroundColor = .black
         
         let maskLayer = CAShapeLayer()
         let backgroundPath = UIBezierPath(rect: parent.frame)
         
-        let transparentPath = EasierPath(view.center.x-50,view.center.y-100)
-        transparentPath.right(100)
-        transparentPath.down(200)
-        transparentPath.left(100)
-        transparentPath.up(200)
+        let transparentPath = BottleShape(view:view)
         
-        backgroundPath.append(transparentPath.path)
+        backgroundPath.append(transparentPath)
         maskLayer.fillRule = .evenOdd
         maskLayer.path = backgroundPath.cgPath
         backgroundView.layer.mask = maskLayer
@@ -83,10 +85,6 @@ class WaterViewController: UIViewController {
     
     func configure() {
         view.backgroundColor = .black
-        bottle.center = view.center
-        bottle.clipsToBounds = true
-        view.addSubview(bottle)
-        bottle.startWaterFillAnimation(percent:0.5)
         
         dripWater.center = CGPoint(x: view.center.x - 12.5 , y: view.center.y - 102.5)
         dripWater.layer.cornerRadius = 5
@@ -152,8 +150,7 @@ class WaterViewController: UIViewController {
         if rotateAngle < -90 {
             rotateBottletimer?.invalidate()
         }
-        bottle.leanLeft()
-        self.bottle.rotate(degrees:rotateAngle)
+//        self.bottle.rotate(degrees:rotateAngle)
     }
     
 }

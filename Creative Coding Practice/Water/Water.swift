@@ -18,7 +18,7 @@ class Water: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = waterColor
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

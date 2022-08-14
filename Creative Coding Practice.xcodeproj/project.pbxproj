@@ -50,7 +50,6 @@
 		04AEC959285EE00900CA66A8 /* WaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AEC958285EE00900CA66A8 /* WaterViewController.swift */; };
 		04B181232774AFA100D9F7CA /* DavidLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B181222774AFA100D9F7CA /* DavidLoadingViewController.swift */; };
 		04B181252774BC9000D9F7CA /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */; };
-		04B9DE5F2897716E007F09F9 /* GyroscopeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9DE5E2897716E007F09F9 /* GyroscopeViewController.swift */; };
 		04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA9A8727799989002F18D9 /* MainViewController.swift */; };
 		04BA9A8B27799A30002F18D9 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BA9A8A27799A30002F18D9 /* MainTableViewCell.swift */; };
 		04C7806D28162368006DF829 /* KeyboardCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7806C28162368006DF829 /* KeyboardCharacter.swift */; };
@@ -120,7 +119,6 @@
 		04AEC958285EE00900CA66A8 /* WaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterViewController.swift; sourceTree = "<group>"; };
 		04B181222774AFA100D9F7CA /* DavidLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DavidLoadingViewController.swift; sourceTree = "<group>"; };
 		04B181242774BC9000D9F7CA /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
-		04B9DE5E2897716E007F09F9 /* GyroscopeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroscopeViewController.swift; sourceTree = "<group>"; };
 		04BA9A8727799989002F18D9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		04BA9A8A27799A30002F18D9 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		04C7806C28162368006DF829 /* KeyboardCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardCharacter.swift; sourceTree = "<group>"; };
@@ -411,7 +409,6 @@
 				04AEC958285EE00900CA66A8 /* WaterViewController.swift */,
 				041BC1B1288E00B500403D1D /* Water.swift */,
 				04FC9C4E2896283200442743 /* BottleShape.swift */,
-				04B9DE5E2897716E007F09F9 /* GyroscopeViewController.swift */,
 			);
 			path = Water;
 			sourceTree = "<group>";
@@ -685,7 +682,6 @@
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
 				04C7809528286207006DF829 /* ZipperTop.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,
-				04B9DE5F2897716E007F09F9 /* GyroscopeViewController.swift in Sources */,
 				04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */,
 				04089A9327B07FDB0031EF82 /* BrokenGlassViewController.swift in Sources */,
 				04BA9A8B27799A30002F18D9 /* MainTableViewCell.swift in Sources */,

@@ -6,37 +6,22 @@
 //
 
 import UIKit
+import CoreMotion
 import EasierPath
 
 class WaterViewController: UIViewController {
     var isDrip: Bool = false
     private var dripWatertimer : Timer?
-    private var rotateBottletimer : Timer?
     private var waterColor: UIColor = UIColor(displayP3Red: 224/255, green: 239/255, blue: 247/255, alpha: 1)
 
     var dripWater = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 0)))
     var bottomWater = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 0, height: 10)))
-    var rotateAngle: Double = 0
     var waterLength: Int = 0
     var transparentView:UIView!
     lazy var waterView = Water(frame: CGRect(x: view.center.x-100, y: view.center.y-100, width: 200, height: 200))
     
-    var startButton: UIButton = {
-        let button = UIButton()
-        button.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 50))
-        button.setTitle("Start", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
-        return button
-    }()
-    var stopButton: UIButton = {
-        let button = UIButton()
-        button.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 50))
-        button.setTitle("Stop", for: .normal)
-        button.backgroundColor = .systemRed
-        button.setTitleColor(.white, for: .normal)
-        return button
-    }()
+    let motionManager = CMMotionManager()
+    var gyroTimer: Timer!
     
     override func viewDidLoad() {
         let whiteView = UIView(frame: CGRect(x: view.center.x - 100, y: view.center.y - 100, width: 200, height: 200))
@@ -49,17 +34,31 @@ class WaterViewController: UIViewController {
 
         transparentView = makeTransparentView(parent:view)
         view.addSubview(transparentView)
-
-        view.addSubview(startButton)
-        startButton.center = CGPoint(x: view.center.x - 100, y: view.center.y + 200)
-        startButton.addTarget(self, action:#selector(start), for: .touchUpInside)
-        view.addSubview(stopButton)
-        stopButton.center = CGPoint(x: view.center.x + 100, y: view.center.y + 200)
-        stopButton.addTarget(self, action:#selector(stop), for: .touchUpInside)
         
         configure()
+        
+        manageMotion()
     }
-
+    
+    func manageMotion() {
+        if motionManager.isDeviceMotionAvailable {
+            motionManager.deviceMotionUpdateInterval = 1
+            motionManager.startDeviceMotionUpdates(to: OperationQueue.main) {
+                (data, error) in
+                if let data = data {
+                    let rotation = atan2(data.gravity.x, data.gravity.y) - Double.pi
+                    let pivot = Int(round(rotation*100)) + 312
+                    if pivot < 0 {
+                        print("왼쪽")
+                    } else {
+                        print("오른쪽")
+                    }
+   
+                    self.transparentView.transform = CGAffineTransformMakeRotation(CGFloat(-rotation))
+                }
+            }
+        }
+    }
     
     func makeTransparentView(parent:UIView) -> UIView {
         let backgroundView = UIView(frame: parent.frame)
@@ -74,16 +73,6 @@ class WaterViewController: UIViewController {
         maskLayer.path = backgroundPath.cgPath
         backgroundView.layer.mask = maskLayer
         return backgroundView
-    }
-  
-    @objc func start() {
-        startRotateAnimation()
-        
-    }
-    
-    @objc func stop() {
-        isDrip = false
-        stopRotateAnimation()
     }
     
     func configure() {
@@ -102,17 +91,9 @@ class WaterViewController: UIViewController {
         
     }
     
-    func startRotateAnimation() {
-        self.rotateBottletimer = Timer.scheduledTimer(timeInterval:0.05, target: self, selector: #selector(self.startRotate), userInfo: nil, repeats: true)
-    }
-    
     func startDripAnimation() {
         isDrip = true
         self.dripWatertimer = Timer.scheduledTimer(timeInterval:0.005, target: self, selector: #selector(self.startDrip), userInfo: nil, repeats: true)
-    }
-    
-    func stopRotateAnimation() {
-        rotateBottletimer?.invalidate()
     }
     
     func stopDripAnimation() {
@@ -150,14 +131,4 @@ class WaterViewController: UIViewController {
             bottomWater.center.x -= 0.25
         }
     }
-    
-    @objc func startRotate() {
-        rotateAngle -= 1
-        if rotateAngle < -90 {
-            rotateBottletimer?.invalidate()
-            startDripAnimation()
-        }
-        self.transparentView.rotate(degrees:rotateAngle)
-    }
-    
 }

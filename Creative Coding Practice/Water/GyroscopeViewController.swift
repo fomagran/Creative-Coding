@@ -11,25 +11,38 @@ import CoreMotion
 class GyroscopeViewController: UIViewController {
     
     let manager = CMMotionManager()
+    var timer: Timer!
+    var imgView: UIImageView = {
+        let imgView = UIImageView()
+        return imgView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        manager.startGyroUpdates()
+        imgView.frame = CGRect(x: view.center.x, y: view.center.y, width: 100, height: 100)
+        imgView.image = UIImage(named: "skydoor.png")
+        
+        view.addSubview(imgView)
+        
         manager.startAccelerometerUpdates()
+        manager.startGyroUpdates()
+        manager.startMagnetometerUpdates()
+        manager.startDeviceMotionUpdates()
         
-        manager.deviceMotionUpdateInterval = 1
-        
-        manager.startDeviceMotionUpdates(to: .main) { (motion, error) in
-            
-            if let motion = motion?.attitude.quaternion {
-              
-                
-                print(degreesFromRadians(yaw))
-
+        if manager.isDeviceMotionAvailable {
+            manager.deviceMotionUpdateInterval = 0.01
+            manager.startDeviceMotionUpdates(to: OperationQueue.main) {
+                (data, error) in
+                if let data = data {
+                    let rotation = atan2(data.gravity.x, data.gravity.y) - Double.pi
+                    self.imgView.transform = CGAffineTransformMakeRotation(CGFloat(-rotation))
+                }
             }
         }
+
     }
+
     
     private func degreesFromRadians(_ radians: Double) -> Double {
       return radians * 180 / .pi

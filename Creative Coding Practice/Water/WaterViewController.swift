@@ -42,19 +42,22 @@ class WaterViewController: UIViewController {
     
     func manageMotion() {
         if motionManager.isDeviceMotionAvailable {
-            motionManager.deviceMotionUpdateInterval = 1
+            motionManager.deviceMotionUpdateInterval = 0.01
             motionManager.startDeviceMotionUpdates(to: OperationQueue.main) {
                 (data, error) in
                 if let data = data {
                     let rotation = atan2(data.gravity.x, data.gravity.y) - Double.pi
                     let pivot = Int(round(rotation*100)) + 312
+                    
                     if pivot < 0 {
-                        print("왼쪽")
+                        if pivot < -157 {
+                            self.transparentView.transform = CGAffineTransformMakeRotation(CGFloat(-rotation))
+                        }
                     } else {
-                        print("오른쪽")
+                        if pivot > 157 {
+                            self.transparentView.transform = CGAffineTransformMakeRotation(CGFloat(-rotation))
+                        }
                     }
-   
-                    self.transparentView.transform = CGAffineTransformMakeRotation(CGFloat(-rotation))
                 }
             }
         }

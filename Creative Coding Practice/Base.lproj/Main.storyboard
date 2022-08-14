@@ -397,10 +397,10 @@
             </objects>
             <point key="canvasLocation" x="787" y="1716"/>
         </scene>
-        <!--Gyroscope View Controller-->
+        <!--Water View Controller-->
         <scene sceneID="1Zg-ns-vi8">
             <objects>
-                <viewController id="cmW-lZ-ItA" customClass="GyroscopeViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cmW-lZ-ItA" customClass="WaterViewController" customModule="Creative_Coding_Practice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W8m-rp-5Xt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

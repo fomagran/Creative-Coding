@@ -14,16 +14,18 @@ class BottleShape:UIBezierPath {
     
     init(view:UIView) {
         super.init()
-        let easierPath:EasierPath = EasierPath(view.center.x - width/2, view.center.y + height/2)
+        let easierPath:EasierPath = EasierPath(view.center.x - width/2, view.center.y + height/2 - height/25)
         easierPath
-            .right(width)
-            .up(height/5*4)
-            .leftUp(width/3, height/25*4)
+            .rightDown(width/10, height/25)
+            .right(width/10*8)
+            .rightUp(width/10, height/25)
+            .up(height/25*20)
+            .leftUp(width/3, height/25*3)
             .up(height/25)
             .left(width/3)
             .down(height/25)
-            .leftDown(width/3, height/25*4)
-            .down(height/5*4)
+            .leftDown(width/3, height/25*3)
+            .down(height/25*20)
             .end()
         self.cgPath = easierPath.path.cgPath
     }

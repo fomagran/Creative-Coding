@@ -61,6 +61,7 @@
 		04C780A2282893F5006DF829 /* zipper.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04C780A1282893F5006DF829 /* zipper.mp3 */; };
 		04D3E67528A9C4DF00FE7B83 /* fillWater.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 04D3E67328A9C4DF00FE7B83 /* fillWater.m4a */; };
 		04D3E67628A9C4DF00FE7B83 /* flowingWater.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 04D3E67428A9C4DF00FE7B83 /* flowingWater.m4a */; };
+		04D3E67B28B1D78D00FE7B83 /* StickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3E67A28B1D78D00FE7B83 /* StickerViewController.swift */; };
 		04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */; };
 		04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D8D957278ABC270067C4A5 /* LPConstants.swift */; };
 		04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */; };
@@ -132,6 +133,7 @@
 		04C780A1282893F5006DF829 /* zipper.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zipper.mp3; sourceTree = "<group>"; };
 		04D3E67328A9C4DF00FE7B83 /* fillWater.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = fillWater.m4a; sourceTree = "<group>"; };
 		04D3E67428A9C4DF00FE7B83 /* flowingWater.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = flowingWater.m4a; sourceTree = "<group>"; };
+		04D3E67A28B1D78D00FE7B83 /* StickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerViewController.swift; sourceTree = "<group>"; };
 		04D8D955278ABBF20067C4A5 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		04D8D957278ABC270067C4A5 /* LPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPConstants.swift; sourceTree = "<group>"; };
 		04E7E904276E1371007B7B82 /* ThreeDCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeDCardCell.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 		041E1998274B4134000F8C11 /* Creative Coding Practice */ = {
 			isa = PBXGroup;
 			children = (
+				04D3E67928B1D52600FE7B83 /* Sticker */,
 				04AEC955285EDFED00CA66A8 /* Water */,
 				04C7808B28271F4D006DF829 /* Zipper */,
 				04A7FD12280B6FEA006E146D /* Transformer */,
@@ -447,6 +450,14 @@
 				04C7809428286207006DF829 /* ZipperTop.swift */,
 			);
 			path = Zipper;
+			sourceTree = "<group>";
+		};
+		04D3E67928B1D52600FE7B83 /* Sticker */ = {
+			isa = PBXGroup;
+			children = (
+				04D3E67A28B1D78D00FE7B83 /* StickerViewController.swift */,
+			);
+			path = Sticker;
 			sourceTree = "<group>";
 		};
 		04D8D954278ABBDE0067C4A5 /* Extensions */ = {
@@ -706,6 +717,7 @@
 				048B344727DE8C05001E6643 /* ChocoChipViewController.swift in Sources */,
 				04FC9C4F2896283200442743 /* BottleShape.swift in Sources */,
 				04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */,
+				04D3E67B28B1D78D00FE7B83 /* StickerViewController.swift in Sources */,
 				04090750279A659E00A5AA03 /* Particle.swift in Sources */,
 				047849EB27E58C44004C2D83 /* NutellaView.swift in Sources */,
 				04A7FD18280B76AC006E146D /* PowerButon.swift in Sources */,

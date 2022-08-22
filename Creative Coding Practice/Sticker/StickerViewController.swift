@@ -19,17 +19,30 @@ class StickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        
         self.timer = Timer.scheduledTimer(timeInterval:0.03, target: self, selector: #selector(test), userInfo: nil, repeats: true)
+        
+        let t = makeTransparentView(parent: view)
+        view.addSubview(t)
+        
+        let l = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 100)))
+        l.center = CGPoint(x: view.center.x + 110, y: view.center.y-80)
+        l.textColor = .black
+        l.font = .boldSystemFont(ofSize: 16)
+        l.text = "Pull Here!"
+        
+        view.addSubview(l)
         
         let v = UIView()
         v.frame.size = CGSize(width: 200, height: 100)
         v.center = view.center
-        v.backgroundColor = .white
+        v.backgroundColor = .black
         view.addSubview(v)
     }
     
     @objc func test() {
-        if (view.layer.sublayers?.count ?? 0) > 1 {
+        if (view.layer.sublayers?.count ?? 0) > 3 {
             view.layer.sublayers?.removeLast()
             view.layer.sublayers?.removeLast()
         }
@@ -55,9 +68,24 @@ class StickerViewController: UIViewController {
             .up(20)
             .left(50)
         
-        let layer2 = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .black)
+        let layer2 = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .white)
         
         view.layer.addSublayer(layer)
         view.layer.addSublayer(layer2)
+    }
+    
+    func makeTransparentView(parent:UIView) -> UIView {
+        let backgroundView = UIView(frame: parent.frame)
+        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        let maskLayer = CAShapeLayer()
+        let backgroundPath = UIBezierPath(rect: backgroundView.frame)
+        let transparentPath = EasierPath(.circle, CGRect(x:view.center.x+50,y:view.center.y-100,width:100,height:100))
+        
+        backgroundPath.append(transparentPath.path)
+        maskLayer.fillRule = .evenOdd
+        maskLayer.path = backgroundPath.cgPath
+        backgroundView.layer.mask = maskLayer
+        return backgroundView
     }
 }

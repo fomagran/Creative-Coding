@@ -15,6 +15,10 @@ class StickerViewController: UIViewController {
     var h: CGFloat = 0
     var z: CGFloat = 0
     var add: CGFloat = 1
+    var guideView = UIView()
+    var guideLabel = UILabel()
+    var guideLayer1 = CAShapeLayer()
+    var guideLayer2 = CAShapeLayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,22 +27,34 @@ class StickerViewController: UIViewController {
         
         self.timer = Timer.scheduledTimer(timeInterval:0.03, target: self, selector: #selector(test), userInfo: nil, repeats: true)
         
-        let t = makeTransparentView(parent: view)
-        view.addSubview(t)
+        guideView = makeTransparentView(parent: view)
+        view.addSubview(guideView)
         
-        let l = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 100)))
-        l.center = CGPoint(x: view.center.x + 110, y: view.center.y-80)
-        l.textColor = .black
-        l.font = .boldSystemFont(ofSize: 16)
-        l.text = "Pull Here!"
+        guideLabel = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 100)))
+        guideLabel.center = CGPoint(x: view.center.x + 105, y: view.center.y-80)
+        guideLabel.textColor = .black
+        guideLabel.font = .boldSystemFont(ofSize: 14)
+        guideLabel.text = "Pull Here!"
         
-        view.addSubview(l)
+        view.addSubview(guideLabel)
         
         let v = UIView()
         v.frame.size = CGSize(width: 200, height: 100)
         v.center = view.center
         v.backgroundColor = .black
         view.addSubview(v)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGuideView))
+        
+        guideView.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapGuideView() {
+        guideLabel.removeFromSuperview()
+        guideView.removeFromSuperview()
+        view.layer.sublayers?.removeLast()
+        view.layer.sublayers?.removeLast()
+        timer.invalidate()
     }
     
     @objc func test() {
@@ -61,17 +77,17 @@ class StickerViewController: UIViewController {
         let easierPath = EasierPath(view.center.x + 100 - 50 + w*2, view.center.y - 50)
             .curve(to: .rightDown(50 - w*2,20 - h*2), .quad(.rightDown(30-z*2, 30-z*2)))
         
-        let layer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .red)
+        guideLayer1 = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .red)
         
         let easierPath2 = EasierPath(view.center.x + 100 - 50 + w, view.center.y - 50 - h)
             .rightDown(50 - w, 20 - h)
             .up(20)
             .left(50)
         
-        let layer2 = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .white)
+        guideLayer2 = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .white)
         
-        view.layer.addSublayer(layer)
-        view.layer.addSublayer(layer2)
+        view.layer.addSublayer(guideLayer1)
+        view.layer.addSublayer(guideLayer2)
     }
     
     func makeTransparentView(parent:UIView) -> UIView {
@@ -80,7 +96,7 @@ class StickerViewController: UIViewController {
         
         let maskLayer = CAShapeLayer()
         let backgroundPath = UIBezierPath(rect: backgroundView.frame)
-        let transparentPath = EasierPath(.circle, CGRect(x:view.center.x+50,y:view.center.y-100,width:100,height:100))
+        let transparentPath = EasierPath(.circle, CGRect(x:view.center.x+40,y:view.center.y-100,width:100,height:100))
         
         backgroundPath.append(transparentPath.path)
         maskLayer.fillRule = .evenOdd

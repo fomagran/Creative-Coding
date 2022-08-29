@@ -13,28 +13,35 @@ class StickerViewController: UIViewController {
     var timer: Timer!
     var w: CGFloat = 0
     var h: CGFloat = 0
-    var d: CGFloat = 0
     var add: CGFloat = 1
     var guideView = UIView()
     var guideLabel = UILabel()
     var stickerView = UIView()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configure()
+    }
+    
+    func configure() {
         view.backgroundColor = .white
-        
         setGuideView()
-        
+        setStickerView()
+    }
+    
+    func setStickerView() {
         stickerView.frame.size = CGSize(width: 200, height: 100)
         stickerView.center = view.center
         stickerView.backgroundColor = .black
         view.addSubview(stickerView)
+        
+        let tap = UIPanGestureRecognizer(target: self, action: #selector(dragStickerView(_:)))
+        stickerView.addGestureRecognizer(tap)
     }
     
     func setGuideView() {
-        self.timer = Timer.scheduledTimer(timeInterval:0.03, target: self, selector: #selector(test), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval:0.03, target: self, selector: #selector(guideAnimation), userInfo: nil, repeats: true)
         
         guideView = makeTransparentView(parent: view)
         view.addSubview(guideView)
@@ -51,6 +58,46 @@ class StickerViewController: UIViewController {
         guideView.addGestureRecognizer(tap)
     }
     
+    func updateSticker() {
+        if (view.layer.sublayers?.count ?? 0) > 3 {
+            view.layer.sublayers?.removeLast()
+            view.layer.sublayers?.removeLast()
+        }
+        
+        let easierPath = EasierPath(view.center.x + 100, view.center.y - 50)
+            .left(w)
+            .down(h)
+            .right(w)
+            .up(h)
+        
+        let redLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .red)
+        
+        let easierPath2 = EasierPath(view.center.x + 100, view.center.y - 50)
+            .left(w)
+            .rightDown(w, h)
+            .up(h)
+        
+        let whiteLayer = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .white)
+        
+        view.layer.addSublayer(redLayer)
+        view.layer.addSublayer(whiteLayer)
+    }
+    
+    @objc func dragStickerView(_ sender:UIPanGestureRecognizer) {
+        (w,h) = (0,0)
+        
+        let point = sender.location(in: stickerView)
+        
+        if sender.state == .changed {
+            w = min(200,200 - point.x)
+            h = min(100,point.y)
+        } else if sender.state == .ended {
+            (w,h) = (0,0)
+        }
+        
+        updateSticker()
+    }
+    
     @objc func tapGuideView() {
         guideLabel.removeFromSuperview()
         guideView.removeFromSuperview()
@@ -59,16 +106,12 @@ class StickerViewController: UIViewController {
         timer.invalidate()
     }
     
-    @objc func test() {
-        if (view.layer.sublayers?.count ?? 0) > 3 {
-            view.layer.sublayers?.removeLast()
-            view.layer.sublayers?.removeLast()
-        }
-        w += 50/100 * add
-        h += 20/100 * add
-        d += 30/100 * add
+    @objc func guideAnimation() {
         
-        if w > 25 {
+        w += 50/100 * add
+        h += 50/100 * add
+        
+        if w > 15 {
             add = -1
         }
         
@@ -76,20 +119,29 @@ class StickerViewController: UIViewController {
             add = 1
         }
         
-        let easierPath = EasierPath(view.center.x + 100 - 50 + w*2, view.center.y - 50)
-            .curve(to: .rightDown(50 - w*2,20 - h*2), .quad(.rightDown(30-d*2, 30-d*2)))
+        if (view.layer.sublayers?.count ?? 0) > 3 {
+            view.layer.sublayers?.removeLast()
+            view.layer.sublayers?.removeLast()
+        }
+        
+        let easierPath = EasierPath(view.center.x + 100, view.center.y - 50)
+            .left(w)
+            .down(h)
+            .right(w)
+            .up(h)
         
         let redLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .red)
         
-        let easierPath2 = EasierPath(view.center.x + 100 - 50 + w, view.center.y - 50 - h)
-            .rightDown(50 - w, 20 - h)
-            .up(20)
-            .left(50)
+        let easierPath2 = EasierPath(view.center.x + 100, view.center.y - 50)
+            .left(w)
+            .rightDown(w, h)
+            .up(h)
         
         let whiteLayer = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .white)
         
         view.layer.addSublayer(redLayer)
         view.layer.addSublayer(whiteLayer)
+        
     }
     
     func makeTransparentView(parent:UIView) -> UIView {

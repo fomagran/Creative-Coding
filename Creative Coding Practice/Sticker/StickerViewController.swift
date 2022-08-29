@@ -16,8 +16,7 @@ class StickerViewController: UIViewController {
     var add: CGFloat = 1
     var guideView = UIView()
     var guideLabel = UILabel()
-    var stickerView = UIView()
-    
+    var stickerView = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +33,11 @@ class StickerViewController: UIViewController {
         stickerView.frame.size = CGSize(width: 200, height: 100)
         stickerView.center = view.center
         stickerView.backgroundColor = .black
+        stickerView.text = "Fomagran"
+        stickerView.textAlignment = .center
+        stickerView.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        stickerView.textColor = .brown
+        stickerView.isUserInteractionEnabled = true
         view.addSubview(stickerView)
         
         let tap = UIPanGestureRecognizer(target: self, action: #selector(dragStickerView(_:)))
@@ -64,17 +68,22 @@ class StickerViewController: UIViewController {
             view.layer.sublayers?.removeLast()
         }
         
-        let easierPath = EasierPath(view.center.x + 100, view.center.y - 50)
-            .left(w)
-            .down(h)
-            .right(w)
-            .up(h)
+        stickerView.backgroundColor = w > 200 ? .white : .black
+        stickerView.textColor = w > 200 ? .white : .brown
+        
+        let down = w <= 200 ? 0 : min(50,w - 200)
+        
+        let easierPath = EasierPath(view.center.x + 100, view.center.y - 50 + down)
+            .left(min(w,250))
+            .down(min(h,200))
+            .right(h <= 100 ? w : min(w,100))
+            .up(min(h,200))
         
         let redLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .red)
         
         let easierPath2 = EasierPath(view.center.x + 100, view.center.y - 50)
-            .left(w)
-            .rightDown(w, h)
+            .left(w <= 200 ? w :200 - (w - 200))
+            .rightDown(w <= 200 ? w :200 - (w - 200), h)
             .up(h)
         
         let whiteLayer = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .white)
@@ -89,8 +98,8 @@ class StickerViewController: UIViewController {
         let point = sender.location(in: stickerView)
         
         if sender.state == .changed {
-            w = min(200,200 - point.x)
-            h = min(100,point.y)
+            w = 200 - point.x
+            h = point.y
         } else if sender.state == .ended {
             (w,h) = (0,0)
         }

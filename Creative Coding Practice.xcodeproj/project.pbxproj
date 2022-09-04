@@ -28,6 +28,7 @@
 		0438A467275B361300BFE7B5 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438A466275B361300BFE7B5 /* Point.swift */; };
 		0438A469275B361800BFE7B5 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438A468275B361800BFE7B5 /* Line.swift */; };
 		043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */; };
+		0440F56928BC54A0005E44E2 /* StickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440F56828BC54A0005E44E2 /* StickerView.swift */; };
 		046669732757965500C0BA70 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046669722757965500C0BA70 /* WaveViewController.swift */; };
 		047849EB27E58C44004C2D83 /* NutellaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047849EA27E58C44004C2D83 /* NutellaView.swift */; };
 		047849ED27E6D414004C2D83 /* cookie.webp in Resources */ = {isa = PBXBuildFile; fileRef = 047849EC27E6D414004C2D83 /* cookie.webp */; };
@@ -100,6 +101,7 @@
 		0438A466275B361300BFE7B5 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		0438A468275B361800BFE7B5 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew + Extensions.swift"; sourceTree = "<group>"; };
+		0440F56828BC54A0005E44E2 /* StickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerView.swift; sourceTree = "<group>"; };
 		046669722757965500C0BA70 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
 		047849EA27E58C44004C2D83 /* NutellaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutellaView.swift; sourceTree = "<group>"; };
 		047849EC27E6D414004C2D83 /* cookie.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = cookie.webp; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				04D3E67A28B1D78D00FE7B83 /* StickerViewController.swift */,
+				0440F56828BC54A0005E44E2 /* StickerView.swift */,
 			);
 			path = Sticker;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 				0494B47627706A180041116C /* CircleView.swift in Sources */,
 				04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */,
 				0485DC12275CC63800F029B0 /* WaveView.swift in Sources */,
+				0440F56928BC54A0005E44E2 /* StickerView.swift in Sources */,
 				048B344727DE8C05001E6643 /* ChocoChipViewController.swift in Sources */,
 				04FC9C4F2896283200442743 /* BottleShape.swift in Sources */,
 				04D8D958278ABC270067C4A5 /* LPConstants.swift in Sources */,

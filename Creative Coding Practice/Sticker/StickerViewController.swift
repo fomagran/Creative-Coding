@@ -16,7 +16,7 @@ class StickerViewController: UIViewController {
     var add: CGFloat = 1
     var guideView = UIView()
     var guideLabel = UILabel()
-    var stickerView = UILabel()
+    var stickerView = StickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +33,8 @@ class StickerViewController: UIViewController {
         stickerView.frame.size = CGSize(width: 200, height: 100)
         stickerView.center = view.center
         stickerView.backgroundColor = .black
-        stickerView.text = "Fomagran"
-        stickerView.textAlignment = .center
-        stickerView.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        stickerView.textColor = .brown
         stickerView.isUserInteractionEnabled = true
+        
         view.addSubview(stickerView)
         
         let tap = UIPanGestureRecognizer(target: self, action: #selector(dragStickerView(_:)))
@@ -69,7 +66,6 @@ class StickerViewController: UIViewController {
         }
         
         stickerView.backgroundColor = w > 200 ? .white : .black
-        stickerView.textColor = w > 200 ? .white : .brown
         
         let down = w <= 200 ? 0 : min(50,w - 200)
         
@@ -104,6 +100,11 @@ class StickerViewController: UIViewController {
             (w,h) = (0,0)
         }
         
+        print(stickerView.frame,point)
+        
+        if point.x > stickerView.frame.width || point.y < 0 {
+            (w,h) = (0,0)
+        }
         updateSticker()
     }
     

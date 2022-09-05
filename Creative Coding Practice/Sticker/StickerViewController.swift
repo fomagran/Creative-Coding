@@ -21,6 +21,8 @@ class StickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        
+
     }
     
     func configure() {
@@ -63,9 +65,12 @@ class StickerViewController: UIViewController {
         if (view.layer.sublayers?.count ?? 0) > 3 {
             view.layer.sublayers?.removeLast()
             view.layer.sublayers?.removeLast()
+            view.layer.sublayers?.removeLast()
         }
         
         stickerView.backgroundColor = w > 200 ? .white : .black
+        
+
         
         let down = w <= 200 ? 0 : min(50,w - 200)
         
@@ -75,17 +80,33 @@ class StickerViewController: UIViewController {
             .right(h <= 100 ? w : min(w,100))
             .up(min(h,200))
         
-        let redLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .red)
+        let backLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .lightGray)
+    
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = easierPath.path.bounds
+        gradientLayer.colors = [UIColor.black.cgColor, UIColor.blue.cgColor]
         
         let easierPath2 = EasierPath(view.center.x + 100, view.center.y - 50)
             .left(w <= 200 ? w :200 - (w - 200))
-            .rightDown(w <= 200 ? w :200 - (w - 200), h)
+            .rightDown(w <= 200 ? w : 200 - (w - 200), h)
             .up(h)
         
         let whiteLayer = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .white)
         
-        view.layer.addSublayer(redLayer)
+        let shadowPath = EasierPath(view.center.x + 100 - w,view.center.y - 50)
+        shadowPath.rightDown(min(w,250), min(h,200))
+
+        let shadowLayer = shadowPath.makeLayer(lineWidth: 10, lineColor: .black.withAlphaComponent(0.1), fillColor: .clear)
+        
+        shadowLayer.shadowColor = UIColor.black.cgColor
+        shadowLayer.shadowOffset = CGSize(width: 10, height: -10)
+        shadowLayer.shadowOpacity = 0.5
+
+        view.layer.addSublayer(backLayer)
+        view.layer.addSublayer(shadowLayer)
         view.layer.addSublayer(whiteLayer)
+
+    
     }
     
     @objc func dragStickerView(_ sender:UIPanGestureRecognizer) {
@@ -99,8 +120,6 @@ class StickerViewController: UIViewController {
         } else if sender.state == .ended {
             (w,h) = (0,0)
         }
-        
-        print(stickerView.frame,point)
         
         if point.x > stickerView.frame.width || point.y < 0 {
             (w,h) = (0,0)
@@ -140,7 +159,7 @@ class StickerViewController: UIViewController {
             .right(w)
             .up(h)
         
-        let redLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .red)
+        let backLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .lightGray)
         
         let easierPath2 = EasierPath(view.center.x + 100, view.center.y - 50)
             .left(w)
@@ -149,7 +168,7 @@ class StickerViewController: UIViewController {
         
         let whiteLayer = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .white)
         
-        view.layer.addSublayer(redLayer)
+        view.layer.addSublayer(backLayer)
         view.layer.addSublayer(whiteLayer)
         
     }

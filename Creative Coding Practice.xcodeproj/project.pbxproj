@@ -28,6 +28,7 @@
 		0438A467275B361300BFE7B5 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438A466275B361300BFE7B5 /* Point.swift */; };
 		0438A469275B361800BFE7B5 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438A468275B361800BFE7B5 /* Line.swift */; };
 		043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */; };
+		0440F56D28C59674005E44E2 /* peelingSticker.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 0440F56C28C59674005E44E2 /* peelingSticker.m4a */; };
 		046669732757965500C0BA70 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046669722757965500C0BA70 /* WaveViewController.swift */; };
 		047849EB27E58C44004C2D83 /* NutellaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047849EA27E58C44004C2D83 /* NutellaView.swift */; };
 		047849ED27E6D414004C2D83 /* cookie.webp in Resources */ = {isa = PBXBuildFile; fileRef = 047849EC27E6D414004C2D83 /* cookie.webp */; };
@@ -100,6 +101,7 @@
 		0438A466275B361300BFE7B5 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		0438A468275B361800BFE7B5 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew + Extensions.swift"; sourceTree = "<group>"; };
+		0440F56C28C59674005E44E2 /* peelingSticker.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = peelingSticker.m4a; sourceTree = "<group>"; };
 		046669722757965500C0BA70 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
 		047849EA27E58C44004C2D83 /* NutellaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutellaView.swift; sourceTree = "<group>"; };
 		047849EC27E6D414004C2D83 /* cookie.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = cookie.webp; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 		04D3E67928B1D52600FE7B83 /* Sticker */ = {
 			isa = PBXGroup;
 			children = (
+				0440F56C28C59674005E44E2 /* peelingSticker.m4a */,
 				04D3E67A28B1D78D00FE7B83 /* StickerViewController.swift */,
 			);
 			path = Sticker;
@@ -614,6 +617,7 @@
 				04D3E67628A9C4DF00FE7B83 /* flowingWater.m4a in Resources */,
 				047849ED27E6D414004C2D83 /* cookie.webp in Resources */,
 				0492C5BB276F3B7B0072CBBD /* SquareSpark.sks in Resources */,
+				0440F56D28C59674005E44E2 /* peelingSticker.m4a in Resources */,
 				04C7809728288F51006DF829 /* FugazOne-Regular.ttf in Resources */,
 				041E19A3274B4135000F8C11 /* Assets.xcassets in Resources */,
 				041E19A1274B4134000F8C11 /* Main.storyboard in Resources */,

@@ -7,40 +7,58 @@
 
 import UIKit
 import EasierPath
+import AVFAudio
 
 class StickerViewController: UIViewController {
     
-    var timer: Timer!
-    var w: CGFloat = 0
-    var h: CGFloat = 0
-    var add: CGFloat = 1
-    var guideView = UIView()
-    var guideLabel = UILabel()
-    var stickerView = StickerView()
+    var player: AVAudioPlayer?
+    private var timer: Timer!
+    private var w: CGFloat = 0
+    private var h: CGFloat = 0
+    private var add: CGFloat = 1
+    private var guideView = UIView()
+    private var guideLabel = UILabel()
+    private var stickerLabel = UILabel()
+    private var backgroundColor = UIColor(displayP3Red: 217/255, green: 227/255, blue: 36/255, alpha: 1)
+    private var stickerColor = UIColor(displayP3Red: 46/255, green: 132/255, blue: 121/255, alpha: 1)
+    private var stickerBackColor = UIColor(displayP3Red: 125/255, green: 161/255, blue: 133/255, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        
-
     }
     
     func configure() {
-        view.backgroundColor = .white
+        view.backgroundColor = backgroundColor
         setGuideView()
         setStickerView()
     }
     
+    func setFillPlayer(name:String,ex:String) {
+        let url = Bundle.main.url(forResource:name, withExtension:ex)!
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.prepareToPlay()
+        } catch let error as NSError {
+            print(error.description)
+        }
+    }
+    
     func setStickerView() {
-        stickerView.frame.size = CGSize(width: 200, height: 100)
-        stickerView.center = view.center
-        stickerView.backgroundColor = .black
-        stickerView.isUserInteractionEnabled = true
+        stickerLabel.frame.size = CGSize(width: 200, height: 100)
+        stickerLabel.center = view.center
+        stickerLabel.isUserInteractionEnabled = true
+        stickerLabel.backgroundColor = stickerColor
+        stickerLabel.text = "Sticker"
+        stickerLabel.textAlignment = .center
+        stickerLabel.textColor = .white
+        stickerLabel.font = UIFont(name: "FugazOne-Regular", size: 30)
         
-        view.addSubview(stickerView)
+        view.addSubview(stickerLabel)
         
         let tap = UIPanGestureRecognizer(target: self, action: #selector(dragStickerView(_:)))
-        stickerView.addGestureRecognizer(tap)
+        stickerLabel.addGestureRecognizer(tap)
     }
     
     func setGuideView() {
@@ -62,15 +80,13 @@ class StickerViewController: UIViewController {
     }
     
     func updateSticker() {
-        if (view.layer.sublayers?.count ?? 0) > 3 {
-            view.layer.sublayers?.removeLast()
+        if (view.layer.sublayers?.count ?? 0) > 2 {
             view.layer.sublayers?.removeLast()
             view.layer.sublayers?.removeLast()
         }
         
-        stickerView.backgroundColor = w > 200 ? .white : .black
-        
-
+        stickerLabel.backgroundColor = w > 200 ? backgroundColor : stickerColor
+        stickerLabel.textColor = w > 200 ? backgroundColor : .white
         
         let down = w <= 200 ? 0 : min(50,w - 200)
         
@@ -80,48 +96,36 @@ class StickerViewController: UIViewController {
             .right(h <= 100 ? w : min(w,100))
             .up(min(h,200))
         
-        let backLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .lightGray)
-    
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = easierPath.path.bounds
-        gradientLayer.colors = [UIColor.black.cgColor, UIColor.blue.cgColor]
+        let backLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: stickerBackColor)
         
         let easierPath2 = EasierPath(view.center.x + 100, view.center.y - 50)
             .left(w <= 200 ? w :200 - (w - 200))
             .rightDown(w <= 200 ? w : 200 - (w - 200), h)
             .up(h)
         
-        let whiteLayer = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .white)
+        let backgroundLayer = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: backgroundColor)
         
-        let shadowPath = EasierPath(view.center.x + 100 - w,view.center.y - 50)
-        shadowPath.rightDown(min(w,250), min(h,200))
-
-        let shadowLayer = shadowPath.makeLayer(lineWidth: 10, lineColor: .black.withAlphaComponent(0.1), fillColor: .clear)
-        
-        shadowLayer.shadowColor = UIColor.black.cgColor
-        shadowLayer.shadowOffset = CGSize(width: 10, height: -10)
-        shadowLayer.shadowOpacity = 0.5
-
         view.layer.addSublayer(backLayer)
-        view.layer.addSublayer(shadowLayer)
-        view.layer.addSublayer(whiteLayer)
-
-    
+        view.layer.addSublayer(backgroundLayer)
     }
     
     @objc func dragStickerView(_ sender:UIPanGestureRecognizer) {
         (w,h) = (0,0)
         
-        let point = sender.location(in: stickerView)
+        let point = sender.location(in: stickerLabel)
         
-        if sender.state == .changed {
+        if sender.state == .began {
+            setFillPlayer(name: "peelingSticker", ex: "m4a")
+            player?.play()
+        } else if sender.state == .changed {
             w = 200 - point.x
             h = point.y
         } else if sender.state == .ended {
             (w,h) = (0,0)
+            player?.pause()
         }
         
-        if point.x > stickerView.frame.width || point.y < 0 {
+        if point.x > stickerLabel.frame.width || point.y < 0 {
             (w,h) = (0,0)
         }
         updateSticker()
@@ -159,17 +163,17 @@ class StickerViewController: UIViewController {
             .right(w)
             .up(h)
         
-        let backLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .lightGray)
+        let backLayer = easierPath.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: stickerBackColor)
         
         let easierPath2 = EasierPath(view.center.x + 100, view.center.y - 50)
             .left(w)
             .rightDown(w, h)
             .up(h)
         
-        let whiteLayer = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: .white)
+        let backgroundLayer = easierPath2.makeLayer(lineWidth: 1, lineColor: .clear, fillColor: backgroundColor)
         
         view.layer.addSublayer(backLayer)
-        view.layer.addSublayer(whiteLayer)
+        view.layer.addSublayer(backgroundLayer)
         
     }
     

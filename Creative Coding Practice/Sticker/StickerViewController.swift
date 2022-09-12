@@ -34,17 +34,6 @@ class StickerViewController: UIViewController {
         setStickerView()
     }
     
-    func setFillPlayer(name:String,ex:String) {
-        let url = Bundle.main.url(forResource:name, withExtension:ex)!
-        do {
-            player = try AVAudioPlayer(contentsOf: url)
-            guard let player = player else { return }
-            player.prepareToPlay()
-        } catch let error as NSError {
-            print(error.description)
-        }
-    }
-    
     func setStickerView() {
         stickerLabel.frame.size = CGSize(width: 200, height: 100)
         stickerLabel.center = view.center
@@ -59,6 +48,17 @@ class StickerViewController: UIViewController {
         
         let tap = UIPanGestureRecognizer(target: self, action: #selector(dragStickerView(_:)))
         stickerLabel.addGestureRecognizer(tap)
+    }
+    
+    func setFillPlayer(name:String,ex:String) {
+        let url = Bundle.main.url(forResource:name, withExtension:ex)!
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.prepareToPlay()
+        } catch let error as NSError {
+            print(error.description)
+        }
     }
     
     func setGuideView() {

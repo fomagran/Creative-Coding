@@ -18,7 +18,7 @@ class TestViewController: UIViewController {
                     .left(100)
                     .curve(to:.up(200), .bezier(.rightUp(25,50), .leftUp(50,150)))
         
-        let layer = easierPath.makeLayer(lineWidth: 3, lineColor: .white, fillColor: .systemPink)
+        let layer = easierPath.makeGradientLayer(startPoint: CGPoint(x: 0.0, y: 0.5), endPoint: CGPoint(x: 1.0, y: 0.5), gradientColors: [UIColor.red.cgColor,UIColor.blue.cgColor])
         view.layer.addSublayer(layer)
     }
 }

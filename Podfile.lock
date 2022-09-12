@@ -1,5 +1,5 @@
 PODS:
-  - EasierPath (1.1.0)
+  - EasierPath (1.1.1)
 
 DEPENDENCIES:
   - EasierPath
@@ -9,7 +9,7 @@ SPEC REPOS:
     - EasierPath
 
 SPEC CHECKSUMS:
-  EasierPath: f505a4ca3314ec842944962748a88a2930039e6a
+  EasierPath: f6e4b1c6ccbe14fec538ecd3cfe21d68ce6c7c53
 
 PODFILE CHECKSUM: 3ebc368426e34a312b3cb4cf8ee790cc848dac25
 

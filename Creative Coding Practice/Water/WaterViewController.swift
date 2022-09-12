@@ -106,8 +106,8 @@ class WaterViewController: UIViewController {
                     
                     if pivot < 0 {
                         if pivot < -170 {
-                            self.transparentView.transform = CGAffineTransformMakeRotation(CGFloat(-rotation))
-                            self.label.transform = CGAffineTransformMakeRotation(CGFloat(-rotation))
+                            self.transparentView.transform = CGAffineTransform(rotationAngle: CGFloat(-rotation))
+                            self.label.transform = CGAffineTransform(rotationAngle: CGFloat(-rotation))
                             self.isDrip = false
                             self.isDripEnabled = true
                             if self.isFilled {
@@ -125,8 +125,8 @@ class WaterViewController: UIViewController {
                         if pivot > 170 {
                             self.isDrip = false
                             self.isDripEnabled = true
-                            self.transparentView.transform = CGAffineTransformMakeRotation(CGFloat(-rotation))
-                            self.label.transform = CGAffineTransformMakeRotation(CGFloat(-rotation))
+                            self.transparentView.transform = CGAffineTransform(rotationAngle: CGFloat(-rotation))
+                            self.label.transform = CGAffineTransform(rotationAngle: CGFloat(-rotation))
                             if self.isFilled {
                                                             self.fillPlayer?.pause()
                             }

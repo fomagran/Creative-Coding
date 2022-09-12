@@ -108,4 +108,10 @@ iphone 13 pro           |  ipad pro 5th
 :-------------------------:
 ![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/47676921/184563865-fece5e00-b035-41ee-9957-db1d34e5b391.gif)
 
+## 17. Sticker
+
+ iphone 13 pro           
+:-------------------------:
+![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/47676921/189571282-757ef810-7c9c-4d32-a672-fe7d62784ba5.gif)
+
 

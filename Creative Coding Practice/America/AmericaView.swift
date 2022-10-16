@@ -10,7 +10,7 @@ import EasierPath
 
 struct AmericaView: View {
     var body: some View {
-        let path = AmericaPath()
+        let path = Path(State.Washington.path().cgPath)
         path.fill(Color.red).overlay(path.stroke(Color.black, lineWidth: 2))
     }
 }

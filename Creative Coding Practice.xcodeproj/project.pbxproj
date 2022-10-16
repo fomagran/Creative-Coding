@@ -31,6 +31,8 @@
 		0440F56D28C59674005E44E2 /* peelingSticker.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 0440F56C28C59674005E44E2 /* peelingSticker.m4a */; };
 		046083AF28FB978B0040E05C /* AmericaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083AE28FB978B0040E05C /* AmericaView.swift */; };
 		046083B128FB991F0040E05C /* AmericaPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083B028FB991F0040E05C /* AmericaPath.swift */; };
+		046083B528FCC2120040E05C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083B428FCC2120040E05C /* State.swift */; };
+		046083B828FCC3780040E05C /* WashingtonPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083B728FCC3780040E05C /* WashingtonPath.swift */; };
 		046669732757965500C0BA70 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046669722757965500C0BA70 /* WaveViewController.swift */; };
 		047849EB27E58C44004C2D83 /* NutellaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047849EA27E58C44004C2D83 /* NutellaView.swift */; };
 		047849ED27E6D414004C2D83 /* cookie.webp in Resources */ = {isa = PBXBuildFile; fileRef = 047849EC27E6D414004C2D83 /* cookie.webp */; };
@@ -106,6 +108,8 @@
 		0440F56C28C59674005E44E2 /* peelingSticker.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = peelingSticker.m4a; sourceTree = "<group>"; };
 		046083AE28FB978B0040E05C /* AmericaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaView.swift; sourceTree = "<group>"; };
 		046083B028FB991F0040E05C /* AmericaPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaPath.swift; sourceTree = "<group>"; };
+		046083B428FCC2120040E05C /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		046083B728FCC3780040E05C /* WashingtonPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashingtonPath.swift; sourceTree = "<group>"; };
 		046669722757965500C0BA70 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
 		047849EA27E58C44004C2D83 /* NutellaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutellaView.swift; sourceTree = "<group>"; };
 		047849EC27E6D414004C2D83 /* cookie.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = cookie.webp; sourceTree = "<group>"; };
@@ -318,10 +322,20 @@
 		046083AD28FB977A0040E05C /* America */ = {
 			isa = PBXGroup;
 			children = (
+				046083B628FCC3630040E05C /* Paths */,
 				046083AE28FB978B0040E05C /* AmericaView.swift */,
 				046083B028FB991F0040E05C /* AmericaPath.swift */,
+				046083B428FCC2120040E05C /* State.swift */,
 			);
 			path = America;
+			sourceTree = "<group>";
+		};
+		046083B628FCC3630040E05C /* Paths */ = {
+			isa = PBXGroup;
+			children = (
+				046083B728FCC3780040E05C /* WashingtonPath.swift */,
+			);
+			path = Paths;
 			sourceTree = "<group>";
 		};
 		046669712757964B00C0BA70 /* Wave */ = {
@@ -715,6 +729,7 @@
 				04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */,
 				04194B0A278941310006558B /* QuadBezier.swift in Sources */,
 				04194B08278938730006558B /* LPViewController.swift in Sources */,
+				046083B828FCC3780040E05C /* WashingtonPath.swift in Sources */,
 				0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */,
 				0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */,
 				041BC1B2288E00B500403D1D /* Water.swift in Sources */,
@@ -731,6 +746,7 @@
 				04C7808F2827375C006DF829 /* ZipperLine.swift in Sources */,
 				0438A469275B361800BFE7B5 /* Line.swift in Sources */,
 				041E199C274B4134000F8C11 /* SceneDelegate.swift in Sources */,
+				046083B528FCC2120040E05C /* State.swift in Sources */,
 				0494B47627706A180041116C /* CircleView.swift in Sources */,
 				04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */,
 				0485DC12275CC63800F029B0 /* WaveView.swift in Sources */,

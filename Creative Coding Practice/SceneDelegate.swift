@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          window = UIWindow(frame: windowScene.coordinateSpace.bounds)
          window?.windowScene = windowScene
          window?.makeKeyAndVisible()
-         let vc = TestViewController()
+         let vc = StickerViewController()
          window?.rootViewController = vc
     }
 

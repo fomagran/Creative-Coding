@@ -29,6 +29,8 @@
 		0438A469275B361800BFE7B5 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438A468275B361800BFE7B5 /* Line.swift */; };
 		043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */; };
 		0440F56D28C59674005E44E2 /* peelingSticker.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 0440F56C28C59674005E44E2 /* peelingSticker.m4a */; };
+		046083AF28FB978B0040E05C /* AmericaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083AE28FB978B0040E05C /* AmericaView.swift */; };
+		046083B128FB991F0040E05C /* AmericaPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083B028FB991F0040E05C /* AmericaPath.swift */; };
 		046669732757965500C0BA70 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046669722757965500C0BA70 /* WaveViewController.swift */; };
 		047849EB27E58C44004C2D83 /* NutellaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047849EA27E58C44004C2D83 /* NutellaView.swift */; };
 		047849ED27E6D414004C2D83 /* cookie.webp in Resources */ = {isa = PBXBuildFile; fileRef = 047849EC27E6D414004C2D83 /* cookie.webp */; };
@@ -102,6 +104,8 @@
 		0438A468275B361800BFE7B5 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		043CBFB7274E7D6B00A69F37 /* UIVIew + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew + Extensions.swift"; sourceTree = "<group>"; };
 		0440F56C28C59674005E44E2 /* peelingSticker.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = peelingSticker.m4a; sourceTree = "<group>"; };
+		046083AE28FB978B0040E05C /* AmericaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaView.swift; sourceTree = "<group>"; };
+		046083B028FB991F0040E05C /* AmericaPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaPath.swift; sourceTree = "<group>"; };
 		046669722757965500C0BA70 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
 		047849EA27E58C44004C2D83 /* NutellaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutellaView.swift; sourceTree = "<group>"; };
 		047849EC27E6D414004C2D83 /* cookie.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = cookie.webp; sourceTree = "<group>"; };
@@ -266,6 +270,7 @@
 		041E1998274B4134000F8C11 /* Creative Coding Practice */ = {
 			isa = PBXGroup;
 			children = (
+				046083AD28FB977A0040E05C /* America */,
 				04D3E67928B1D52600FE7B83 /* Sticker */,
 				04AEC955285EDFED00CA66A8 /* Water */,
 				04C7808B28271F4D006DF829 /* Zipper */,
@@ -308,6 +313,15 @@
 				0438A468275B361800BFE7B5 /* Line.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		046083AD28FB977A0040E05C /* America */ = {
+			isa = PBXGroup;
+			children = (
+				046083AE28FB978B0040E05C /* AmericaView.swift */,
+				046083B028FB991F0040E05C /* AmericaPath.swift */,
+			);
+			path = America;
 			sourceTree = "<group>";
 		};
 		046669712757964B00C0BA70 /* Wave */ = {
@@ -685,6 +699,7 @@
 				0489E54927B9E48400110D5A /* GlassPiece.swift in Sources */,
 				04194B1227896F080006558B /* LP.swift in Sources */,
 				04C7808D28271F62006DF829 /* ZipperViewController.swift in Sources */,
+				046083AF28FB978B0040E05C /* AmericaView.swift in Sources */,
 				041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */,
 				04AEC959285EE00900CA66A8 /* WaterViewController.swift in Sources */,
 				04090752279A69D700A5AA03 /* GilitchView.swift in Sources */,
@@ -696,6 +711,7 @@
 				04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */,
 				04C78093282857F0006DF829 /* Zipper.swift in Sources */,
 				04C7806D28162368006DF829 /* KeyboardCharacter.swift in Sources */,
+				046083B128FB991F0040E05C /* AmericaPath.swift in Sources */,
 				04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */,
 				04194B0A278941310006558B /* QuadBezier.swift in Sources */,
 				04194B08278938730006558B /* LPViewController.swift in Sources */,

@@ -33,6 +33,15 @@
 		046083B128FB991F0040E05C /* AmericaPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083B028FB991F0040E05C /* AmericaPath.swift */; };
 		046083B528FCC2120040E05C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083B428FCC2120040E05C /* State.swift */; };
 		046083B828FCC3780040E05C /* WashingtonPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083B728FCC3780040E05C /* WashingtonPath.swift */; };
+		046083BA28FCD3830040E05C /* OregonPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083B928FCD3830040E05C /* OregonPath.swift */; };
+		046083BC28FCD8AB0040E05C /* CaliforniaPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083BB28FCD8AB0040E05C /* CaliforniaPath.swift */; };
+		046083BE28FCDB8A0040E05C /* IdahoPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083BD28FCDB8A0040E05C /* IdahoPath.swift */; };
+		046083C028FCDD3C0040E05C /* NevadaPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083BF28FCDD3C0040E05C /* NevadaPath.swift */; };
+		046083C228FCDD810040E05C /* UtahPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083C128FCDD810040E05C /* UtahPath.swift */; };
+		046083C428FCDDF00040E05C /* ArizonaPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083C328FCDDF00040E05C /* ArizonaPath.swift */; };
+		046083C628FCDF250040E05C /* MontanaPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083C528FCDF250040E05C /* MontanaPath.swift */; };
+		046083C828FCE0520040E05C /* WyomingPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083C728FCE0520040E05C /* WyomingPath.swift */; };
+		046083CA28FCE0AF0040E05C /* ColoradoPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046083C928FCE0AF0040E05C /* ColoradoPath.swift */; };
 		046669732757965500C0BA70 /* WaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046669722757965500C0BA70 /* WaveViewController.swift */; };
 		047849EB27E58C44004C2D83 /* NutellaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047849EA27E58C44004C2D83 /* NutellaView.swift */; };
 		047849ED27E6D414004C2D83 /* cookie.webp in Resources */ = {isa = PBXBuildFile; fileRef = 047849EC27E6D414004C2D83 /* cookie.webp */; };
@@ -110,6 +119,15 @@
 		046083B028FB991F0040E05C /* AmericaPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericaPath.swift; sourceTree = "<group>"; };
 		046083B428FCC2120040E05C /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		046083B728FCC3780040E05C /* WashingtonPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashingtonPath.swift; sourceTree = "<group>"; };
+		046083B928FCD3830040E05C /* OregonPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OregonPath.swift; sourceTree = "<group>"; };
+		046083BB28FCD8AB0040E05C /* CaliforniaPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaliforniaPath.swift; sourceTree = "<group>"; };
+		046083BD28FCDB8A0040E05C /* IdahoPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdahoPath.swift; sourceTree = "<group>"; };
+		046083BF28FCDD3C0040E05C /* NevadaPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NevadaPath.swift; sourceTree = "<group>"; };
+		046083C128FCDD810040E05C /* UtahPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtahPath.swift; sourceTree = "<group>"; };
+		046083C328FCDDF00040E05C /* ArizonaPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArizonaPath.swift; sourceTree = "<group>"; };
+		046083C528FCDF250040E05C /* MontanaPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontanaPath.swift; sourceTree = "<group>"; };
+		046083C728FCE0520040E05C /* WyomingPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WyomingPath.swift; sourceTree = "<group>"; };
+		046083C928FCE0AF0040E05C /* ColoradoPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoradoPath.swift; sourceTree = "<group>"; };
 		046669722757965500C0BA70 /* WaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveViewController.swift; sourceTree = "<group>"; };
 		047849EA27E58C44004C2D83 /* NutellaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutellaView.swift; sourceTree = "<group>"; };
 		047849EC27E6D414004C2D83 /* cookie.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = cookie.webp; sourceTree = "<group>"; };
@@ -334,6 +352,15 @@
 			isa = PBXGroup;
 			children = (
 				046083B728FCC3780040E05C /* WashingtonPath.swift */,
+				046083B928FCD3830040E05C /* OregonPath.swift */,
+				046083BB28FCD8AB0040E05C /* CaliforniaPath.swift */,
+				046083BD28FCDB8A0040E05C /* IdahoPath.swift */,
+				046083BF28FCDD3C0040E05C /* NevadaPath.swift */,
+				046083C128FCDD810040E05C /* UtahPath.swift */,
+				046083C328FCDDF00040E05C /* ArizonaPath.swift */,
+				046083C528FCDF250040E05C /* MontanaPath.swift */,
+				046083C728FCE0520040E05C /* WyomingPath.swift */,
+				046083C928FCE0AF0040E05C /* ColoradoPath.swift */,
 			);
 			path = Paths;
 			sourceTree = "<group>";
@@ -704,6 +731,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046083BC28FCD8AB0040E05C /* CaliforniaPath.swift in Sources */,
 				048B344927DEACF6001E6643 /* CookieView.swift in Sources */,
 				04784A0527E8050E004C2D83 /* TestView.swift in Sources */,
 				04B181232774AFA100D9F7CA /* DavidLoadingViewController.swift in Sources */,
@@ -712,14 +740,18 @@
 				04F376A1277C5EFC00A70B98 /* Card.swift in Sources */,
 				0489E54927B9E48400110D5A /* GlassPiece.swift in Sources */,
 				04194B1227896F080006558B /* LP.swift in Sources */,
+				046083C428FCDDF00040E05C /* ArizonaPath.swift in Sources */,
 				04C7808D28271F62006DF829 /* ZipperViewController.swift in Sources */,
+				046083C228FCDD810040E05C /* UtahPath.swift in Sources */,
 				046083AF28FB978B0040E05C /* AmericaView.swift in Sources */,
 				041E199A274B4134000F8C11 /* AppDelegate.swift in Sources */,
+				046083BE28FCDB8A0040E05C /* IdahoPath.swift in Sources */,
 				04AEC959285EE00900CA66A8 /* WaterViewController.swift in Sources */,
 				04090752279A69D700A5AA03 /* GilitchView.swift in Sources */,
 				04F376A3277C6E0700A70B98 /* AViewController.swift in Sources */,
 				04089A9527B08B010031EF82 /* UIViewController + Extensions.swift in Sources */,
 				043CBFB8274E7D6B00A69F37 /* UIVIew + Extensions.swift in Sources */,
+				046083BA28FCD3830040E05C /* OregonPath.swift in Sources */,
 				04194B0C278951B40006558B /* LPView.swift in Sources */,
 				04D8D956278ABBF20067C4A5 /* UIView + Extensions.swift in Sources */,
 				04E7E906276E1371007B7B82 /* ThreeDCardCell.swift in Sources */,
@@ -729,6 +761,7 @@
 				04F376A7277C761700A70B98 /* ThreeDCardDataSource.swift in Sources */,
 				04194B0A278941310006558B /* QuadBezier.swift in Sources */,
 				04194B08278938730006558B /* LPViewController.swift in Sources */,
+				046083C028FCDD3C0040E05C /* NevadaPath.swift in Sources */,
 				046083B828FCC3780040E05C /* WashingtonPath.swift in Sources */,
 				0497A7E9279D348D0060616A /* UIImage + Extennsions.swift in Sources */,
 				0409074E279A5B6B00A5AA03 /* MacMillerViewController.swift in Sources */,
@@ -736,6 +769,7 @@
 				0492C5BF276F61AA0072CBBD /* SKView + Extensions.swift in Sources */,
 				04C7809528286207006DF829 /* ZipperTop.swift in Sources */,
 				0438A467275B361300BFE7B5 /* Point.swift in Sources */,
+				046083C828FCE0520040E05C /* WyomingPath.swift in Sources */,
 				04BA9A8827799989002F18D9 /* MainViewController.swift in Sources */,
 				04089A9327B07FDB0031EF82 /* BrokenGlassViewController.swift in Sources */,
 				04BA9A8B27799A30002F18D9 /* MainTableViewCell.swift in Sources */,
@@ -749,6 +783,7 @@
 				046083B528FCC2120040E05C /* State.swift in Sources */,
 				0494B47627706A180041116C /* CircleView.swift in Sources */,
 				04F376A5277C75E800A70B98 /* ThreeDCardView.swift in Sources */,
+				046083CA28FCE0AF0040E05C /* ColoradoPath.swift in Sources */,
 				0485DC12275CC63800F029B0 /* WaveView.swift in Sources */,
 				048B344727DE8C05001E6643 /* ChocoChipViewController.swift in Sources */,
 				04FC9C4F2896283200442743 /* BottleShape.swift in Sources */,
@@ -757,6 +792,7 @@
 				04090750279A659E00A5AA03 /* Particle.swift in Sources */,
 				047849EB27E58C44004C2D83 /* NutellaView.swift in Sources */,
 				04A7FD18280B76AC006E146D /* PowerButon.swift in Sources */,
+				046083C628FCDF250040E05C /* MontanaPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,7 +33,7 @@ enum State {
     case Minnesota
     case Mississippi
     case Missouri
-    case MontanaNebraska
+    case Montana
     case Nevada
     case NewHampshire
     case NewJersey
@@ -64,13 +64,13 @@ enum State {
         case .Alaska:
             return washingtonPath
         case .Arizona:
-            return washingtonPath
+            return arizonaPath
         case .Arkansas:
             return washingtonPath
         case .California:
-            return washingtonPath
+            return californiaPath
         case .Colorado:
-            return washingtonPath
+            return coloradoPath
         case .Connecticut:
             return washingtonPath
         case .Delaware:
@@ -82,7 +82,7 @@ enum State {
         case .Hawaii:
             return washingtonPath
         case .Idaho:
-            return washingtonPath
+            return idahoPath
         case .IllinoisIndiana:
             return washingtonPath
         case .Iowa:
@@ -107,10 +107,10 @@ enum State {
             return washingtonPath
         case .Missouri:
             return washingtonPath
-        case .MontanaNebraska:
-            return washingtonPath
+        case .Montana:
+            return montanaPath
         case .Nevada:
-            return washingtonPath
+            return nevadaPath
         case .NewHampshire:
             return washingtonPath
         case .NewJersey:
@@ -128,7 +128,7 @@ enum State {
         case .Oklahoma:
             return washingtonPath
         case .Oregon:
-            return washingtonPath
+            return oregonPath
         case .PennsylvaniaRhodeIsland:
             return washingtonPath
         case .SouthCarolina:
@@ -140,7 +140,7 @@ enum State {
         case .Texas:
             return washingtonPath
         case .Utah:
-            return washingtonPath
+            return utahPath
         case .Vermont:
             return washingtonPath
         case .Virginia:
@@ -152,7 +152,7 @@ enum State {
         case .Wisconsin:
             return washingtonPath
         case .Wyoming:
-            return washingtonPath
+            return wyomingPath
         }
     }
 }

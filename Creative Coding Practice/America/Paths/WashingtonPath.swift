@@ -5,11 +5,10 @@
 //  Created by Fomagran on 2022/10/16.
 //
 
-import SwiftUI
 import EasierPath
 
 let washingtonPath = {
-    let width:CGFloat = 200
+    let width:CGFloat = 100
     let height:CGFloat  = 100
     
     let easierPath = EasierPath(0,height/10 * 3)
